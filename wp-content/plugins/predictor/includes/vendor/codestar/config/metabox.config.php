@@ -61,7 +61,7 @@ $options[]    = array(
         array(
             'name' => 'predictions',
             'title' => 'Predictions',
-            'fields' => advisory_generate_ihc_form_tables(),
+            'fields' => prediction_answers(),
             'icon'  => 'fa fa-user',
         ),
     ),

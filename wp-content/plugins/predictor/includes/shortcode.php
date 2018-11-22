@@ -21,7 +21,7 @@ class Prediction {
 			$html .= '<div class="box predictionWrapper">';
 				if (@!$meta['published']) {
 				$html .= '<h3 class="title">'. $event->post_title .'</h3>';
-					if (!$answerGiven[$userID]) {
+					if (!$ans[$userID]) {
 						$html .= '<form action="" method="post">';
 							$html .= '<input type="hidden" name="event" value="'. $ID .'">';
 							$html .= '<input type="hidden" name="user" value="'. $userID .'">';
@@ -53,8 +53,8 @@ class Prediction {
 			$html .= 'May be your given EVENT ID is wrong';
 		}
 
-		// $html .= '<br><pre>'. print_r($ans, true) .'</pre>';
-		help(get_post_meta($ID));
+		$html .= '<br><pre>'. print_r($ans, true) .'</pre>';
+		// $html .= '<br><pre>'. print_r($meta, true) .'</pre>';
 		return $html;
 	}
  }
@@ -65,19 +65,18 @@ if (isset($_POST['prediction'])) {
 	$user = $_POST['user']; unset($_POST['user']);
 	unset($_POST['prediction']);
 
-    help($_POST);
-    serialize($_POST);
-	$answers = get_post_meta($ID, 'event_ans');
-    help($answers);
-		delete_post_meta($ID, 'event_ans');
-    $answers[$user] = $_POST;
-    $_POST = '';
-    // $answers = [1,2];
-		add_post_meta( $ID, 'event_ans', $answers );
- //    if (!$answers) { 
-	//     update_post_meta( $ID, 'event_ans', $answers );
-	// } else {
-	// }
+	$answers = $_POST;
+	updateAnswers($ID, $user, $answers);
 }
-
+function updateAnswers($ID, $user, $ans) {
+	$answers = (array) get_post_meta($ID, 'event_ans', true);
+	if ($answers) {
+		$answers[$user] = $ans;
+		update_post_meta($ID, 'event_ans', $answers);
+	}
+	else {
+		$answers[$user] = $ans;
+		add_post_meta($ID, 'event_ans', $answers);
+	}
+}
 ?>

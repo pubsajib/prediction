@@ -55,7 +55,7 @@ function radioItems(array $weights) {
     }
     return $options;
 }
-function advisory_generate_ihc_form_tables() {
+function prediction_answers() {
     $id = @$_GET['post'];
     $html = '';
     $data = [];
@@ -102,19 +102,21 @@ function getUserNameByID($userID) {
 }
 function answersHTML($meta, $ans) {
     $html = '';
-    if ($meta['answers']) {
+    if (!empty($ans)) {
         $html .= '<div class="box answersWrapper">';
         $html .= '<h3>All predictions</h3>';
-        foreach ($meta['answers'] as $uID => $answer) {
+        foreach ($ans as $uID => $answer) {
             $user = getUserNameByID($uID);
             $html .= '<div id="predictor_'. $uID .'" class="answerContainer">';
             $html .= '<h4>'. $user .'\'s prediction</h4>';
             foreach ($meta['options'] as $option) {
                 $name = predictor_id_from_string($option['title']);
+                $isCorrect = @$ans[$uID][$name] == @$meta['default_'. $name] ? '&#10003;' : '&#10005';
                 // &#10003; gives a lighter one
                 // &#10005 MULTIPLICATION X
                 // &#10006 HEAVY MULTIPLICATION X
-                $html .= '<div class="answer">'. $option['title'] .' <span>'. $answer[$name] .'</span></div>'; 
+                // $html .= $ans[$uID][$name] .'=='. $meta['default_'. $name];
+                $html .= '<div class="answer">'. @$option['title'] .' <span>'. @$answer[$name] .'</span> <span>'. $isCorrect .'</span></div>'; 
             }
             $html .= '</div>';
         }
