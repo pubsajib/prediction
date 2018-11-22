@@ -1,0 +1,21 @@
+/*=======================================
+=            Frontend Styles            =
+========================================*/
+.box{
+	padding: 10px 20px;
+	background-color: #eee;
+	border: 1px solid #d5d5d5;
+	margin-bottom: 20px;
+}
+.no-margin{margin: 0;}
+/* PREDICTION */
+.predictionWrapper{}
+.predictionWrapper h3{font-weight: bold!important;}
+.predictionWrapper label{font-weight: normal;}
+/* ANSWERS */
+.answersWrapper{}
+.answersWrapper h3{font-weight: bold!important;}
+.answerContainer {}
+.answerContainer h4{margin: 0;font-weight: bold;}
+.answerContainer .answer{}
+.answerContainer .answer span{}
