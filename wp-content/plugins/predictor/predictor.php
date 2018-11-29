@@ -8,17 +8,13 @@
  * Author URI:        pubsajib@gmail.com
  * Text Domain:       predictor
  */
-
 namespace PLUGIN_NAME;
-
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
-
 // The class that contains the plugin info.
 require_once plugin_dir_path(__FILE__) . 'includes/class-info.php';
-
 /**
  * The code that runs during plugin activation.
  */
@@ -31,7 +27,8 @@ register_activation_hook(__FILE__, __NAMESPACE__ . '\\activation');
  * Some Globar configurations
  */
 require_once plugin_dir_path(__FILE__) . 'includes/helper.php';
-require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
+require_once plugin_dir_path(__FILE__) . 'shortcodes/prediction.php';
+require_once plugin_dir_path(__FILE__) . 'shortcodes/predictors.php';
 /**
  * Add Codestar Framework.
  */
@@ -49,7 +46,6 @@ $myUpdateChecker = \Puc_v4_Factory::buildUpdateChecker(
     __FILE__,
     $plugin_slug
 );
-
 /**
  * Run the plugin.
  */
@@ -59,3 +55,7 @@ function run() {
     $plugin->run();
 }
 run();
+// function custom_rewrite_basic() {
+//   add_rewrite_rule('^leaf/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top');
+// }
+// add_action('init', 'custom_rewrite_basic');

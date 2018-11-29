@@ -16,54 +16,29 @@ $options[]    = array(
     'priority'  => 'default',
     'sections'  => array(
         array(
-            'name' => 'options',
-            'title' => 'Options',
-            'icon'  => 'fa fa-cog',
+            'name' => 'teams',
+            'title' => 'Teams',
+            'icon'  => 'fa fa-group',
             'fields' => array(
+                ['type' => 'notice', 'class' => 'danger', 'content' => 'Enter section information and save. Then go to next tab'],
+                ['id' => 'restricted', 'type'  => 'switcher', 'title' => 'Restricted content'],
                 array(
-                    'type' => 'notice',
-                    'class' => 'danger',
-                    'content' => 'Enter section information and save. Then go to next tab',
-                ),
-                array(
-                    'id'    => 'published',
-                    'type'  => 'switcher',
-                    'title' => 'Publish',
-                ),
-                array(
-                    'id' => 'options',
+                    'id' => 'teams',
                     'type' => 'group',
-                    'title' => 'Options',
+                    'title' => 'Teams',
                     'desc' => 'Each section name should be unique',
                     'button_title' => 'Add New',
                     'accordion_title' => 'Add New section',
                     'fields' => array(
-                        array(
-                            'id' => 'title',
-                            'type' => 'text',
-                            'title' => 'Title',
-                        ),
-                        array(
-                            'id' => 'weight',
-                            'type' => 'weight',
-                            'title' => 'Weight',
-                        ),
+                        ['id' => 'name', 'type' => 'text', 'title' => 'Name'],
+                        ['id' => 'date', 'type' => 'datetime', 'title' => 'Name'],
                     ),
                 ),
             ),
         ),
-        array(
-            'name' => 'answers',
-            'title' => 'Answers',
-            'fields' => predictor_answer_fields(),
-            'icon'  => 'fa fa-user',
-        ),
-        array(
-            'name' => 'predictions',
-            'title' => 'Predictions',
-            'fields' => prediction_answers(),
-            'icon'  => 'fa fa-user',
-        ),
+        ['name' => 'options', 'title' => 'Options', 'icon'  => 'fa fa-cog', 'fields' => predictor_option_fields()],
+        ['name' => 'answers', 'title' => 'Answers', 'icon'  => 'fa fa-user', 'fields' => predictor_answer_fields()],
+        ['name' => 'predictions', 'title' => 'Predictions', 'icon'  => 'fa fa-user', 'fields' => prediction_answers()],
     ),
 );
 CSFramework_Metabox::instance( $options );
@@ -83,6 +58,18 @@ class CSFramework_Option_weight extends CSFramework_Options {
     echo '<br>';
     echo '<input type="text" style="width:48%; margin: 0 2% 10px 0;" name="'. $this->element_name() .'[2][name]" value="'. @$this->element_value()[2][name] .'"'. $this->element_class() . $this->element_attributes() .' placeholder="name" />';
     echo '<input type="text" style="width:48%; margin: 0 0 10px 2%;" name="'. $this->element_name() .'[2][value]" value="'. @$this->element_value()[2][value] .'"'. $this->element_class() . $this->element_attributes() .' placeholder="weight" />';
+    echo $this->element_after();
+  }
+}
+class CSFramework_Option_datetime extends CSFramework_Options {
+    protected $defaults = '';
+    public function __construct( $field, $value = '', $unique = '' ) {
+        $this->defaults = $value;
+        parent::__construct( $field, $value, $unique );
+    }
+  public function output(){
+    echo $this->element_before();
+    echo '<input type="datetime-local" name="'. $this->element_name() .'" value="'. @$this->element_value() .'"'. $this->element_class() . $this->element_attributes() .'/>';
     echo $this->element_after();
   }
 }
