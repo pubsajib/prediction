@@ -20,10 +20,13 @@ class Frontend
 
         add_action('wp_ajax_nopriv_user_login', [$this, 'ajax_login']);
         add_action('wp_ajax_save_answers', [$this, 'save_answers']);
+        add_action('wp_ajax_load_answers', [$this, 'load_answers']);
+        add_action('wp_ajax_nopriv_load_answers', [$this, 'load_answers']);
     }
 
     public function assets() {
         // CSS
+        wp_enqueue_style('timeto-css',plugin_dir_url(__FILE__).'css/timeTo.css', [], $this->version);
         wp_enqueue_style('owl-css',plugin_dir_url(__FILE__).'css/owl.carousel.min.css', [], $this->version);
         wp_enqueue_style('owltheme-css',plugin_dir_url(__FILE__).'css/owl.theme.default.min.css', [], $this->version);
         wp_enqueue_style('iziModal-css',plugin_dir_url(__FILE__).'css/iziModal.min.css', [], $this->version);
@@ -31,6 +34,7 @@ class Frontend
         // JS
         wp_enqueue_script('owl-js',plugin_dir_url(__FILE__).'js/owl.carousel.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('iziModal-js',plugin_dir_url(__FILE__).'js/iziModal.min.js', ['jquery'], $this->version, true);
+        wp_enqueue_script('timeto-js',plugin_dir_url(__FILE__).'js/jquery.time-to.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script($this->plugin_slug, plugin_dir_url(__FILE__).'js/plugin-name-frontend.js', ['jquery'], $this->version, true);
 
         // AJAX
@@ -74,6 +78,36 @@ class Frontend
         $ans  = $_POST['answers'];
         if ($this->updateAnswers($event, $user, $ans)) echo 1;
         else echo 0;
+        wp_die();
+    }
+    // LOAD ANSWERS
+    function load_answers() {
+        $html  = '';
+        check_ajax_referer('predictor_nonce', 'security');
+        $ID  = $_POST['ID'];
+        $ditems  = $_POST['ditems'];
+        if (get_post_type($ID) == 'event') {
+            $answers        = '';
+            $event          = get_post($ID);
+            $meta           = get_post_meta($ID, 'event_ops', true);
+            $ans            = get_post_meta($ID, 'event_ans', true);
+            $answerGiven    = @$meta['answers'];
+            unset($ans[0]);
+            // GIVEN PREDICTIONS
+            if (!$meta['restricted']) $answers = answersHTML($meta, $ans, $ID, $ditems);
+            else {
+                if (is_user_logged_in() && getValidUserID(['viewer', 'predictor', 'administrator']) && $meta['restricted']) {
+                    $answers = answersHTML($meta, $ans, $ID, $ditems);
+                }
+            }
+
+            if ($answers) {
+                $html .= '<span class="refreshButton fusion-button button-default button-small" event="'. $ID .'">Reload</span>';
+                $html .= $answers;
+            }
+
+        }
+        echo $html;
         wp_die();
     }
     function updateAnswers($ID, $user, $ans) {

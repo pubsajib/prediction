@@ -1,32 +1,27 @@
 <?php 
 class Prediction {
 	public static function render($attr) {
-		$attr = shortcode_atts( array(
-			'id' => 1,
-		), $attr, 'prediction' );
+		$attr = shortcode_atts( ['id' => 1, 'items' => 2], $attr, 'prediction' );
 		$html  = '';
 		$ID = $attr['id'];
-		$html .= '<style>.site-header{ display:none;}</style>';
+		$ditems = $attr['items'];
 
 		if (get_post_type($ID) == 'event') {
 			$event = get_post($ID);
 			$meta  = get_post_meta($ID, 'event_ops', true);
 			$ans   = get_post_meta($ID, 'event_ans', true);
 			$answerGiven = @$meta['answers'];
-			if (!$meta['restricted']) $html .= answersHTML($meta, $ans);
-
+			// GIVEN PREDICTIONS
+			$html .= '<div id="answersWrapper_'. $ID .'" class="answersWrapper" event="'. $ID .'" dItems="'. $ditems.'"></div>';
+			
 			// USER MUST LOGGED IN TO INTERACT
 			if (is_user_logged_in()) {
-				if (getValidUserID(['viewer', 'predictor', 'administrator']) && $meta['restricted']) {
-					// GIVEN PREDICTIONS
-					$html .= answersHTML($meta, $ans);
-				}
 				if ($userID = getValidUserID(['predictor', 'administrator'])) {
 					// PREDICTIN FORM
 					$html .= '<div class="predictionWrapper">';
 						if (@!$meta['published']) {
 							// $html .= '<h3 class="title">'. $event->post_title .'</h3>';
-							// if (!$ans[$userID]) {
+							//if (!$ans[$userID]) {
 							if (true) {
 								$html .= '<form action="" method="post">';
 									$html .= '<input id="eventID" type="hidden" name="event" value="'. $ID .'">';
@@ -34,10 +29,14 @@ class Prediction {
 									if ($meta['teams']) {
 										$html .= '<div class="teamQuestionWrapper">';
 										foreach ($meta['teams'] as $team) {
-											$options = 'team_'. predictor_id_from_string($team['name']);
-											if (!$ans[$userID][$options]) {
-												$html .= '<div class="box teamQuestionContainer" id="'. $options .'">';
-												$html .= '<h3 class="teamName">'. $team['name'] .'</h3>';
+											$teamID = predictor_id_from_string($team['name']);
+											$options = 'team_'. $teamID;
+											if (@isValidOption($ans[$userID][$options], $team['end'])) {
+												$html .= '<div class="teamQuestionContainer" id="'. $options .'">';
+												$html .= '<div class="titleContainer">';
+												$html .= '<div class="teamName half left"><strong>'. $team['name'] .'</strong></div>';
+												$html .= '<div><div class="endTime helf right text-right" id="'. $teamID .'_end">'. $team['end'] .'</div><p class="text-right">Time remaining to predict </p></div>'; 
+												$html .= '</div>';
 												if ($meta[$options]) {
 													foreach ($meta[$options] as $option) {
 														$name = $options .'_'. predictor_id_from_string($option['title']);
@@ -52,7 +51,7 @@ class Prediction {
 														$html .= '</div>';
 													}
 												}
-												$html .= '<button type="button" class="btn btn-md btn-primary saveQAns">Save</button>';
+												$html .= '<button type="button" class="btn btn-green saveQAns">Submit</button>';
 												$html .= '</div>';
 											}
 										} // teamQuestionContainer
@@ -70,7 +69,7 @@ class Prediction {
 				}
 			} else {
 				// NOT LOGGED IN
-				$html .= '<div class="box loginModal"><a href="javascript:;" class="custom-login">Please login </a> to predict.</DIV>';
+				$html .= '<div class="loginModal"><a href="javascript:;" class="custom-login fusion-button button-default button-small">login </a> to predict.</div>';
 			}
 		} else {
 			// INVALID EVENT
@@ -80,14 +79,5 @@ class Prediction {
 		return $html;
 	}
  }
-add_shortcode( 'prediction', array( 'Prediction', 'render' ) ); 
-
-if (isset($_POST['prediction'])) {
-	$ID = $_POST['event']; unset($_POST['event']);
-	$user = $_POST['user']; unset($_POST['user']);
-	unset($_POST['prediction']);
-
-	$answers = $_POST;
-	updateAnswers($ID, $user, $answers);
-}
+add_shortcode( 'prediction', array( 'Prediction', 'render' ) );
 ?>

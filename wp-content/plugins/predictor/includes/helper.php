@@ -1,33 +1,5 @@
 <?php 
-function createPostType() {
-    register_post_type('event', array(
-        'labels' => array(
-            'name' => _x('Event', 'post type general name', 'predictor'),
-            'singular_name' => _x('Event', 'post type singular name', 'predictor'),
-            'menu_name' => _x('Event', 'admin menu', 'predictor'),
-            'name_admin_bar' => _x('Event', 'add new on admin bar', 'predictor'),
-            'add_new' => _x('Add New', 'event', 'predictor'),
-            'add_new_item' => __('Add New Event', 'predictor'),
-            'new_item' => __('New Event', 'predictor'),
-            'edit_item' => __('Edit Event', 'predictor'),
-            'view_item' => __('View Event', 'predictor'),
-            'all_items' => __('All Event', 'predictor'),
-            'search_items' => __('Search Event', 'predictor'),
-            'parent_item_colon' => __('Parent Event:', 'predictor'),
-            'not_found' => __('No Event found.', 'predictor'),
-            'not_found_in_trash' => __('No Event found in Trash.', 'predictor'),
-        ),
-        'public' => true,
-        'exclude_from_search' => true,
-        'supports' => array('title'),
-    ));
-}
-add_action('init', 'createPostType');
-function ui_new_role() {  
-    add_role('predictor', 'Predictor', ['read'=> true, 'delete_posts' => false]);
-    add_role('viewer', 'Viewer', ['read'=> true, 'delete_posts' => false]);
-}
-add_action('admin_init', 'ui_new_role');
+date_default_timezone_set("Asia/Dhaka");
 // METABOX DYNAMIC FIELDS
 function predictor_option_fields() {
     $id = @$_GET['post'];
@@ -70,7 +42,7 @@ function predictor_answer_fields() {
     $data = [];
     // PUBLISH DEFAULT ANSWERS
     $data[] = ['id' => 'published', 'type'  => 'switcher', 'title' => 'Publish result'];
-    if ($meta['teams']) {
+    if (@$meta['teams']) {
         foreach ($meta['teams'] as $team) {
             $data[] = ['type' => 'notice', 'class' => 'info', 'content' => $team['name']];
             $options = 'team_'. predictor_id_from_string($team['name']);
@@ -102,7 +74,7 @@ function prediction_answers() {
     $meta = get_post_meta($id, 'event_ops', true);
     $ans = get_post_meta($id, 'event_ans', true);
     // GIVEN PREDICTIONS
-    $html = answersHTML($meta, $ans);
+    $html = adminAnswersHTML($meta, $ans);
     $data[] = ['type' => 'notice', 'class' => 'info', 'content' => '<h3 style="margin:0;">Predictions</h3>'];
     $data[] = ['type' => 'notice', 'class' => 'default', 'content' => $html];
     // SHORTCODE
@@ -134,37 +106,107 @@ function getUserNameByID($userID) {
     if ($user_info) return $user_info->user_nicename;
     return false;
 }
-
-function answersHTML($meta, $ans) {
+function answersHTML($meta, $ans, $eventID, $ditems=2) {
+    $html = $userNav = '';
+    $owlSelector = 'owlCarousel_'. $eventID;
+    if (!empty($ans)) {
+        $html .= '<div class="owl-carousel '.$owlSelector.' owl-theme">';
+        foreach ($ans as $uID => $answer) {
+            if ($answer) {
+                $country = get_the_author_meta( 'country', $uID );
+                $highlight = get_the_author_meta( 'highlight', $uID ) ? ' highlighted' : '';
+                $user = get_userdata($uID);
+                $html .= '<div id="predictor_'. $uID .'" class="answerContainer item'. $highlight .'" data-hash="'.$uID.'">';
+                $html .= '<div class="dashboard-user"><table>';
+						$html .= '<tr>';
+							$html .= '<td class="leftside">'.get_avatar( $user->user_email , '90 ') . '</div></td>';
+							$html .= '<td class="rightside">';
+                                $html .= '<h4>';
+                                    $html .= '<a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$uID) .'</a>';
+                                    if ($country) $html .= '<img class="countryFlag" src="'. PREDICTOR_URL .'frontend/img/'. $country .'.png" alt="country">';
+                                $html .= '</h4><br>';
+                                    $html .= get_user_meta($user->ID, 'description', true);
+								$html .= '</div></td>';
+						$html .= '</tr>';
+					$html .= '</table></div>';
+                if ($meta['teams']) {
+                    $html .= '<div class="teamAnsWrapper">';
+                    foreach ($meta['teams'] as $team) {
+                        $teamID = predictor_id_from_string($team['name']);
+                        $options = 'team_'. $teamID;
+                        if (@$ans[$uID][$options]) {
+                            $html .= '<div class="teamAnsContainer">';
+                            $html .= '<h3 class="teamName">'. $team['name'] .'</h3>';
+                            if ($meta[$options]) {
+                                foreach ($meta[$options] as $option) {
+                                    $ansID = $options.'_'.predictor_id_from_string($option['title']);
+                                    $default = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
+                                    if (!$answer[$ansID]) continue;
+                                    $isCorrect = '';
+                                    if ($meta['published']) {
+                                        $isCorrect = @$ans[$uID][$ansID]== @$meta[$default] ? '<img src="http://cricdiction.com/wp-content/uploads/2018/11/checked.png">' : '<img src="http://cricdiction.com/wp-content/uploads/2018/11/delete.png">';
+                                    }
+                                    // $html .= $ans[$uID][$ansID] .'=='. $meta[$default];
+                                    $html .= '<div class="answer">'. @$option['title'] .' <br><strong><span>'. @$answer[$ansID] .'</span></strong>&nbsp;&nbsp;&nbsp;<span>'. $isCorrect .'</span></div>'; 
+                                }
+                            }
+                            $html .= '</div>';
+                        }
+                    }
+                    $html .= '</div>';
+                }
+                $html .= '</div>';
+                $userNav .= '<a href="#'.$uID.'">'.get_avatar( $user->user_email , '70 ') . '</a>';
+            }
+        }
+        $html .= '</div>';
+        $html .= '<ul class="menuSlider">';
+        $html .= $userNav;
+        $html .= '</ul>';
+        $html .= '<script> jQuery(".'. $owlSelector .'").owlCarousel({loop:true, margin: 10, nav: true, autoplay:true, autoplayTimeout:10000, URLhashListener:true, autoplayHoverPause:true, startPosition: "URLHash", responsive: {0: {items: 1 }, 600: {items: 1 }, 1000: {items: '. $ditems .' } } }) </script>';
+    } else {
+        $html .= 'No answer given yet';
+    }
+    // $html .= '<br><pre>'. print_r($ans, true) .'</pre>';
+    // $html .= '<br><pre>'. print_r($meta, true) .'</pre>';
+    return $html;
+}
+function adminAnswersHTML($meta, $ans) {
     $html = '';
     if (!empty($ans)) {
         $html .= '<div class="answersWrapper">';
         foreach ($ans as $uID => $answer) {
             if ($answer) {
                 $user = get_userdata($uID);
-                $html .= '<div id="predictor_'. $uID .'" class="answerContainer item">';
-                $html .= '<h4>'. get_avatar( $user->user_email , '70 ') .' '. get_the_author_meta('nickname',$uID) .'</h4>';
+                $html .= '<div id="predictor_'. $uID .'" class="answerContainer">';
+                $html .= '<button class="adminButton removeAns" event="'. $_GET['post'] .'" user="'. $uID .'">Delete</button>';
+                $html .= '<div class="text-center header">';
+                    $html .= get_avatar( $user->user_email , '70 ');
+                    $html .= '<h4><a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$uID) .'</a></h4>';
+                $html .= '</div>';
                 if ($meta['teams']) {
-                    $html .= '<div class="box teamAnsWrapper">';
+                    $html .= '<div class="teamAnsWrapper">';
                     foreach ($meta['teams'] as $team) {
-                        $html .= '<div class="box teamAnsContainer">';
-                        $html .= '<h3 class="teamName">'. $team['name'] .'</h3>';
                         $teamID = predictor_id_from_string($team['name']);
                         $options = 'team_'. $teamID;
-                        if ($meta[$options]) {
-                            foreach ($meta[$options] as $option) {
-                                $ansID = $options.'_'.predictor_id_from_string($option['title']);
-                                $default = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
-                                if (!$answer[$ansID]) continue;
-                                $isCorrect = '';
-                                if ($meta['published']) {
-                                    $isCorrect = @$ans[$uID][$ansID]== @$meta[$default] ? '<img src="http://cricdiction.com/wp-content/uploads/2018/11/checked.png">' : '<img src="http://cricdiction.com/wp-content/uploads/2018/11/delete.png">';
+                        if (@$ans[$uID][$options]) {
+                            $html .= '<div class="teamAnsContainer">';
+                            $html .= '<h3 class="teamName">'. $team['name'] .'</h3>';
+                            if ($meta[$options]) {
+                                foreach ($meta[$options] as $option) {
+                                    $ansID = $options.'_'.predictor_id_from_string($option['title']);
+                                    $default = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
+                                    if (!$answer[$ansID]) continue;
+                                    $isCorrect = '';
+                                    if ($meta['published']) {
+                                        $isCorrect = @$ans[$uID][$ansID]== @$meta[$default] ? '<img src="http://cricdiction.com/wp-content/uploads/2018/11/checked.png">' : '<img src="http://cricdiction.com/wp-content/uploads/2018/11/delete.png">';
+                                    }
+                                    // $html .= $ans[$uID][$ansID] .'=='. $meta[$default];
+                                    $html .= '<div class="answer">'. @$option['title'] .' <br><strong><span>'. @$answer[$ansID] .'</span></strong>&nbsp;&nbsp;&nbsp;<span>'. $isCorrect .'</span></div>'; 
                                 }
-                                // $html .= $ans[$uID][$ansID] .'=='. $meta[$default];
-                                $html .= '<div class="answer">'. @$option['title'] .' <br><strong><span>'. @$answer[$ansID] .'</span></strong>&nbsp;&nbsp;&nbsp;<span>'. $isCorrect .'</span></div>'; 
                             }
+                            $html .= '</div>';
                         }
-                        $html .= '</div>';
                     }
                     $html .= '</div>';
                 }
@@ -197,4 +239,10 @@ function getValidUserID($type='viewer') {
 }
 function in_array_any($needles, $haystack) {
    return !empty(array_intersect($needles, $haystack));
+}
+function isValidOption($answer, $time) {
+    // return true;
+    if ($answer) return false;
+    else if(new DateTime() >= new DateTime($time)) return false;
+    else return true;
 }

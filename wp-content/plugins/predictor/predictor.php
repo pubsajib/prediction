@@ -10,9 +10,10 @@
  */
 namespace PLUGIN_NAME;
 // If this file is called directly, abort.
-if (!defined('WPINC')) {
-    die;
-}
+if (!defined('WPINC')) { die; }
+// CONSTANTS
+define('PREDICTOR_URL', plugin_dir_url( __FILE__ ));
+
 // The class that contains the plugin info.
 require_once plugin_dir_path(__FILE__) . 'includes/class-info.php';
 /**
@@ -23,12 +24,15 @@ function activation() {
     Activator::activate();
 }
 register_activation_hook(__FILE__, __NAMESPACE__ . '\\activation');
-/**
- * Some Globar configurations
- */
+// HELPER FUNCTIONS
 require_once plugin_dir_path(__FILE__) . 'includes/helper.php';
+require_once plugin_dir_path(__FILE__) . 'includes/helper-event.php';
+// USER PROFILE FIELDS
+require_once plugin_dir_path(__FILE__) . 'includes/class-profile.php';
+// SHORTCODES
 require_once plugin_dir_path(__FILE__) . 'shortcodes/prediction.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/predictors.php';
+require_once plugin_dir_path(__FILE__) . 'shortcodes/answers.php';
 /**
  * Add Codestar Framework.
  */

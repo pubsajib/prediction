@@ -41,3 +41,20 @@ get_header(); ?>
 </div><!-- .wrap -->
 
 <?php get_footer();
+
+  require __DIR__ . 'pusher/vendor/autoload.php';
+
+  $options = array(
+    'cluster' => 'ap2',
+    'useTLS' => true
+  );
+  $pusher = new Pusher\Pusher(
+    'cd0501d95a96c6a124bf',
+    '7610abc9ae683451d6fe',
+    '662631',
+    $options
+  );
+
+  $data['message'] = 'hello world';
+  $pusher->trigger('my-channel', 'my-event', $data);
+?>

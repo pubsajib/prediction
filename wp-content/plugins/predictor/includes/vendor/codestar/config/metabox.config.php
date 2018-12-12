@@ -15,6 +15,7 @@ $options[]    = array(
     'context'   => 'normal',
     'priority'  => 'default',
     'sections'  => array(
+        ['name' => 'predictions', 'title' => 'Predictions', 'icon'  => 'fa fa-user', 'fields' => prediction_answers()],
         array(
             'name' => 'teams',
             'title' => 'Teams',
@@ -31,14 +32,14 @@ $options[]    = array(
                     'accordion_title' => 'Add New section',
                     'fields' => array(
                         ['id' => 'name', 'type' => 'text', 'title' => 'Name'],
-                        ['id' => 'date', 'type' => 'datetime', 'title' => 'Name'],
+                        ['id' => 'end', 'type' => 'datetime', 'title' => 'End date'],
                     ),
                 ),
             ),
         ),
         ['name' => 'options', 'title' => 'Options', 'icon'  => 'fa fa-cog', 'fields' => predictor_option_fields()],
         ['name' => 'answers', 'title' => 'Answers', 'icon'  => 'fa fa-user', 'fields' => predictor_answer_fields()],
-        ['name' => 'predictions', 'title' => 'Predictions', 'icon'  => 'fa fa-user', 'fields' => prediction_answers()],
+        // ['name' => 'predictions', 'title' => 'Predictions', 'icon'  => 'fa fa-user', 'fields' => prediction_answers()],
     ),
 );
 CSFramework_Metabox::instance( $options );
