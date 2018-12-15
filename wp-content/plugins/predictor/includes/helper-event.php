@@ -19,7 +19,7 @@ function predictionFor($eventID, $userID) {
     if (!$ans[$userID]) return false;
     if ($meta['teams']) {
         foreach ($meta['teams'] as $team) {
-            $gain = $participated = $correct = $incorrect = 0;
+            $gain = $participated = $correct = $incorrect = $win = $lose = 0;
             $ID = predictor_id_from_string($team['name']);
             $teamID = 'team_'. $ID;
 
@@ -32,44 +32,56 @@ function predictionFor($eventID, $userID) {
 
                     $answerID = $teamID .'_'. $optionID;
                     $givenAns = $ans[$userID][$answerID];
-
                     $default = getDefaultWeight($option['weight'], $defaultAns);
 
-                    $data[$teamID][$answerID]['question']   = $option['title'];
-                    $data[$teamID][$answerID]['weight']     = $default;
-                    $data[$teamID][$answerID]['default']    = $defaultAns;
-                    $data[$teamID][$answerID]['given']      = $givenAns;
                     if (!$givenAns) {
                         $data[$teamID][$answerID]['is_correct'] = true;
                         $gain += 0;
                     } else if ($defaultAns == $givenAns) {
                         $data[$teamID][$answerID]['is_correct'] = true;
+                        $win += $default;
                         $gain += $default;
                         $participated++;
                         $correct++;
                     } else{
                         $data[$teamID][$answerID]['is_correct'] = false;
+                        $lose += $default;
                         $gain -= $default;
                         $participated++;
                         $incorrect++;
                     }
+
+                    $data[$teamID][$answerID]['question']   = $option['title'];
+                    $data[$teamID][$answerID]['weight']     = $default;
+                    $data[$teamID][$answerID]['default']    = $defaultAns;
+                    $data[$teamID][$answerID]['given']      = $givenAns;
+                    // $data[$teamID][$answerID]['win']        = $win;
+                    // $data[$teamID][$answerID]['lose']       = $lose;
                 }
             }
-            $tgain += $gain;
-            $tparticipated += $participated;
-            $tcorrect += $correct;
-            $tincorrect += $incorrect;
+            
+            $twin           += $win;
+            $tlose          += $lose;
+            $tgain          += $gain;
+            $tparticipated  += $participated;
+            $tcorrect       += $correct;
+            $tincorrect     += $incorrect;
             // AVG RESULTS BY QUESTIONS
-            $data[$teamID]['name'] = $team['name'];
-            $data[$teamID]['gain'] = $gain;
-            $data[$teamID]['participated'] = $participated;
-            $data[$teamID]['correct'] = $correct;
-            $data[$teamID]['incorrect'] = $incorrect;
+            $data[$teamID]['name']          = $team['name'];
+            $data[$teamID]['gain']          = $gain;
+            $data[$teamID]['participated']  = $participated;
+            $data[$teamID]['correct']       = $correct;
+            $data[$teamID]['incorrect']     = $incorrect;
+            $data[$teamID]['win']           = $win;
+            $data[$teamID]['lose']          = $lose;
         }
-        $data['gain'] = $tgain;
-        $data['participated'] = $tparticipated;
-        $data['correct'] = $tcorrect;
-        $data['incorrect'] = $tincorrect;
+        $data['gain']           = $tgain;
+        $data['participated']   = $tparticipated;
+        $data['correct']        = $tcorrect;
+        $data['incorrect']      = $tincorrect;
+        $data['win']            = $twin;
+        $data['lose']           = $tlose;
+        $data['tweight']        = $data['win'] + $data['lose'];
     }
     return $data;
 }
@@ -86,13 +98,21 @@ function predictionsOf($userID=1) {
     $events = getEventIDs();
     foreach ($events as $eventID) {
         $data = predictionFor($eventID, $userID);
-        $prediction['gain'] += $data['gain'];
+        $prediction['gain']         += $data['gain'];
+        // SUMMERY BY MATCH COUNT
         $prediction['participated'] += $data['participated'];
-        $prediction['correct'] += $data['correct'];
-        $prediction['incorrect'] += $data['incorrect'];
+        $prediction['correct']      += $data['correct'];
+        $prediction['incorrect']    += $data['incorrect'];
+        // SUMMERY BY MATCH WEIGHT
+        $prediction['tweight']      += $data['tweight'];
+        $prediction['win']          += $data['win'];
+        $prediction['lose']         += $data['lose'];
         // echo '<br><pre>'. print_r($data, true) .'</pre>';
     }
-    $prediction['accuracy'] += ($prediction['correct'] / $prediction['participated']) * 100;
+    if ($prediction['participated']) $prediction['win_rate'] = ($prediction['correct'] / $prediction['participated']) * 100;
+    else $prediction['win_rate'] = 0;
+    if ($prediction['tweight']) $prediction['weight_rate']   = ($prediction['win'] / $prediction['tweight']) * 100;
+    else $prediction['tweight'] = 0;
+    // echo '<br><pre>'. print_r($prediction, true) .'</pre>';
     return $prediction;
 }
-// echo '<br><pre>'. print_r(getEventIDs(), true) .'</pre>';

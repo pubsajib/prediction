@@ -22,15 +22,31 @@ $prediction = predictionsOf($user->ID);
 	    <?php endif ?>
 	</div>
 	<div class="half p20 right text-right summeryWrapper">
-		<div class="summeryContainer accuracy"><div class="title">Accuracy : </div>
-			<div class="value">
-				<?php echo $prediction['accuracy']; ?>% <br>
-				<progress value="<?php echo $prediction['accuracy']; ?>" max="100"></progress>
+		<?php if ($prediction['win_rate']): ?>
+			<div class="summeryContainer win_rate"><div class="title">Accuracy By Win : </div>
+				<div class="value">
+					<?php echo number_format((float)$prediction['win_rate'], 2, '.', ''); ?>% <br>
+					<progress value="<?php echo $prediction['win_rate']; ?>" max="100"></progress>
+				</div>
 			</div>
-		</div>
-		<div class="summeryContainer participate"><div class="title">Participated: </div> <div class="value"> <?php echo $prediction['participated'] ?> </div> </div>
-		<div class="summeryContainer correct"><div class="title">Right: </div> <div class="value"> <?php echo $prediction['correct'] ?> </div> </div>
-		<div class="summeryContainer wrong"><div class="title">Wrong: </div> <div class="value"> <?php echo $prediction['incorrect'] ?> </div> </div>
+			<div class="summeryContainer participate"><div class="title">Participated: </div> <div class="value"> <?php echo $prediction['participated'] ?> </div> </div>
+			<div class="summeryContainer correct"><div class="title">Right: </div> <div class="value"> <?php echo $prediction['correct'] ?> </div> </div>
+			<div class="summeryContainer wrong"><div class="title">Wrong: </div> <div class="value"> <?php echo $prediction['incorrect'] ?> </div> </div>
+		<?php endif ?>
+		<?php if ($prediction['weight_rate']): ?>
+			<div class="clearfix" style="width:160%; margin: 20px 0 20px 40%; border: 2px solid red;"></div>
+
+			<div class="summeryContainer weight_rate"><div class="title">Accuracy By Weight : </div>
+				<div class="value">
+					<?php echo number_format((float)$prediction['weight_rate'], 2, '.', ''); ?>% <br>
+					<progress value="<?php echo $prediction['weight_rate']; ?>" max="100"></progress>
+				</div>
+			</div>
+			<div class="summeryContainer participate"><div class="title">Participated: </div> <div class="value"> <?php echo $prediction['tweight'] ?> </div> </div>
+			<div class="summeryContainer correct"><div class="title">Right: </div> <div class="value"> <?php echo $prediction['win'] ?> </div> </div>
+			<div class="summeryContainer wrong"><div class="title">Wrong: </div> <div class="value"> <?php echo $prediction['lose'] ?> </div> </div>
+		<?php endif ?>
+		
 	</div>
 	<div class="clearfix"></div>
 </div>

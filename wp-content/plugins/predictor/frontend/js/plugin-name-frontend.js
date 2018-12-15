@@ -52,7 +52,7 @@
     }
     var loader = function() {
         var html = '';
-        html += '<div class="text-center loaderText"> Loading please wait</div>';
+        html += '<div class="text-center loaderText"> Loading please wait </div>';
         html += '<div class="spinner">';
           html += '<div class="bounce1"></div>';
           html += '<div class="bounce2"></div>';
@@ -75,7 +75,7 @@
             data: ajaxData,
             beforeSend: function() { answersWrapper.html(loader()); },
             success: function(response, status, xhr) {
-                // alert('response');
+                alert('response');
                 if (response) {
                     setTimeout(function() {
                         answersWrapper.html(response);
@@ -90,7 +90,7 @@
     }
     var cofirmBox = function(warnings, teamID) {
         var modal = $("<div>").attr("class", "modalWrapper");
-        var footer = "<footer> <button data-iziModal-close>Cancel</button> <button type=\"button\" class=\"confirmed\" team="+ teamID +">Save</button> </footer>";
+        var footer = "<footer><button type=\"button\" class=\"confirmed fusion-button button-default button-small btn-green\" team="+ teamID +">SubmitSubmit</button> <button data-iziModal-close class=\"fusion-button button-default button-small\">Cancel</button></footer>";
         modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
         modal.iziModal({
             title: "Prediction confirmation",
@@ -274,8 +274,8 @@
             loadAnswers(eventID, ditems);
         })
         $(document).on('click', '.refreshButton', function(event) {
-            var eventID = $(this).parent().attr('event');
-            var ditems = $(this).parent().attr('ditems');
+            var eventID = $(this).parents('.answersWrapper').attr('event');
+            var ditems = $(this).parents('.answersWrapper').attr('ditems');
             if (!eventID) alert('Not a valid event');
             else loadAnswers(eventID, ditems);
         });
