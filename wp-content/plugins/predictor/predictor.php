@@ -25,8 +25,11 @@ function activation() {
 }
 register_activation_hook(__FILE__, __NAMESPACE__ . '\\activation');
 // HELPER FUNCTIONS
-require_once plugin_dir_path(__FILE__) . 'includes/helper.php';
-require_once plugin_dir_path(__FILE__) . 'includes/helper-event.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/helper.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/event.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/answer.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/profile.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/tournament.php';
 // USER PROFILE FIELDS
 require_once plugin_dir_path(__FILE__) . 'includes/class-profile.php';
 // SHORTCODES

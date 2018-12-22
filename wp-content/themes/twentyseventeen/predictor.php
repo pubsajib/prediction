@@ -3,77 +3,52 @@
 
 get_header(); 
 // Set the Current Author Variable $user
-$user = (isset($_GET['p'])) ? get_userdatabylogin($_GET['p']) : [];
+$user = (isset($_GET['p'])) ? get_user_by('login', $_GET['p']) : [];
 $prediction = predictionsOf($user->ID);
 // echo '<br><pre>'. print_r($prediction, true) .'</pre>';
 ?>
      
 <div class="author-profile-card">
-	<div class="half p20 left">
-		<h3><?php echo $user->display_name; ?></h3>
+	<div class="profile-info">
 	    <div class="author-photo"> <?php echo get_avatar( $user->user_email , '120 '); ?> </div>
-	    <?php if ($user->user_url): ?>
+	    <h3><?php echo $user->display_name; ?></h3>
+		<?php if ($user->user_url): ?>
 	    	
 	    <p><strong>Website:</strong> <a href="<?php echo $user->user_url; ?>"><?php echo $user->user_url; ?></a><br />
 	    <?php endif ?>
 	    <?php if ($user->user_description): ?>
 	    	
-	    <strong>Bio:</strong> <?php echo $user->user_description; ?></p>
+	     <?php echo $user->user_description; ?></p>
 	    <?php endif ?>
 	</div>
-	<div class="half p20 right text-right summeryWrapper">
-		<?php if ($prediction['win_rate']): ?>
-			<div class="summeryContainer win_rate"><div class="title">Accuracy By Win : </div>
-				<div class="value">
-					<?php echo number_format((float)$prediction['win_rate'], 2, '.', ''); ?>% <br>
-					<progress value="<?php echo $prediction['win_rate']; ?>" max="100"></progress>
-				</div>
-			</div>
-			<div class="summeryContainer participate"><div class="title">Participated: </div> <div class="value"> <?php echo $prediction['participated'] ?> </div> </div>
-			<div class="summeryContainer correct"><div class="title">Right: </div> <div class="value"> <?php echo $prediction['correct'] ?> </div> </div>
-			<div class="summeryContainer wrong"><div class="title">Wrong: </div> <div class="value"> <?php echo $prediction['incorrect'] ?> </div> </div>
-		<?php endif ?>
-		<?php if ($prediction['weight_rate']): ?>
-			<div class="clearfix" style="width:160%; margin: 20px 0 20px 40%; border: 2px solid red;"></div>
+	<div class="prediction-summery">
+		<div class="win-accuracy">
+			<h3 class="text-center">Win rate</h3>
+			<ul class="prediction-full-result">
+				<li>
+					<strong>Total Rate</strong><br>
+					<div class="progress-bar" value="<?php echo $prediction['win_rate']; ?>" data-percent="<?php echo number_format((float)$prediction['win_rate'], 2, '.', ''); ?>" max="100">								</div>
+				</li>
+				<li>
+					<strong>Participated</strong><br>
+					<div class="common"><?php echo $prediction['participated'] ?></div>
+				</li>
+				<li>
+					<strong>Match Win</strong><br>
+					<div class="common"><?php echo $prediction['correct'] ?></div>
+				</li>
+				<li>
+					<strong>Match lose</strong><br>
+					<div class="common red"><?php echo $prediction['incorrect'] ?></div>
+				</li>
+			
+				<?php if ($prediction['win_rate']): ?>
 
-			<div class="summeryContainer weight_rate"><div class="title">Accuracy By Weight : </div>
-				<div class="value">
-					<?php echo number_format((float)$prediction['weight_rate'], 2, '.', ''); ?>% <br>
-					<progress value="<?php echo $prediction['weight_rate']; ?>" max="100"></progress>
-				</div>
-			</div>
-			<div class="summeryContainer participate"><div class="title">Participated: </div> <div class="value"> <?php echo $prediction['tweight'] ?> </div> </div>
-			<div class="summeryContainer correct"><div class="title">Right: </div> <div class="value"> <?php echo $prediction['win'] ?> </div> </div>
-			<div class="summeryContainer wrong"><div class="title">Wrong: </div> <div class="value"> <?php echo $prediction['lose'] ?> </div> </div>
-		<?php endif ?>
-		
+				<?php endif ?>
+			</ul>
+		</div>
+		<?php tournamentsSelectHtml($user->ID); ?>
+		<div class="tournamentWrapper"></div>
+		<div class="clearfix"></div>
 	</div>
-	<div class="clearfix"></div>
-</div>
-<div class="boxed">
-	<h3>Participated List</h3>
-	<table border="1">
-		<tr>
-			<th class="text-center">##</th>
-			<th class="text-center">Event</th>
-			<th class="text-center">Earned</th>
-		</tr>
-		<tr>
-			<td class="text-center">1</td>
-			<td>Question?</td>
-			<td class="text-center">20</td>
-		</tr>
-		<tr>
-			<td class="text-center">2</td>
-			<td>Question2?</td>
-			<td class="text-center">-10</td>
-		</tr>
-		<tr>
-			<th class="text-center" colspan="2">Total</th>
-			<th class="text-center">10</th>
-		</tr>
-	</table>
-	<div class="clearfix"></div>
-</div>
-
 <?php get_footer();

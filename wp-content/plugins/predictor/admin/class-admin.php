@@ -23,6 +23,7 @@ class Admin
         add_action('wp_ajax_delete_answers', [$this, 'delete_answers']);
         add_action('admin_init', [$this, 'ui_new_role']);
         add_action('init', [$this, 'createPostType']);
+        add_action( 'init', [$this, 'pcreate_event_term'] );
     }
     function ui_new_role() {  
         add_role('predictor', 'Predictor', ['read'=> true, 'delete_posts' => false]);
@@ -50,6 +51,17 @@ class Admin
             'exclude_from_search' => true,
             'supports' => array('title'),
         ));
+    }
+    function pcreate_event_term() {
+        register_taxonomy(
+            'tournament',
+            'event',
+            [
+                'label' => __( 'Tournament' ),
+                'rewrite' => array( 'slug' => 'tournament' ),
+                'hierarchical' => true
+            ]
+        );
     }
     private function custom_settings_fields($field_args, $settings) {
         $output = '';

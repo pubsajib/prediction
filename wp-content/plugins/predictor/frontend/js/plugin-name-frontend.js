@@ -75,8 +75,7 @@
             data: ajaxData,
             beforeSend: function() { answersWrapper.html(loader()); },
             success: function(response, status, xhr) {
-                alert('response');
-                if (response) {
+                if (response != null) {
                     setTimeout(function() {
                         answersWrapper.html(response);
                         owlCarousel();
@@ -89,7 +88,7 @@
         });
     }
     var cofirmBox = function(warnings, teamID) {
-        var modal = $("<div>").attr("class", "modalWrapper");
+        var modal = $("<div>").attr("class", "modalWrapper confirm-modal");
         var footer = "<footer><button type=\"button\" class=\"confirmed fusion-button button-default button-small btn-green\" team="+ teamID +">SubmitSubmit</button> <button data-iziModal-close class=\"fusion-button button-default button-small\">Cancel</button></footer>";
         modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
         modal.iziModal({
@@ -149,7 +148,38 @@
         }
         return false;
     }
+    var loadTournament = function(tournamentID, userID) {
+        var tournamentWrapper = $('.tournamentWrapper');
+        // PREPARE AJAX POST DATA
+        var ajaxData = {};
+        ajaxData['security'] = object.ajax_nonce;
+        ajaxData['action'] = 'load_tournament';
+        ajaxData['tournamentID'] = tournamentID;
+        ajaxData['userID'] = userID;
+        $.ajax({
+            type: 'POST',
+            url: object.ajaxurl,
+            cache: false,
+            data: ajaxData,
+            beforeSend: function() { tournamentWrapper.html(loader()); },
+            success: function(response, status, xhr) {
+                // alert(response);
+                if (response != null) {
+                    tournamentWrapper.html(response);
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
     $(document).ready(function() {
+        $(document).on('change', '#tournaments', function(event) {
+            event.preventDefault();
+            var tournamentID = $(this).val();
+            var userID = $(this).attr('user');
+            loadTournament(tournamentID, userID);
+        });
         $('.endTime').each(function(event) {
             var ID = '#'+ $(this).prop('id');
             var end = $(this).text();
@@ -229,11 +259,14 @@
                 }
             }
         });
+        //ProgressBar
+        $(".progress-bar").loading(); 
         // SAVE PREDICTIONS
         $(document).on('click', '.saveQAns', function(event) {
             event.preventDefault();
             var button = $(this);
             var teamID = $(this).parents('.teamQuestionContainer').addClass('box').attr('id');
+            return false; 
             // PREPARE AJAX POST DATA
             var ajaxData = {};
             ajaxData['security'] = object.ajax_nonce;
@@ -244,7 +277,7 @@
             var warnings = '';
             var radioValues = {};
             var radioValueCount = 0;
-            warnings = '<h3 class="name">'+ $(this).parents('.teamQuestionContainer').find('.teamName strong').text() +'</h3>';
+            warnings = '<h3 class="wTitle">'+ $(this).parents('.teamQuestionContainer').find('.teamName strong').text() +'</h3>';
             var Questions = $(this).parents('.teamQuestionContainer').find('.predictionContainer');
             Questions.each(function(event) {
                 var radioTitle = $(this).find('.title').text();

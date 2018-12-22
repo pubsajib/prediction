@@ -20,8 +20,12 @@ class Frontend
 
         add_action('wp_ajax_nopriv_user_login', [$this, 'ajax_login']);
         add_action('wp_ajax_save_answers', [$this, 'save_answers']);
+        // ANSWERS
         add_action('wp_ajax_load_answers', [$this, 'load_answers']);
         add_action('wp_ajax_nopriv_load_answers', [$this, 'load_answers']);
+        // TOURNAMENT
+        add_action('wp_ajax_load_tournament', [$this, 'load_tournament']);
+        add_action('wp_ajax_nopriv_load_tournament', [$this, 'load_tournament']);
     }
 
     public function assets() {
@@ -32,6 +36,7 @@ class Frontend
         wp_enqueue_style('iziModal-css',plugin_dir_url(__FILE__).'css/iziModal.min.css', [], $this->version);
         wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__).'css/plugin-name-frontend.css', [], $this->version);
         // JS
+        wp_enqueue_script('progressbar',plugin_dir_url(__FILE__).'js/jQuery-plugin-progressbar.js', ['jquery'], $this->version, true);
         wp_enqueue_script('owl-js',plugin_dir_url(__FILE__).'js/owl.carousel.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('iziModal-js',plugin_dir_url(__FILE__).'js/iziModal.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('timeto-js',plugin_dir_url(__FILE__).'js/jquery.time-to.min.js', ['jquery'], $this->version, true);
@@ -82,8 +87,8 @@ class Frontend
     }
     // LOAD ANSWERS
     function load_answers() {
-        $html  = '';
         check_ajax_referer('predictor_nonce', 'security');
+        $html  = '';
         $ID  = $_POST['ID'];
         $ditems  = $_POST['ditems'];
         if (get_post_type($ID) == 'event') {
@@ -92,7 +97,7 @@ class Frontend
             $meta           = get_post_meta($ID, 'event_ops', true);
             $ans            = get_post_meta($ID, 'event_ans', true);
             $answerGiven    = @$meta['answers'];
-            unset($ans[0]);
+            if (isset($ans[0])) unset($ans[0]);
             // GIVEN PREDICTIONS
             if (!$meta['restricted']) $answers = answersHTML($meta, $ans, $ID, $ditems);
             else {
@@ -120,5 +125,40 @@ class Frontend
         } else {
             return add_post_meta($ID, 'event_ans', $answers);
         }
+    }
+    function load_tournament() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $html  = '';
+        $tournamentID  = $_POST['tournamentID'];
+        $userID  = $_POST['userID'];
+        $userID  = $_POST['userID'];
+        $summery = tournamentData($userID, $tournamentID);
+        if ($summery) {
+            $html .= '<div class="prediction-summery">';
+                $html .= '<div class="win-accuracy">';
+                    //$html .= '<h3 class="title">Accuracy By Win / Loss </h3>';
+                    $html .= '<ul class="prediction-full-result">';
+                        $html .= '<li>';
+                            $html .= '<strong>Total Rate</strong><br>';
+                            $html .= '<div class="progress-bar" value="'. $summery['win_rate'] .'" data-percent="'. number_format((float)$summery['win_rate'], 2, '.', '').'" max="100"></div>';
+                        $html .= '</li>';
+                        $html .= '<li>';
+                            $html .= '<strong>Participated</strong><br>';
+                            $html .= '<div class="common">'. $summery['participated'] .'</div>';
+                        $html .= '</li>';
+                        $html .= '<li>';
+                            $html .= '<strong>Match Win</strong><br>';
+                            $html .= '<div class="common">'. $summery['correct'] .'</div>';
+                        $html .= '</li>';
+                        $html .= '<li>';
+                            $html .= '<strong>Match lose</strong><br>';
+                            $html .= '<div class="common red">'. $summery['incorrect'] .'</div>';
+                        $html .= '</li>';
+                    $html .= '</ul>';
+            $html .= '</div>';
+        }
+        // echo json_encode($summery);
+        echo $html;
+        wp_die();
     }
 }
