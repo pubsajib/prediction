@@ -11,7 +11,7 @@ class Prediction {
 			$event = get_post($ID);
 			$meta  = get_post_meta($ID, 'event_ops', true);
 			$ans   = get_post_meta($ID, 'event_ans', true);
-			// $html .= help($meta, false);
+			// $html .= help($ans, false);
 			// GIVEN PREDICTIONS
 			$html .= '<div id="answersWrapper_'. $ID .'" class="answersWrapper" event="'. $ID .'" dItems="'. $ditems.'"></div>';
 			
@@ -34,27 +34,35 @@ class Prediction {
 										$teamID = predictor_id_from_string($team['name']);
 										$options = 'team_'. $teamID;
 										if (@isValidOption($ans[$userID][$options], $team['end'])) {
-											$html .= '<div class="teamQuestionContainer" id="'. $options .'">';
-											$html .= '<div class="titleContainer">';
-											$html .= '<div class="teamName half left"><strong>'. $team['name'] .'</strong></div>';
-											$html .= '<div><div class="endTime helf right text-right" id="'. $teamID .'_end">'. $team['end'] .'</div><p class="text-right">Time remaining to predict </p></div>'; 
-											$html .= '</div>';
+											$questions = '';
 											if ($meta[$options]) {
 												foreach ($meta[$options] as $option) {
+													$question = '';
 													$name = $options .'_'. predictor_id_from_string($option['title']);
-													$html .= '<div class="predictionContainer" id="'. $name .'">';
-														if ($option['weight']) {
-															$html .= '<h4 class="title">'. $option['title'] .'</h4>';
-															foreach ($option['weight'] as $weight) {
-																if (!$weight['name']) continue;
-																$html .= '<label><input type="radio" name="'. $name .'" value="'. $weight['name'] .'">'. $weight['name'] .'</label>';
+													if (@!$ans[$userID][$name]) {
+														$question .= '<div class="predictionContainer" id="'. $name .'">';
+															if ($option['weight']) {
+																$question .= '<h4 class="title">'. $option['title'] .'</h4>';
+																foreach ($option['weight'] as $weight) {
+																	if (!$weight['name']) continue;
+																	$question .= '<label><input type="radio" name="'. $name .'" value="'. $weight['name'] .'">'. $weight['name'] .'</label>';
+																}
 															}
-														}
-													$html .= '</div>';
+															$question .= '<button type="button" class="btn btn-green saveQAns">Submit</button>';
+														$question .= '</div>';
+													}
+													$questions .= $question;
 												}
 											}
-											$html .= '<button type="button" class="btn btn-green saveQAns">Submit</button>';
-											$html .= '</div>';
+											if ($questions) {
+												$html .= '<div class="teamQuestionContainer" id="'. $options .'">';
+												$html .= '<div class="titleContainer">';
+												$html .= '<div class="teamName half left"><strong>'. $team['name'] .'</strong></div>';
+												$html .= '<div><div class="endTime helf right text-right" id="'. $teamID .'_end">'. $team['end'] .'</div><p class="text-right">Time remaining to predict </p></div>'; 
+												$html .= '</div>';
+												$html .= $questions;
+												$html .= '</div>';
+											}
 										}
 									} // teamQuestionContainer
 									$html .= '</div>';

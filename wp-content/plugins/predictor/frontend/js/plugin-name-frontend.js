@@ -108,43 +108,38 @@
         ajaxData['security'] = object.ajax_nonce;
         ajaxData['eventID'] = $('#eventID').val();
         ajaxData['userID'] = $('#userID').val();
-        ajaxData['action'] = 'save_answers';
+        ajaxData['action'] = 'save_answer';
         // GIVEN ANSWERS ARRAY
-        var radioValues = {};
-        var radioValueCount = 0;
-        var Questions = $('#'+teamID +' .predictionContainer');
-        Questions.each(function(event) {
-            $(this).addClass('box');
-            var radioTitle = $(this).find('.title').text();
-            var radioName = $(this).prop('id');
-            var radioVal = $("input[name='"+ radioName +"']:checked").val();
-            radioValues[radioName] = radioVal;
-            if (radioVal) { radioValueCount += 1; }
-        });
+        var radioValue = {};
+        var radioValueCount = false;
+        var Question = $('#'+teamID);
+        var radioTitle = Question.find('.title').text();
+        var radioName = Question.prop('id');
+        var radioVal = $("input[name='"+ radioName +"']:checked").val();
+        radioValue[radioName] = radioVal;
+        if (radioVal) { radioValueCount = true; }
 
-        if (radioValues) {
-            if (radioValues && teamID) {
-                radioValues[teamID] = 1;
-                ajaxData['answers'] = radioValues;
-            }
-            // console.log(ajaxData); return false;
-            if (radioValues) {
-                jQuery.ajax({
-                    type: 'POST',
-                    url: object.ajaxurl,
-                    cache: false,
-                    data: ajaxData,
-                    success: function(response, status, xhr) {
-                        // console.log(response == 1);
-                        // $('.modalWrapper').html('');
-                        $('.modalWrapper').iziModal('destroy');
-                        if (response == 1) $('#'+ teamID).remove();
-                    },
-                    error: function(error) {
-                        console.log(error);
+        if (radioValue) {
+            ajaxData['answer'] = radioValue;
+            jQuery.ajax({
+                type: 'POST',
+                url: object.ajaxurl,
+                cache: false,
+                data: ajaxData,
+                success: function(response, status, xhr) {
+                    // console.log(response == 1);
+                    // $('.modalWrapper').html('');
+                    $('.modalWrapper').iziModal('destroy');
+                    if (response == 1) {
+                        var teamWrapper = Question.parents('.teamQuestionContainer').attr('id');
+                        $('#'+ teamID).remove();
+                        removeEmptyQuestionWrapper(teamWrapper);
                     }
-                });
-            }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
         }
         return false;
     }
@@ -172,6 +167,11 @@
                 console.log(error);
             }
         });
+    }
+    var removeEmptyQuestionWrapper = function(teamWrapperID) {
+        var teamWrapper = $('#'+ teamWrapperID);
+        var isEmptyWrapper = teamWrapper.find('.predictionContainer').length;
+        if (!isEmptyWrapper) { teamWrapper.remove(); }
     }
     $(document).ready(function() {
         $(document).on('change', '#tournaments', function(event) {
@@ -265,8 +265,7 @@
         $(document).on('click', '.saveQAns', function(event) {
             event.preventDefault();
             var button = $(this);
-            var teamID = $(this).parents('.teamQuestionContainer').addClass('box').attr('id');
-            return false; 
+            var teamID = $(this).parents('.predictionContainer').attr('id');
             // PREPARE AJAX POST DATA
             var ajaxData = {};
             ajaxData['security'] = object.ajax_nonce;
@@ -278,20 +277,17 @@
             var radioValues = {};
             var radioValueCount = 0;
             warnings = '<h3 class="wTitle">'+ $(this).parents('.teamQuestionContainer').find('.teamName strong').text() +'</h3>';
-            var Questions = $(this).parents('.teamQuestionContainer').find('.predictionContainer');
-            Questions.each(function(event) {
-                var radioTitle = $(this).find('.title').text();
-                var radioName = $(this).prop('id');
-                var radioVal = $("input[name='"+ radioName +"']:checked").val();
-                radioValues[radioName] = radioVal;
-                if (radioVal) { 
-                    warnings += '<p class="given"><span class="title">'+ radioTitle +' : </span><span class="ans">'+ radioVal +'</span></p>';
-                    radioValueCount += 1; 
-                } else {
-                    warnings += '<p class="empty"><span class="title">'+ radioTitle +' : </span><span class="ans">unknown </span></p>';
-                }
-
-            });
+            var Questions = $(this).parents('.predictionContainer');
+            var radioTitle = Questions.find('.title').text();
+            var radioName = Questions.prop('id');
+            var radioVal = $("input[name='"+ radioName +"']:checked").val();
+            radioValues[radioName] = radioVal;
+            if (radioVal) { 
+                warnings += '<p class="given"><span class="title">'+ radioTitle +' : </span><span class="ans">'+ radioVal +'</span></p>';
+                radioValueCount += 1; 
+            } else {
+                warnings += '<p class="empty"><span class="title">'+ radioTitle +' : </span><span class="ans">unknown </span></p>';
+            }
             if (!radioValueCount) alert('You didn\'t select any answer.');
             else cofirmBox(warnings, teamID);
         })

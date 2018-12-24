@@ -23,7 +23,7 @@ $prediction = predictionsOf($user->ID);
 	    <?php endif ?>
 	</div>
 	<div class="prediction-summery">
-		<?php if (@$prediction['avg']):
+		<?php if ($prediction['avg']):
 			foreach ($prediction['avg'] as $type => $prediction):
 				if ($prediction['participated'] && in_array($type, $permited)): ?>
 					<div class="win-accuracy <?php echo $type; ?>">

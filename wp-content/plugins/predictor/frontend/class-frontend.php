@@ -19,7 +19,7 @@ class Frontend
         $this->settings = get_option($this->option_name);
 
         add_action('wp_ajax_nopriv_user_login', [$this, 'ajax_login']);
-        add_action('wp_ajax_save_answers', [$this, 'save_answers']);
+        add_action('wp_ajax_save_answer', [$this, 'save_answer']);
         // ANSWERS
         add_action('wp_ajax_load_answers', [$this, 'load_answers']);
         add_action('wp_ajax_nopriv_load_answers', [$this, 'load_answers']);
@@ -76,12 +76,12 @@ class Frontend
         wp_die();
     }
     // SAVE ANSWERS
-    function save_answers() {
+    function save_answer() {
         check_ajax_referer('predictor_nonce', 'security');
         $event = $_POST['eventID'];
         $user = $_POST['userID'];
-        $ans  = $_POST['answers'];
-        if ($this->updateAnswers($event, $user, $ans)) echo 1;
+        $ans  = $_POST['answer'];
+        if ($this->updateAnswer($event, $user, $ans)) echo 1;
         else echo 0;
         wp_die();
     }
@@ -115,7 +115,7 @@ class Frontend
         echo $html;
         wp_die();
     }
-    function updateAnswers($ID, $user, $ans) {
+    function updateAnswer($ID, $user, $ans) {
         $answers = (array) get_post_meta($ID, 'event_ans', true);
         if ($answers[$user]) $prevAns = $answers[$user];
         else $prevAns = [];

@@ -1,37 +1,28 @@
 <?php 
 function predictionsOf($userID=1, $tournamentID='') {
-    $prediction = ['gain'  => 0, 'participated'  => 0, 'correct'  => 0, 'incorrect'  => 0, 'tweight'  => 0, 'win'  => 0, 'lose'  => 0];
+    $prediction = ['gain'  => 0];
     if (!$tournamentID) $events = getEventIDs();
     else $events = eventsByTournament($tournamentID);
     $eventAVG = defaultCriteriaValues();
     foreach ($events as $eventID) {
         $data = predictionFor($eventID, $userID);
+        if (!$data) continue;
         $eventAVG = eventAVG($eventAVG, @$data['avg']);
         $prediction['gain']         += @$data['gain'];
-        // SUMMERY BY MATCH COUNT
-        $prediction['participated'] += @$data['avg']['all']['participated'];
-        $prediction['correct']      += @$data['avg']['all']['correct'];
-        $prediction['incorrect']    += @$data['avg']['all']['incorrect'];
-        // SUMMERY BY MATCH WEIGHT
-        $prediction['win']          += @$data['avg']['all']['win'];
-        $prediction['lose']         += @$data['avg']['all']['lose'];
-        $prediction['tweight']      += @$prediction['win'] + $prediction['lose'];
-        $prediction['test']      = $eventAVG;
+        $prediction['avg']      = $eventAVG;
         // echo '<br><pre>'. print_r($data, true) .'</pre>';
     }
-    if ($prediction['participated']) $prediction['win_rate'] = ($prediction['correct'] / $prediction['participated']) * 100;
-    else $prediction['win_rate'] = 0;
     // echo '<br><pre>'. print_r($prediction, true) .'</pre>';
     return $prediction;
 }
 function predictionFor($eventID, $userID) {
 	$meta  = get_post_meta($eventID, 'event_ops', true);
 	$ans   = get_post_meta($eventID, 'event_ans', true);
-    // help($ans);
     $data = [];
+    if (@!$meta['published']) return $data;
     $eventAvg = defaultCriteriaValues();
     $tgain = $tparticipated = $tcorrect = $tincorrect = $twin = $tlose = 0;
-    if (@!$ans[$userID]) return false;
+    if (@!$ans[$userID]) return [];
     if (@$meta['teams']) {
         foreach ($meta['teams'] as $team) {
             $gain   = $participated = $correct = $incorrect = $win = $lose = 0;

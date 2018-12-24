@@ -27,48 +27,52 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                     if ($meta['teams']) {
                         $html .= '<div class="teamAnsWrapper">';
                             foreach ($meta['teams'] as $team) {
+                                $givenAnswers = '';
                                 $teamID = predictor_id_from_string($team['name']);
                                 $options = 'team_'. $teamID;
-                                if (@$ans[$uID][$options]) {
+                                // GIVEN ANSWERS
+                                if ($meta[$options]) {
+                                    foreach ($meta[$options] as $option) {
+                                        $ansID = $options.'_'.predictor_id_from_string($option['title']);
+                                        $default = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
+                                        if (!$answer[$ansID]) continue;
+                                        $isCorrect = '';
+                                        if ($meta['published']) {
+                                            $perticipated++;
+                                            if ($ans[$uID][$ansID]== @$meta[$default]) {
+                                                $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/checked.png">';
+                                                $correct++;
+                                            } else {
+                                                $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/delete.png">';
+                                                $incorrect++;
+                                            }
+                                        }
+                                        // $html .= $ans[$uID][$ansID] .'=='. $meta[$default];
+                                        $ansWeight = getWeightFromValue($option['weight'], $answer[$ansID]);
+                                        $givenAnswers .= '<div class="answer">'; 
+                                        	$givenAnswers .= @$option['title'] .' <br>';
+                                        	$givenAnswers .= '<strong>'; 
+    	                                    	$givenAnswers .= '<span class="ansTxt">'. @$answer[$ansID] .'</span>'; 
+    	                                    	if ($ansWeight) {
+    	                                    		$givenAnswers .= ' @ <span class="ansWeight">'. $ansWeight .'</span>'; 
+    	                                    	}
+                                        	$givenAnswers .= '</strong>&nbsp;&nbsp;&nbsp;'; 
+                                        	$givenAnswers .= '<span>'. $isCorrect .'</span>'; 
+                                        $givenAnswers .= '</div>'; 
+                                    }
+                                }
+
+                                if ($givenAnswers) {
                                     $html .= '<div class="teamAnsContainer">';
                                     $html .= '<h3 class="teamName">'. $team['name'] .'</h3>';
-                                    if ($meta[$options]) {
-                                        foreach ($meta[$options] as $option) {
-                                            $ansID = $options.'_'.predictor_id_from_string($option['title']);
-                                            $default = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
-                                            if (!$answer[$ansID]) continue;
-                                            $isCorrect = '';
-                                            if ($meta['published']) {
-                                                $perticipated++;
-                                                if ($ans[$uID][$ansID]== @$meta[$default]) {
-                                                    $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/checked.png">';
-                                                    $correct++;
-                                                } else {
-                                                    $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/delete.png">';
-                                                    $incorrect++;
-                                                }
-                                            }
-                                            // $html .= $ans[$uID][$ansID] .'=='. $meta[$default];
-                                            $ansWeight = getWeightFromValue($option['weight'], $answer[$ansID]);
-                                            $html .= '<div class="answer">'; 
-                                            	$html .= @$option['title'] .' <br>';
-                                            	$html .= '<strong>'; 
-        	                                    	$html .= '<span class="ansTxt">'. @$answer[$ansID] .'</span>'; 
-        	                                    	if ($ansWeight) {
-        	                                    		$html .= ' @ <span class="ansWeight">'. $ansWeight .'</span>'; 
-        	                                    	}
-                                            	$html .= '</strong>&nbsp;&nbsp;&nbsp;'; 
-                                            	$html .= '<span>'. $isCorrect .'</span>'; 
-                                            $html .= '</div>'; 
-                                        }
-                                    }
+                                    $html .= $givenAnswers;
                                     $html .= '</div>';
                                 }
                             }
                         $html .= '</div>';
                     }
                     if ($meta['published']) {
-                        $html .= '<div class="eventFooter" style="background:#fff;">';
+                        $html .= '<div class="eventFooter">';
                             $html .= '<p>';
                                 $html .= '<span ="perticipated">perticipated : '. $perticipated .'</span> ';
                                 $html .= '<span ="correct">correct : '. $correct .'</span> ';

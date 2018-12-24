@@ -1925,3 +1925,215 @@ Stack trace:
 [20-Dec-2018 19:22:04 Asia/Dhaka] PHP Notice:  Undefined index: rate in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 155
 [22-Dec-2018 14:15:52 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
 [22-Dec-2018 14:27:23 Asia/Dhaka] PHP Notice:  edit_form_advanced is <strong>deprecated</strong> since version 5.0.0! Use block_editor_meta_box_hidden_fields instead. This action is still supported in the classic editor, but is deprecated in the block editor. in C:\xampp\htdocs\prediction\wp-includes\functions.php on line 4147
+[22-Dec-2018 15:37:27 Asia/Dhaka] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 120
+[22-Dec-2018 17:40:05 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\prediction.php on line 45
+[22-Dec-2018 17:58:26 Asia/Dhaka] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 120
+[22-Dec-2018 19:15:14 Asia/Dhaka] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 120
+[22-Dec-2018 19:16:20 Asia/Dhaka] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 120
+[22-Dec-2018 19:19:29 Asia/Dhaka] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 120
+[22-Dec-2018 19:44:10 Asia/Dhaka] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 120
+[22-Dec-2018 19:54:06 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 47
+[22-Dec-2018 19:54:06 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 47
+[22-Dec-2018 19:57:01 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:57:01 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:57:14 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:57:14 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:57:55 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:57:55 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:58:37 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:58:37 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:58:59 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:58:59 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:59:22 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[22-Dec-2018 19:59:22 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 14:21:00 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[23-Dec-2018 14:21:00 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 14:21:00 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 14:25:56 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 14:25:56 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 14:26:18 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 14:26:18 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 14:27:02 Asia/Dhaka] PHP Notice:  edit_form_advanced is <strong>deprecated</strong> since version 5.0.0! Use block_editor_meta_box_hidden_fields instead. This action is still supported in the classic editor, but is deprecated in the block editor. in C:\xampp\htdocs\prediction\wp-includes\functions.php on line 4147
+[23-Dec-2018 14:29:47 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:29:47 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:29:47 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:29:47 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:29:47 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:29:47 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:30:16 Asia/Dhaka] PHP Notice:  edit_form_advanced is <strong>deprecated</strong> since version 5.0.0! Use block_editor_meta_box_hidden_fields instead. This action is still supported in the classic editor, but is deprecated in the block editor. in C:\xampp\htdocs\prediction\wp-includes\functions.php on line 4147
+[23-Dec-2018 14:32:13 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:32:13 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:32:13 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:32:13 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:32:13 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:32:13 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:33:08 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:33:08 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:33:08 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:33:08 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:33:08 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:33:08 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:34:42 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:34:42 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:34:42 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:34:42 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:34:42 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:34:42 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:36:09 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 30
+[23-Dec-2018 14:36:09 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 30
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 30
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 30
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 30
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 30
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:36:10 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:37:26 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:39:50 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 33
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:40:01 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:40:36 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: published in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Warning:  Illegal string offset 'published' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Uninitialized string offset: 0 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 32
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:42:20 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:42:58 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:42:58 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:42:58 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:42:58 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:42:58 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:42:58 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:43:05 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:43:05 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:43:05 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:43:05 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:43:05 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:43:06 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:45:29 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:45:29 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:45:29 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:46:20 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:46:20 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:46:20 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:46:20 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:46:20 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:46:20 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:49:47 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:49:47 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 31
+[23-Dec-2018 14:49:47 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 35
+[23-Dec-2018 14:49:47 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 39
+[23-Dec-2018 14:49:47 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 43
+[23-Dec-2018 14:49:47 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 46
+[23-Dec-2018 14:53:53 Asia/Dhaka] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting ';' in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 51
+[23-Dec-2018 15:26:43 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 30
+[23-Dec-2018 15:26:43 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 30
+[23-Dec-2018 15:26:43 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 34
+[23-Dec-2018 15:26:43 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 38
+[23-Dec-2018 15:26:43 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 42
+[23-Dec-2018 15:26:43 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 45
+[23-Dec-2018 15:27:09 Asia/Dhaka] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting ';' in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 55
+[23-Dec-2018 15:33:25 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 143
+[23-Dec-2018 15:33:25 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 143
+[23-Dec-2018 15:33:25 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 147
+[23-Dec-2018 15:33:25 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 151
+[23-Dec-2018 15:33:25 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 155
+[23-Dec-2018 15:37:30 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 15:37:30 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 15:38:15 Asia/Dhaka] PHP Notice:  edit_form_advanced is <strong>deprecated</strong> since version 5.0.0! Use block_editor_meta_box_hidden_fields instead. This action is still supported in the classic editor, but is deprecated in the block editor. in C:\xampp\htdocs\prediction\wp-includes\functions.php on line 4147
+[23-Dec-2018 15:38:39 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 15:38:39 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 15:38:47 Asia/Dhaka] PHP Notice:  Undefined index: avg in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 26
+[23-Dec-2018 15:42:14 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 15:42:14 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 16:01:08 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 16:01:08 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 17:22:21 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 17:22:21 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:02:44 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:02:44 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:02:51 Asia/Dhaka] PHP Notice:  edit_form_advanced is <strong>deprecated</strong> since version 5.0.0! Use block_editor_meta_box_hidden_fields instead. This action is still supported in the classic editor, but is deprecated in the block editor. in C:\xampp\htdocs\prediction\wp-includes\functions.php on line 4147
+[23-Dec-2018 18:03:13 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:03:13 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:03:19 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:03:19 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:06:25 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:06:25 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:06:46 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:06:46 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:50:02 Asia/Dhaka] PHP Notice:  edit_form_advanced is <strong>deprecated</strong> since version 5.0.0! Use block_editor_meta_box_hidden_fields instead. This action is still supported in the classic editor, but is deprecated in the block editor. in C:\xampp\htdocs\prediction\wp-includes\functions.php on line 4147
+[23-Dec-2018 18:53:59 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:53:59 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:56:34 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 18:56:34 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 19:41:50 Asia/Dhaka] PHP Notice:  Undefined index: teams in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 110
+[23-Dec-2018 19:41:50 Asia/Dhaka] PHP Notice:  Undefined index: teams in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 110
+[23-Dec-2018 19:41:50 Asia/Dhaka] PHP Notice:  Undefined index: teams in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 110
+[23-Dec-2018 19:41:50 Asia/Dhaka] PHP Notice:  Undefined index: teams in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 110
+[23-Dec-2018 19:42:24 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[23-Dec-2018 19:42:24 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[24-Dec-2018 14:05:52 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[24-Dec-2018 14:06:33 Asia/Dhaka] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 120
+[24-Dec-2018 14:06:50 Asia/Dhaka] PHP Notice:  edit_form_advanced is <strong>deprecated</strong> since version 5.0.0! Use block_editor_meta_box_hidden_fields instead. This action is still supported in the classic editor, but is deprecated in the block editor. in C:\xampp\htdocs\prediction\wp-includes\functions.php on line 4147
+[24-Dec-2018 14:07:18 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[24-Dec-2018 14:07:45 Asia/Dhaka] PHP Warning:  An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\xampp\htdocs\prediction\wp-admin\includes\update.php on line 121
+[24-Dec-2018 14:08:45 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[24-Dec-2018 14:09:19 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[24-Dec-2018 14:09:19 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[24-Dec-2018 14:09:31 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[24-Dec-2018 14:09:31 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[24-Dec-2018 15:36:14 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[24-Dec-2018 15:36:14 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
