@@ -1,4 +1,12 @@
 <?php 
+function tournamentSummery($tournamentID, $userID, $permited=['all']) {
+	$data = '';
+	if ($tournamentID && $userID) {
+		$prediction = tournamentData($userID, $tournamentID);
+		$data = summeryHtml($prediction, $permited);
+	}
+	echo $data;
+}
 function tournamentData($userID=1, $tournamentID=4) {
 	return predictionsOf($userID, $tournamentID);
 }

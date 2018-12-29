@@ -46,6 +46,9 @@
 .prediction-full-result li .common.red {border-color: #f44336a3;}
 .page-template-predictor .profile-info h3 {font-size: 20px;margin: 10px 0;text-transform: uppercase;}
 .page-template-predictor .usertag li {padding: 3px 12px;font-size: 14px;}
+/* Predictor single page */
+.prediction-summery .win-accuracy {margin-bottom: 20px;}
+.prediction-summery .win-accuracy .title {text-transform: uppercase;font-size: 20px;color: #454545;margin: 0;border-bottom: 1px solid #b3afaf;}
 /*Owl Carousel*/
 .owl-carousel .owl-item .item {background: #fff;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);clear: both;display: inline-block;width: 100%;margin: 5px;}
 .owl-carousel .owl-item .item.highlighted{background: linear-gradient(-45deg, #0e31e0, #422b6b, #0f0029, #001fce);background-size: 400% 400%;-webkit-animation: Gradient 15s ease infinite;-moz-animation: Gradient 15s ease infinite;animation: Gradient 15s ease infinite;color: #fff;}

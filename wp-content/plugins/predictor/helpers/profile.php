@@ -145,8 +145,6 @@ function eventAVG($eventAvg, $criteriaAvg) {
             if ($criteriaValues) {
                 foreach ($criteriaValues as $key => $value) {
                     $eventAvg[$criteriaName][$key] += $criteriaAvg[$criteriaName][$key];
-                    // echo '<br><br>eventName:'. $criteriaName .' || key:'. $key .' || eventAvg : '. $eventAvg[$criteriaName][$key];
-                    // echo '<br>criteria : '. $criteriaAvg[$criteriaName][$key];
                 }
             }
             // RATE BY WIN
@@ -157,15 +155,62 @@ function eventAVG($eventAvg, $criteriaAvg) {
             if ($criteriaName == 'all') {
                 // RATE BY WEIGHT
                 $eventAvg[$criteriaName]['tweight'] = $eventAvg[$criteriaName]['win'] + $eventAvg[$criteriaName]['lose'];
-                // if ($eventAvg[$criteriaName]['tweight']) {
-                //     $wrating = ($eventAvg[$criteriaName]['win'] / $eventAvg[$criteriaName]['tweight']) * 100;
-                //     $eventAvg[$criteriaName]['wrate'] = number_format((float)$wrating, 2, '.', '');
-                // } else {
-                //     $eventAvg[$criteriaName]['wrate'] = 0;
-                // }
             }
-            // echo "<br> {$criteriaName}";
         }
     }
     return $eventAvg;
+}
+function profileInfo($user) {
+    // help($user);
+    $data = '';
+    if ($user) {
+        $data .= '<div class="author-photo"> '. get_avatar( $user->user_email , '120 ') .' </div>';
+        $data .= '<h3>'. get_the_author_meta('nickname',$user->ID) .'</h3>';
+        $data .= '<p>';
+            if ($user->user_url) $data .= '<strong>Website:</strong> <a href="'. $user->user_url .'">'. $user->user_url .'</a><br />';
+            if ($user->user_description) $data .= $user->user_description;
+        $data .= '</p>';
+    }
+    echo $data;
+}
+function summeryHtml($prediction, $permited=['all']) {
+    $data = '';
+    if (@$prediction['avg']) {
+        foreach ($prediction['avg'] as $type => $prediction) {
+            if ($prediction['participated'] && in_array($type, $permited)) {
+                $percentage = number_format((float)$prediction['rate'], 2, '.', '');
+                $data .= '<div class="win-accuracy '. $type .'" id="'. $type .'">';
+                    $data .= '<h3 class="title">'. $type .' rate</h3>';
+                    $data .= '<ul class="prediction-full-result">';
+                        $data .= '<li>';
+                            $data .= '<strong>Total Rate</strong><br>';
+                            $data .= '<div class="progress-bar" value="'. $prediction['rate'] .'" data-percent="'. $percentage .'" max="100"></div>';
+                        $data .= '</li>';
+                        $data .= '<li>';
+                            $data .= '<strong>Participated</strong><br>';
+                            $data .= '<div class="common">'. $prediction['participated'] .'</div>';
+                        $data .= '</li>';
+                        $data .= '<li>';
+                            $data .= '<strong>Match Win</strong><br>';
+                            $data .= '<div class="common">'. $prediction['correct'] .'</div>';
+                        $data .= '</li>';
+                        $data .= '<li>';
+                            $data .= '<strong>Match lose</strong><br>';
+                            $data .= '<div class="common red">'. $prediction['incorrect'] .'</div>';
+                        $data .= '</li>';
+                    $data .= '</ul>';
+                    $data .= '<div class="clearfix"></div>';
+                $data .= '</div>';
+            }
+        }
+    }
+    return $data;
+}
+function predictionSummery($userID, $permited=[]) {
+    $data = '';
+    if ($userID) {
+        $prediction = predictionsOf($userID);
+        $data = summeryHtml($prediction, $permited);
+    }
+    echo $data;
 }

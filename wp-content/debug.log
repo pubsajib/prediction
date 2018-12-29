@@ -2137,3 +2137,31 @@ Stack trace:
 [24-Dec-2018 14:09:31 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
 [24-Dec-2018 15:36:14 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
 [24-Dec-2018 15:36:14 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 38
+[24-Dec-2018 16:17:59 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 16:17:59 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 16:19:34 Asia/Dhaka] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, array must have exactly two members in C:\xampp\htdocs\prediction\wp-includes\class-wp-hook.php on line 288
+[24-Dec-2018 16:27:36 Asia/Dhaka] PHP Parse error:  syntax error, unexpected '}', expecting ';' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 215
+[24-Dec-2018 16:28:09 Asia/Dhaka] PHP Parse error:  syntax error, unexpected '}', expecting ';' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\profile.php on line 215
+[24-Dec-2018 16:32:42 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 143
+[24-Dec-2018 16:32:42 Asia/Dhaka] PHP Notice:  Undefined index: win_rate in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 143
+[24-Dec-2018 16:32:42 Asia/Dhaka] PHP Notice:  Undefined index: participated in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 147
+[24-Dec-2018 16:32:42 Asia/Dhaka] PHP Notice:  Undefined index: correct in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 151
+[24-Dec-2018 16:32:42 Asia/Dhaka] PHP Notice:  Undefined index: incorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\frontend\class-frontend.php on line 155
+[24-Dec-2018 16:34:42 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 14
+[24-Dec-2018 17:08:47 Asia/Dhaka] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, array must have exactly two members in C:\xampp\htdocs\prediction\wp-includes\class-wp-hook.php on line 288
+[24-Dec-2018 17:09:31 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:09:31 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:35:27 Asia/Dhaka] PHP Notice:  Undefined index: all in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 19
+[24-Dec-2018 17:35:27 Asia/Dhaka] PHP Notice:  Undefined index: match in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 20
+[24-Dec-2018 17:35:27 Asia/Dhaka] PHP Notice:  Undefined index: toss in C:\xampp\htdocs\prediction\wp-content\themes\twentyseventeen\predictor.php on line 21
+[24-Dec-2018 17:38:52 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:38:52 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:39:11 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:39:11 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:39:29 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:39:29 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:39:49 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[24-Dec-2018 17:39:49 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[29-Dec-2018 16:04:27 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[29-Dec-2018 17:11:30 Asia/Dhaka] PHP Notice:  Undefined index: team_ind_vs_aus_man_of_the_match__ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37
+[29-Dec-2018 17:11:30 Asia/Dhaka] PHP Notice:  Undefined index: team_new_one_prediction in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 37

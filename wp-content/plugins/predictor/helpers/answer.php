@@ -1,7 +1,6 @@
 <?php 
 function answersHTML($meta, $ans, $eventID, $ditems=2) {
     $html = $userNav = '';
-    $perticipated = $correct = $incorrect = 0;
     $owlSelector = 'owlCarousel_'. $eventID;
     if (empty($ans)) $html .= 'No answer given yet'; 
     else {
@@ -38,14 +37,8 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                                         if (!$answer[$ansID]) continue;
                                         $isCorrect = '';
                                         if ($meta['published']) {
-                                            $perticipated++;
-                                            if ($ans[$uID][$ansID]== @$meta[$default]) {
-                                                $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/checked.png">';
-                                                $correct++;
-                                            } else {
-                                                $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/delete.png">';
-                                                $incorrect++;
-                                            }
+                                            if ($ans[$uID][$ansID]== @$meta[$default]) $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/checked.png">';
+                                            else $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/delete.png">';
                                         }
                                         // $html .= $ans[$uID][$ansID] .'=='. $meta[$default];
                                         $ansWeight = getWeightFromValue($option['weight'], $answer[$ansID]);
@@ -69,15 +62,12 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                                     $html .= '</div>';
                                 }
                             }
-                        $html .= '</div>';
-                    }
-                    if ($meta['published']) {
-                        $html .= '<div class="eventFooter">';
-                            $html .= '<p>';
-                                $html .= '<span ="perticipated">perticipated : '. $perticipated .'</span> ';
-                                $html .= '<span ="correct">correct : '. $correct .'</span> ';
-                                $html .= '<span ="incorrect">incorrect : '. $incorrect .'</span> ';
-                            $html .= '</p>';
+                            $html .= '<div class="sliderFooter">';
+                                $data = tournamentData($uID, 4);
+                                $html .= "<br>All avg  :". $data['avg']['all']['rate'];
+                                $html .= "<br>match avg :". $data['avg']['match']['rate'];
+                                $html .= "<br>toss avg :". $data['avg']['toss']['rate'];
+                            $html .= '</div>';
                         $html .= '</div>';
                     }
                 $html .= '</div>';
