@@ -37,6 +37,8 @@ class Frontend
         wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__).'css/plugin-name-frontend.css', [], $this->version);
         // JS
         wp_enqueue_script('progressbar',plugin_dir_url(__FILE__).'js/jQuery-plugin-progressbar.js', ['jquery'], $this->version, true);
+		wp_enqueue_script('tab',plugin_dir_url(__FILE__).'js/jquery.tabslet.min.js', ['jquery'], $this->version, true);
+		wp_enqueue_script('tabi',plugin_dir_url(__FILE__).'js/initializers.js', ['jquery'], $this->version, true);
         wp_enqueue_script('owl-js',plugin_dir_url(__FILE__).'js/owl.carousel.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('iziModal-js',plugin_dir_url(__FILE__).'js/iziModal.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('timeto-js',plugin_dir_url(__FILE__).'js/jquery.time-to.min.js', ['jquery'], $this->version, true);

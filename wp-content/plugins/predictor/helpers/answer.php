@@ -11,18 +11,25 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                 $highlight = get_the_author_meta( 'highlight', $uID ) ? ' highlighted' : '';
                 $user = get_userdata($uID);
                 $html .= '<div id="predictor_'. $uID .'" class="answerContainer item'. $highlight .'" data-hash="'.$uID.'">';
-                    $html .= '<div class="dashboard-user"><table>';
-						$html .= '<tr>';
-							$html .= '<td class="leftside">'.get_avatar( $user->user_email , '90 ') . '</div></td>';
-							$html .= '<td class="rightside">';
+                    $html .= '<div class="dashboard-user text-center">';
+                    		$html .= '<table class="table top-accuracy">';
+                    			$html .= '<tr>';
+                    			$data = predictionsOf($uID);
+                    				$html .= '<td style="width: 80%">' . round($data['avg']['all']['rate']) . '%<br><small>Accuracy</small></td>';
+                    				$html .= '<td style="width: 10%">' . round($data['avg']['match']['rate']) . '%<br><small>Match</small></td>';
+                    				$html .= '<td style="width: 10%">' . round($data['avg']['toss']['rate']) . '%<br><small>Toss</small></td>';
+                    			$html .= '</tr>';
+                    		$html .= '</table>';
+
+							$html .= '<div class="user-avater">'.get_avatar( $user->user_email , '150 ') . '</div>';
+							$html .= '<div class="user-information">';
                                 $html .= '<h4>';
                                     $html .= '<a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$uID) .'</a>';
                                     if ($country) $html .= '<img class="countryFlag" src="'. PREDICTOR_URL .'frontend/img/'. $country .'.png" alt="country">';
                                 $html .= '</h4><br>';
                                     $html .= get_user_meta($user->ID, 'description', true);
-								$html .= '</div></td>';
-						$html .= '</tr>';
-					$html .= '</table></div>';
+								$html .= '</div>';
+					$html .= '</div>';
                     if ($meta['teams']) {
                         $html .= '<div class="teamAnsWrapper">';
                             foreach ($meta['teams'] as $team) {
@@ -62,12 +69,23 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                                     $html .= '</div>';
                                 }
                             }
-                            $html .= '<div class="sliderFooter">';
-                                $data = tournamentData($uID, 4);
-                                $html .= "<br>All avg  :". $data['avg']['all']['rate'];
-                                $html .= "<br>match avg :". $data['avg']['match']['rate'];
-                                $html .= "<br>toss avg :". $data['avg']['toss']['rate'];
-                            $html .= '</div>';
+							$html .= '<div class="sliderFooter">';
+							$html .= '<table class="table">';
+							$html .= '<tr>';
+							$html .= '<th>League</th>';
+							$html .= '<th>Accuracy</th>';
+							$html .= '<th>Match</th>';
+							$html .= '<th>Toss</th>';
+							$html .= '</tr>';
+							$html .= '<tr>';
+								$data = tournamentData($uID, 269);
+								$html .= "<td rowspan='2'>BBL</td>";
+								$html .= "<td>" . round($data['avg']['all']['rate']) . "%</td>";
+								$html .= "<td>" . round($data['avg']['match']['rate']) . "% (" . $data['avg']['match']['participated'] . ")</td>";
+								$html .= "<td>" . round($data['avg']['toss']['rate']) . "% (" . $data['avg']['toss']['participated'] . ")</td>";
+							$html .= '</tr>';	
+							$html .= '</table>';
+							   $html .= '</div>';
                         $html .= '</div>';
                     }
                 $html .= '</div>';

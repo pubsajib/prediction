@@ -67,9 +67,6 @@ class CSFramework_Option_weight extends CSFramework_Options {
     echo '<br>';
     echo '<input type="text" style="width:48%; margin: 0 2% 10px 0;" name="'. $this->element_name() .'[2][name]" value="'. @$this->element_value()[2][name] .'"'. $this->element_class() . $this->element_attributes() .' placeholder="name" />';
     echo '<input type="text" style="width:48%; margin: 0 0 10px 2%;" name="'. $this->element_name() .'[2][value]" value="'. @$this->element_value()[2][value] .'"'. $this->element_class() . $this->element_attributes() .' placeholder="weight" />';
-    echo '<br>';
-    echo '<input type="text" style="width:48%; margin: 0 2% 10px 0;" name="'. $this->element_name() .'[3][name]" value="'. @$this->element_value()[3][name] .'"'. $this->element_class() . $this->element_attributes() .' placeholder="name" />';
-    echo '<input type="text" style="width:48%; margin: 0 0 10px 2%;" name="'. $this->element_name() .'[3][value]" value="'. @$this->element_value()[3][value] .'"'. $this->element_class() . $this->element_attributes() .' placeholder="weight" />';
     echo $this->element_after();
   }
 }

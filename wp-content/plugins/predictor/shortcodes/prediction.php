@@ -11,7 +11,7 @@ class Prediction {
 			$event = get_post($ID);
 			$meta  = get_post_meta($ID, 'event_ops', true);
 			$ans   = get_post_meta($ID, 'event_ans', true);
-			// $html .= help($ans, false);
+			// $html .= help($meta, false);
 			// GIVEN PREDICTIONS
 			$html .= '<div id="answersWrapper_'. $ID .'" class="answersWrapper" event="'. $ID .'" dItems="'. $ditems.'"></div>';
 			
@@ -37,24 +37,42 @@ class Prediction {
 											$questions = '';
 											if ($meta[$options]) {
 												foreach ($meta[$options] as $option) {
-													$question = '';
+													$question = $tossTime = '';
 													$name = $options .'_'. predictor_id_from_string($option['title']);
-													if (@!$ans[$userID][$name]) {
-														$question .= '<div class="predictionContainer" id="'. $name .'">';
-															if ($option['weight']) {
-																$question .= '<h4 class="title">'. $option['title'] .'</h4>';
-																foreach ($option['weight'] as $weight) {
-																	if (!$weight['name']) continue;
-																	$question .= '<label><input type="radio" name="'. $name .'" value="'. $weight['name'] .'">'. $weight['name'] .'</label>';
-																}
-															}
-															$question .= '<button type="button" class="btn btn-green saveQAns">Submit</button>';
+													if ($option['id'] == 'toss') {
+														$tossTime =  $option['time'] ? $option['time'] : 30;
+														$tossTime =  date('Y-m-d H:i:s',strtotime("-". $tossTime ." minutes",strtotime($team['end'])));
+														// $question .= '<br> Main : '. $team['end'] .' === Time : '. $tossTime;
+													}
+													if ($tossTime && !isValidOption('', $tossTime)) { // CHECK TOSS TIME
+														$question .= '<div class="predictionContainer">';
+															$question .= '<h4 class="title">'. $option['title'] .'</h4>';
+															$question .= '<p class="text-danger">Toss time is over.</p>';
 														$question .= '</div>';
+													} else {
+														if (@$ans[$userID][$name]) {
+															$question .= '<div class="predictionContainer">';
+																$question .= '<h4 class="title">'. $option['title'] .'</h4>';
+																$question .= '<p class="text-success">Answer is given.</p>';
+															$question .= '</div>';
+														} else {
+															$question .= '<div class="predictionContainer" id="'. $name .'">';
+																if ($option['weight']) {
+																	$question .= '<h4 class="title">'. $option['title'] .'</h4>';
+																	if ($tossTime ) $question .= '<div class="endToss" id="'. $name .'_end">'. $tossTime .'</div>';
+																	foreach ($option['weight'] as $weight) {
+																		if (!$weight['name']) continue;
+																		$question .= '<label><input type="radio" name="'. $name .'" value="'. $weight['name'] .'">'. $weight['name'] .'</label>';
+																	}
+																}
+																$question .= '<button type="button" class="btn btn-green saveQAns">Submit</button>';
+															$question .= '</div>';
+														}
 													}
 													$questions .= $question;
 												}
 											}
-											if ($questions) {
+											if ($question) {
 												$html .= '<div class="teamQuestionContainer" id="'. $options .'">';
 												$html .= '<div class="titleContainer">';
 												$html .= '<div class="teamName half left"><strong>'. $team['name'] .'</strong></div>';

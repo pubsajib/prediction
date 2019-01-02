@@ -160,18 +160,18 @@ function eventAVG($eventAvg, $criteriaAvg) {
     }
     return $eventAvg;
 }
-function profileInfo($user) {
-    // help($user);
+function profileInfo($user, $echo=true) {
     $data = '';
     if ($user) {
         $data .= '<div class="author-photo"> '. get_avatar( $user->user_email , '120 ') .' </div>';
-        $data .= '<h3>'. get_the_author_meta('nickname',$user->ID) .'</h3>';
+        $data .= '<h3><a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$user->ID) .'</a></h3>';
         $data .= '<p>';
             if ($user->user_url) $data .= '<strong>Website:</strong> <a href="'. $user->user_url .'">'. $user->user_url .'</a><br />';
             if ($user->user_description) $data .= $user->user_description;
         $data .= '</p>';
     }
-    echo $data;
+    if ($echo) echo $data;
+    return $data;
 }
 function summeryHtml($prediction, $permited=['all']) {
     $data = '';
@@ -180,10 +180,10 @@ function summeryHtml($prediction, $permited=['all']) {
             if ($prediction['participated'] && in_array($type, $permited)) {
                 $percentage = number_format((float)$prediction['rate'], 2, '.', '');
                 $data .= '<div class="win-accuracy '. $type .'" id="'. $type .'">';
-                    $data .= '<h3 class="title">'. $type .' rate</h3>';
+                    $data .= '<h3 class="title">'. $type .'</h3>';
                     $data .= '<ul class="prediction-full-result">';
                         $data .= '<li>';
-                            $data .= '<strong>Total Rate</strong><br>';
+                            $data .= '<strong>Accuracy</strong><br>';
                             $data .= '<div class="progress-bar" value="'. $prediction['rate'] .'" data-percent="'. $percentage .'" max="100"></div>';
                         $data .= '</li>';
                         $data .= '<li>';
@@ -191,11 +191,11 @@ function summeryHtml($prediction, $permited=['all']) {
                             $data .= '<div class="common">'. $prediction['participated'] .'</div>';
                         $data .= '</li>';
                         $data .= '<li>';
-                            $data .= '<strong>Match Win</strong><br>';
+                            $data .= '<strong>Win</strong><br>';
                             $data .= '<div class="common">'. $prediction['correct'] .'</div>';
                         $data .= '</li>';
                         $data .= '<li>';
-                            $data .= '<strong>Match lose</strong><br>';
+                            $data .= '<strong>Lose</strong><br>';
                             $data .= '<div class="common red">'. $prediction['incorrect'] .'</div>';
                         $data .= '</li>';
                     $data .= '</ul>';

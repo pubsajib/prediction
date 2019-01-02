@@ -21,6 +21,7 @@ function predictor_option_fields() {
                 'fields' => [
                     ['id' => 'title', 'type' => 'text', 'title' => 'Title'],
                     ['id' => 'id', 'type' => 'select', 'title' => 'ID', 'options' => eventCriterias()],
+                    ['id' => 'time', 'type' => 'number', 'title' => 'Time (min)', 'default' => 30, 'dependency' => array( 'id', '==', 'toss' ),],
                     ['id' => 'weight', 'type' => 'weight', 'title' => 'Weight']
                 ],
             );
@@ -41,7 +42,7 @@ function predictor_answer_fields() {
             if (@$meta[$options]) {
                 foreach ($meta[$options] as $option) {
                     $name = 'default_'. predictor_id_from_string($team['name']) .'_'. predictor_id_from_string($option['title']);
-                    $data[] = ['id' => $name, 'type' => 'radio', 'title' => $option['title'], 'options' => radioItems($option['weight'])];
+                    $data[] = ['id' => $name, 'type' => 'checkbox', 'title' => $option['title'], 'options' => radioItems($option['weight'])];
                 }
             }
         }

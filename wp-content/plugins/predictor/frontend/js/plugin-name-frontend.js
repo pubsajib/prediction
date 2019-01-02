@@ -18,32 +18,40 @@
         })
     };
     //  Counter
-    var timeCounter = function(ID, end) {
+    var timeCounter = function(ID, end, isToss=false) {
        var time = new Date(end);
        $(ID).timeTo({
            timeTo: new Date(time),
            displayDays: 2,
        }, function(){ 
-           removeCurrentItem();
+           removeCurrentItem(ID);
        });
     };
-    var pNotify = function() {
-        var fx = "wobble", //wobble shake
-            $modal = $(this).closest('.iziModal');
-
-        if (!$modal.hasClass(fx)) {
-            $modal.addClass(fx);
-            setTimeout(function() {
-                $modal.removeClass(fx);
-            }, 1500);
+    var removeCurrentItem = function(ID) {
+        if ($(ID).is('.endToss')) {
+            var container = '.predictionContainer';
+            var title = $(ID).parents(container).find('.title').text();
+            $(ID).parents(container).removeAttr('id').html('<h4 class="title">'+ title +'</h4><p class="text-danger">Toss time is over.</p>');
+        } else {
+            var container = '.teamQuestionContainer';
+            $(ID).parents(container).remove();
         }
     };
-    var removeCurrentItem = function() {
-        $('.endTime').each(function(event) {
+    var removeAllEndedItem = function(isToss) {
+        if (isToss) {
+            var item = '.endTime';
+            var container = '.teamQuestionContainer';
+        } else {
+            var item = '.endToss';
+            var container = '.predictionContainer';
+        }
+        console.log(isToss);
+        $(item).each(function(event) {
             var ID  = '#'+ $(this).prop('id');
             var end = $(this).text();
+            console.log(ID, end);
             if (new Date() >= new Date(end)) {
-                $(ID).parents('.teamQuestionContainer').remove();
+                $(ID).parents(container).remove();
             }
         });
     };
@@ -89,7 +97,7 @@
     }
     var cofirmBox = function(warnings, teamID) {
         var modal = $("<div>").attr("class", "modalWrapper confirm-modal");
-        var footer = "<footer><button type=\"button\" class=\"confirmed fusion-button button-default button-small btn-green\" team="+ teamID +">SubmitSubmit</button> <button data-iziModal-close class=\"fusion-button button-default button-small\">Cancel</button></footer>";
+        var footer = "<footer><button type=\"button\" class=\"confirmed fusion-button button-default button-small btn-green\" team="+ teamID +">Submit</button> <button data-iziModal-close class=\"fusion-button button-default button-small\">Cancel</button></footer>";
         modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
         modal.iziModal({
             title: "Prediction confirmation",
@@ -132,8 +140,9 @@
                     $('.modalWrapper').iziModal('destroy');
                     if (response == 1) {
                         var teamWrapper = Question.parents('.teamQuestionContainer').attr('id');
-                        $('#'+ teamID).remove();
-                        removeEmptyQuestionWrapper(teamWrapper);
+                        var title = $('#'+ teamID + ' h4.title').text();
+                        $('#'+ teamID).removeAttr('id').html('<h4 class="title">'+ title +'</h4><p class="text-success">Answer is given.</p>');
+                        // removeEmptyQuestionWrapper(teamWrapper);
                     }
                 },
                 error: function(error) {
@@ -174,16 +183,27 @@
         if (!isEmptyWrapper) { teamWrapper.remove(); }
     }
     $(document).ready(function() {
+        if ($('#team_test_1_toss_winner___end').is('.endTTime')) {
+            // alert('okay');
+        }
+        // $('#team_test_1_toss_winner___end').parents('.autoRemoveAble').first().css('border', '1px solid red');
         $(document).on('change', '#tournaments', function(event) {
             event.preventDefault();
             var tournamentID = $(this).val();
             var userID = $(this).attr('user');
             loadTournament(tournamentID, userID);
         });
+        // TIME COUNTER
         $('.endTime').each(function(event) {
             var ID = '#'+ $(this).prop('id');
             var end = $(this).text();
             timeCounter(ID, end);
+        });
+        // TIME COUNTER (TOSS)
+        $('.endToss').each(function(event) {
+            var ID = '#'+ $(this).prop('id');
+            var end = $(this).text();
+            timeCounter(ID, end, true);
         });
         /* Instantiating iziModal */
         $("#modal-custom").iziModal({
@@ -195,7 +215,7 @@
             event.preventDefault();
             $('#modal-custom').iziModal('open');
         });
-
+		
         /* JS inside the modal */
         $("#modal-custom").on('click', 'header a', function(event) {
             event.preventDefault();
@@ -259,6 +279,8 @@
                 }
             }
         });
+		//Tab 		
+		$('#protab').tabslet();
         //ProgressBar
         $(".progress-bar").loading(); 
         // SAVE PREDICTIONS
