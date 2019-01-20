@@ -30,12 +30,18 @@ require_once plugin_dir_path(__FILE__) . 'helpers/event.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/answer.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/profile.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/tournament.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/win_lose.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/ranking.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/blog.php';
 // USER PROFILE FIELDS
 require_once plugin_dir_path(__FILE__) . 'includes/class-profile.php';
 // SHORTCODES
 require_once plugin_dir_path(__FILE__) . 'shortcodes/prediction.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/predictors.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/answers.php';
+require_once plugin_dir_path(__FILE__) . 'shortcodes/top.php';
+require_once plugin_dir_path(__FILE__) . 'shortcodes/top-tournament.php';
+
 /**
  * Add Codestar Framework.
  */

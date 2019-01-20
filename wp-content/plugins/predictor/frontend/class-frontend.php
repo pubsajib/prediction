@@ -70,11 +70,8 @@ class Frontend
         $creds['user_password'] = $_REQUEST['pass'];
         $creds['remember'] = $_REQUEST['remember'];
         $user = wp_signon($creds, false);
-        if (is_wp_error($user)) {
-            echo false;
-        } else {
-            echo true;
-        }
+        if (is_wp_error($user)) echo false;
+        else echo true;
         wp_die();
     }
     // SAVE ANSWERS
@@ -83,9 +80,47 @@ class Frontend
         $event = $_POST['eventID'];
         $user = $_POST['userID'];
         $ans  = $_POST['answer'];
-        if ($this->updateAnswer($event, $user, $ans)) echo 1;
-        else echo 0;
+        $teamName  = $_POST['team'];
+        $teamID  = $_POST['teamid'];
+        $qtype  = $_POST['qtype'];
+        $isUpdateable = $this->isAnswerUpdateable($user, $event, $teamName, $teamID, $qtype);
+        if ($isUpdateable) {
+            if ($this->updateAnswer($event, $user, $ans)) echo 1;
+            else echo 0;
+        } else {
+            echo 3;
+        }
         wp_die();
+    }
+    function isAnswerUpdateable($user, $event, $teamName, $teamID, $qtype) {
+        $isValid = false;
+        $meta = get_post_meta($event, 'event_ops', true);
+        $endTime = '';
+        $test = [];
+        if (!empty($meta['teams'])) {
+            foreach ($meta['teams'] as $team) {
+                if ($team['name'] != $teamName) continue;
+                else if(($team['name'] == $teamName) && $team['end']) {
+                    if ($qtype != 'toss') $endTime = strtotime($team['end']);
+                    else {
+                        if ($meta[$teamID]) {
+                            foreach ($meta[$teamID] as $options) {
+                                if ($options['id'] != 'toss') continue;
+                                else if (($options['id'] == 'toss') && $options['time']) {
+                                    $endTime = strtotime($team['end']) - ($options['time'] * 60);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // $endTime = $endTime - (50 * 60);
+        if (time() < $endTime) $isValid = true;
+        return $isValid;
+        // wp_die("endTime : ". date('F d Y H:i:s', $endTime) ." == current: ". date('F d Y H:i:s') ." == is valid : $isValid");
+        // wp_die(json_encode($test));
+        // wp_die("$user, $event, $teamName, $teamID, $qtype");
     }
     // LOAD ANSWERS
     function load_answers() {

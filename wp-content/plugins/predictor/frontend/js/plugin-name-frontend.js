@@ -1,6 +1,6 @@
 (function($) {
     'use strict';
-     var owlCarousel = function(ID, end) {
+    var owlCarousel = function(ID, end) {
         $('.notWorking').owlCarousel({
             loop:true,
             margin: 10,
@@ -24,28 +24,33 @@
            timeTo: new Date(time),
            displayDays: 2,
        }, function(){ 
-           removeCurrentItem(ID);
+            // $(ID).parent('.predictionContainer').find('.saveQAns').attr('disabled', true);
+            removeCurrentItem(ID);
        });
     };
     var removeCurrentItem = function(ID) {
-        if ($(ID).is('.endToss')) {
-            var container = '.predictionContainer';
-            var title = $(ID).parents(container).find('.title').text();
-            $(ID).parents(container).removeAttr('id').html('<h4 class="title">'+ title +'</h4><p class="text-danger">Toss time is over.</p>');
-        } else {
-            var container = '.teamQuestionContainer';
-            $(ID).parents(container).remove();
-        }
+        var teamContainer = null; 
+        var parentItem = null; 
+        var container = null;
+        if ($(ID).is('.endToss')) container = '.predictionContainer';
+        else container = '.teamQuestionContainer';
+        teamContainer = $(ID).parents('.teamQuestionContainer');
+        parentItem = $(ID).parents(container);
+        parentItem.remove();
+        removeEmptyParent(teamContainer);
     };
+    var removeEmptyParent = function(parentItem) {
+        var items = parentItem.find('.predictionContainer').length;
+        if (!items) { parentItem.remove(); }
+    }
     var removeAllEndedItem = function(isToss) {
         if (isToss) {
-            var item = '.endTime';
             var container = '.teamQuestionContainer';
+            var item = '.endTime';
         } else {
             var item = '.endToss';
             var container = '.predictionContainer';
         }
-        console.log(isToss);
         $(item).each(function(event) {
             var ID  = '#'+ $(this).prop('id');
             var end = $(this).text();
@@ -95,9 +100,9 @@
             }
         });
     }
-    var cofirmBox = function(warnings, teamID) {
+    var cofirmBox = function(warnings, team, teamID, questionID, qtype) {
         var modal = $("<div>").attr("class", "modalWrapper confirm-modal");
-        var footer = "<footer><button type=\"button\" class=\"confirmed fusion-button button-default button-small btn-green\" team="+ teamID +">Submit</button> <button data-iziModal-close class=\"fusion-button button-default button-small\">Cancel</button></footer>";
+        var footer = "<footer><button type=\"button\" class=\"confirmed fusion-button button-default button-small btn-green\" team=\""+ team +"\" teamid=\""+ teamID +"\" questionid="+ questionID +" qtype='"+ qtype +"'>Submit</button> <button data-iziModal-close class=\"fusion-button button-default button-small\">Cancel</button></footer>";
         modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
         modal.iziModal({
             title: "Prediction confirmation",
@@ -110,18 +115,20 @@
             }
         });
     }
-    var saveQAns = function(teamID) {
+    var saveQAns = function(team, teamID, questionID, qtype) {
         // PREPARE AJAX POST DATA
         var ajaxData = {};
-        ajaxData['security'] = object.ajax_nonce;
-        ajaxData['eventID'] = $('#eventID').val();
-        ajaxData['userID'] = $('#userID').val();
-        ajaxData['action'] = 'save_answer';
+        ajaxData['security']    = object.ajax_nonce;
+        ajaxData['eventID']     = $('#eventID').val();
+        ajaxData['userID']      = $('#userID').val();
+        ajaxData['qtype']       = qtype;
+        ajaxData['teamid']      = teamID;
+        ajaxData['team']        = team;
+        ajaxData['action']      = 'save_answer';
         // GIVEN ANSWERS ARRAY
         var radioValue = {};
         var radioValueCount = false;
-        var Question = $('#'+teamID);
-        var radioTitle = Question.find('.title').text();
+        var Question = $('#'+questionID);
         var radioName = Question.prop('id');
         var radioVal = $("input[name='"+ radioName +"']:checked").val();
         radioValue[radioName] = radioVal;
@@ -135,14 +142,17 @@
                 cache: false,
                 data: ajaxData,
                 success: function(response, status, xhr) {
-                    // console.log(response == 1);
+                    console.log(response);
                     // $('.modalWrapper').html('');
                     $('.modalWrapper').iziModal('destroy');
                     if (response == 1) {
-                        var teamWrapper = Question.parents('.teamQuestionContainer').attr('id');
-                        var title = $('#'+ teamID + ' h4.title').text();
-                        $('#'+ teamID).removeAttr('id').html('<h4 class="title">'+ title +'</h4><p class="text-success">Answer is given.</p>');
-                        // removeEmptyQuestionWrapper(teamWrapper);
+                        var teamWrapper = $('#'+Question.parents('.teamQuestionContainer').attr('id'));
+                        $('#'+ questionID).remove();
+                        removeEmptyParent(teamWrapper);
+                    }
+                    // Times UP
+                    if (response == 3) {
+                        alert('Times up');
                     }
                 },
                 error: function(error) {
@@ -287,13 +297,11 @@
         $(document).on('click', '.saveQAns', function(event) {
             event.preventDefault();
             var button = $(this);
-            var teamID = $(this).parents('.predictionContainer').attr('id');
-            // PREPARE AJAX POST DATA
-            var ajaxData = {};
-            ajaxData['security'] = object.ajax_nonce;
-            ajaxData['eventID'] = $('#eventID').val();
-            ajaxData['userID'] = $('#userID').val();
-            ajaxData['action'] = 'save_answers';
+            var questionID = $(this).parents('.predictionContainer').attr('id');
+            var qtype  = button.attr('qtype');
+            var team  = button.attr('team');
+            var teamID  = button.attr('teamid');
+            
             // GIVEN ANSWERS ARRAY
             var warnings = '';
             var radioValues = {};
@@ -311,12 +319,15 @@
                 warnings += '<p class="empty"><span class="title">'+ radioTitle +' : </span><span class="ans">unknown </span></p>';
             }
             if (!radioValueCount) alert('You didn\'t select any answer.');
-            else cofirmBox(warnings, teamID);
+            else cofirmBox(warnings, team, teamID, questionID, qtype);
         })
         $(document).on('click', '.confirmed', function(event) {
             event.preventDefault();
-            var teamID = $(this).attr('team');
-            saveQAns(teamID);
+            var teamID = $(this).attr('teamid');
+            var questionID = $(this).attr('questionid');
+            var qtype = $(this).attr('qtype');
+            var team = $(this).attr('team');
+            saveQAns(team, teamID, questionID, qtype);
         });
         // ANSWERS
         $('.answersWrapper').each(function(index) {

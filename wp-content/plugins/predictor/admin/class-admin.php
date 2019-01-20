@@ -1,12 +1,10 @@
 <?php
-
 namespace PLUGIN_NAME;
 
 /**
  * The code used in the admin.
  */
-class Admin
-{
+class Admin {
     private $plugin_slug;
     private $version;
     private $option_name;
@@ -50,6 +48,7 @@ class Admin
             'public' => true,
             'exclude_from_search' => true,
             'supports' => array('title'),
+            'capability_type' => 'page',
         ));
     }
     function pcreate_event_term() {
@@ -123,14 +122,16 @@ class Admin
     function delete_answers() {
         check_ajax_referer('predictor_nonce', 'security');
         $event  = $_POST['event'];
+        $answerID  = $_POST['answerid'];
         $user  = $_POST['user'];
         if (get_post_type($event) == 'event') {
             // DELETE PREDICTIONS
             $answers = get_post_meta($event, 'event_ans', true);
-            unset($answers[$user]);
+            if (isset($answers[$user][$answerID])) unset($answers[$user][$answerID]);
+            else wp_die('answer is not exists for index : '. $answers[$user][$answerID]);
             $deleted = update_post_meta($event, 'event_ans', $answers);
-        }
-        echo $deleted;
+        } else wp_die('Not an event type post');
+        echo "deleted : $deleted";
         wp_die();
     }
 }

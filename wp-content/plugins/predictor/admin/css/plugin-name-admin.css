@@ -6,8 +6,9 @@
 .answersWrapper h3{font-weight: bold;}
 .answerContainer {border-color: #bce8f1; background-color: #d9edf7;margin-bottom: 20px; padding: 10px 20px;}
 .answerContainer h4{margin: 0;font-weight: bold;}
-.answerContainer .answer{}
+.answerContainer .answer{position: relative; border: 1px solid #d5d5d5; clear: both; padding: 10px 0 18px 9px; margin-bottom: 10px; }
 .answerContainer .answer span{}
+.answerContainer .answer img{height:15px;width: auto;}
 
 .adminButton{
 	background: #0085ba;

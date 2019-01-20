@@ -1,12 +1,13 @@
 (function ($) {
   	'use strict';
-  	var deleteAnswers = function(event, user, button) {
+  	var deleteAnswers = function(event, user, answerid, button) {
         // PREPARE AJAX POST DATA
         var ajaxData = {};
         ajaxData['security'] = object.ajax_nonce;
         ajaxData['action'] = 'delete_answers';
         ajaxData['event'] = event;
         ajaxData['user'] = user;
+        ajaxData['answerid'] = answerid;
         $.ajax({
             type: 'POST',
             url: object.ajaxurl,
@@ -27,7 +28,10 @@
 		e.preventDefault();
 		var button = $(this);
 		var event = button.attr('event');
-		var user = button.attr('user');
-        if (confirm('Are you sure ?')) deleteAnswers(event, user, button);
+        var user = button.attr('user');
+		var answerid = button.attr('answerid');
+        // alert(event+' == '+ user+' == '+ answerid); return false; 
+        if (confirm('Are you sure ?')) deleteAnswers(event, user, answerid, button);
 	})
+    $( 'select[name="role"]' ).closest( '.answer' ).remove();
 })(jQuery);

@@ -17,7 +17,7 @@ $options[]    = array(
     'sections'  => array(
         array(
             'name' => 'teams',
-            'title' => 'Teams',
+            'title' => 'Match',
             'icon'  => 'fa fa-group',
             'fields' => array(
                 ['type' => 'notice', 'class' => 'danger', 'content' => 'Enter section information and save. Then go to next tab'],
@@ -25,13 +25,13 @@ $options[]    = array(
                 [
                     'id' => 'teams',
                     'type' => 'group',
-                    'title' => 'Teams',
+                    'title' => 'Match',
                     'desc' => 'Each section name should be unique',
                     'button_title' => 'Add New',
                     'accordion_title' => 'Add New section',
                     'fields' => [
                         ['id' => 'name', 'type' => 'text', 'title' => 'Name'],
-                        ['id' => 'end', 'type' => 'datetime', 'title' => 'End date']
+                        ['id' => 'end', 'type' => 'datetime', 'title' => 'End date'],
                     ],
                 ],
             ),
@@ -50,6 +50,24 @@ $options[]    = array(
         // ],
     ),
 );
+$options[]    =  [
+    'id'        => 'date_ops',
+    'title'     => 'Custom Blog Options',
+    'post_type' => 'post',
+    'context'   => 'normal',
+    'priority'  => 'default',
+    'sections'  => [
+        [
+            'name' => 'date', 
+            'title' => 'Event Date', 
+            'icon'  => 'fa fa-check-square', 
+            'fields' => [
+                ['id' => 'start', 'type' => 'datetime', 'title' => 'Start date'],
+                ['id' => 'end', 'type' => 'datetime', 'title' => 'End date']
+            ]
+        ],
+    ],
+];
 CSFramework_Metabox::instance( $options );
 class CSFramework_Option_weight extends CSFramework_Options {
     protected $defaults = '';

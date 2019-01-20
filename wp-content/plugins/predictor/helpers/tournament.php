@@ -8,12 +8,7 @@ function tournamentSummery($tournamentID, $userID, $permited=['all']) {
 	echo $data;
 }
 function tournamentData($userID=1, $tournamentID=4) {
-	$events = array_filter(eventsByTournament($tournamentID), function($event) {
-		$meta  = get_post_meta($event, 'event_ops', true);
-		return $meta['published'] == 1;
-	});
 	$data = predictionsOf($userID, $tournamentID);
-	$data['events'] = count($events);
 	return $data;
 }
 function tournamentsSelectHtml($userID='') {

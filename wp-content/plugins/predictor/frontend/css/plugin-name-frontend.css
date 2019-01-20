@@ -1,8 +1,6 @@
 /*======================================= = Frontend Styles = ========================================*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 /*General*/
-.text-success{color: green;}
-.text-danger{color: red;}
  .btn-green {
     background: #16936c !important;
     padding: 7px 20px;
@@ -34,6 +32,8 @@
     font-weight: 600;
 }
  .answer h4, .teamName {
+ 	font-family: 'Roboto', sans-serif !important;
+ 	font-weight: 400;
     margin: 10px 0 2px;
     font-size: 15px !important;
     color: #16936c !important;
@@ -61,6 +61,8 @@
 }
  .teamQuestionContainer {
     margin-bottom: 20px;
+	background: #fff;
+	 padding: 15px;
 }
  .titleContainer p{
     margin-bottom: 0 !important;
@@ -81,7 +83,7 @@
 }
  .menuSlider img {
     border-radius: 50%;
-    margin: 0 2px;
+    margin: 2px;
 }
  .dashboard-user {
     clear: both;
@@ -89,9 +91,80 @@
     width: 100%;
 }
 
-.dashboard-user .table.top-accuracy td {
-	text-align: left;
+.dashboard-user .table {
+	margin-bottom: 0;
+}
+
+.dashboard-user .table.top-accuracy td, .predictorContainer.author-profile-card .table.top-accuracy td {
+ 	font-family: 'Roboto', sans-serif !important;
+	text-align: center;
 	padding: 5px 10px;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 20px;
+	color: #3c495a;
+}
+
+.dashboard-user .table.top-accuracy td > small,
+.predictorContainer.author-profile-card .table.top-accuracy td > small {
+	font-size: 12px;
+	color: #7f92a9;
+}
+
+.dashboard-user .table.top-accuracy td > small .red,
+.predictorContainer.author-profile-card .table.top-accuracy td > small .red {
+	color: #ff0707;
+}
+
+.dashboard-user .table.top-accuracy td > small .green,
+.predictorContainer.author-profile-card .table.top-accuracy td > small .green {
+	color: #0b8210;
+}
+
+.winLoseContainer {
+	list-style: none;
+	text-align: center;
+}
+
+.winLoseContainer li {
+	display: inline-block;
+}
+
+.winLoseContainer li.toss.L:before,
+.winLoseContainer li.toss.W:before,
+.winLoseContainer li.toss.A:before,
+.winLoseContainer li.match.L:before,
+.winLoseContainer li.match.W:before,
+.winLoseContainer li.match.A:before {
+	content: '';
+    height: 23px;
+    width: 22px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.winLoseContainer li.toss.L:before {
+    background: url(https://cricdiction.com/wp-content/plugins/predictor/frontend/img/toss_lost.png);
+}
+
+.winLoseContainer li.toss.W:before {
+    background: url(https://cricdiction.com/wp-content/plugins/predictor/frontend/img/toss_win.png);
+}
+
+.winLoseContainer li.toss.A:before {
+    background: url(https://cricdiction.com/wp-content/plugins/predictor/frontend/img/toss_abandon.png);
+}
+
+.winLoseContainer li.match.L:before {
+    background: url(https://cricdiction.com/wp-content/plugins/predictor/frontend/img/match_lost.png);
+}
+
+.winLoseContainer li.match.W:before {
+    background: url(https://cricdiction.com/wp-content/plugins/predictor/frontend/img/match_win.png);
+}
+
+.winLoseContainer li.match.A:before {
+    background: url(https://cricdiction.com/wp-content/plugins/predictor/frontend/img/match_abandon.png);
 }
 
  .usertag {
@@ -105,10 +178,10 @@
     border-radius: 25px;
     font-size: 10px;
     font-weight: 400;
-    border: 1px solid #16936c;
+    border: 1px solid #7f92a9;
     text-transform: uppercase;
     margin-bottom:5px;
-    color: #16936c;
+    color: #7f92a9;
 }
  .usertag li.blue {
     background: #297fd8;
@@ -143,9 +216,9 @@
  .countryFlag{
     margin-left: 7px;
     position: relative;
-    top: 1px;
+    top: 2px;
     border-radius: 0 !important;
-    height: 20px;
+    height: 24px;
 }
  .confirm-modal .iziModal-content {
     padding: 30px !important;
@@ -271,7 +344,7 @@
 /*Owl Carousel*/
  .owl-carousel .owl-item .item {
     background: #fff;
-    padding: 20px 20px 5px;
+    padding: 20px 20px 15px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
     clear: both;
     display: inline-block;
@@ -305,7 +378,7 @@
     display: none;
 }
  .owl-theme .owl-dots {
-    margin-top: 20px;
+    display: none;
 }
  .owl-stage {
     display: flex;
@@ -336,6 +409,10 @@
 }
  .timeTo.timeTo-white div {
     background: linear-gradient(to bottom, #16936c 38%,#1d2724 100%);
+} 
+
+.endToss.timeTo.timeTo-white div {
+    background: #2b2b2b;
 }
  .timeTo div {
     border-top: 0;
@@ -390,6 +467,26 @@
  .predictionWrapper label input {
     margin-right: 10px;
 }
+
+.predictorListWrapper {
+	
+}
+
+.predictorListWrapper .predictorContainer.author-profile-card {
+	width: 32%;
+    float: left;
+    background: #fff;
+    padding: 20px 20px 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
+    margin: 0 1.33% 20px 0;
+	min-height: 509px;
+}
+
+.predictorListWrapper .predictorContainer.author-profile-card .author-photo img {
+	height: 90px;
+	width: auto;
+}
+
 /* ANSWERS */
  .answersWrapper{
     margin-bottom: 0;
@@ -397,25 +494,37 @@
     position: relative;
 }
  .answersWrapper h3{
-    font-weight: bold!important;
+    font-weight: 400;
 }
- .answerContainer h4{
- 	font-family: 'Roboto', sans-serif;
-    font-size: 22px !important;
-    color: #16936c !important;
+.answerContainer h4,
+.predictorContainer.author-profile-card .profile-info h3{
+ 	font-family: 'Roboto', sans-serif !important;
+    font-size: 18px !important;
     font-weight: 500 !important;
     margin-top: 10px;
     display: inline-block;
-    margin: 0;
+    margin: 10px 0;
     text-transform: uppercase;
 }
- .answerContainer h4 a {
-    color: #888;
+.answerContainer h4 a,
+.predictorContainer.author-profile-card .profile-info a{
+    color: #3c495a;
 }
- .answerContainer .answer{
+.answerContainer .answer{
     margin-bottom: 7px;
+    font-size: 16px;
+    color: #7f92a9;
 }
- .answerContainer .answer span{
+ .answerContainer .answer span {
+ 	font-weight: 400;
+ 	font-size: 14px;
+ 	color: #3c495a;
+}
+
+.answerContainer .answer span img {
+	position: relative;
+    top: 3px;
+	height: 18px;
 }
  .answerContainer img {
     border-radius: 50%;
@@ -423,6 +532,17 @@
  .hide {
     display: none;
 }
+
+.profile-link {
+	margin-top: 15px;
+	text-align: center;
+}
+
+.profile-link a {
+	font-weight: 700;
+    color: #3c495a;
+}
+
 /*MODAL*/
  #modal-custom .iziModal-content header {
      background: #eee;
@@ -677,8 +797,8 @@
     color: #fff !important;
 }
  .owl-item .item.highlighted .usertag li {
-    color: #fff;
-    border-color: #fff;
+    color: #7f92a9;
+    border-color: #7f92a9;
 }
  .owl-item .item.highlighted .usertag li.blue {
     border-color: #297fd8;
@@ -781,4 +901,23 @@
      .owl-carousel .owl-item {
         border-right: 0;
     }
+	 .predictorListWrapper .predictorContainer.author-profile-card {
+		 width: 100%;
+		 margin: 0 0 20px 0;
+	 }
 }
+.userNavItem.top3{border: 2px solid red;}
+.userNavItem.top10{border: 2px solid blue;}
+.top3 .top10{}
+.answerContainer.ranked.rank_1{border: 10px solid red;} 
+.answerContainer.ranked.rank_2{border: 10px solid blue;} 
+.answerContainer.ranked.rank_3{border: 10px solid yellow;} 
+
+.predictorListWrapper .predictorContainer.author-profile-card.ranked{background: rgba(0,0,0,0.6);}
+.predictorListWrapper .predictorContainer.author-profile-card.ranked.rank_1{border: 10px solid green;}
+.predictorListWrapper .predictorContainer.author-profile-card.ranked.rank_2{border: 10px solid blue;}
+.predictorListWrapper .predictorContainer.author-profile-card.ranked.rank_3{border: 10px solid yellow;}
+
+.commentWrapper{}
+.commentWrapper .comment{padding: 5px 10px; font-size: 16px;}
+.commentWrapper .title{margin-bottom: 0;}

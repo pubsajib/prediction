@@ -7,8 +7,6 @@
         <footer>
             <button data-iziModal-close>Cancel</button>
             <button type="submit" class="submit">Log in</button>
-        </footer><br>
-		<p>Don't have login?</p>
-		<p><a href="http://cricdiction.com/request-for-predict/">Request us for access.</a></p>
+        </footer>
     </section>
 </div>

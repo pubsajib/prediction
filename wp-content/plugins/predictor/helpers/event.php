@@ -22,7 +22,8 @@ function predictor_option_fields() {
                     ['id' => 'title', 'type' => 'text', 'title' => 'Title'],
                     ['id' => 'id', 'type' => 'select', 'title' => 'ID', 'options' => eventCriterias()],
                     ['id' => 'time', 'type' => 'number', 'title' => 'Time (min)', 'default' => 30, 'dependency' => array( 'id', '==', 'toss' ),],
-                    ['id' => 'weight', 'type' => 'weight', 'title' => 'Weight']
+                    ['id' => 'weight', 'type' => 'weight', 'title' => 'Weight'],
+                    // ['id' => 'abandon', 'type'  => 'switcher', 'title' => 'Abandoned'],
                 ],
             );
         }
@@ -34,15 +35,18 @@ function predictor_answer_fields() {
     $meta = get_post_meta($id, 'event_ops', true);
     $data = [];
     // PUBLISH DEFAULT ANSWERS
-    $data[] = ['id' => 'published', 'type'  => 'switcher', 'title' => 'Publish result'];
     if (@$meta['teams']) {
         foreach ($meta['teams'] as $team) {
-            $data[] = ['type' => 'notice', 'class' => 'info', 'content' => $team['name']];
+            // $data[] = ['type' => 'notice', 'class' => 'info', 'content' => $team['name']];
+            $data[] = ['type' => 'heading', 'content' => $team['name']];
             $options = 'team_'. predictor_id_from_string($team['name']);
             if (@$meta[$options]) {
                 foreach ($meta[$options] as $option) {
+                    $data[] = ['type' => 'notice', 'class' => 'info', 'content' => $option['title']];
+                    // $data[] = ['type' => 'subheading', 'class' => 'info', 'content' => $option['title']];
                     $name = 'default_'. predictor_id_from_string($team['name']) .'_'. predictor_id_from_string($option['title']);
-                    $data[] = ['id' => $name, 'type' => 'checkbox', 'title' => $option['title'], 'options' => radioItems($option['weight'])];
+                    $data[] = ['id' => $name, 'type' => 'radio', 'title' => 'Correct answer', 'options' => radioItems($option['weight'])];
+                    $data[] = ['id' => $name.'_published', 'type'  => 'switcher', 'title' => 'Publish result'];
                 }
             }
         }
@@ -58,6 +62,7 @@ function radioItems(array $weights) {
         if (!trim($weight['name'])) continue;
         $options[$weight['name']] = $weight['name'];
     }
+    $options['abandon'] = 'Abandon';
     return $options;
 }
 function prediction_answers() {
