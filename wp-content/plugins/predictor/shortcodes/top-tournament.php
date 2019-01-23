@@ -5,8 +5,8 @@ class tournamentTop {
 		$attr = shortcode_atts($defaults, $attr, 'tournamentTop');
 		$html  = '';
 		$predictors = getPredictorsList();
-		$ranking = getRakingFor('all', $attr['tournament'], $predictors);
-		// $html  = help($ranking['all'], false);
+		$ranking = getRakingForTournament('all', $attr['tournament'], $predictors, 1, 0);
+		$html  = help($ranking['all'], false);
 		if ($ranking['all']) {
 			$html .= '<div class="'. $attr['class'] .'">';
 			foreach ($ranking['all'] as $rankID => $rank) {

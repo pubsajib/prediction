@@ -33,6 +33,8 @@ require_once plugin_dir_path(__FILE__) . 'helpers/tournament.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/win_lose.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/ranking.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/blog.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/ranking-tournament.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/road-to-top.php';
 // USER PROFILE FIELDS
 require_once plugin_dir_path(__FILE__) . 'includes/class-profile.php';
 // SHORTCODES
@@ -41,24 +43,15 @@ require_once plugin_dir_path(__FILE__) . 'shortcodes/predictors.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/answers.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/top.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/top-tournament.php';
+require_once plugin_dir_path(__FILE__) . 'shortcodes/header-notification.php';
 
 /**
  * Add Codestar Framework.
  */
-require_once plugin_dir_path(__FILE__) . 'includes/vendor/codestar/cs-framework.php';
+require_once plugin_dir_path(__FILE__) . 'includes/codestar/cs-framework.php';
 define('CS_ACTIVE_SHORTCODE', false);
 define('CS_ACTIVE_CUSTOMIZE', false);
-/**
- * Check for updates.
- */
-require_once plugin_dir_path(__FILE__) . 'includes/vendor/plugin-update-checker/plugin-update-checker.php';
-$plugin_slug = Info::SLUG;
-$update_url  = Info::UPDATE_URL;
-$myUpdateChecker = \Puc_v4_Factory::buildUpdateChecker(
-    $update_url . '?action=get_metadata&slug=' . $plugin_slug,
-    __FILE__,
-    $plugin_slug
-);
+
 /**
  * Run the plugin.
  */

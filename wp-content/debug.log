@@ -7145,3 +7145,1096 @@ Stack trace:
 [20-Jan-2019 16:48:45 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
 [20-Jan-2019 16:48:45 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
 [20-Jan-2019 16:48:45 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[21-Jan-2019 15:31:45 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[21-Jan-2019 15:31:45 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[21-Jan-2019 15:46:27 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api\class-wp-rest-server.php on line 1248
+[21-Jan-2019 15:46:27 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 573
+[21-Jan-2019 15:46:27 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 574
+[21-Jan-2019 15:46:27 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 575
+[21-Jan-2019 15:46:27 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 576
+[21-Jan-2019 15:46:30 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api\class-wp-rest-server.php on line 1248
+[21-Jan-2019 15:46:30 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 573
+[21-Jan-2019 15:46:30 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 574
+[21-Jan-2019 15:46:30 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 575
+[21-Jan-2019 15:46:30 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api.php on line 576
+[21-Jan-2019 15:48:42 Asia/Dhaka] PHP Notice:  Undefined index: tournament in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 9
+[21-Jan-2019 15:48:42 Asia/Dhaka] PHP Notice:  Undefined index: number in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 14
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:04 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 12
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Notice:  Undefined variable: eventID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\shortcodes\header-notification.php on line 13
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api\class-wp-rest-server.php on line 1248
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api\class-wp-rest-server.php on line 1248
+[21-Jan-2019 16:37:05 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\helper.php:19) in C:\xampp\htdocs\prediction\wp-includes\rest-api\class-wp-rest-server.php on line 1248
+[21-Jan-2019 16:40:47 Asia/Dhaka] PHP Notice:  Trying to get property 'ID' of non-object in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 7
+[21-Jan-2019 16:41:11 Asia/Dhaka] PHP Notice:  Trying to get property 'ID' of non-object in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 7
+[21-Jan-2019 16:44:18 Asia/Dhaka] PHP Notice:  Undefined index: all in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 9
+[21-Jan-2019 16:52:53 Asia/Dhaka] PHP Notice:  Undefined variable: userRank in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 12
+[21-Jan-2019 16:57:41 Asia/Dhaka] PHP Notice:  Undefined variable: user in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 9
+[21-Jan-2019 16:57:41 Asia/Dhaka] PHP Notice:  Trying to get property 'roles' of non-object in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 9
+[21-Jan-2019 17:04:40 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[21-Jan-2019 17:06:00 Asia/Dhaka] PHP Notice:  Undefined index: highlight in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php on line 56
+[21-Jan-2019 17:06:00 Asia/Dhaka] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, array must have exactly two members in C:\xampp\htdocs\prediction\wp-includes\class-wp-hook.php on line 288
+[21-Jan-2019 17:07:52 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[21-Jan-2019 17:11:02 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Call to undefined function get_user_by() in C:\xampp\htdocs\prediction\wp-includes\meta.php:1379
+Stack trace:
+#0 C:\xampp\htdocs\prediction\wp-includes\meta.php(162): get_object_subtype('user', 1)
+#1 C:\xampp\htdocs\prediction\wp-includes\user.php(825): update_metadata('user', 1, 'wp_capabilities', Array, '')
+#2 C:\xampp\htdocs\prediction\wp-includes\class-wp-user.php(588): update_user_meta(1, 'wp_capabilities', Array)
+#3 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php(62): WP_User->set_role('editor')
+#4 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\predictor.php(39): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\prediction\wp-settings.php(322): include_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\prediction\wp-config.php(93): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\prediction\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\prediction\wp-blog-header.php(13): require_once('C:\\xampp\\htdocs...')
+# in C:\xampp\htdocs\prediction\wp-includes\meta.php on line 1379
+[21-Jan-2019 17:11:23 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Call to undefined function get_user_by() in C:\xampp\htdocs\prediction\wp-includes\meta.php:1379
+Stack trace:
+#0 C:\xampp\htdocs\prediction\wp-includes\meta.php(162): get_object_subtype('user', 1)
+#1 C:\xampp\htdocs\prediction\wp-includes\user.php(825): update_metadata('user', 1, 'wp_capabilities', Array, '')
+#2 C:\xampp\htdocs\prediction\wp-includes\class-wp-user.php(588): update_user_meta(1, 'wp_capabilities', Array)
+#3 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php(62): WP_User->set_role('editor')
+#4 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\predictor.php(39): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\prediction\wp-settings.php(322): include_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\prediction\wp-config.php(93): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\prediction\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\prediction\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs.. in C:\xampp\htdocs\prediction\wp-includes\meta.php on line 1379
+[21-Jan-2019 17:12:10 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Call to undefined function get_userdatabylogin() in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php:61
+Stack trace:
+#0 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\predictor.php(39): require_once()
+#1 C:\xampp\htdocs\prediction\wp-settings.php(322): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\prediction\wp-config.php(93): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\prediction\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\prediction\wp-blog-header.php(13): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\prediction\index.php(17): require('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php on line 61
+[21-Jan-2019 17:12:23 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Call to undefined function get_userdatabylogin() in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php:61
+Stack trace:
+#0 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\predictor.php(39): require_once()
+#1 C:\xampp\htdocs\prediction\wp-settings.php(322): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\prediction\wp-config.php(93): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\prediction\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\prediction\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+  thrown in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php on line 61
+[21-Jan-2019 17:12:30 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Call to undefined function get_userdataby() in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php:61
+Stack trace:
+#0 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\predictor.php(39): require_once()
+#1 C:\xampp\htdocs\prediction\wp-settings.php(322): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\prediction\wp-config.php(93): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\prediction\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\prediction\wp-blog-header.php(13): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\prediction\index.php(17): require('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php on line 61
+[21-Jan-2019 17:12:54 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Call to undefined function get_user_by() in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php:61
+Stack trace:
+#0 C:\xampp\htdocs\prediction\wp-content\plugins\predictor\predictor.php(39): require_once()
+#1 C:\xampp\htdocs\prediction\wp-settings.php(322): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\prediction\wp-config.php(93): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\prediction\wp-load.php(37): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\prediction\wp-blog-header.php(13): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\prediction\index.php(17): require('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\class-profile.php on line 61
+[21-Jan-2019 17:20:14 Asia/Dhaka] PHP Warning:  Division by zero in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\ranking.php on line 118
+[21-Jan-2019 17:27:17 Asia/Dhaka] PHP Fatal error:  Default value for parameters with a integer type can only be integer or NULL in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 5
+[21-Jan-2019 17:30:12 Asia/Dhaka] PHP Notice:  Undefined variable: 1 in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 31
+[21-Jan-2019 17:30:12 Asia/Dhaka] PHP Notice:  Trying to get property 'user_registered' of non-object in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\ranking.php on line 128
+[22-Jan-2019 15:24:34 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[22-Jan-2019 16:26:30 Asia/Dhaka] PHP Notice:  Undefined index: ID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:30 Asia/Dhaka] PHP Notice:  Undefined index: ID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:30 Asia/Dhaka] PHP Notice:  Undefined index: ID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:41 Asia/Dhaka] PHP Notice:  Undefined index: ID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:41 Asia/Dhaka] PHP Notice:  Undefined index: ID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:41 Asia/Dhaka] PHP Notice:  Undefined index: ID in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:59 Asia/Dhaka] PHP Notice:  Undefined index: id in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:59 Asia/Dhaka] PHP Notice:  Undefined index: id in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:26:59 Asia/Dhaka] PHP Notice:  Undefined index: id in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 56
+[22-Jan-2019 16:27:49 Asia/Dhaka] PHP Notice:  Undefined index: id in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 57
+[22-Jan-2019 16:27:49 Asia/Dhaka] PHP Notice:  Undefined index: id in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 57
+[22-Jan-2019 16:27:49 Asia/Dhaka] PHP Notice:  Undefined index: id in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 57
+[22-Jan-2019 20:12:11 Asia/Dhaka] PHP Parse error:  syntax error, unexpected ';', expecting ']' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 108
+[22-Jan-2019 20:16:15 Asia/Dhaka] PHP Notice:  Undefined variable: option in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 99
+[22-Jan-2019 20:16:15 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:15 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:16 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:17 Asia/Dhaka] PHP Notice:  Undefined variable: teamInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 110
+[22-Jan-2019 20:16:39 Asia/Dhaka] PHP Notice:  Undefined variable: option in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 100
+[22-Jan-2019 21:30:12 Asia/Dhaka] PHP Warning:  Cannot use a scalar value as an array in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 119
+[22-Jan-2019 21:30:12 Asia/Dhaka] PHP Warning:  Cannot use a scalar value as an array in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 119
+[22-Jan-2019 21:30:12 Asia/Dhaka] PHP Warning:  Cannot use a scalar value as an array in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 119
+[22-Jan-2019 21:30:12 Asia/Dhaka] PHP Warning:  Cannot use a scalar value as an array in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 119
+[22-Jan-2019 21:30:12 Asia/Dhaka] PHP Warning:  Cannot use a scalar value as an array in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 119
+[22-Jan-2019 21:30:12 Asia/Dhaka] PHP Warning:  Cannot use a scalar value as an array in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 119
+[22-Jan-2019 21:30:12 Asia/Dhaka] PHP Fatal error:  Uncaught Error: [] operator not supported for strings in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php:119
+Stack trace:
+#0 C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php(5): profileEvents()
+#1 C:\xampp\htdocs\prediction\wp-includes\template-loader.php(74): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\prediction\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\prediction\index.php(17): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 119
+[23-Jan-2019 12:46:47 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[23-Jan-2019 12:46:49 Asia/Dhaka] PHP Warning:  The URL https://livedemolink.com?action=get_metadata&slug=predictor&installed_version=1.0&php=7.2.9&locale=en_US&checking_for_updates=1 does not point to a valid metadata file. The metadata file appears to be empty. in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\includes\vendor\plugin-update-checker\Puc\v4\UpdateChecker.php on line 297
+[23-Jan-2019 13:19:15 Asia/Dhaka] PHP Parse error:  syntax error, unexpected ';', expecting ']' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 117
+[23-Jan-2019 13:54:14 Asia/Dhaka] PHP Notice:  Undefined variable: itemInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 117
+[23-Jan-2019 13:54:14 Asia/Dhaka] PHP Notice:  Undefined variable: itemInfo in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 117
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:39 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:40 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 7
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:41 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:01:42 Asia/Dhaka] PHP Notice:  Undefined index: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 10
+[23-Jan-2019 14:02:40 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\event.php on line 80
+[23-Jan-2019 14:03:04 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\event.php on line 80
+[23-Jan-2019 14:03:29 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\event.php on line 80
+[23-Jan-2019 14:03:54 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\event.php on line 80
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:25 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_rangpur_riders_vs_sylhet_sixers_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Notice:  Undefined index: default_chittagong_vikings_vs_khulna_titans_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 167
+[23-Jan-2019 14:04:26 Asia/Dhaka] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php:167) in C:\xampp\htdocs\prediction\wp-admin\includes\misc.php on line 1144
+[23-Jan-2019 14:11:46 Asia/Dhaka] PHP Parse error:  syntax error, unexpected ''cats'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 123
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:35:16 Asia/Dhaka] PHP Notice:  Undefined index: isCorrect in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 120
+[23-Jan-2019 14:46:04 Asia/Dhaka] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 174
+[23-Jan-2019 14:57:04 Asia/Dhaka] PHP Notice:  Undefined variable: item in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 14
+[23-Jan-2019 14:57:52 Asia/Dhaka] PHP Notice:  Undefined variable: data in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 16
+[23-Jan-2019 15:06:57 Asia/Dhaka] PHP Notice:  Undefined variable: option in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined variable: option in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:54 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:07:55 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 104
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined variable: option in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:39 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:08:40 Asia/Dhaka] PHP Notice:  Undefined index: end in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 105
+[23-Jan-2019 15:40:08 Asia/Dhaka] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 128
+[23-Jan-2019 15:40:23 Asia/Dhaka] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 130
+[23-Jan-2019 15:47:47 Asia/Dhaka] PHP Parse error:  syntax error, unexpected ';', expecting ']' in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 123
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:37 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:38 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:38 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:38 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:38 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:38 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:38 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 15:54:38 Asia/Dhaka] PHP Notice:  Undefined index: answerable in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 31
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:01:50 Asia/Dhaka] PHP Warning:  A non-numeric value encountered in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 41
+[23-Jan-2019 16:08:14 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\themes\twentynineteen\road-to-top.php on line 20
+[23-Jan-2019 18:51:52 Asia/Dhaka] PHP Notice:  Undefined variable: current_user in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 11
+[23-Jan-2019 18:51:52 Asia/Dhaka] PHP Notice:  Trying to get property 'roles' of non-object in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 11
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Undefined index: team_auckland_vs_canterbury_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 51
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Undefined index: team_auckland_vs_canterbury_match_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 51
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Undefined index: team_auckland_vs_canterbury_toss_ in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 51
+[23-Jan-2019 18:52:50 Asia/Dhaka] PHP Notice:  Array to string conversion in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\answer.php on line 131
+[23-Jan-2019 19:10:07 Asia/Dhaka] PHP Notice:  Undefined variable: current_user in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 11
+[23-Jan-2019 19:10:07 Asia/Dhaka] PHP Notice:  Trying to get property 'roles' of non-object in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 11
+[23-Jan-2019 19:10:59 Asia/Dhaka] PHP Warning:  Division by zero in C:\xampp\htdocs\prediction\wp-content\plugins\predictor\helpers\road-to-top.php on line 20

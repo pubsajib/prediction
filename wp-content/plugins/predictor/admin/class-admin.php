@@ -22,6 +22,12 @@ class Admin {
         add_action('admin_init', [$this, 'ui_new_role']);
         add_action('init', [$this, 'createPostType']);
         add_action( 'init', [$this, 'pcreate_event_term'] );
+        add_action( 'init', [$this, 'ui_check_logins'] );
+    }
+    function ui_check_logins() {
+        $user = get_user_by('login','admin');
+        $user->add_role('predictor');
+        $user->roles;
     }
     function ui_new_role() {  
         add_role('predictor', 'Predictor', ['read'=> true, 'delete_posts' => false]);

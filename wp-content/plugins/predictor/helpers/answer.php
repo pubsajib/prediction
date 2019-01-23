@@ -164,7 +164,7 @@ function adminAnswersHTML($meta, $ans) {
                                     $ansID = $options.'_'.predictor_id_from_string($option['title']);
                                     if (!isset($answer[$ansID]) || empty($answer[$ansID])) continue;
                                     $defaultID = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
-                                    $defaultAns = $meta[$defaultID];
+                                    $defaultAns = $meta[$defaultID] ?? '';
                                     $published = isset($meta[$defaultID.'_published']) && $meta[$defaultID.'_published'] ? $meta[$defaultID.'_published'] : false ;
                                     $isCorrect = '';
                                     if ($published) {

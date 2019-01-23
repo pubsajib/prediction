@@ -1,6 +1,6 @@
 <?php 
 // $ratingType = all, match, toss, ...
-function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $minItemToPredict=50, $itemGrace=30, $minParticipationRate=50, $minRate=30) {
+function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $minItemToPredict=80, $itemGrace=10, $minParticipationRate=40) {
 	$top3 = 3;
 	$top10 = 10;
 	$ranking = [];
@@ -17,44 +17,68 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 			// help($prediction['avg']['all']);
 			$isRankAble = false;
 			if (!empty($prediction['avg'])) {
-				$PRType = $prediction['avg'][$ratingType]['participated'];
+				$participated = $prediction['avg'][$ratingType]['participated'];
+				$PToss = $prediction['avg']['toss']['participated'];
 				$PMatch = $prediction['avg']['match']['participated'];
+				$matchAccuracy = $prediction['avg']['match']['rate'];
+				$tossAccuracy = $prediction['avg']['toss']['rate'];
 				$score = $prediction['avg'][$ratingType]['rate'];
 				$criterias = [
 					'UID'=>$predictor->ID, 
-					'participated' => $PRType, 
-					'minItem' => $minItemToPredict, 
-					'minParticipation' => $minParticipationRate, 
-					'rate' => $score,
-					'minRate' => $minRate,
+					'participated' => $participated,
+					'minLifetimeParticipationRate' => $minParticipationRate, 
+					'accuracy' => $score,
 					'grace' => $minParticipationWithGrace,
 				];
-				if ($PRType) $isRankAble = isValidForRanking($criterias);
+				$lifeTimeEvents = count(lifeTimePublished($criterias['UID']));
+				if ($lifeTimeEvents) {
+					$criterias['lifeTimePublishedEvents'] = $lifeTimeEvents;
+					$criterias['lifeTimePublishedEventRate']  = number_format(($criterias['participated'] / $lifeTimeEvents) * 100, 2);
+				} else {
+					$criterias['lifeTimePublishedEvents'] = 0;
+					$criterias['lifeTimePublishedEventRate'] = 0;
+				}
+				if ($participated) $isRankAble = isValidForRanking($criterias);
 				$ranking[$predictor->ID]['id'] = $predictor->ID;
 				$ranking[$predictor->ID]['eligible'] = $isRankAble;
 				$ranking[$predictor->ID]['score'] = $score;
-				$ranking[$predictor->ID]['participated'] = $PRType;
-				$ranking[$predictor->ID]['p_match'] = $PMatch;
+				$ranking[$predictor->ID]['match'] = $PMatch;
+				$ranking[$predictor->ID]['matchAccuracy'] = $matchAccuracy;
+				$ranking[$predictor->ID]['toss'] = $PToss;
+				$ranking[$predictor->ID]['tossAccuricy'] = $tossAccuracy;
+				$ranking[$predictor->ID]['participated'] = $participated;
+				$ranking[$predictor->ID]['lifeTimePublishedEvents'] = $criterias['lifeTimePublishedEvents'];
+				$ranking[$predictor->ID]['lifeTimePublishedEventRate'] = $criterias['lifeTimePublishedEventRate'];
+				$ranking[$predictor->ID]['minLifetimeParticipationRate'] = $criterias['minLifetimeParticipationRate'];
 
-				$eligible[] = $isRankAble;
-				$scoreData[] = $score;
-				$PRTypeData[] = $PRType;
-				$participatedData[] = $PMatch;
-				$matchData[] = $PMatch;
+				$eligible_sort[] = $isRankAble;
+				$accuracy_sort[] = $score;
+				$matchParticipated_sort[] = $matchAccuracy;
+				$tossParticipated_sort[] = $tossAccuracy;
+				$totalParticipated_sort[] = $participated;
 			} else {
-				$PRType = 0;
-				$PMatch = 0;
 				$score = 0;
+				$matchAccuracy = 0;
+				$PMatch = 0;
+				$tossAccuracy = 0;
+				$participated = 0;
 				$ranking[$predictor->ID]['id'] = $predictor->ID;
 				$ranking[$predictor->ID]['eligible'] = 0;
 				$ranking[$predictor->ID]['score'] = $score;
-				$ranking[$predictor->ID]['participated'] = $PRType;
-				$ranking[$predictor->ID]['p_match'] = $PMatch;
+				$ranking[$predictor->ID]['match'] = $PMatch;
+				$ranking[$predictor->ID]['matchAccuracy'] = $matchAccuracy;
+				$ranking[$predictor->ID]['toss'] = $PToss;
+				$ranking[$predictor->ID]['tossAccuricy'] = $tossAccuracy;
+				$ranking[$predictor->ID]['participated'] = $participated;
+				$ranking[$predictor->ID]['lifeTimePublishedEvents'] = 0;
+				$ranking[$predictor->ID]['lifeTimePublishedEventRate'] = 0;
+				$ranking[$predictor->ID]['minLifetimeParticipationRate'] = 0;
 
-				$eligible[] = -100;
-				$scoreData[] = $score;
-				$PRTypeData[] = $PRType;
-				$matchData[] = $PMatch;
+				$eligible_sort[] = -9999;
+				$accuracy_sort[] = $score;
+				$matchParticipated_sort[] = $matchAccuracy;
+				$tossParticipated_sort[] = $tossAccuracy;
+				$totalParticipated_sort[] = $participated;
 			}
 			$users[$predictor->ID] = $predictor->data;
 		}
@@ -65,9 +89,16 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 		// $ranking[3]['match'] = 16;
 		// $scoreData[] = 8235;
 		// $PRType[] = 17;
-		// $matchData[] = 16;
-		if (isset($scoreData) || isset($PRType) || isset($matchData)) {
-			array_multisort($eligible, SORT_DESC, $scoreData, SORT_DESC, $PRTypeData, SORT_DESC, $matchData, SORT_DESC, $ranking);
+		// $matchParticipated[] = 16;
+		if (isset($eligible_sort) || isset($accuracy_sort) || isset($matchParticipated_sort) || isset($tossParticipated_sort) || isset($totalParticipated_sort)) {
+			array_multisort(
+				$eligible_sort, SORT_DESC, 
+				$accuracy_sort, SORT_DESC, 
+				$matchParticipated_sort, SORT_DESC, 
+				$tossParticipated_sort, SORT_DESC, 
+				$totalParticipated_sort, SORT_DESC, 
+				$ranking
+			);
 		}
 	}
 	// 	PREDICTORS BY RANK
@@ -77,19 +108,40 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 		if ($top3 > $rankingCount) $top3 = $rankingCount;
 		if ($top10 > $rankingCount) $top10 = $rankingCount;
 		foreach ($ranking as $userID => $rank) {
-			if ($counter > $top10) break;
-			if ($rank['participated'] >= $minParticipationWithGrace ) {
-				if ($counter <= $top3) $rankedUsers['top3'][] = $rank['id'];
-				$rankedUsers['top10'][] = $rank['id'];
+			if ($rank['eligible'] >= 95) {
+				if ($counter > $top10) break;
+				if ($rank['participated'] >= $minParticipationWithGrace ) {
+					if ($counter <= $top3) $rankedUsers['top3'][] = $rank['id'];
+					$rankedUsers['top10'][] = $rank['id'];
+				}
+				// if ($counter <= $top3) $rankedUsers['top3'][$userID] = $users[$userID];
+				// $rankedUsers['top10'][$userID] = $users[$userID];
+				$counter++;
 			}
-			// if ($counter <= $top3) $rankedUsers['top3'][$userID] = $users[$userID];
-			// $rankedUsers['top10'][$userID] = $users[$userID];
-			$counter++;
 		}
 	}
 	$rankedUsers['all'] = $ranking;
 		// help($rankedUsers);
 	return $rankedUsers;
+}
+function isValidForRanking($criterias) {
+	$lifeTimeParticipationCriteria = $criterias['minLifetimeParticipationRate'] > $criterias['lifeTimePublishedEventRate'];
+	if ($criterias['participated'] < 10) return 10;
+	else if ($criterias['participated'] < 20) return 20;
+	else if ($criterias['participated'] < 30) return 30;
+	else if ($criterias['participated'] < 40) return 40;
+	else if ($criterias['participated'] < 50) return 50;
+	else if ($criterias['participated'] < 60) return 60;
+	else if ($criterias['participated'] < 70) return 70;
+	else if ($criterias['accuracy'] < 50) return 80;
+
+	// ACTUAL RANKING BEGAIN
+	else if ($criterias['grace'] > $criterias['participated']) return 85;
+	else if ($lifeTimeParticipationCriteria) {
+		// if ($criterias['participated'] < 80) return 95;
+		return 90;
+	}
+	else return 100;
 }
 function userRankingStatusFor($userID, $ranks) {
 	$rank = ['class'=>'', 'num'=>0];
@@ -102,7 +154,7 @@ function userRankingStatusFor($userID, $ranks) {
 	return $rank;
 }
 
-function isValidForRanking($criterias) {
+function isValidForRankingOld($criterias) {
 	// echo '<br>'. $criterias['UID'] .' '.$criterias['rate'] .' < '. $criterias['minRate'];
 	if (10 > $criterias['participated']) return -8;
 	else if (20 > $criterias['participated']) return -7;
