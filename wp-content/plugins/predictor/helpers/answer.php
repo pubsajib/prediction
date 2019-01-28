@@ -4,11 +4,11 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
     $owlSelector = 'owlCarousel_'. $eventID;
     if (empty($ans)) $html .= 'No answer given yet'; 
     else {
-        $ranking = getRakingFor();
-        $html .= '<div class="owl-carousel '. $owlSelector .' owl-theme">';
+		$ranking = getRakingFor();
+        $html .= '<div class="owl-carousel '.$owlSelector.' owl-theme">';
         foreach ($ans as $uID => $answer) {
             if ($answer) {
-                $ratingIcon = '';
+				$ratingIcon = '';
                 $rank = userRankingStatusFor($uID, $ranking);
                 if (!empty($rank['num'])) $ratingIcon = '<p>'. $rank['num'] .'</p>';
                 $country = get_the_author_meta( 'country', $uID );
@@ -18,15 +18,14 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                     $html .= '<div class="dashboard-user text-center">';
                         $UP = predictionsOf($uID);
                         if (!empty($UP['avg'])) {
-                            $html .= '<table class="table top-accuracy">';
-                                $html .= '<tr>';
-                                    $html .= '<td style="width: 20%"><small>Accuracy</small><br>' . $UP['avg']['all']['rate'] . '%</td>';
-                                    $html .= '<td style="width: 40%;visibility: hidden;">%<br><small>Accuracy</small></td>';
+//                             $html .= '<table class="table top-accuracy">';
+//                                 $html .= '<tr>';
+// 									$html .= '<td><small>Accuracy (' . $UP['avg']['all']['participated'] . ') </small><br>' . round($UP['avg']['all']['rate']) . '%<br><small class="last"><span class="green">'. $UP['avg']['all']['correct'] . '</span>/<span class="red">'. $UP['avg']['all']['incorrect'] . '</span></small></td>';
                                     
-                                    $html .= '<td style="width: 20%;min-width: 80px;"><small>Match (' . $UP['avg']['match']['participated'] . ') </small><br>' . round($UP['avg']['match']['rate']) . '%<br><small><span class="green">'. $UP['avg']['match']['correct'] . '</span>/<span class="red">'. $UP['avg']['match']['incorrect'] . '</span></small></td>';
-                                    $html .= '<td style="width: 20%;min-width: 80px;"><small>Toss (' . $UP['avg']['toss']['participated'] . ' )</small><br>' . round($UP['avg']['toss']['rate']) . '%<br><small><span class="green">'. $UP['avg']['toss']['correct'] . '</span>/<span class="red">'. $UP['avg']['toss']['incorrect'] . '</span></small></td>';
-                                $html .= '</tr>';
-                            $html .= '</table>';
+//                                     $html .= '<td><small>Match (' . $UP['avg']['match']['participated'] . ') </small><br>' . round($UP['avg']['match']['rate']) . '%<br><small class="last"><span class="green">'. $UP['avg']['match']['correct'] . '</span>/<span class="red">'. $UP['avg']['match']['incorrect'] . '</span></small></td>';
+//                                     $html .= '<td><small>Toss (' . $UP['avg']['toss']['participated'] . ')</small><br>' . round($UP['avg']['toss']['rate']) . '%<br><small class="last"><span class="green">'. $UP['avg']['toss']['correct'] . '</span>/<span class="red">'. $UP['avg']['toss']['incorrect'] . '</span></small></td>';
+//                                 $html .= '</tr>';
+//                             $html .= '</table>';
                         }
 
                         $html .= '<div class="user-avater">'.get_avatar( $user->user_email , '90') .''. $ratingIcon .'</div>';
@@ -55,7 +54,7 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                                         $isCorrect = '';
                                         if ($published) {
                                             if ($defaultAns == 'abandon') {
-                                                $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/unhappy.png">';
+                                                $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/warning.png">';
                                             } else if ($ans[$uID][$ansID]== $defaultAns) $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/happy.png">';
                                             else $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/sad.png">';
                                         }
@@ -87,48 +86,48 @@ function answersHTML($meta, $ans, $eventID, $ditems=2) {
                         $smash = tournamentData($uID, 276);
                         $bpl = tournamentData($uID, 279);
                         if (!empty($bbil['avg']) || !empty($smash['avg']) || !empty($bpl['avg'])) {
-                            $html .= '<div class="sliderFooter">';
-                                $html .= '<table class="table">';
-                                    $html .= '<tr>';
-                                        $html .= '<th>League</th>';
-                                        $html .= '<th>Accuracy</th>';
-                                        $html .= '<th>Match</th>';
-                                        $html .= '<th>Toss</th>';
-                                    $html .= '</tr>';
-                                    if (!empty($bbil['avg'])) {
-                                        $html .= '<tr>';
-                                            $html .= "<td>BBL</td>";
-                                            $html .= "<td>" . round($bbil['avg']['all']['rate']) . "%</td>";
-                                            $html .= "<td>" . round($bbil['avg']['match']['rate']) . "% (" . $bbil['avg']['match']['participated'] . ")</td>";
-                                            $html .= "<td>" . round($bbil['avg']['toss']['rate']) . "% (" . $bbil['avg']['toss']['participated'] . ")</td>";
-                                        $html .= '</tr>';
-                                    }
-                                    if (!empty($smash['avg'])) {   
-                                        $html .= '<tr>';
-                                            $html .= "<td>Smash</td>";
-                                            $html .= "<td>" . round($smash['avg']['all']['rate']) . "%</td>";
-                                            $html .= "<td>" . round($smash['avg']['match']['rate']) . "% (" . $smash['avg']['match']['participated'] . ")</td>";
-                                            $html .= "<td>" . round($smash['avg']['toss']['rate']) . "% (" . $smash['avg']['toss']['participated'] . ")</td>";
-                                        $html .= '</tr>';
-                                    }
-                                    if (!empty($bpl['avg'])) {   
-                                        $html .= '<tr>';
-                                            $html .= "<td>BPL</td>";
-                                            $html .= "<td>" . round($bpl['avg']['all']['rate']) . "%</td>";
-                                            $html .= "<td>" . round($bpl['avg']['match']['rate']) . "% (" . $bpl['avg']['match']['participated'] . ")</td>";
-                                            $html .= "<td>" . round($bpl['avg']['toss']['rate']) . "% (" . $bpl['avg']['toss']['participated'] . ")</td>";
-                                        $html .= '</tr>';
-                                    }
-                                $html .= '</table>';
-                            $html .= '</div>';
+//                             $html .= '<div class="sliderFooter">';
+//                                 $html .= '<table class="table">';
+//                                     $html .= '<tr>';
+//                                         $html .= '<th>League</th>';
+//                                         $html .= '<th>Accuracy</th>';
+//                                         $html .= '<th>Match</th>';
+//                                         $html .= '<th>Toss</th>';
+//                                     $html .= '</tr>';
+//                                     if (!empty($bbil['avg'])) {
+//                                         $html .= '<tr>';
+//                                             $html .= "<td>BBL</td>";
+//                                             $html .= "<td>" . round($bbil['avg']['all']['rate']) . "%</td>";
+//                                             $html .= "<td>" . round($bbil['avg']['match']['rate']) . "% (" . $bbil['avg']['match']['participated'] . ")</td>";
+//                                             $html .= "<td>" . round($bbil['avg']['toss']['rate']) . "% (" . $bbil['avg']['toss']['participated'] . ")</td>";
+//                                         $html .= '</tr>';
+//                                     }
+//                                     if (!empty($smash['avg'])) {   
+//                                         $html .= '<tr>';
+//                                             $html .= "<td>Smash</td>";
+//                                             $html .= "<td>" . round($smash['avg']['all']['rate']) . "%</td>";
+//                                             $html .= "<td>" . round($smash['avg']['match']['rate']) . "% (" . $smash['avg']['match']['participated'] . ")</td>";
+//                                             $html .= "<td>" . round($smash['avg']['toss']['rate']) . "% (" . $smash['avg']['toss']['participated'] . ")</td>";
+//                                         $html .= '</tr>';
+//                                     }
+//                                     if (!empty($bpl['avg'])) {   
+//                                         $html .= '<tr>';
+//                                             $html .= "<td>BPL</td>";
+//                                             $html .= "<td>" . round($bpl['avg']['all']['rate']) . "%</td>";
+//                                             $html .= "<td>" . round($bpl['avg']['match']['rate']) . "% (" . $bpl['avg']['match']['participated'] . ")</td>";
+//                                             $html .= "<td>" . round($bpl['avg']['toss']['rate']) . "% (" . $bpl['avg']['toss']['participated'] . ")</td>";
+//                                         $html .= '</tr>';
+//                                     }
+//                                 $html .= '</table>';
+//                             $html .= '</div>';
                         }
                         // WINE LOSE DATA
-                        $html .= winLoseHtml($UP, 'match', 10);
-                        $html .= winLoseHtml($UP, 'toss', 10);
+                        $html .= winLoseHtml($UP, 'match', 9);
+						$html .= winLoseHtml($UP, 'toss', 9);
                         $html .= '<div class="profile-link"><a href="'. site_url('predictor/?p='. $user->user_login) .'" target="_blank">VIEW PROFILE</a></div>';
                     }
                 $html .= '</div>';
-                $userNav .= '<a class="userNavItem'. $rank .'" href="#'.$uID.'">'.get_avatar( $user->user_email , '40 ') . '</a>';
+                $userNav .= '<a class="userNavItem'. $rank['class'] .'" href="#'.$uID.'">'.get_avatar( $user->user_email) . '</a>';
             }
         }
         $html .= '</div>';
@@ -164,7 +163,7 @@ function adminAnswersHTML($meta, $ans) {
                                     $ansID = $options.'_'.predictor_id_from_string($option['title']);
                                     if (!isset($answer[$ansID]) || empty($answer[$ansID])) continue;
                                     $defaultID = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
-                                    $defaultAns = $meta[$defaultID] ?? '';
+                                    $defaultAns = $meta[$defaultID];
                                     $published = isset($meta[$defaultID.'_published']) && $meta[$defaultID.'_published'] ? $meta[$defaultID.'_published'] : false ;
                                     $isCorrect = '';
                                     if ($published) {

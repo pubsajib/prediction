@@ -5,7 +5,6 @@
 // -----------------------------------------------------------------------------------------------
 // ===============================================================================================
 $options              = array();
-
 // -----------------------------------------
 // Customize Core Fields                   -
 // -----------------------------------------
@@ -13,7 +12,6 @@ $options[]            = array(
   'name'              => 'wp_core_fields',
   'title'             => 'WP Core Fields',
   'settings'          => array(
-
     // color
     array(
       'name'          => 'color_option_with_default',
@@ -23,7 +21,6 @@ $options[]            = array(
         'type'        => 'color',
       ),
     ),
-
     // text
     array(
       'name'          => 'text_option',
@@ -32,7 +29,6 @@ $options[]            = array(
         'type'        => 'text',
       ),
     ),
-
     // text with default
     array(
       'name'          => 'text_option_with_default',
@@ -42,7 +38,6 @@ $options[]            = array(
         'type'        => 'text',
       ),
     ),
-
     // textarea
     array(
       'name'          => 'textarea_option',
@@ -51,7 +46,6 @@ $options[]            = array(
         'type'        => 'textarea',
       ),
     ),
-
     // checkbox
     array(
       'name'          => 'checkbox_option',
@@ -60,7 +54,6 @@ $options[]            = array(
         'type'        => 'checkbox',
       ),
     ),
-
     // radio
     array(
       'name'          => 'radio_option',
@@ -74,7 +67,6 @@ $options[]            = array(
         )
       ),
     ),
-
     // select
     array(
       'name'          => 'select_option',
@@ -89,7 +81,6 @@ $options[]            = array(
         )
       ),
     ),
-
     // dropdown-pages
     array(
       'name'          => 'dropdown_pages_option',
@@ -98,7 +89,6 @@ $options[]            = array(
         'type'        => 'dropdown-pages',
       ),
     ),
-
     // upload
     array(
       'name'          => 'upload_option',
@@ -107,7 +97,6 @@ $options[]            = array(
         'type'        => 'upload',
       ),
     ),
-
     // image
     array(
       'name'          => 'image_option',
@@ -116,7 +105,6 @@ $options[]            = array(
         'type'        => 'image',
       ),
     ),
-
     // media
     array(
       'name'          => 'media_option',
@@ -125,10 +113,8 @@ $options[]            = array(
         'type'        => 'media',
       ),
     ),
-
   )
 );
-
 // -----------------------------------------
 // Customize Codestar Fields               -
 // -----------------------------------------
@@ -136,7 +122,6 @@ $options[]            = array(
   'name'              => 'codestar_fields',
   'title'             => 'Codestar Framework Fields',
   'settings'          => array(
-
     // codestar color picker
     array(
       'name'          => 'codestar_color_picker',
@@ -149,7 +134,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar text
     array(
       'name'          => 'codestar_text',
@@ -162,7 +146,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar textarea
     array(
       'name'          => 'codestar_textarea',
@@ -174,7 +157,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar switcher
     array(
       'name'          => 'codestar_switcher',
@@ -188,7 +170,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar upload
     array(
       'name'          => 'codestar_upload',
@@ -200,7 +181,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar image
     array(
       'name'          => 'codestar_image',
@@ -212,7 +192,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar gallery
     array(
       'name'          => 'codestar_gallery',
@@ -224,7 +203,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar icon
     array(
       'name'          => 'codestar_icon',
@@ -236,7 +214,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar image select
     array(
       'name'          => 'codestar_image_select',
@@ -254,7 +231,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar heading
     array(
       'name'          => 'codestar_heading',
@@ -266,7 +242,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar subheading
     array(
       'name'          => 'codestar_subheading',
@@ -278,7 +253,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar notice:success
     array(
       'name'          => 'codestar_notice_success',
@@ -291,7 +265,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar notice:info
     array(
       'name'          => 'codestar_notice_info',
@@ -304,7 +277,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar notice:danger
     array(
       'name'          => 'codestar_notice_danger',
@@ -317,7 +289,6 @@ $options[]            = array(
         ),
       ),
     ),
-
     // codestar content
     array(
       'name'          => 'codestar_content',
@@ -329,10 +300,8 @@ $options[]            = array(
         ),
       ),
     ),
-
   )
 );
-
 // -----------------------------------------
 // Customize Panel Options Fields          -
 // -----------------------------------------
@@ -341,13 +310,11 @@ $options[]            = array(
   'title'             => 'Codestar Framework Panel',
   'description'       => 'Codestar customize panel description.',
   'sections'          => array(
-
     // begin: section
     array(
       'name'          => 'section_1',
       'title'         => 'Section 1',
       'settings'      => array(
-
         array(
           'name'      => 'color_option_1',
           'default'   => '#ffbc00',
@@ -359,7 +326,6 @@ $options[]            = array(
             ),
           ),
         ),
-
         array(
           'name'      => 'color_option_2',
           'default'   => '#2ecc71',
@@ -371,7 +337,6 @@ $options[]            = array(
             ),
           ),
         ),
-
         array(
           'name'      => 'color_option_3',
           'default'   => '#e74c3c',
@@ -383,7 +348,6 @@ $options[]            = array(
             ),
           ),
         ),
-
         array(
           'name'      => 'color_option_4',
           'default'   => '#3498db',
@@ -395,7 +359,6 @@ $options[]            = array(
             ),
           ),
         ),
-
         array(
           'name'      => 'color_option_5',
           'default'   => '#555555',
@@ -407,17 +370,14 @@ $options[]            = array(
             ),
           ),
         ),
-
       ),
     ),
     // end: section
-
     // begin: section
     array(
       'name'          => 'section_2',
       'title'         => 'Section 2',
       'settings'      => array(
-
         array(
           'name'      => 'text_option_1',
           'control'   => array(
@@ -428,7 +388,6 @@ $options[]            = array(
             ),
           ),
         ),
-
         array(
           'name'      => 'text_option_2',
           'control'   => array(
@@ -439,7 +398,6 @@ $options[]            = array(
             ),
           ),
         ),
-
         array(
           'name'      => 'text_option_3',
           'control'   => array(
@@ -450,14 +408,10 @@ $options[]            = array(
             ),
           ),
         ),
-
       ),
     ),
     // end: section
-
   ),
   // end: sections
-
 );
-
 CSFramework_Customize::instance( $options );

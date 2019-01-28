@@ -1,17 +1,15 @@
 <?php 
 function predictionsOf($userID=1, $tournamentID='') {
-    $prediction = ['gain'  => 0, 'wl' =>[]];
+    $prediction = ['gain'  => 0];
     if (!$tournamentID) $events = getEventIDs();
     else $events = eventsByTournament($tournamentID);
     $eventAVG = defaultCriteriaValues();
-    $eveID = '';
     foreach ($events as $eventID) {
         $data = predictionFor($eventID, $userID);
         if (!$data) continue;
         $eventAVG = eventAVG($eventAVG, @$data['avg']);
-        $prediction['gain'] += @$data['gain'];
-        $prediction['avg']  = $eventAVG;
-        $prediction['wl']   = array_merge($prediction['wl'], $data['wl']);
+        $prediction['gain']         += @$data['gain'];
+        $prediction['avg']      = $eventAVG;
         // echo '<br>'. $eventID .'<pre>'. print_r($data, true) .'</pre>';
     }
     // echo '<br><pre>'. print_r($prediction, true) .'</pre>';
@@ -21,7 +19,7 @@ function predictionFor($eventID, $userID) {
 	$meta  = get_post_meta($eventID, 'event_ops', true);
 	$ans   = get_post_meta($eventID, 'event_ans', true);
     $data = [];
-    $winLose = [];
+    if (@!$meta['published']) return $data;
     $eventAvg = defaultCriteriaValues();
     $tgain = $tparticipated = $tcorrect = $tincorrect = $twin = $tlose = 0;
     if (@!$ans[$userID]) return [];
@@ -35,31 +33,25 @@ function predictionFor($eventID, $userID) {
             // OPTIONS
             if ($meta[$teamID]) {
                 foreach ($meta[$teamID] as $option) {
+                    $isCorrect = null;
                     $optionID = predictor_id_from_string($option['title']);
                     $defaultID = 'default_'. $ID .'_'. $optionID;
-                    if (!@$meta[$defaultID.'_published']) continue;
-                    $isCorrect = null;
                     $defaultAns = @$meta[$defaultID];
 
                     $answerID = $teamID .'_'. $optionID;
                     $givenAns = @$ans[$userID][$answerID];
                     $dWeight = getDefaultWeight($option['weight'], $defaultAns);
-                    $dWeight = $dWeight ? $dWeight : 0;
-                    
-                    if (!$givenAns) $data[$teamID][$answerID]['warning'] = 'Answer is not given.';
+
+                    if (!$givenAns) $data[$teamID][$answerID]['warning'] = 'Answer is not given.'; 
                     else {
-                        if ($defaultAns == 'abandon') {
-                            $criteriaAvg = updateCriteriaAVGFor($criteriaAvg, $option['id'], $dWeight, 'abandon');
-                            $isCorrect = 'abandon';
-                            $gain += 0;
-                        } else if ($defaultAns == $givenAns) {
+                        if ($defaultAns == $givenAns) {
                             $criteriaAvg = updateCriteriaAVGFor($criteriaAvg, $option['id'], $dWeight, 1);
-                            $isCorrect = 1;
-                            @$gain += $dWeight;
+                            $isCorrect = true;
+                            $gain += $dWeight;
                         } else{
-                            $isCorrect = 0;
+                            $isCorrect = false;
                             $criteriaAvg = updateCriteriaAVGFor($criteriaAvg, $option['id'], $dWeight, 0);
-                            @$gain -= $dWeight;
+                            $gain -= $dWeight;
                         }
                         // FOR DEBUGING / SHOW
                         $data[$teamID][$answerID]['question']   = $option['title'];
@@ -67,7 +59,6 @@ function predictionFor($eventID, $userID) {
                         $data[$teamID][$answerID]['default']    = $defaultAns;
                         $data[$teamID][$answerID]['given']      = $givenAns;
                         $data[$teamID][$answerID]['is_correct'] = $isCorrect;
-                        $winLose[] = ['event'=>$eventID, 'team' => $team['name'],'item'=> $option['title'], 'type'=> $option['id'], 'status'=>$isCorrect];
                     }
                 }
             }
@@ -82,7 +73,6 @@ function predictionFor($eventID, $userID) {
         $data['event']  = $eventID;
         $data['gain']   = $tgain;
         $data['avg']    = $eventAvg;
-        $data['wl']     = $winLose;
     }
     return $data;
 }
@@ -93,7 +83,7 @@ function getDefaultWeight($weights, $defaultAns) {
             if ($weight['name'] == $defaultAns) return $weight['value'];
         }
     }
-    return 0;
+    return false;
 }
 function getEventIDs() {
     $query = array(
@@ -112,14 +102,11 @@ function updateCriteriaAVGFor($criteriaAvg, $criteria='', $weight=0, $isCorrect=
         // CRITERIA
         $criteriaID = predictor_id_from_string($criteria);
         $criteriaAvg[$criteriaID]['participated']++;
-        if ($isCorrect === 'abandon') {$criteriaAvg[$criteriaID]['abandon']++;}
-        elseif ($isCorrect == 1) $criteriaAvg[$criteriaID]['correct']++;
+        if ($isCorrect) $criteriaAvg[$criteriaID]['correct']++;
         else $criteriaAvg[$criteriaID]['incorrect']++;
         // ALL
         $criteriaAvg['all']['participated']++;
-        if ($isCorrect === 'abandon') {
-            $criteriaAvg['all']['abandon']++; 
-        } elseif ($isCorrect == 1) {
+        if ($isCorrect) {
             $criteriaAvg['all']['correct']++;
             $criteriaAvg['all']['win'] = $weight;
         } else {
@@ -139,7 +126,6 @@ function defaultCriteriaValues() {
     $data['all']['lose'] = 0;
     $data['all']['tweight'] = 0;
     $data['all']['rate'] = 0;
-    $data['all']['abandon'] = 0;
     // CRITERIAS
     $criterias = cs_get_option('criteria_event');
     if ($criterias) {
@@ -149,7 +135,6 @@ function defaultCriteriaValues() {
             $data[$criteriaID]['correct'] = 0;
             $data[$criteriaID]['incorrect'] = 0;
             $data[$criteriaID]['rate'] = 0;
-            $data[$criteriaID]['abandon'] = 0;
         }
     }
     return $data;
@@ -159,14 +144,12 @@ function eventAVG($eventAvg, $criteriaAvg) {
         foreach ($eventAvg as $criteriaName => $criteriaValues) {
             if ($criteriaValues) {
                 foreach ($criteriaValues as $key => $value) {
-                    $eventAvg[$criteriaName][$key] += $criteriaAvg[$criteriaName][$key] ? $criteriaAvg[$criteriaName][$key] : 0;
+                    $eventAvg[$criteriaName][$key] += $criteriaAvg[$criteriaName][$key];
                 }
             }
             // RATE BY WIN
             if ($eventAvg[$criteriaName]['participated']) {
-                $totalEven = $eventAvg[$criteriaName]['participated'] - $eventAvg[$criteriaName]['abandon'];
-                if ($totalEven > 0) $rating = ($eventAvg[$criteriaName]['correct'] / $totalEven) * 100;
-                else $rating = 0;
+                $rating = ($eventAvg[$criteriaName]['correct'] / $eventAvg[$criteriaName]['participated']) * 100;
                 $eventAvg[$criteriaName]['rate'] = number_format((float)$rating, 2, '.', '');
             }
             if ($criteriaName == 'all') {
@@ -178,10 +161,10 @@ function eventAVG($eventAvg, $criteriaAvg) {
     return $eventAvg;
 }
 // ALL HTML GENERATOR FUNCTIONS
-function profileInfo($user, $echo=true, $ratingIcon='') {
+function profileInfo($user, $echo=true) {
     $data = '';
     if ($user) {
-        $data .= '<div class="author-photo"> '. get_avatar( $user->user_email , '120 ') .' '. $ratingIcon .'</div>';
+        $data .= '<div class="author-photo"> '. get_avatar( $user->user_email , '120 ') .' </div>';
         $data .= '<h3><a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$user->ID) .'</a></h3>';
         $data .= '<p>';
             if ($user->user_url) $data .= '<strong>Website:</strong> <a href="'. $user->user_url .'">'. $user->user_url .'</a><br />';
@@ -193,7 +176,6 @@ function profileInfo($user, $echo=true, $ratingIcon='') {
 }
 function summeryHtml($prediction, $permited=['all']) {
     $data = '';
-    $data = '<style>.prediction-full-result li{width:20%;}</style>';
     if (@$prediction['avg']) {
         foreach ($prediction['avg'] as $type => $prediction) {
             if ($prediction['participated'] && in_array($type, $permited)) {
@@ -201,7 +183,7 @@ function summeryHtml($prediction, $permited=['all']) {
                 $data .= '<div class="win-accuracy '. $type .'" id="'. $type .'">';
                     $data .= '<h3 class="title">'. $type .'</h3>';
                     $data .= '<ul class="prediction-full-result">';
-                        $data .= '<li class="block">';
+                        $data .= '<li>';
                             $data .= '<strong>Accuracy</strong><br>';
                             $data .= '<div class="progress-bar" value="'. $prediction['rate'] .'" data-percent="'. $percentage .'" max="100"></div>';
                         $data .= '</li>';
@@ -217,10 +199,6 @@ function summeryHtml($prediction, $permited=['all']) {
                             $data .= '<strong>Lose</strong><br>';
                             $data .= '<div class="common red">'. $prediction['incorrect'] .'</div>';
                         $data .= '</li>';
-                        $data .= '<li>';
-                            $data .= '<strong>Abandon</strong><br>';
-                            $data .= '<div class="common red">'. $prediction['abandon'] .'</div>';
-                        $data .= '</li>';
                     $data .= '</ul>';
                     $data .= '<div class="clearfix"></div>';
                 $data .= '</div>';
@@ -233,16 +211,7 @@ function predictionSummery($userID, $permited=[]) {
     $data = '';
     if ($userID) {
         $prediction = predictionsOf($userID);
-        $data .= summeryHtml($prediction, $permited);
-        $data .= '<hr><hr>';
-        $data .= winLoseHtml($prediction);
-		$data .= '<p class="winLoselink"><a href="#" data-izimodal-open="#winLosePop" data-izimodal-transitionin="fadeInDown">View All</a></p>';
-		$data .= '<div id="winLosePop" data-iziModal-group="grupo1">';
-		$data .= '<button data-izimodal-close="" class="icon-close">x</button>';
-		$data .= '<section>';
-			$data .= winLoseHtml($prediction);
-		$data .= '</section>';
-	$data .= '</div>';
+        $data = summeryHtml($prediction, $permited);
     }
     echo $data;
 }

@@ -1,17 +1,15 @@
 <?php 
 function predictionsOf($userID=1, $tournamentID='') {
-    $prediction = ['gain'  => 0, 'wl' =>[]];
+    $prediction = ['gain'  => 0];
     if (!$tournamentID) $events = getEventIDs();
     else $events = eventsByTournament($tournamentID);
     $eventAVG = defaultCriteriaValues();
-    $eveID = '';
     foreach ($events as $eventID) {
         $data = predictionFor($eventID, $userID);
         if (!$data) continue;
         $eventAVG = eventAVG($eventAVG, @$data['avg']);
-        $prediction['gain'] += @$data['gain'];
-        $prediction['avg']  = $eventAVG;
-        $prediction['wl']   = array_merge($prediction['wl'], $data['wl']);
+        $prediction['gain']         += @$data['gain'];
+        $prediction['avg']      = $eventAVG;
         // echo '<br>'. $eventID .'<pre>'. print_r($data, true) .'</pre>';
     }
     // echo '<br><pre>'. print_r($prediction, true) .'</pre>';
@@ -21,7 +19,7 @@ function predictionFor($eventID, $userID) {
 	$meta  = get_post_meta($eventID, 'event_ops', true);
 	$ans   = get_post_meta($eventID, 'event_ans', true);
     $data = [];
-    $winLose = [];
+    // if (@!$meta['published']) return $data;
     $eventAvg = defaultCriteriaValues();
     $tgain = $tparticipated = $tcorrect = $tincorrect = $twin = $tlose = 0;
     if (@!$ans[$userID]) return [];
@@ -44,8 +42,7 @@ function predictionFor($eventID, $userID) {
                     $answerID = $teamID .'_'. $optionID;
                     $givenAns = @$ans[$userID][$answerID];
                     $dWeight = getDefaultWeight($option['weight'], $defaultAns);
-                    $dWeight = $dWeight ? $dWeight : 0;
-                    
+
                     if (!$givenAns) $data[$teamID][$answerID]['warning'] = 'Answer is not given.';
                     else {
                         if ($defaultAns == 'abandon') {
@@ -67,7 +64,6 @@ function predictionFor($eventID, $userID) {
                         $data[$teamID][$answerID]['default']    = $defaultAns;
                         $data[$teamID][$answerID]['given']      = $givenAns;
                         $data[$teamID][$answerID]['is_correct'] = $isCorrect;
-                        $winLose[] = ['event'=>$eventID, 'team' => $team['name'],'item'=> $option['title'], 'type'=> $option['id'], 'status'=>$isCorrect];
                     }
                 }
             }
@@ -82,7 +78,6 @@ function predictionFor($eventID, $userID) {
         $data['event']  = $eventID;
         $data['gain']   = $tgain;
         $data['avg']    = $eventAvg;
-        $data['wl']     = $winLose;
     }
     return $data;
 }
@@ -178,10 +173,10 @@ function eventAVG($eventAvg, $criteriaAvg) {
     return $eventAvg;
 }
 // ALL HTML GENERATOR FUNCTIONS
-function profileInfo($user, $echo=true, $ratingIcon='') {
+function profileInfo($user, $echo=true) {
     $data = '';
     if ($user) {
-        $data .= '<div class="author-photo"> '. get_avatar( $user->user_email , '120 ') .' '. $ratingIcon .'</div>';
+        $data .= '<div class="author-photo"> '. get_avatar( $user->user_email , '120 ') .' </div>';
         $data .= '<h3><a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$user->ID) .'</a></h3>';
         $data .= '<p>';
             if ($user->user_url) $data .= '<strong>Website:</strong> <a href="'. $user->user_url .'">'. $user->user_url .'</a><br />';
@@ -201,7 +196,7 @@ function summeryHtml($prediction, $permited=['all']) {
                 $data .= '<div class="win-accuracy '. $type .'" id="'. $type .'">';
                     $data .= '<h3 class="title">'. $type .'</h3>';
                     $data .= '<ul class="prediction-full-result">';
-                        $data .= '<li class="block">';
+                        $data .= '<li>';
                             $data .= '<strong>Accuracy</strong><br>';
                             $data .= '<div class="progress-bar" value="'. $prediction['rate'] .'" data-percent="'. $percentage .'" max="100"></div>';
                         $data .= '</li>';
@@ -233,16 +228,7 @@ function predictionSummery($userID, $permited=[]) {
     $data = '';
     if ($userID) {
         $prediction = predictionsOf($userID);
-        $data .= summeryHtml($prediction, $permited);
-        $data .= '<hr><hr>';
-        $data .= winLoseHtml($prediction);
-		$data .= '<p class="winLoselink"><a href="#" data-izimodal-open="#winLosePop" data-izimodal-transitionin="fadeInDown">View All</a></p>';
-		$data .= '<div id="winLosePop" data-iziModal-group="grupo1">';
-		$data .= '<button data-izimodal-close="" class="icon-close">x</button>';
-		$data .= '<section>';
-			$data .= winLoseHtml($prediction);
-		$data .= '</section>';
-	$data .= '</div>';
+        $data = summeryHtml($prediction, $permited);
     }
     echo $data;
 }

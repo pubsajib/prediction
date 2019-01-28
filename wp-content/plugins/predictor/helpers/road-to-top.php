@@ -11,7 +11,6 @@ function RoadToTop($uID=507) {
 	if ( !in_array( 'predictor', (array) $current_user->roles ) ) echo "Not a predictor";
 	else{
 		$ranking = getRakingFor();
-		$userRank = userRankingStatusFor($uID, $ranking);
 		$rankInfo = getUserRankedDetails($ranking['all'], $uID);
 		$UP = predictionsOf($uID);
 		$lifeTimeEvents = count(lifeTimePublished($uID));
@@ -23,10 +22,10 @@ function RoadToTop($uID=507) {
 		}
 
 		// RANK
-		if ($userRank) {
+		if ($rankInfo) {
 			echo "<h4 style='margin-bottom: 0;'> Rank Info </h4>";
 			echo "<ul style='margin-top:0;'>";
-				echo "<li>Rank : {$userRank['num']} </li>";
+				echo "<li>Rank : {$rankInfo['rank']} </li>";
 				echo "<li>Among : ". count($ranking['all']) ." </li>";
 			echo "</ul>";
 		}
@@ -67,9 +66,10 @@ function RoadToTop($uID=507) {
 function getUserRankedDetails($ranks, $uID) : array {
 	$rankInfo = [];
 	if ($ranks) {
-		foreach ($ranks as $rank) {
+		foreach ($ranks as $key => $rank) {
 			if ($rank['id'] == $uID) {
 				$rankInfo = $rank;
+				$rankInfo['rank'] = $key + 1;
 				break;
 			}
 		}
@@ -193,4 +193,13 @@ function getWLStatus($answer, $isCorrect, $isPublished) {
 		else $WLStatus = 'Lose';
 	}
 	return $WLStatus;
+}
+function getUserRank($uID, $ranks) : int {
+	$rank = 0;
+	if ($ranks && $uID) {
+		foreach ($ranks as $key => $rank) {
+			if ($rank['id'] == $uID) return $key;
+		}
+	}
+	return $rank;
 }

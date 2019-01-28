@@ -23,6 +23,9 @@ class Frontend
         // ANSWERS
         add_action('wp_ajax_load_answers', [$this, 'load_answers']);
         add_action('wp_ajax_nopriv_load_answers', [$this, 'load_answers']);
+        // ANSWERS
+        add_action('wp_ajax_load_events_answers', [$this, 'load_events_answers']);
+        add_action('wp_ajax_nopriv_load_events_answers', [$this, 'load_events_answers']);
         // TOURNAMENT
         add_action('wp_ajax_load_tournament', [$this, 'load_tournament']);
         add_action('wp_ajax_nopriv_load_tournament', [$this, 'load_tournament']);
@@ -123,6 +126,158 @@ class Frontend
         // wp_die("$user, $event, $teamName, $teamID, $qtype");
     }
     // LOAD ANSWERS
+    function load_events_answers() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $html  = '';
+        $events  = $_POST['events'] ? explode('_', $_POST['events']) : [];
+        // $events  = [$events[2]];
+        $ditems  = $_POST['ditems'];
+        $contributedUsers = [];
+        if ($events) {
+            foreach ($events as $event) {
+                $ans = get_post_meta($event, 'event_ans', true);
+                if (isset($ans[0])) unset($ans[0]);
+                // array_push($contributedUsers, [$event,12]);
+                if ($usersAnsweredPerEvent = array_keys($ans)) {
+                    $contributedUsers = array_merge($contributedUsers, $usersAnsweredPerEvent);
+                }
+            }
+            $contributedUsers = $contributedUsers ? array_values(array_unique($contributedUsers)) : [];
+        }
+        // wp_die(count($contributedUsers).' === '.json_encode($contributedUsers));
+
+        // GIVEN ANSWERS
+        $userBasedAns = [];
+        if ($events) {
+            foreach ($events as $event) {
+                $userBasedAns = self::eventAnswersHTML($event, $userBasedAns);
+            }
+        }
+        // echo '<br> ==========================================<br>'; echo count($userBasedAns).' === '.json_encode($userBasedAns); wp_die();
+
+        // SLIDER HEADER & FOOTER
+        if ($contributedUsers) {
+            $header = $footer = [];
+            $ranking = getRakingFor();
+            foreach ($contributedUsers as $uID) {
+                $ratingIcon = '';
+                $rank = userRankingStatusFor($uID, $ranking);
+                if (!empty($rank['num'])) $ratingIcon = '<p>'. $rank['num'] .'</p>';
+                $country = get_the_author_meta( 'country', $uID );
+                $highlight = get_the_author_meta( 'highlight', $uID ) ? ' highlighted' : '';
+                $user = get_userdata($uID);
+                if ($user) {
+                    $header[$uID] = '';
+                    $header[$uID] .= '<div class="dashboard-user text-center">';
+                        $header[$uID] .= '<div class="user-avater">'.get_avatar( $user->user_email , '90') .''. $ratingIcon .'</div>';
+                        $header[$uID] .= '<div class="user-information">';
+                            $header[$uID] .= '<h4>';
+                                $header[$uID] .= '<a href="'. site_url('predictor/?p='. $user->user_login) .'"  target="_blank">'. get_the_author_meta('nickname',$uID) .'</a>';
+                                if ($country) $header[$uID] .= '<img class="countryFlag" src="'. PREDICTOR_URL .'frontend/img/'. $country .'.png" alt="country">';
+                            $header[$uID] .= '</h4><br>';
+                                $header[$uID] .= get_user_meta($user->ID, 'description', true);
+                        $header[$uID] .= '</div>';
+                    $header[$uID] .= '</div>';
+
+                    $footer[$uID] = '';
+                    $footer[$uID] .= '<a class="userNavItem'. $rank['class'] .'" href="#'.$uID.'">'.get_avatar( $user->user_email , '40 ') . '</a>';;
+                }
+            }
+        }
+        // echo '<br> ==========================================<br>'; echo count($header).' === '.json_encode($header); wp_die();
+
+        $html = $userNav = '';
+        $owlSelector = 'owlCarousel_'. $_POST['events'];
+        $html .= '<div class="owl-carousel '. $owlSelector .' owl-theme">';
+        if ($contributedUsers) {
+            foreach ($contributedUsers as $uID) {
+                $html .= '<div id="predictor_'. $uID .'" class="answerContainer item'. $highlight . $rank['class'] .'" data-hash="'.$uID.'">';
+                    $html .= $header[$uID];
+                    $html .= $userBasedAns[$uID];
+                    $userNav .= $footer[$uID];
+                $html .= '</div>';
+            }
+        }
+        $html .= '</div>';
+        $html .= '<ul class="menuSlider">'. $userNav .'</ul>';
+        if ($html) {
+            $html .= '<script> jQuery(".'. $owlSelector .'").owlCarousel({loop:true, margin: 10, nav: true, autoplay:true, autoplayTimeout:15000, URLhashListener:true, autoplayHoverPause:true, startPosition: "URLHash", responsive: {0: {items: 1 }, 600: {items: 1 }, 1000: {items: '. $ditems .' } } }) </script>';
+            $html .= '<span class="eventsRefreshButton fusion-button button-default button-small" event="'. str_replace('_', ',', $_POST['events']) .'" ditems='. $ditems .'>Reload</span>';
+        }
+
+        echo $html;
+        wp_die();
+    }
+    public static function eventAnswersHTML($eventID, $userBasedAns) {
+        $event          = get_post($eventID);
+        $meta           = get_post_meta($eventID, 'event_ops', true);
+        $ans            = get_post_meta($eventID, 'event_ans', true);
+        $answerGiven    = @$meta['answers'];
+        if (isset($ans[0])) unset($ans[0]);
+        $html = '';
+        foreach ($ans as $uID => $answer) {
+            if ($answer) {
+                if (!array_key_exists($uID, $userBasedAns)) $userBasedAns[$uID] = ' Data : ';
+                $ratingIcon = '';
+                $rank = userRankingStatusFor($uID, $ranking);
+                if (!empty($rank['num'])) $ratingIcon = '<p>'. $rank['num'] .'</p>';
+                $country    = get_the_author_meta( 'country', $uID );
+                $highlight  = get_the_author_meta( 'highlight', $uID ) ? ' highlighted' : '';
+                $user       = get_userdata($uID);  
+                // ANSWERS GIVEN
+                if (!empty($meta['teams'])) {
+                    $html .= '<div class="teamAnsWrapper">';
+                        foreach ($meta['teams'] as $team) {
+                            $givenAnswers = '';
+                            $teamID = predictor_id_from_string($team['name']);
+                            $options = 'team_'. $teamID;
+                            // GIVEN ANSWERS
+                            if ($meta[$options]) {
+                                foreach ($meta[$options] as $option) {
+                                    $ansID = $options.'_'.predictor_id_from_string($option['title']);
+                                    if (empty($answer[$ansID])) continue;
+                                    $defaultID = 'default_'. $teamID .'_'. predictor_id_from_string($option['title']);
+                                    $defaultAns = $meta[$defaultID] ?? '';
+                                    $published = $meta[$defaultID.'_published'];
+                                    $isCorrect = '';
+                                    if ($published) {
+                                        if ($defaultAns == 'abandon') {
+                                            $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/unhappy.png">';
+                                        } else if ($ans[$uID][$ansID]== $defaultAns) $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/happy.png">';
+                                        else $isCorrect = '<img src="'. PREDICTOR_URL .'frontend/img/sad.png">';
+                                    }
+                                    // $html .= '<br>published: '.$published.' == givenAns: '.$ans[$uID][$ansID] .' == DefaultAns: '. $defaultAns;
+                                    $ansWeight = getWeightFromValue($option['weight'], $answer[$ansID]);
+                                    $givenAnswers .= '<div class="answer">'; 
+                                        $givenAnswers .= @$option['title'];
+                                        if ($defaultAns == 'abandon') $givenAnswers .= ' <span class="text-danger noResult"></span>';
+                                        $givenAnswers .= '<br><strong>'; 
+                                            $givenAnswers .= '<span class="ansTxt">'. @$answer[$ansID] .'</span>'; 
+                                            if ($ansWeight) {
+                                                $givenAnswers .= ' @ <span class="ansWeight">'. $ansWeight .'</span>'; 
+                                            }
+                                        $givenAnswers .= '</strong>&nbsp;'; 
+                                        $givenAnswers .= '<span>'. $isCorrect .'</span>'; 
+                                    $givenAnswers .= '</div>'; 
+                                }
+                            }
+
+                            if ($givenAnswers) {
+                                $html .= '<div class="teamAnsContainer">';
+                                $html .= '<h3 class="teamName">'. $team['name'] .'</h3>';
+                                $html .= $givenAnswers;
+                                $html .= '</div>';
+                            }
+                        }
+                    $html .= '</div>';
+                }
+            }
+            $userBasedAns[$uID] = $html;
+            // $userBasedAns[$uID] .= ' === $html_'. $uID .' === event : '. $eventID;
+            // $userBasedAns[$uID] = '$html_'. $uID;
+        }
+        return $userBasedAns;
+    }
     function load_answers() {
         check_ajax_referer('predictor_nonce', 'security');
         $html  = '';
@@ -147,7 +302,6 @@ class Frontend
                 $html .= '<span class="refreshButton fusion-button button-default button-small" event="'. $ID .'">Reload</span>';
                 $html .= $answers;
             }
-
         }
         echo $html;
         wp_die();

@@ -1,6 +1,6 @@
 <?php 
 // $ratingType = all, match, toss, ...
-function getRakingForTournament($ratingType='all', $tournamentID=false, $predictors='', $minItemToPredict=1, $itemGrace=30, $minParticipationRate=50, $minRate=30) {
+function getRakingForTournament($ratingType='all', $tournamentID=false, $predictors='', $minItemToPredict=5, $itemGrace=0, $minParticipationRate=10, $minRate=10) {
 	$top3 = 3;
 	$top10 = 10;
 	$ranking = [];
@@ -27,7 +27,6 @@ function getRakingForTournament($ratingType='all', $tournamentID=false, $predict
 					'minParticipation' => $minParticipationRate, 
 					'rate' => $score,
 					'minRate' => $minRate,
-					'grace' => $minParticipationWithGrace,
 				];
 				if ($PRType) $isRankAble = isValidForRankingForTournament($criterias);
 				$ranking[$predictor->ID]['id'] = $predictor->ID;
@@ -92,13 +91,12 @@ function getRakingForTournament($ratingType='all', $tournamentID=false, $predict
 	return $rankedUsers;
 }
 function isValidForRankingForTournament($criterias) {
-	if (($criterias['grace'] > $criterias['participated']) || ($criterias['rate'] < 50) ) return -1;
-	else if ($criterias['minParticipation'] > $criterias['participated']) return 0;
-	else if ($criterias['rate'] < $criterias['minRate']) return 0;
+	if ($criterias['rate'] < 50 ) return -9;
+	else if ($criterias['participated'] < 8 ) return -6;
 	else {
 		$lifeTimeEvents = count(lifeTimePublishedForTournament($criterias['UID']));
 		$rating  = ($criterias['participated']/$lifeTimeEvents) * 100;
-		if ($criterias['minParticipation'] > $rating) return 0;
+		if ($rating > 80) return 0;
 		// return $rating;
 		return 1;
 	}

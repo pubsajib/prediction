@@ -12,14 +12,12 @@ $settings           = array(
   'show_reset_all'  => false,
   'framework_title' => 'Codestar Framework <small>by Codestar</small>',
 );
-
 // ===============================================================================================
 // -----------------------------------------------------------------------------------------------
 // FRAMEWORK OPTIONS
 // -----------------------------------------------------------------------------------------------
 // ===============================================================================================
 $options        = array();
-
 // ----------------------------------------
 // a option section for options overview  -
 // ----------------------------------------
@@ -27,10 +25,8 @@ $options[]      = array(
   'name'        => 'overwiew',
   'title'       => 'Overview',
   'icon'        => 'fa fa-star',
-
   // begin: fields
   'fields'      => array(
-
     // begin: a field
     array(
       'id'      => 'text_1',
@@ -38,42 +34,36 @@ $options[]      = array(
       'title'   => 'Text',
     ),
     // end: a field
-
     array(
       'id'      => 'textarea_1',
       'type'    => 'textarea',
       'title'   => 'Textarea',
       'help'    => 'This option field is useful. You will love it!',
     ),
-
     array(
       'id'      => 'upload_1',
       'type'    => 'upload',
       'title'   => 'Upload',
       'help'    => 'Upload a site logo for your branding.',
     ),
-
     array(
       'id'      => 'switcher_1',
       'type'    => 'switcher',
       'title'   => 'Switcher',
       'label'   => 'You want to update for this framework ?',
     ),
-
     array(
       'id'      => 'color_picker_1',
       'type'    => 'color_picker',
       'title'   => 'Color Picker',
       'default' => '#3498db',
     ),
-
     array(
       'id'      => 'checkbox_1',
       'type'    => 'checkbox',
       'title'   => 'Checkbox',
       'label'   => 'Did you like this framework ?',
     ),
-
     array(
       'id'      => 'radio_1',
       'type'    => 'radio',
@@ -84,7 +74,6 @@ $options[]      = array(
       ),
       'help'    => 'Are you sure for this choice?',
     ),
-
     array(
       'id'             => 'select_1',
       'type'           => 'select',
@@ -97,7 +86,6 @@ $options[]      = array(
       ),
       'default_option' => 'Select your favorite car',
     ),
-
     array(
       'id'      => 'number_1',
       'type'    => 'number',
@@ -105,7 +93,6 @@ $options[]      = array(
       'default' => '10',
       'after'   => ' <i class="cs-text-muted">$ (dollars)</i>',
     ),
-
     array(
       'id'        => 'image_select_1',
       'type'      => 'image_select',
@@ -118,39 +105,33 @@ $options[]      = array(
         'value-5' => 'http://codestarframework.com/assets/images/placeholder/100x80-555555.gif',
       ),
     ),
-
     array(
       'type'    => 'notice',
       'class'   => 'info',
       'content' => 'This is info notice field for your highlight sentence.',
     ),
-
     array(
       'id'      => 'background_1',
       'type'    => 'background',
       'title'   => 'Background',
     ),
-
     array(
       'type'    => 'notice',
       'class'   => 'warning',
       'content' => 'This is info warning field for your highlight sentence.',
     ),
-
     array(
       'id'      => 'icon_1',
       'type'    => 'icon',
       'title'   => 'Icon',
       'desc'    => 'Some description here for this option field.',
     ),
-
     array(
       'id'      => 'text_2',
       'type'    => 'text',
       'title'   => 'Text',
       'desc'    => 'Some description here for this option field.',
     ),
-
     array(
       'id'        => 'textarea_2',
       'type'      => 'textarea',
@@ -158,10 +139,8 @@ $options[]      = array(
       'info'      => 'Some information here for this option field.',
       'shortcode' => true,
     ),
-
   ), // end: fields
 );
-
 // ------------------------------
 // a option section with tabs   -
 // ------------------------------
@@ -170,7 +149,6 @@ $options[]   = array(
   'title'    => 'Options',
   'icon'     => 'fa fa-plus-circle',
   'sections' => array(
-
     // -----------------------------
     // begin: text options         -
     // -----------------------------
@@ -178,10 +156,8 @@ $options[]   = array(
       'name'      => 'text_options',
       'title'     => 'Text',
       'icon'      => 'fa fa-check',
-
       // begin: fields
       'fields'    => array(
-
         // begin: a field
         array(
           'id'    => 'unique_text_1',
@@ -189,28 +165,24 @@ $options[]   = array(
           'title' => 'Text Field',
         ),
         // end: a field
-
         array(
           'id'    => 'unique_text_2',
           'type'  => 'text',
           'title' => 'Text Field with Description',
           'desc'  => 'Lets write some description for this text field.',
         ),
-
         array(
           'id'    => 'unique_text_3',
           'type'  => 'text',
           'title' => 'Text Field with Help',
           'help'  => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'      => 'unique_text_4',
           'type'    => 'text',
           'title'   => 'Text Field with Default',
           'default' => 'some default value bla bla bla',
         ),
-
         array(
           'id'            => 'unique_text_5',
           'type'          => 'text',
@@ -219,28 +191,24 @@ $options[]   = array(
             'placeholder' => 'do stuff...'
           )
         ),
-
         array(
           'id'    => 'unique_text_6',
           'type'  => 'text',
           'title' => 'Text Field with After-text',
           'after' => ' <i class="cs-text-muted">( this option is optional )</i>',
         ),
-
         array(
           'id'     => 'unique_text_7',
           'type'   => 'text',
           'title'  => 'Text Field with Before-text',
           'before' => '<i class="cs-text-muted">( important )</i> ',
         ),
-
         array(
           'id'    => 'unique_text_8',
           'type'  => 'text',
           'title' => 'Text Field with After-block-text',
           'after' => '<p class="cs-text-info">Information: There is some description for option.</p> ',
         ),
-
         array(
           'id'         => 'unique_text_9',
           'type'       => 'text',
@@ -250,7 +218,6 @@ $options[]   = array(
           ),
           'default'    => 'info@domain.com'
         ),
-
         array(
           'id'          => 'unique_text_10',
           'type'        => 'text',
@@ -260,7 +227,6 @@ $options[]   = array(
           ),
           'default'     => 'Hello',
         ),
-
         array(
           'id'         => 'unique_text_11',
           'type'       => 'text',
@@ -270,7 +236,6 @@ $options[]   = array(
           ),
           'after'      => '<p class="cs-text-muted">There is custom css <strong>style="width: 175px; height: 40px; border-color: #93C054;"</strong></p>',
         ),
-
         array(
           'id'         => 'unique_text_12',
           'type'       => 'text',
@@ -280,18 +245,14 @@ $options[]   = array(
           ),
           'after'      => '<p class="cs-text-muted">There is custom css <strong>style="width: 100%;"</strong></p>'
         ),
-
         array(
           'id'     => 'unique_text_13',
           'type'   => 'text',
           'before' => '<h4>Text Field without left title</h4>',
           'after'  => '<p class="cs-text-muted">This Text Field do not using left title, just using before text here. also you can remove it.</h4>',
         ),
-
       ), // end: fields
-
     ), // end: text options
-
     // -----------------------------
     // begin: textarea options     -
     // -----------------------------
@@ -300,41 +261,35 @@ $options[]   = array(
       'title'     => 'Textarea',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'    => 'unique_textarea_1',
           'type'  => 'textarea',
           'title' => 'Simple Textarea',
         ),
-
         array(
           'id'        => 'unique_textarea_1_1',
           'type'      => 'textarea',
           'title'     => 'Textarea with Shortcoder',
           'shortcode' => true,
         ),
-
         array(
           'id'    => 'unique_textarea_2',
           'type'  => 'textarea',
           'title' => 'Textarea Field with Description',
           'desc'  => 'Lets write some description for this textarea field.',
         ),
-
         array(
           'id'    => 'unique_textarea_3',
           'type'  => 'textarea',
           'title' => 'Textarea Field with Help',
           'help'  => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'      => 'unique_textarea_4',
           'type'    => 'textarea',
           'title'   => 'Textarea Field with Default',
           'default' => 'some default value bla bla bla',
         ),
-
         array(
           'id'            => 'unique_textarea_5',
           'type'          => 'textarea',
@@ -343,21 +298,18 @@ $options[]   = array(
             'placeholder' => 'do stuff...'
           )
         ),
-
         array(
           'id'    => 'unique_textarea_6',
           'type'  => 'textarea',
           'title' => 'Textarea Field with After-text',
           'after' => '<p class="cs-text-muted">Information: There is some description for option.</p> ',
         ),
-
         array(
           'id'     => 'unique_textarea_7',
           'type'   => 'textarea',
           'title'  => 'Textarea Field with Before-text',
           'before' => '<p class="cs-text-muted">Information: There is some description for option.</p> ',
         ),
-
         array(
           'id'         => 'unique_textarea_8',
           'type'       => 'textarea',
@@ -367,18 +319,14 @@ $options[]   = array(
           ),
           'after'      => '<p class="cs-text-muted">custom textarea attribute rows=10</p> ',
         ),
-
         array(
           'id'     => 'unique_textarea_13',
           'type'   => 'textarea',
           'before' => '<h4>Textarea Field without left title</h4>',
           'after'  => '<p class="cs-text-muted">This Textarea Field do not using left title, just using before text here. also you can remove it.</h4>',
         ),
-
       ),
-
     ), // end: textarea options
-
     // -----------------------------
     // begin: checkbox options     -
     // -----------------------------
@@ -387,14 +335,12 @@ $options[]   = array(
       'title'     => 'Checkbox',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'    => 'unique_checkbox_1',
           'type'  => 'checkbox',
           'title' => 'Checkbox',
           'label' => 'Yes, Please.',
         ),
-
         array(
           'id'      => 'unique_checkbox_2',
           'type'    => 'checkbox',
@@ -402,7 +348,6 @@ $options[]   = array(
           'label'   => 'Would you like something ?',
           'default' => true,
         ),
-
         array(
           'id'    => 'unique_checkbox_3',
           'type'  => 'checkbox',
@@ -410,7 +355,6 @@ $options[]   = array(
           'label' => 'I am an checkbox',
           'help'  => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'       => 'unique_checkbox_4',
           'type'     => 'checkbox',
@@ -421,7 +365,6 @@ $options[]   = array(
             'yellow' => 'Yellow',
           ),
         ),
-
         array(
           'id'         => 'unique_checkbox_5',
           'type'       => 'checkbox',
@@ -433,7 +376,6 @@ $options[]   = array(
           ),
           'default'    => 'bmw'
         ),
-
         array(
           'id'         => 'unique_checkbox_6',
           'type'       => 'checkbox',
@@ -448,35 +390,30 @@ $options[]   = array(
           ),
           'default'    => array( 'green', 'yellow', 'red' )
         ),
-
         array(
           'id'         => 'unique_checkbox_7',
           'type'       => 'checkbox',
           'title'      => 'Checkbox Field with Pages',
           'options'    => 'pages',
         ),
-
         array(
           'id'         => 'unique_checkbox_8',
           'type'       => 'checkbox',
           'title'      => 'Checkbox Field with Posts',
           'options'    => 'posts',
         ),
-
         array(
           'id'         => 'unique_checkbox_9',
           'type'       => 'checkbox',
           'title'      => 'Checkbox Field with Categories',
           'options'    => 'categories',
         ),
-
         array(
           'id'         => 'unique_checkbox_10',
           'type'       => 'checkbox',
           'title'      => 'Checkbox Field with Tags',
           'options'    => 'tags',
         ),
-
         array(
           'id'            => 'unique_checkbox_11',
           'type'          => 'checkbox',
@@ -488,7 +425,6 @@ $options[]   = array(
           ),
           'after'         => '<p class="cs-text-muted"><strong>query_args:</strong> sort_order=desc, sort_column=post_title</p>',
         ),
-
         array(
           'id'          => 'unique_checkbox_12',
           'type'        => 'checkbox',
@@ -499,7 +435,6 @@ $options[]   = array(
           ),
           'after'       => '<div class="cs-text-muted"><strong>query_args:</strong> post_type=your_post_type_name</div>',
         ),
-
         array(
           'id'          => 'unique_checkbox_13',
           'type'        => 'checkbox',
@@ -511,7 +446,6 @@ $options[]   = array(
           ),
           'after'       => '<div class="cs-text-muted"><strong>query_args:</strong> post_type=your_post_type_name, taxonomy=your_taxonomy_name</div>',
         ),
-
         array(
           'id'           => 'unique_checkbox_14',
           'type'         => 'checkbox',
@@ -524,11 +458,8 @@ $options[]   = array(
           ),
           'after'        => '<div class="cs-text-muted"><strong>query_args:</strong> taxonomies=your_taxonomy_name, order=asc, orderby=name</div>',
         ),
-
       ),
     ), // end: checkbox options
-
-
     // -----------------------------
     // begin. radio options        -
     // -----------------------------
@@ -537,7 +468,6 @@ $options[]   = array(
       'title'     => 'Radio',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'      => 'unique_radio_1',
           'type'    => 'radio',
@@ -547,7 +477,6 @@ $options[]   = array(
             'no'    => 'No, Thank you.',
           ),
         ),
-
         array(
           'id'        => 'unique_radio_2',
           'type'      => 'radio',
@@ -560,7 +489,6 @@ $options[]   = array(
           'default'   => 'nothing',
           'help'      => 'Reference site about Lorem Ipsum, a random Lipsum generator.',
         ),
-
         array(
           'id'      => 'unique_radio_3',
           'type'    => 'radio',
@@ -572,35 +500,30 @@ $options[]   = array(
           ),
           'after'   => '<div class="cs-text-muted">Reference site about Lorem Ipsum, a random Lipsum generator.</div>',
         ),
-
         array(
           'id'         => 'unique_radio_4',
           'type'       => 'radio',
           'title'      => 'Radio Field with Pages',
           'options'    => 'pages',
         ),
-
         array(
           'id'         => 'unique_radio_5',
           'type'       => 'radio',
           'title'      => 'Radio Field with Posts',
           'options'    => 'posts',
         ),
-
         array(
           'id'         => 'unique_radio_6',
           'type'       => 'radio',
           'title'      => 'Radio Field with Categories',
           'options'    => 'categories',
         ),
-
         array(
           'id'         => 'unique_radio_7',
           'type'       => 'radio',
           'title'      => 'Radio Field with Tags',
           'options'    => 'tags',
         ),
-
         array(
           'id'            => 'unique_radio_8',
           'type'          => 'radio',
@@ -612,7 +535,6 @@ $options[]   = array(
           ),
           'after'         => '<p class="cs-text-muted"><strong>query_args:</strong> sort_order=desc, sort_column=post_title</p>',
         ),
-
         array(
           'id'          => 'unique_radio_9',
           'type'        => 'radio',
@@ -623,7 +545,6 @@ $options[]   = array(
           ),
           'after'       => '<div class="cs-text-muted"><strong>query_args:</strong> post_type=your_post_type_name</div>',
         ),
-
         array(
           'id'          => 'unique_radio_10',
           'type'        => 'radio',
@@ -635,7 +556,6 @@ $options[]   = array(
           ),
           'after'       => '<div class="cs-text-muted"><strong>query_args:</strong> post_type=your_post_type_name, taxonomy=your_taxonomy_name</div>',
         ),
-
         array(
           'id'         => 'unique_radio_11',
           'type'       => 'radio',
@@ -646,11 +566,8 @@ $options[]   = array(
             'nothing'  => 'Nothing.',
           ),
         ),
-
       ),
     ), // end: radio options
-
-
     // -----------------------------
     // begin: select options       -
     // -----------------------------
@@ -659,7 +576,6 @@ $options[]   = array(
       'title'     => 'Select',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'      => 'unique_select_1',
           'type'    => 'select',
@@ -669,7 +585,6 @@ $options[]   = array(
             'no'    => 'No, Thank you.'
           )
         ),
-
         array(
           'id'             => 'unique_select_2',
           'type'           => 'select',
@@ -681,7 +596,6 @@ $options[]   = array(
           'default_option' => 'Select an option',
           'help'           => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'             => 'unique_select_3',
           'type'           => 'select',
@@ -696,7 +610,6 @@ $options[]   = array(
           'default_option' => 'Select a color',
           'info'           => 'Choose your favorite skin.',
         ),
-
         array(
           'id'             => 'unique_select_4',
           'type'           => 'select',
@@ -709,7 +622,6 @@ $options[]   = array(
           'default'        => 'tertiary',
           'default_option' => 'Select an option',
         ),
-
         array(
           'id'         => 'unique_select_6',
           'type'       => 'select',
@@ -729,7 +641,6 @@ $options[]   = array(
             'style'    => 'width: 150px; height: 125px;'
           )
         ),
-
         array(
           'id'         => 'unique_select_7',
           'type'       => 'select',
@@ -751,7 +662,6 @@ $options[]   = array(
           'default'    => array( 'bmw', 'mercedes', 'opel' ),
           'info'       => 'Choose your favorite cars.',
         ),
-
         array(
           'id'             => 'unique_select_8',
           'type'           => 'select',
@@ -759,7 +669,6 @@ $options[]   = array(
           'options'        => 'pages',
           'default_option' => 'Select a page'
         ),
-
         array(
           'id'             => 'unique_select_9',
           'type'           => 'select',
@@ -767,7 +676,6 @@ $options[]   = array(
           'options'        => 'posts',
           'default_option' => 'Select a post'
         ),
-
         array(
           'id'             => 'unique_select_10',
           'type'           => 'select',
@@ -775,7 +683,6 @@ $options[]   = array(
           'options'        => 'categories',
           'default_option' => 'Select a tag'
         ),
-
         array(
           'id'             => 'unique_select_10_1',
           'type'           => 'select',
@@ -783,7 +690,6 @@ $options[]   = array(
           'options'        => 'menus',
           'default_option' => 'Select a menu'
         ),
-
         array(
           'id'         => 'unique_select_11',
           'type'       => 'select',
@@ -794,7 +700,6 @@ $options[]   = array(
             'style'    => 'width: 150px; height: 125px;'
           )
         ),
-
         array(
           'id'                 => 'unique_select_12',
           'type'               => 'select',
@@ -812,7 +717,6 @@ $options[]   = array(
           'class'              => 'chosen',
           'default_option'     => 'Select your car',
         ),
-
         array(
           'id'                 => 'unique_select_13',
           'type'               => 'select',
@@ -834,7 +738,6 @@ $options[]   = array(
             'style'            => 'width: 200px;'
           ),
         ),
-
         array(
           'id'             => 'unique_select_14',
           'type'           => 'select',
@@ -843,7 +746,6 @@ $options[]   = array(
           'class'          => 'chosen',
           'default_option' => 'Select a page'
         ),
-
         array(
           'id'                 => 'unique_select_15',
           'type'               => 'select',
@@ -857,11 +759,8 @@ $options[]   = array(
           ),
           'info'               => 'and much more select options for you!',
         ),
-
       ),
     ), // end: select options
-
-
     // -----------------------------
     // begin: switcher options     -
     // -----------------------------
@@ -870,38 +769,31 @@ $options[]   = array(
       'title'     => 'Switcher',
       'icon'      => 'fa fa-toggle-on',
       'fields'    => array(
-
         array(
           'id'    => 'unique_switcher_1',
           'type'  => 'switcher',
           'title' => 'Simple Switcher',
         ),
-
         array(
           'id'    => 'unique_switcher_2',
           'type'  => 'switcher',
           'title' => 'Switcher Field with Label',
           'label' => 'Yes, Please do it.',
         ),
-
         array(
           'id'    => 'unique_switcher_3',
           'type'  => 'switcher',
           'title' => 'Switcher Field with Help',
           'help'  => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'      => 'unique_switcher_4',
           'type'    => 'switcher',
           'title'   => 'Switcher Field with Default',
           'default' => true,
         ),
-
       ),
     ), // end: switcher options
-
-
     // -----------------------------
     // begin: number options       -
     // -----------------------------
@@ -910,34 +802,29 @@ $options[]   = array(
       'title'       => 'Number',
       'icon'        => 'fa fa-check',
       'fields'      => array(
-
         array(
           'id'      => 'unique_number_1',
           'type'    => 'number',
           'title'   => 'Simple Number',
         ),
-
         array(
           'id'      => 'unique_number_2',
           'type'    => 'number',
           'title'   => 'Number Field with Description',
           'desc'    => 'Lets write some description for this number field.',
         ),
-
         array(
           'id'      => 'unique_number_3',
           'type'    => 'number',
           'title'   => 'Number Field with Help',
           'help'    => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'      => 'unique_number_4',
           'type'    => 'number',
           'title'   => 'Number Field with Default',
           'default' => '10',
         ),
-
         array(
           'id'            => 'unique_number_5',
           'type'          => 'number',
@@ -946,17 +833,14 @@ $options[]   = array(
             'placeholder' => '25'
           )
         ),
-
         array(
           'id'      => 'unique_number_6',
           'type'    => 'number',
           'title'   => 'Number Field with After-text',
           'after'   => ' <i class="cs-text-muted">(px)</i>',
         ),
-
       ),
     ), // end: number options
-
     // -----------------------------
     // begin: icon options       -
     // -----------------------------
@@ -965,45 +849,37 @@ $options[]   = array(
       'title'       => 'Icons',
       'icon'        => 'fa fa-check',
       'fields'      => array(
-
         array(
           'id'      => 'unique_icon_1',
           'type'    => 'icon',
           'title'   => 'Simple Icon',
         ),
-
         array(
           'id'      => 'unique_icon_2',
           'type'    => 'icon',
           'title'   => 'Icon Field with Description',
           'desc'    => 'Lets write some description for this icon field.',
         ),
-
         array(
           'id'      => 'unique_icon_3',
           'type'    => 'icon',
           'title'   => 'Icon Field with Help',
           'help'    => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'      => 'unique_icon_4',
           'type'    => 'icon',
           'title'   => 'Icon Field with Default',
           'default' => 'fa fa-check',
         ),
-
         array(
           'id'      => 'unique_icon_5',
           'type'    => 'icon',
           'title'   => 'Icon Field with After-text',
           'after'   => '<p class="cs-text-muted">Lets write some description for this icon field.</i>',
         ),
-
       ),
     ), // end: icon options
-
-
     // -----------------------------
     // begin: group options        -
     // -----------------------------
@@ -1012,7 +888,6 @@ $options[]   = array(
       'title'     => 'Group',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'              => 'unique_group_1',
           'type'            => 'group',
@@ -1020,28 +895,23 @@ $options[]   = array(
           'button_title'    => 'Add New',
           'accordion_title' => 'Add New Field',
           'fields'          => array(
-
             array(
               'id'          => 'unique_group_1_text',
               'type'        => 'text',
               'title'       => 'Text Field',
             ),
-
             array(
               'id'          => 'unique_group_1_switcher',
               'type'        => 'switcher',
               'title'       => 'Switcher Field',
             ),
-
             array(
               'id'          => 'unique_group_1_textarea',
               'type'        => 'textarea',
               'title'       => 'Upload Field',
             ),
-
           )
         ),
-
         array(
           'id'              => 'unique_group_2',
           'type'            => 'group',
@@ -1049,25 +919,21 @@ $options[]   = array(
           'button_title'    => 'Add New',
           'accordion_title' => 'Add New Field',
           'fields'          => array(
-
             array(
               'id'          => 'unique_group_2_text',
               'type'        => 'text',
               'title'       => 'Text Field',
             ),
-
             array(
               'id'          => 'unique_group_2_switcher',
               'type'        => 'switcher',
               'title'       => 'Switcher Field',
             ),
-
             array(
               'id'          => 'unique_group_2_textarea',
               'type'        => 'textarea',
               'title'       => 'Upload Field',
             ),
-
           ),
           'default'                     => array(
             array(
@@ -1082,7 +948,6 @@ $options[]   = array(
             ),
           )
         ),
-
         array(
           'id'              => 'unique_group_3',
           'type'            => 'group',
@@ -1091,16 +956,13 @@ $options[]   = array(
           'button_title'    => 'Add New Something',
           'accordion_title' => 'Adding New Thing',
           'fields'          => array(
-
             array(
               'id'          => 'unique_group_3_text',
               'type'        => 'upload',
               'title'       => 'Text Field',
             ),
-
           )
         ),
-
         array(
           'id'              => 'unique_group_4',
           'type'            => 'group',
@@ -1109,32 +971,25 @@ $options[]   = array(
           'button_title'    => 'Add New',
           'accordion_title' => 'unique_group_4_text_2',
           'fields'          => array(
-
             array(
               'id'          => 'unique_group_4_text_1',
               'type'        => 'text',
               'title'       => 'Text Field 1',
             ),
-
             array(
               'id'          => 'unique_group_4_text_2',
               'type'        => 'text',
               'title'       => 'Text Field 2',
             ),
-
             array(
               'id'          => 'unique_group_4_text_3',
               'type'        => 'text',
               'title'       => 'Text Field 3',
             ),
-
           )
         ),
-
       ),
     ), // end: group options
-
-
     // -----------------------------
     // begin: upload options       -
     // -----------------------------
@@ -1143,41 +998,35 @@ $options[]   = array(
       'title'     => 'Upload',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'      => 'unique_upload_1',
           'type'    => 'upload',
           'title'   => 'Simple Upload',
         ),
-
         array(
           'id'      => 'unique_upload_2',
           'type'    => 'upload',
           'title'   => 'Upload Field with Description',
           'desc'    => 'Lets write some description for this upload field.',
         ),
-
         array(
           'id'      => 'unique_upload_3',
           'type'    => 'upload',
           'title'   => 'Upload Field with Help',
           'help'    => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'      => 'unique_upload_4',
           'type'    => 'upload',
           'title'   => 'Upload Field with Default',
           'default' => 'screenshot-1.png',
         ),
-
         array(
           'id'      => 'unique_upload_5',
           'type'    => 'upload',
           'title'   => 'Upload Field with After-text',
           'after'   => '<p class="cs-text-muted">You can use default value <strong>get_template_directory_uri()</strong>."/images/screenshot-1.png"</p>',
         ),
-
         array(
           'id'            => 'unique_upload_6',
           'type'          => 'upload',
@@ -1186,7 +1035,6 @@ $options[]   = array(
             'placeholder' => 'http://'
           ),
         ),
-
         array(
           'id'             => 'unique_upload_7',
           'type'           => 'upload',
@@ -1197,7 +1045,6 @@ $options[]   = array(
             'insert_title' => 'Use this image',
           ),
         ),
-
         array(
           'id'             => 'unique_upload_8',
           'type'           => 'upload',
@@ -1209,11 +1056,8 @@ $options[]   = array(
             'insert_title' => 'Use This Video',
           ),
         ),
-
       ),
     ), // end: upload options
-
-
     // -----------------------------
     // begin: background options   -
     // -----------------------------
@@ -1222,13 +1066,11 @@ $options[]   = array(
       'title'     => 'Background',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'    => 'unique_background_1',
           'type'  => 'background',
           'title' => 'Background',
         ),
-
         array(
           'id'    => 'unique_background_2',
           'type'  => 'background',
@@ -1236,7 +1078,6 @@ $options[]   = array(
           'desc'  => 'Lets write some description for this background field.',
           'help'  => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'           => 'unique_background_3',
           'type'         => 'background',
@@ -1249,7 +1090,6 @@ $options[]   = array(
             'color'      => '#ffbc00',
           ),
         ),
-
         array(
           'id'      => 'unique_background_4',
           'type'    => 'background',
@@ -1259,11 +1099,8 @@ $options[]   = array(
             'color' => '#222',
           ),
         ),
-
       ),
     ), // end: background options
-
-
     // -----------------------------
     // begin: color picker options -
     // -----------------------------
@@ -1272,42 +1109,36 @@ $options[]   = array(
       'title'     => 'Color Picker',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'      => 'unique_color_picker_1',
           'type'    => 'color_picker',
           'title'   => 'Color Picker',
           'default' => '#dd3333',
         ),
-
         array(
           'id'      => 'unique_color_picker_2',
           'type'    => 'color_picker',
           'title'   => 'Color Picker RGBA disabled',
           'rgba'    => false,
         ),
-
         array(
           'id'      => 'unique_color_picker_3',
           'type'    => 'color_picker',
           'title'   => 'Color Picker Field with Description',
           'desc'    => 'Lets write some description for this color picker field.',
         ),
-
         array(
           'id'      => 'unique_color_picker_4',
           'type'    => 'color_picker',
           'title'   => 'Color Picker Field with Help',
           'help'    => 'I am a Tooltip helper. This field important for something.',
         ),
-
         array(
           'id'      => 'unique_color_picker_5',
           'type'    => 'color_picker',
           'title'   => 'Color Picker Field with Default',
           'default' => 'rgba(0, 0, 255, 0.25)',
         ),
-
         array(
           'id'      => 'unique_color_picker_6',
           'type'    => 'color_picker',
@@ -1315,11 +1146,8 @@ $options[]   = array(
           'after'   => '<p class="cs-text-muted">Information: There is some description for option.</p> ',
           'default' => 'rgba(0, 255, 0, 0.75)',
         ),
-
       ),
     ), // end: color picker options
-
-
     // -----------------------------
     // begin: image select options -
     // -----------------------------
@@ -1328,7 +1156,6 @@ $options[]   = array(
       'title'     => 'Image Select',
       'icon'      => 'fa fa-check',
       'fields'    => array(
-
         array(
           'id'           => 'unique_image_select_1',
           'type'         => 'image_select',
@@ -1340,7 +1167,6 @@ $options[]   = array(
             'value-4'    => 'http://codestarframework.com/assets/images/placeholder/150x125-3498db.gif',
           ),
         ),
-
         array(
           'id'           => 'unique_image_select_2',
           'type'         => 'image_select',
@@ -1354,7 +1180,6 @@ $options[]   = array(
           ),
           'default'      => 'value-2'
         ),
-
         array(
           'id'           => 'unique_image_select_3',
           'type'         => 'image_select',
@@ -1368,7 +1193,6 @@ $options[]   = array(
           'radio'        => true,
           'default'      => 'value-3'
         ),
-
         array(
           'id'           => 'unique_image_select_4',
           'type'         => 'image_select',
@@ -1386,7 +1210,6 @@ $options[]   = array(
           'radio'        => true,
           'default'      => 'value-2'
         ),
-
         array(
           'id'           => 'unique_image_select_5',
           'type'         => 'image_select',
@@ -1404,11 +1227,8 @@ $options[]   = array(
           'multi_select' => true,
           'default'      => array( 'value-3', 'value-4', 'value-5', 'value-6' )
         ),
-
       ),
     ), // end: image select options
-
-
     // -----------------------------
     // begin: typography options   -
     // -----------------------------
@@ -1417,7 +1237,6 @@ $options[]   = array(
       'title'         => 'Typography',
       'icon'          => 'fa fa-check',
       'fields'        => array(
-
         array(
           'id'        => 'unique_typography_1',
           'type'      => 'typography',
@@ -1428,7 +1247,6 @@ $options[]   = array(
             'variant' => '800',
           ),
         ),
-
         array(
           'id'        => 'unique_typography_2',
           'type'      => 'typography',
@@ -1439,7 +1257,6 @@ $options[]   = array(
           ),
           'chosen'    => false,
         ),
-
         array(
           'id'        => 'unique_typography_3',
           'type'      => 'typography',
@@ -1451,11 +1268,8 @@ $options[]   = array(
           'variant'   => false,
           'chosen'    => false,
         ),
-
       ),
     ), // end: typography options
-
-
     // -----------------------------
     // begin: new fields options   -
     // -----------------------------
@@ -1464,13 +1278,11 @@ $options[]   = array(
       'title'        => 'Wysiwyg',
       'icon'         => 'fa fa-check',
       'fields'       => array(
-
         array(
           'id'       => 'wysiwyg_1',
           'type'     => 'wysiwyg',
           'title'    => 'Wysiwyg',
         ),
-
         array(
           'id'       => 'wysiwyg_2',
           'type'     => 'wysiwyg',
@@ -1481,12 +1293,8 @@ $options[]   = array(
             'media_buttons' => false,
           )
         ),
-
-
       ),
     ), // end: new fields options
-
-
     // -----------------------------
     // begin: image options        -
     // -----------------------------
@@ -1495,13 +1303,11 @@ $options[]   = array(
       'title'         => 'Image',
       'icon'          => 'fa fa-check',
       'fields'        => array(
-
         array(
           'id'        => 'image_1',
           'type'      => 'image',
           'title'     => 'Image',
         ),
-
         array(
           'id'        => 'image_2',
           'type'      => 'image',
@@ -1509,18 +1315,14 @@ $options[]   = array(
           'desc'      => 'Lets write some description for this image field.',
           'help'      => 'This option field is useful. You will love it!',
         ),
-
         array(
           'id'        => 'image_3',
           'type'      => 'image',
           'title'     => 'Image with Custom Title',
           'add_title' => 'Add Logo',
         ),
-
       ),
     ), // end: image options
-
-
     // -----------------------------
     // begin: gallery options      -
     // -----------------------------
@@ -1529,13 +1331,11 @@ $options[]   = array(
       'title'           => 'Gallery',
       'icon'            => 'fa fa-check',
       'fields'          => array(
-
         array(
           'id'          => 'gallery_1',
           'type'        => 'gallery',
           'title'       => 'Gallery',
         ),
-
         array(
           'id'          => 'gallery_2',
           'type'        => 'gallery',
@@ -1544,7 +1344,6 @@ $options[]   = array(
           'edit_title'  => 'Edit Images',
           'clear_title' => 'Remove Images',
         ),
-
         array(
           'id'          => 'gallery_3',
           'type'        => 'gallery',
@@ -1555,11 +1354,8 @@ $options[]   = array(
           'edit_title'  => 'Edit Image(s)',
           'clear_title' => 'Clear Image(s)',
         ),
-
       ),
     ), // end: gallery options
-
-
     // -----------------------------
     // begin: sorter options       -
     // -----------------------------
@@ -1568,7 +1364,6 @@ $options[]   = array(
       'title'    => 'Sorter',
       'icon'     => 'fa fa-check',
       'fields'   => array(
-
         array(
           'id'             => 'sorter_1',
           'type'           => 'sorter',
@@ -1585,7 +1380,6 @@ $options[]   = array(
             ),
           ),
         ),
-
         array(
           'id'             => 'sorter_2',
           'type'           => 'sorter',
@@ -1608,10 +1402,7 @@ $options[]   = array(
           'disabled_title' => 'Deactive Colors',
         ),
       ),
-
     ), // end: sorter options
-
-
     // -----------------------------
     // begin: sorter options       -
     // -----------------------------
@@ -1620,64 +1411,53 @@ $options[]   = array(
       'title'    => 'Fieldset',
       'icon'     => 'fa fa-check',
       'fields'   => array(
-
         array(
           'id'        => 'fieldset_1',
           'type'      => 'fieldset',
           'title'     => 'Fieldset Field',
           'fields'    => array(
-
             array(
               'id'    => 'fieldset_1_text',
               'type'  => 'text',
               'title' => 'Text Field',
             ),
-
             array(
               'id'    => 'fieldset_1_upload',
               'type'  => 'upload',
               'title' => 'Upload Field',
             ),
-
             array(
               'id'    => 'fieldset_1_textarea',
               'type'  => 'textarea',
               'title' => 'Textarea Field',
             ),
-
           ),
         ),
-
         array(
           'id'        => 'fieldset_2',
           'type'      => 'fieldset',
           'title'     => 'Fieldset Field with Default',
           'fields'    => array(
-
             array(
               'type'    => 'subheading',
               'content' => 'Title of Fieldset',
             ),
-
             array(
               'id'      => 'fieldset_2_text',
               'type'    => 'text',
               'title'   => 'Text Field',
             ),
-
             array(
               'id'      => 'fieldset_2_checkbox',
               'type'    => 'checkbox',
               'title'   => 'Checkbox Field',
               'label'   => 'Are you sure?',
             ),
-
             array(
               'id'      => 'fieldset_2_textarea',
               'type'    => 'textarea',
               'title'   => 'Upload Field',
             ),
-
           ),
           'default'   => array(
             'fieldset_2_text'     => 'Hello',
@@ -1685,11 +1465,8 @@ $options[]   = array(
             'fieldset_2_textarea' => 'Do stuff',
           )
         ),
-
       ),
     ), // end: sorter options
-
-
     // -----------------------------
     // begin: others options       -
     // -----------------------------
@@ -1698,94 +1475,78 @@ $options[]   = array(
       'title'       => 'Others',
       'icon'        => 'fa fa-check',
       'fields'      => array(
-
         array(
           'type'    => 'heading',
           'content' => 'Heading',
         ),
-
         array(
           'id'      => 'unique_others_text_1',
           'type'    => 'text',
           'title'   => 'Others Text Field 1',
         ),
-
         array(
           'id'      => 'unique_others_text_2',
           'type'    => 'text',
           'title'   => 'Others Text Field 2',
         ),
-
         array(
           'type'    => 'subheading',
           'content' => 'Sub Heading',
         ),
-
         array(
           'id'      => 'unique_others_text_3',
           'type'    => 'text',
           'title'   => 'Others Text Field 3',
         ),
-
         array(
           'type'    => 'notice',
           'class'   => 'success',
           'content' => 'Notice Success: Lorem Ipsum, a random Lipsum generator.',
         ),
-
         array(
           'id'      => 'unique_others_text_4',
           'type'    => 'text',
           'title'   => 'Others Text Field 4',
         ),
-
         array(
           'type'    => 'notice',
           'class'   => 'info',
           'content' => 'Notice Info: Lorem Ipsum, a random Lipsum generator.',
         ),
-
         array(
           'id'      => 'unique_others_text_5',
           'type'    => 'text',
           'title'   => 'Others Text Field 5',
         ),
-
         array(
           'type'    => 'notice',
           'class'   => 'warning',
           'content' => 'Notice Warning: Lorem Ipsum, a random Lipsum generator.',
         ),
-
         array(
           'id'      => 'unique_others_text_6',
           'type'    => 'text',
           'title'   => 'Others Text Field 6',
         ),
-
         array(
           'type'    => 'notice',
           'class'   => 'danger',
           'content' => 'Notice Danger: Lorem Ipsum, a random Lipsum generator.',
         ),
-
         array(
           'id'      => 'unique_others_text_7',
           'type'    => 'text',
           'title'   => 'Others Text Field 7',
         ),
-
         array(
           'id'      => 'unique_others_text_8',
           'type'    => 'text',
           'title'   => 'Others Text Field 8',
         ),
-
         array(
           'type'    => 'content',
           'content' => 'Content Field: It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
         ),
-
         array(
           'id'      => 'unique_others_text_9',
           'type'    => 'text',
@@ -1793,14 +1554,10 @@ $options[]   = array(
           'after'   => '<p class="cs-text-warning">This field using debug=true</p>',
           'debug'   => true,
         ),
-
-
       ),
     ), // end: other options
-
   )
 );
-
 // ------------------------------
 // a seperator                  -
 // ------------------------------
@@ -1809,7 +1566,6 @@ $options[] = array(
   'title'  => 'A Seperator',
   'icon'   => 'fa fa-bookmark'
 );
-
 // ------------------------------
 // backup                       -
 // ------------------------------
@@ -1818,20 +1574,16 @@ $options[]   = array(
   'title'    => 'Backup',
   'icon'     => 'fa fa-shield',
   'fields'   => array(
-
     array(
       'type'    => 'notice',
       'class'   => 'warning',
       'content' => 'You can save your current options. Download a Backup and Import.',
     ),
-
     array(
       'type'    => 'backup',
     ),
-
   )
 );
-
 // ------------------------------
 // validate                     -
 // ------------------------------
@@ -1840,7 +1592,6 @@ $options[]   = array(
   'title'    => 'Validate',
   'icon'     => 'fa fa-check-circle',
   'fields'   => array(
-
     array(
       'id'       => 'validate_text_1',
       'type'     => 'text',
@@ -1849,7 +1600,6 @@ $options[]   = array(
       'default'  => 'info@domain.com',
       'validate' => 'email',
     ),
-
     array(
       'id'       => 'numeric_text_1',
       'type'     => 'text',
@@ -1858,7 +1608,6 @@ $options[]   = array(
       'default'  => '123456',
       'validate' => 'numeric',
     ),
-
     array(
       'id'       => 'required_text_1',
       'type'     => 'text',
@@ -1867,16 +1616,13 @@ $options[]   = array(
       'default'  => 'lorem ipsum',
       'validate' => 'required',
     ),
-
     array(
       'type'    => 'notice',
       'class'   => 'info',
       'content' => 'Also you can add your own validate from <strong>themename/cs-framework/functions/validate.php</strong>',
     ),
-
   )
 );
-
 // ------------------------------
 // sanitize                     -
 // ------------------------------
@@ -1885,14 +1631,12 @@ $options[]   = array(
   'title'    => 'Sanitize',
   'icon'     => 'fa fa-repeat',
   'fields'   => array(
-
     array(
       'id'       => 'sanitie_text_1',
       'type'     => 'text',
       'title'    => 'Sanitized Text',
       'after'    => '<p class="cs-text-muted">This text field sanitized already, without any settings. we are using wordpress core.<br /> for eg. try too add <strong>&lt;p></strong> html tag</p>',
     ),
-
     array(
       'id'       => 'sanitie_text_2',
       'type'     => 'text',
@@ -1900,14 +1644,12 @@ $options[]   = array(
       'after'    => '<p class="cs-text-muted">Disabled sanitize for this field (sanitize=false). try too add <strong>&lt;p></strong> html tag so, you can write anything</p>',
       'sanitize' => false,
     ),
-
     array(
       'id'       => 'sanitie_textarea_1',
       'type'     => 'textarea',
       'title'    => 'Sanitized Textarea',
       'after'    => '<p class="cs-text-muted">This textarea field sanitized already, without any settings. we are using wordpress core.<br /> just allowing this tags wp core $allowedposttags</p>',
     ),
-
     array(
       'id'       => 'sanitie_textarea_2',
       'type'     => 'textarea',
@@ -1915,13 +1657,11 @@ $options[]   = array(
       'after'    => '<p class="cs-text-muted">Disabled sanitize for this field (sanitize=false). you can write anything</p>',
       'sanitize' => false,
     ),
-
     array(
       'type'    => 'notice',
       'class'   => 'info',
       'content' => 'Custom Sanitize, Also you can add your own validate from <strong>themename/cs-framework/functions/sanitize.php</strong>',
     ),
-
     array(
       'id'       => 'sanitie_text_1',
       'type'     => 'text',
@@ -1929,10 +1669,8 @@ $options[]   = array(
       'after'    => '<p class="cs-text-muted">This text field sanitized as slug title (sanitize="title")</p>',
       'sanitize' => 'title',
     ),
-
   )
 );
-
 // ----------------------------------------
 // dependencies                           -
 // ----------------------------------------
@@ -1941,7 +1679,6 @@ $options[]           = array(
   'title'            => 'Dependencies',
   'icon'             => 'fa fa-code-fork',
   'fields'           => array(
-
     // ------------------------------------
     // Basic Dependencies
     // ------------------------------------
@@ -1949,14 +1686,12 @@ $options[]           = array(
       'type'         => 'subheading',
       'content'      => 'Basic Dependencies',
     ),
-
     // ------------------------------------
     array(
       'id'           => 'dep_1',
       'type'         => 'text',
       'title'        => 'If text <u>not be empty</u>',
     ),
-
     array(
       'id'           => 'dummy_1',
       'type'         => 'notice',
@@ -1965,14 +1700,12 @@ $options[]           = array(
       'dependency'   => array( 'dep_1', '!=', '' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_2',
       'type'         => 'switcher',
       'title'        => 'If switcher mode <u>ON</u>',
     ),
-
     array(
       'id'           => 'dummy_2',
       'type'         => 'notice',
@@ -1981,7 +1714,6 @@ $options[]           = array(
       'dependency'   => array( 'dep_2', '==', 'true' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_3',
@@ -1995,7 +1727,6 @@ $options[]           = array(
         'white'      => 'White',
       ),
     ),
-
     array(
       'id'           => 'dummy_3',
       'type'         => 'notice',
@@ -2004,7 +1735,6 @@ $options[]           = array(
       'dependency'   => array( 'dep_3', 'any', 'black,white' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_4',
@@ -2017,7 +1747,6 @@ $options[]           = array(
       ),
       'default'      => 'yes'
     ),
-
     array(
       'id'           => 'dummy_4',
       'type'         => 'notice',
@@ -2027,7 +1756,6 @@ $options[]           = array(
       //'dependency' => array( '{ID}_{VALUE}', '==', 'true' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_5',
@@ -2040,7 +1768,6 @@ $options[]           = array(
         'warning'    => 'Warning',
       ),
     ),
-
     array(
       'id'           => 'dummy_5',
       'type'         => 'notice',
@@ -2050,7 +1777,6 @@ $options[]           = array(
       //'dependency' => array( '{ID}_{VALUE}', '==', 'true' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_6',
@@ -2065,7 +1791,6 @@ $options[]           = array(
       ),
       'info'         => 'Image select field input="checkbox" model. in checkbox model unselected available.',
     ),
-
     array(
       'id'           => 'dummy_6',
       'type'         => 'notice',
@@ -2075,7 +1800,6 @@ $options[]           = array(
       //'dependency' => array( '{ID}_{VALUE}', '==', 'true' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_6_alt',
@@ -2094,7 +1818,6 @@ $options[]           = array(
         'data-depend-id' => 'dep_6_alt',
       ),
     ),
-
     array(
       'id'           => 'dummy_6_alt',
       'type'         => 'notice',
@@ -2104,7 +1827,6 @@ $options[]           = array(
       //'dependency' => array( 'data-depend-id', 'any', 'value,value' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_7',
@@ -2121,7 +1843,6 @@ $options[]           = array(
       'radio'        => true,
       'default'      => 'gray',
     ),
-
     array(
       'id'           => 'dummy_7',
       'type'         => 'notice',
@@ -2131,7 +1852,6 @@ $options[]           = array(
       //'dependency' => array( '{ID}_{VALUE}', '==', 'true' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_7_alt',
@@ -2151,7 +1871,6 @@ $options[]           = array(
         'data-depend-id' => 'dep_7_alt',
       ),
     ),
-
     array(
       'id'           => 'dummy_7_alt',
       'type'         => 'notice',
@@ -2161,14 +1880,12 @@ $options[]           = array(
       //'dependency' => array( 'data-depend-id', 'any', 'value,value' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_8',
       'type'         => 'image',
       'title'        => 'Add a image',
     ),
-
     array(
       'id'           => 'dummy_8',
       'type'         => 'notice',
@@ -2177,14 +1894,12 @@ $options[]           = array(
       'dependency'   => array( 'dep_8', '!=', '' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     array(
       'id'           => 'dep_9',
       'type'         => 'icon',
       'title'        => 'Add a icon',
     ),
-
     array(
       'id'           => 'dummy_9',
       'type'         => 'notice',
@@ -2193,7 +1908,6 @@ $options[]           = array(
       'dependency'   => array( 'dep_9', '!=', '' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     // Advanced Dependencies
     // ------------------------------------
@@ -2201,27 +1915,23 @@ $options[]           = array(
       'type'         => 'subheading',
       'content'      => 'Advanced Dependencies',
     ),
-
     // ------------------------------------
     array(
       'id'           => 'dep_10',
       'type'         => 'text',
       'title'        => 'If text string <u>hello</u>',
     ),
-
     array(
       'id'           => 'dep_11',
       'type'         => 'text',
       'title'        => 'and this text string <u>world</u>',
     ),
-
     array(
       'id'           => 'dep_12',
       'type'         => 'checkbox',
       'title'        => 'and checkbox mode <u>checked</u>',
       'label'        => 'Check me!'
     ),
-
     array(
       'id'           => 'dummy_10',
       'type'         => 'notice',
@@ -2230,7 +1940,6 @@ $options[]           = array(
       'dependency'   => array( 'dep_10|dep_11|dep_12', '==|==|==', 'hello|world|true' ),
     ),
     // ------------------------------------
-
     // ------------------------------------
     // Another Dependencies
     // ------------------------------------
@@ -2238,7 +1947,6 @@ $options[]           = array(
       'type'         => 'subheading',
       'content'      => 'Another Dependencies',
     ),
-
     // ------------------------------------
     array(
       'id'           => 'dep_13',
@@ -2250,7 +1958,6 @@ $options[]           = array(
         'white'      => 'White',
       ),
     ),
-
     array(
       'id'           => 'dep_14',
       'type'         => 'select',
@@ -2262,7 +1969,6 @@ $options[]           = array(
         'xlage'      => 'XLarge',
       ),
     ),
-
     array(
       'id'           => 'dep_15',
       'type'         => 'select',
@@ -2273,7 +1979,6 @@ $options[]           = array(
       ),
       'dependency'   => array( 'dep_13|dep_14', 'any|==', 'black,white|middle' ),
     ),
-
     array(
       'id'           => 'dummy_11',
       'type'         => 'notice',
@@ -2282,10 +1987,8 @@ $options[]           = array(
       'dependency'   => array( 'dep_15', '==', 'world' ),
     ),
     // ------------------------------------
-
   ),
 );
-
 // ------------------------------
 // a seperator                  -
 // ------------------------------
@@ -2294,7 +1997,6 @@ $options[] = array(
   'title'  => 'Section Examples',
   'icon'   => 'fa fa-cog'
 );
-
 // ------------------------------
 // normal section               -
 // ------------------------------
@@ -2303,15 +2005,12 @@ $options[]   = array(
   'title'    => 'Normal Section',
   'icon'     => 'fa fa-minus',
   'fields'   => array(
-
     array(
       'type'    => 'content',
       'content' => 'This section is empty, add some options...',
     ),
-
   )
 );
-
 // ------------------------------
 // accordion sections           -
 // ------------------------------
@@ -2320,55 +2019,44 @@ $options[]   = array(
   'title'    => 'Accordion Sections',
   'icon'     => 'fa fa-bars',
   'sections' => array(
-
     // sub section 1
     array(
       'name'     => 'sub_section_1',
       'title'    => 'Sub Sections 1',
       'icon'     => 'fa fa-minus',
       'fields'   => array(
-
         array(
           'type'    => 'content',
           'content' => 'This section is empty, add some options...',
         ),
-
       )
     ),
-
     // sub section 2
     array(
       'name'     => 'sub_section_2',
       'title'    => 'Sub Sections 2',
       'icon'     => 'fa fa-minus',
       'fields'   => array(
-
         array(
           'type'    => 'content',
           'content' => 'This section is empty, add some options...',
         ),
-
       )
     ),
-
     // sub section 3
     array(
       'name'     => 'sub_section_3',
       'title'    => 'Sub Sections 3',
       'icon'     => 'fa fa-minus',
       'fields'   => array(
-
         array(
           'type'    => 'content',
           'content' => 'This section is empty, add some options...',
         ),
-
       )
     ),
-
   ),
 );
-
 // ------------------------------
 // a seperator                  -
 // ------------------------------
@@ -2377,7 +2065,6 @@ $options[] = array(
   'title'  => 'Others',
   'icon'   => 'fa fa-gift'
 );
-
 // ------------------------------
 // license                      -
 // ------------------------------
@@ -2386,7 +2073,6 @@ $options[]   = array(
   'title'    => 'License',
   'icon'     => 'fa fa-info-circle',
   'fields'   => array(
-
     array(
       'type'    => 'heading',
       'content' => '100% GPL License, Yes it is free!'
@@ -2395,8 +2081,6 @@ $options[]   = array(
       'type'    => 'content',
       'content' => 'Codestar Framework is <strong>free</strong> to use both personal and commercial. If you used commercial, <strong>please credit</strong>. Read more about <a href="http://www.gnu.org/licenses/gpl-2.0.txt" target="_blank">GNU License</a>',
     ),
-
   )
 );
-
 CSFramework::instance( $settings, $options );

@@ -53,7 +53,7 @@ class Prediction {
 																	$question .= '<label><input type="radio" name="'. $name .'" value="'. $weight['name'] .'">'. $weight['name'] .'</label>';
 																}
 															}
-															$question .= '<button type="button" class="btn btn-green saveQAns" qtype="'. $option['id'] .'" team="'. $team['name'] .'" teamid="'. $options .'">Submit</button>';
+															$question .= '<button type="button" class="btn btn-green saveQAns">Submit</button>';
 														$question .= '</div>';
 													}
 													$questions .= $question;
@@ -61,20 +61,25 @@ class Prediction {
 											}
 											if ($question) {
 												$html .= '<div class="teamQuestionContainer" id="'. $options .'">';
-													$html .= '<div class="titleContainer">';
-													$html .= '<div class="teamName half left"><strong>'. $team['name'] .'</strong></div>';
-													$html .= '<div><div class="endTime helf right text-right" id="'. $teamID .'_end">'. $team['end'] .'</div><p class="text-right">Time remaining to predict </p></div>'; 
-													$html .= '</div>';
-													$html .= $questions;
-													// $html .= '<div class="commentWrapper">';
-													// 	$html .= '<h5 class="title">Comment</h5>';
-													// 	$html .= '<textarea name="comment" class="comment"></textarea>';
-													// 	$html .= '<button type="button" class="btn btn-green saveMsg">Submit</button>';
-													// $html .= '</div>';
+												$html .= '<div class="titleContainer">';
+												$html .= '<div class="teamName half left"><strong>'. $team['name'] .'</strong></div>';
+												$html .= '<div><div class="endTime helf right text-right" id="'. $teamID .'_end">'. $team['end'] .'</div><p class="text-right">Time remaining to predict </p></div>'; 
+												$html .= '</div>';
+												$html .= $questions;
 												$html .= '</div>';
 											}
 										}
 									} // teamQuestionContainer
+									$html .= '<div class="notice">';
+										$html .= '<div class="alert">';
+  											$html .= '<span class="closebtn">&times;</span>';
+   											$html .= '<h3 style="color: #fff;">Road to top 10</h3>';
+   											$html .= '<ul style="margin-left: 15px;">';
+  												$html .= '<li>Participate <strong>70</strong> events ( it just take less then 3 weeks, if you participate both tosses/matches).</li>';
+  												$html .= '<li>Make sure to participate 75% events from your starting date .. else even if you have good accuracy, you won’t able to qualify for top10 or may get dropped from the position.</li>';
+  												$html .= '<li>And finally, you have to ensure at-least <strong>40%</strong> accuracy to be eligible for top10.</li>';
+ 										$html .= '</div>';
+									$html .= '</div>';
 									$html .= '</div>';
 								}
 							$html .= '</form>';

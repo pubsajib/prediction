@@ -39,6 +39,7 @@ require_once plugin_dir_path(__FILE__) . 'helpers/road-to-top.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-profile.php';
 // SHORTCODES
 require_once plugin_dir_path(__FILE__) . 'shortcodes/prediction.php';
+require_once plugin_dir_path(__FILE__) . 'shortcodes/prediction-events.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/predictors.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/answers.php';
 require_once plugin_dir_path(__FILE__) . 'shortcodes/top.php';

@@ -18,10 +18,8 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 			$isRankAble = false;
 			if (!empty($prediction['avg'])) {
 				$participated = $prediction['avg'][$ratingType]['participated'];
-				$PToss = $prediction['avg']['toss']['participated'];
-				$PMatch = $prediction['avg']['match']['participated'];
-				$matchAccuracy = $prediction['avg']['match']['rate'];
-				$tossAccuracy = $prediction['avg']['toss']['rate'];
+				$PMatch = $prediction['avg']['match']['rate'];
+				$PToss = $prediction['avg']['toss']['rate'];
 				$score = $prediction['avg'][$ratingType]['rate'];
 				$criterias = [
 					'UID'=>$predictor->ID, 
@@ -42,10 +40,8 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 				$ranking[$predictor->ID]['id'] = $predictor->ID;
 				$ranking[$predictor->ID]['eligible'] = $isRankAble;
 				$ranking[$predictor->ID]['score'] = $score;
-				$ranking[$predictor->ID]['match'] = $PMatch;
-				$ranking[$predictor->ID]['matchAccuracy'] = $matchAccuracy;
-				$ranking[$predictor->ID]['toss'] = $PToss;
-				$ranking[$predictor->ID]['tossAccuricy'] = $tossAccuracy;
+				$ranking[$predictor->ID]['matchAccuracy'] = $PMatch;
+				$ranking[$predictor->ID]['tossAccuricy'] = $PToss;
 				$ranking[$predictor->ID]['participated'] = $participated;
 				$ranking[$predictor->ID]['lifeTimePublishedEvents'] = $criterias['lifeTimePublishedEvents'];
 				$ranking[$predictor->ID]['lifeTimePublishedEventRate'] = $criterias['lifeTimePublishedEventRate'];
@@ -53,22 +49,19 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 
 				$eligible_sort[] = $isRankAble;
 				$accuracy_sort[] = $score;
-				$matchParticipated_sort[] = $matchAccuracy;
-				$tossParticipated_sort[] = $tossAccuracy;
+				$matchParticipated_sort[] = $PMatch;
+				$tossParticipated_sort[] = $PToss;
 				$totalParticipated_sort[] = $participated;
 			} else {
 				$score = 0;
-				$matchAccuracy = 0;
 				$PMatch = 0;
-				$tossAccuracy = 0;
+				$PToss = 0;
 				$participated = 0;
 				$ranking[$predictor->ID]['id'] = $predictor->ID;
 				$ranking[$predictor->ID]['eligible'] = 0;
 				$ranking[$predictor->ID]['score'] = $score;
-				$ranking[$predictor->ID]['match'] = $PMatch;
-				$ranking[$predictor->ID]['matchAccuracy'] = $matchAccuracy;
-				$ranking[$predictor->ID]['toss'] = $PToss;
-				$ranking[$predictor->ID]['tossAccuricy'] = $tossAccuracy;
+				$ranking[$predictor->ID]['matchAccuracy'] = $PMatch;
+				$ranking[$predictor->ID]['tossAccuricy'] = $PToss;
 				$ranking[$predictor->ID]['participated'] = $participated;
 				$ranking[$predictor->ID]['lifeTimePublishedEvents'] = 0;
 				$ranking[$predictor->ID]['lifeTimePublishedEventRate'] = 0;
@@ -76,8 +69,8 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 
 				$eligible_sort[] = -9999;
 				$accuracy_sort[] = $score;
-				$matchParticipated_sort[] = $matchAccuracy;
-				$tossParticipated_sort[] = $tossAccuracy;
+				$matchParticipated_sort[] = $PMatch;
+				$tossParticipated_sort[] = $PToss;
 				$totalParticipated_sort[] = $participated;
 			}
 			$users[$predictor->ID] = $predictor->data;
