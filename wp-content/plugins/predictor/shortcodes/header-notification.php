@@ -9,8 +9,8 @@ class headerNotification {
 	    $events = $events->posts;
 	    if ($events) {
 	    	foreach ($events as $event) {
-	    		$meta  = get_post_meta($eventID, 'event_ops', true);
-				$ans   = get_post_meta($eventID, 'event_ans', true);
+	    		$meta  = get_post_meta($event, 'event_ops', true);
+				$ans   = @get_post_meta($event, 'event_ans', true);
 				if (@$meta['teams']) {
 					foreach ($meta['teams'] as $team) {
 						$ID     = predictor_id_from_string($team['name']);

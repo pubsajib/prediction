@@ -17,7 +17,7 @@ function latestItems($events, $limit=5) : array {
 		foreach ($events as $event) {
 			$eventInfo = [
 				'event_slug'	=>$event->post_name, 
-				'event_cats' 	=> getEventCategories($event)
+				'event_cats' 	=> getLatestEventCategories($event)
 			];
 			$meta  = get_post_meta($event->ID, 'event_ops', true);
 			$ans  = get_post_meta($event->ID, 'event_ans', true);
@@ -42,7 +42,7 @@ function latestItems($events, $limit=5) : array {
 	            				$matchInfo 	= [
 	            					'match_title'		=> $option['title'],
 	            					'match_published'	=> $published,
-	            					'match_options'		=> getOptions($option['weight']),
+	            					'match_options'		=> getLatestOptions($option['weight']),
 	            					'match_default'		=> $meta[$defaultID] ?? '',
 	            				];
             				} else if($option['id'] =='toss' && $published) {
@@ -68,7 +68,7 @@ function latestItems($events, $limit=5) : array {
             		// 			'match_title'		=> $option['title'], 
             		// 			'match_type'		=> $option['id'], 
             		// 			'match_published'	=> $published,
-            		// 			'match_options'	=> getOptions($option['weight']),
+            		// 			'match_options'	=> getLatestOptions($option['weight']),
             		// 			'match_default'	=> $meta[$defaultID] ?? '',
             		// 		];
 		            //         $items[] = $eventInfo + $teamInfo + $matchInfo;
@@ -82,7 +82,7 @@ function latestItems($events, $limit=5) : array {
 	}
 	return $items;
 }
-function getEventCategories($event) : array {
+function getLatestEventCategories($event) : array {
 	$tournaments = [];
 	$cats = get_the_terms($event, 'tournament');
 	if ($cats) {
@@ -90,7 +90,7 @@ function getEventCategories($event) : array {
 	}
 	return $tournaments;
 }
-function getOptions($weights) : array {
+function getLatestOptions($weights) : array {
 	$items = [];
 	if ($weights) {
 		foreach ($weights as $weight) {

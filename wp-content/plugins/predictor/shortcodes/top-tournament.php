@@ -50,7 +50,7 @@ class tournamentTop {
 					}	
 					
 				$html .= '</div>';
-// 				$html .= '<div id="predictor_'. $user->ID .'" class="predictorContainer author-profile-card'. $rank['class'] .'">';
+				// $html .= '<div id="predictor_'. $user->ID .'" class="predictorContainer author-profile-card'. $rank['class'] .'">';
 		    		// PROFILE INFORMATION
 					$html .= '<div class="profile-info">';
 						if ($attr['avatar']) {
@@ -65,7 +65,7 @@ class tournamentTop {
 					        $html .= '</p>';
 						}
 					$html .= '</div>';
-// 				$html .= '</div>';
+				// $html .= '</div>';
 			}
 			$html .= '</div>';
 		}

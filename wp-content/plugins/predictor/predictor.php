@@ -35,6 +35,8 @@ require_once plugin_dir_path(__FILE__) . 'helpers/ranking.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/blog.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/ranking-tournament.php';
 require_once plugin_dir_path(__FILE__) . 'helpers/road-to-top.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/latest-events.php';
+require_once plugin_dir_path(__FILE__) . 'helpers/favourite-team.php';
 // USER PROFILE FIELDS
 require_once plugin_dir_path(__FILE__) . 'includes/class-profile.php';
 // SHORTCODES
