@@ -1,5 +1,5 @@
 // Run javascript after DOM is initialized
-$(document).ready(function($) {
+jQuery(document).ready(function($) {
 	$('.tabs_default').tabslet();
 	$('.tabs_active').tabslet({
 		active: 2

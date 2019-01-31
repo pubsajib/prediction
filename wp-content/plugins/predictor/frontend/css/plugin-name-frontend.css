@@ -1206,3 +1206,50 @@ table {
 		 margin: 0 0 20px 0;
 	 }
 }
+.skillbar {
+    position:relative;
+    display:block;
+    margin-bottom:-10px;
+    width:100%;
+    background:#eee;
+    height:35px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    -webkit-transition:0.4s linear;
+    -moz-transition:0.4s linear;
+    -ms-transition:0.4s linear;
+    -o-transition:0.4s linear;
+    transition:0.4s linear;
+    -webkit-transition-property:width, background-color;
+    -moz-transition-property:width, background-color;
+    -ms-transition-property:width, background-color;
+    -o-transition-property:width, background-color;
+    transition-property:width, background-color;
+}
+.teamNameContainer, 
+.progressContainer{width:98%;max-width:100%;margin:0 auto;}
+.teamNameContainer{text-align: center;}
+.w50p{width:50%; display:inline-block; float:left;}
+
+.skillbar-bar {
+    height:35px;
+    width:0px;
+    background:#6adcfa;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+}
+
+.skill-bar-percent {
+    position:absolute;
+    right:10px;
+    top:0;
+    font-size:11px;
+    height:35px;
+    line-height:35px;
+    color:#ffffff;
+    color:rgba(0, 0, 0, 0.4);
+}
+.skillbar.last .skillbar-bar{float:right;}
+.typeContainer{text-align: center;}

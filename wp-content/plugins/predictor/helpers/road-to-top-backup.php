@@ -1,6 +1,7 @@
 <?php 
 function RoadToTop($user=null) {
 	if (!$user) $user = wp_get_current_user();
+	// echo "User ID : $user->ID";
 	if ( !in_array( 'predictor', (array) $user->roles ) ) echo "Not a predictor";
 	else{
 		$ranking = getRakingFor();
@@ -91,6 +92,7 @@ function profileEvents($user=null) {
 	$items = [];
 	if (!$user) $user = wp_get_current_user();
 	$registered = $user->user_registered;
+	// $registered = '2019-01-02 20:17:00'; // YYYY-mm-dd
 	$query = array(
         'post_type' => 'event',
         'post_status' => 'publish',
@@ -98,67 +100,57 @@ function profileEvents($user=null) {
         'date_query' => ['after' => $registered],
     );
     $events = new WP_Query($query);
+    // $events = $events->found_posts;
     $events = $events->posts;
     if ($events) {
 		foreach ($events as $event) {
-			$eventInfo = [
-				'ID'=>$event->ID, 
-				'title'=> $event->post_title, 
-				'slug'=>$event->post_name, 
-				'cats' => getEventCategories($event), 
-				'date' => date('d-m-Y H:i:s A', strtotime($event->post_date)),
-				'published' => 0
-			];
+			$eventInfo = ['ID'=>$event->ID, 'title'=> $event->post_title, 'slug'=>$event->post_name, 'cats' => getEventCategories($event)];
 			$meta  = get_post_meta($event->ID, 'event_ops', true);
 			$ans  = get_post_meta($event->ID, 'event_ans', true);
-
 			if (!empty($meta['teams'])) {
-				$teamInfo = [];
-        		foreach ($meta['teams'] as $itemSI => $team) {
+        		foreach ($meta['teams'] as $team) {
         			$ID     	= predictor_id_from_string($team['name']);
             		$teamID 	= 'team_'. $ID;
-            		$teamInfo[$itemSI] 	= [
+            		// $teamInfo 	= ['ID'=>$teamID, 'title'=>$team['name'], 'end'=>$team['end']];
+            		$teamInfo 	= [
             			'ID'		=> $teamID, 
             			'title'		=> $team['name'], 
             			'time'		=> $team['end'] ? date('d-m-Y H:i:s A', strtotime($team['end'])) : '',
             		];
 
             		if (!empty($meta[$teamID])) {
-            			$teamOpts = [];
-            			foreach ($meta[$teamID] as $SI => $option) {
+            			foreach ($meta[$teamID] as $option) {
             				$optionID 	= predictor_id_from_string($option['title']);
 		                    $defaultID 	= 'default_'. $ID .'_'. $optionID;
 		                    $answerID 	= $teamID .'_'. $optionID;
 		                    $published 	= $meta[$defaultID.'_published'] ?? 0;
-		                    $type = $option['id'];
-            				$teamOpts[$type] = [
+            				$itemInfo 	= [
             					'ID'		=> $answerID, 
             					'title'		=> $option['title'], 
-            					// 'type'		=> $type, 
-            					// 'published'	=> $published,
-            					// 'options'	=> getOptions($option['weight']),
-            					// 'default'	=> $meta[$defaultID] ?? '', 
-            					// 'answerable' => 0,
-            					'answer'	=> $ans[$user->ID][$answerID] ?? 'N/A',
+            					'type'		=> $option['id'], 
+            					'published'	=> $published,
+            					'options'	=> getOptions($option['weight']),
+            					'default'	=> $meta[$defaultID] ?? '', 
+            					'answer'	=> $ans[$uID][$answerID] ?? 'N/A',
+            					'answerable' => 0,
             				];
             				if ($published) {
-            					if ($teamOpts[$type]['default'] === 'abandon') $teamOpts[$type]['isCorrect'] = $teamOpts[$type]['default'];
-            					else $teamOpts[$type]['isCorrect'] = $teamOpts[$type]['default'] == $teamOpts[$type]['answer'];
-            					$teamOpts[$type]['status'] = getWLStatus($teamOpts[$type]['answer'], $teamOpts[$type]['isCorrect'], 1);
+            					if ($itemInfo['default'] === 'abandon') $itemInfo['isCorrect'] = $itemInfo['default'];
+            					else $itemInfo['isCorrect'] = $itemInfo['default'] == $itemInfo['answer'];
+            					$itemInfo['status'] = getWLStatus($itemInfo['answer'], $itemInfo['isCorrect'], 1);
             				} else {
-            					$teamOpts[$type]['status'] = getWLStatus($teamOpts[$type]['answer'], 0, 0);
-            					if (time() < strtotime($team['end'])) $teamOpts[$type]['answerable'] = 1;
+            					$itemInfo['status'] = getWLStatus($itemInfo['answer'], 0, 0);
+            					if (time() < strtotime($teamInfo['time'])) $itemInfo['answerable'] = 1;
             				}
+		                    $items[] = [
+		                    	'event' => $eventInfo,
+		                    	'team' 	=> $teamInfo, 
+		                    	'item' 	=> $itemInfo,
+		                    ];
             			}
-            			$teamInfo[$itemSI]['opt'] = $teamOpts;
             		}
         		}
-        		if ($teamInfo && count($teamInfo) <= 10) {
-        			$items[$itemSI] = $eventInfo;
-        			$items[$itemSI]['match'] = $teamInfo;
-        		}
         	}
-
 		}
 	}
 	return $items;
@@ -244,54 +236,32 @@ function publishedEvents($uID=507) {
 	});
 	return $events;
 }
-function getEventCategories($event, $html=0) {
+function getEventCategories($event) {
 	$tournaments = '';
 	$cats = get_the_terms($event, 'tournament');
-	if ($html) {
-		if ($cats) {
-			$tournaments .= '<ul class="tournaments">';
-			foreach ($cats as $cat) {
-				$tournaments .= '<li>'. $cat->name .'</li>';
-			}
-			$tournaments .= '</ul>';
+	if ($cats) {
+		$tournaments .= '<ul class="tournaments">';
+		foreach ($cats as $cat) {
+			$tournaments .= '<li>'. $cat->name .'</li>';
 		}
-	} else {
-		$catArray = [];
-		if ($cats) {
-			foreach ($cats as $cat) {
-				$catArray[] = $cat->name;
-			}
-		}
-		$tournaments = implode(', ', $catArray);
+		$tournaments .= '</ul>';
 	}
 	return $tournaments;
 }
-function getOptions($weights, $array=1) {
-	if ($array) {
-		$options = [];
-		if ($weights) {
-			foreach ($weights as $SI => $weight) {
-				if ($weight['name']) {
-					$options[] = $weight['name'];
-				}
+function getOptions($weights) {
+	$options = '';
+	if ($weights) {
+		$options .= '<ul class="options">';
+		foreach ($weights as $weight) {
+			if ($weight['name']) {
+				$options .= "<li>";
+				$options .= $weight['name'];
+				$options .= "</li>";
 			}
 		}
-		return implode(', ',$options);
-	} else {
-		$options = '';
-		if ($weights) {
-			$options .= '<ul class="options">';
-			foreach ($weights as $weight) {
-				if ($weight['name']) {
-					$options .= "<li>";
-					$options .= $weight['name'];
-					$options .= "</li>";
-				}
-			}
-			$options .= '</ul>';
-		}
-		return $options;
+		$options .= '</ul>';
 	}
+	return $options;
 }
 function getWLStatus($answer, $isCorrect, $isPublished) {
 	$WLStatus = '';

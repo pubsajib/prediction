@@ -118,6 +118,7 @@
                     setTimeout(function() {
                         answersWrapper.html(response);
                         owlCarousel();
+                        favoriteTeamAnimation();
                     }, 500);
                 }
             },
@@ -211,7 +212,15 @@
         var isEmptyWrapper = teamWrapper.find('.predictionContainer').length;
         if (!isEmptyWrapper) { teamWrapper.remove(); }
     }
+    var favoriteTeamAnimation = function() {
+        jQuery('.skillbar').each(function(){
+            jQuery(this).find('.skillbar-bar').animate({
+                width:jQuery(this).attr('data-percent')
+            },5000);
+        });
+    }
     $(document).ready(function() {
+        favoriteTeamAnimation();
         if ($('#team_test_1_toss_winner___end').is('.endTTime')) {
             // alert('okay');
         }
@@ -221,12 +230,8 @@
 			margin:10,
 			nav:true,
 			responsive:{
-				0:{
-					items:1
-				},
-				1000:{
-					items:2
-				}
+                0:{items:1 },
+				1000:{items:2 }
 			}
 		})
 		

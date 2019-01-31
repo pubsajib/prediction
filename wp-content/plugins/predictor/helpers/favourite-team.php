@@ -41,7 +41,12 @@ function getFavoriteTeamForThisEvent($meta, $answers) : string {
                                     if ($ansByOption == $itemTeam) $answerCountByOption[] = $ansByOption;
                                 }
                             }
-                            $teams[$options]['items'][$option['id']][predictor_id_from_string($itemTeam)] = count($answerCountByOption);
+                            if (count($ansCount[$ansID])) {
+                                $itemPercentage = (count($answerCountByOption) / count($ansCount[$ansID])) * 100;
+                            } else {
+                                $itemPercentage = 0;
+                            }
+                            $teams[$options]['items'][$option['id']][predictor_id_from_string($itemTeam)] = $itemPercentage;
                         }
                     }
                     $teams[$options]['items'][$option['id']]['name'] = $option['title'];
@@ -50,62 +55,75 @@ function getFavoriteTeamForThisEvent($meta, $answers) : string {
         }
     }
     // $data .= help($teams, false);
-    
 
     if ($teams) {
-        $data .= '<table style="text-align:center;">';
-        foreach ($teams as $team) {
-            $data .= '<tr>';
-                $data .= '<th colspan="3">'. $team['name'] .'</th>';
-            $data .= '</tr>';
-            if (isset($team['teams'])) {
-                $firstTeamName = $team['teams'][0];
-                $secondTeamName = $team['teams'][1];
-                $firstTeamID = predictor_id_from_string($team['teams'][0]);
-                $secondTeamID = predictor_id_from_string($team['teams'][1]);
-                $data .= '<tr>';
-                    $data .= '<td>'. $firstTeamName .'</td>';
-                    $data .= '<td>Type</td>';
-                    $data .= '<td>'. $secondTeamName .'</td>';
-                $data .= '</tr>';
-                if (isset($team['items']['match'])) {
-                    if ($team['items']['match'][$firstTeamID] > $team['items']['match'][$secondTeamID]) {
-                        $firstMatchItemClass = 'style="background:green;"';
-                        $secondMatchItemClass = 'style="background:red;"';
-                    } else if ($team['items']['match'][$firstTeamID] < $team['items']['match'][$secondTeamID]) {
-                        $firstMatchItemClass = 'style="background:red;"';
-                        $secondMatchItemClass = 'style="background:green;"';
-                    } else {
-                        $firstMatchItemClass = '';
-                        $secondMatchItemClass = '';
+        $firstTeamColor = '#6adcfa';
+        $secondTeamColor = '#3498db';
+        $data .= '<div class="progressWrapper">';
+            foreach ($teams as $team) {
+                if (isset($team['teams'])) {
+                    $matchData = '';
+                    $tossData = '';
+                    $teamNamesData = '';
+                    $firstTeamName = $team['teams'][0];
+                    $secondTeamName = $team['teams'][1];
+                    $firstTeamID = predictor_id_from_string($team['teams'][0]);
+                    $secondTeamID = predictor_id_from_string($team['teams'][1]);
+                    
+                    $teamNamesData .= '<div class="teamNameContainer">';
+                        $teamNamesData .= '<div class="w50p first"> <h6 style="color:'. $firstTeamColor .'">'. $firstTeamName .'</h6> </div>';
+                        $teamNamesData .= '<div class="w50p last"> <h6 style="color:'. $secondTeamColor .'">'. $secondTeamName .'</h6> </div>';
+                    $teamNamesData .= '</div>';
+
+                    if (isset($team['items']['match']) && (!empty($team['items']['match'][$firstTeamID]) || !empty($team['items']['match'][$secondTeamID]))) {
+                        $firstValue = $team['items']['match'][$firstTeamID];
+                        $secondValue = $team['items']['match'][$secondTeamID];
+                        $matchData .= '<div class="progressContainer">';
+                            if ($firstValue) {
+                                $matchData .= '<div class="skillbar w50p first" style="width:'. $firstValue .'%;" data-percent="100%">';
+                                    $matchData .= '<div class="skillbar-bar" style="background: '. $$firstTeamColor .';"></div>';
+                                    $matchData .= '<div class="skill-bar-percent">'. number_format($firstValue , 2).'%</div>';
+                                $matchData .= '</div>';
+                            }
+                            if ($secondValue) {
+                                $matchData .= '<div class="skillbar w50p last" style="width:'. $secondValue .'%;" data-percent="100%">';
+                                    $matchData .= '<div class="skillbar-bar" style="background: '. $secondTeamColor .';"></div>';
+                                    $matchData .= '<div class="skill-bar-percent">'. number_format($secondValue, 2) .'%</div>';
+                                $matchData .= '</div>';
+                            }
+                            $matchData .= '<div class="typeContainer"><small>'. $team['items']['match']['name'] .' ('. $team['items']['match']['sum'] .')</small></div>';
+                        $matchData .= '</div>';
                     }
-                    $data .= '<tr>';
-                        $data .= '<td '. $firstMatchItemClass .'>'. $team['items']['match'][$firstTeamID] .'('. $team['items']['match']['sum'] .')</td>';
-                        $data .= '<td>'. $team['items']['match']['name'] .$isFirstMatchGreater.'</td>';
-                        $data .= '<td '. $secondMatchItemClass .'>'. $team['items']['match'][$secondTeamID] .'('. $team['items']['match']['sum'] .')</td>';
-                    $data .= '</tr>';
-                }
-                if (isset($team['items']['toss'])) {
-                    if ($team['items']['toss'][$firstTeamID] > $team['items']['toss'][$secondTeamID]) {
-                        $firstTossItemClass = 'style="background:green;"';
-                        $secondTossItemClass = 'style="background:red;"';
-                    } else if ($team['items']['toss'][$firstTeamID] < $team['items']['toss'][$secondTeamID]) {
-                        $firstTossItemClass = 'style="background:red;"';
-                        $secondTossItemClass = 'style="background:green;"';
-                    } else {
-                        $firstTossItemClass = '';
-                        $secondTossItemClass = '';
+                    if (isset($team['items']['toss']) && (!empty($team['items']['toss'][$firstTeamID]) || !empty($team['items']['toss'][$secondTeamID]))) {
+                        $firstValue = $team['items']['toss'][$firstTeamID];
+                        $secondValue = $team['items']['toss'][$secondTeamID];
+                        $tossData .= '<div class="progressContainer">';
+                            if ($firstValue) {
+                                $tossData .= '<div class="skillbar w50p first" style="width:'. $firstValue .'%;" data-percent="100%">';
+                                    $tossData .= '<div class="skillbar-bar" style="background: '. $$firstTeamColor .';"></div>';
+                                    $tossData .= '<div class="skill-bar-percent">'. number_format($firstValue , 2).'%</div>';
+                                $tossData .= '</div>';
+                            }
+                            if ($secondValue) {
+                                $tossData .= '<div class="skillbar w50p last" style="width:'. $secondValue .'%;" data-percent="100%">';
+                                    $tossData .= '<div class="skillbar-bar" style="background: '. $secondTeamColor .';"></div>';
+                                    $tossData .= '<div class="skill-bar-percent">'. number_format($secondValue, 2) .'%</div>';
+                                $tossData .= '</div>';
+                            }
+                            $tossData .= '<div class="typeContainer"><small>'. $team['items']['toss']['name'] .' ('. $team['items']['toss']['sum'] .')</small></div>';
+                        $tossData .= '</div>';
                     }
-                    $isFirstTossGreater = $team['items']['toss'][$firstTeamID] <=> $team['items']['toss'][$secondTeamID];
-                    $data .= '<tr>';
-                        $data .= '<td '. $firstTossItemClass .'>'. $team['items']['toss'][$firstTeamID] .'('. $team['items']['toss']['sum'] .')</td>';
-                        $data .= '<td>'. $team['items']['toss']['name'] .$isFirstTossGreater.'</td>';
-                        $data .= '<td '. $secondTossItemClass .'>'. $team['items']['toss'][$secondTeamID] .'('. $team['items']['toss']['sum'] .')</td>';
-                    $data .= '</tr>';
+                    if ($matchData || $tossData) {
+                        $data .= '<div class="progressContainer">';
+                            $data .= '<h4 style="text-align:center;">'. $team['name'] .'</h4>';
+                            $data .= $teamNamesData;
+                            $data .= $matchData;
+                            $data .= $tossData;
+                        $data .= '</div>';
+                    }
                 }
             }
-        }
-        $data .= '</table>';
+        $data .= '</div>';
     }
     // $data .= help($answers, false);
     return $data;
