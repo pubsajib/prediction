@@ -1,23 +1,15 @@
 <?php
-
 namespace PLUGIN_NAME;
-
-/**
- * The code used on the frontend.
- */
-class Frontend
-{
+class Frontend {
     private $plugin_slug;
     private $version;
     private $option_name;
     private $settings;
-
     public function __construct($plugin_slug, $version, $option_name) {
         $this->plugin_slug = $plugin_slug;
         $this->version = $version;
         $this->option_name = $option_name;
         $this->settings = get_option($this->option_name);
-
         add_action('wp_ajax_nopriv_user_login', [$this, 'ajax_login']);
         add_action('wp_ajax_save_answer', [$this, 'save_answer']);
         // ANSWERS
@@ -30,32 +22,32 @@ class Frontend
         add_action('wp_ajax_load_tournament', [$this, 'load_tournament']);
         add_action('wp_ajax_nopriv_load_tournament', [$this, 'load_tournament']);
     }
-
     public function assets() {
         // CSS
         wp_enqueue_style('timeto-css',plugin_dir_url(__FILE__).'css/timeTo.css', [], $this->version);
         wp_enqueue_style('owl-css',plugin_dir_url(__FILE__).'css/owl.carousel.min.css', [], $this->version);
         wp_enqueue_style('owltheme-css',plugin_dir_url(__FILE__).'css/owl.theme.default.min.css', [], $this->version);
         wp_enqueue_style('iziModal-css',plugin_dir_url(__FILE__).'css/iziModal.min.css', [], $this->version);
+        wp_enqueue_style('fullpage-modal',plugin_dir_url(__FILE__).'css/jquery.plugin.full-modal.min.css', [], $this->version);
+        wp_enqueue_style('fullpage-tab',plugin_dir_url(__FILE__).'css/component.css', [], $this->version);
         wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__).'css/plugin-name-frontend.css', [], $this->version);
         // JS
         wp_enqueue_script('progressbar',plugin_dir_url(__FILE__).'js/jQuery-plugin-progressbar.js', ['jquery'], $this->version, true);
-		wp_enqueue_script('tab',plugin_dir_url(__FILE__).'js/jquery.tabslet.min.js', ['jquery'], $this->version, true);
-		wp_enqueue_script('tabi',plugin_dir_url(__FILE__).'js/initializers.js', ['jquery'], $this->version, true);
+        wp_enqueue_script('tab',plugin_dir_url(__FILE__).'js/jquery.tabslet.min.js', ['jquery'], $this->version, true);
+        wp_enqueue_script('tabi',plugin_dir_url(__FILE__).'js/initializers.js', ['jquery'], $this->version, true);
         wp_enqueue_script('owl-js',plugin_dir_url(__FILE__).'js/owl.carousel.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('iziModal-js',plugin_dir_url(__FILE__).'js/iziModal.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('timeto-js',plugin_dir_url(__FILE__).'js/jquery.time-to.min.js', ['jquery'], $this->version, true);
+        wp_enqueue_script('fullpage-js',plugin_dir_url(__FILE__).'js/jquery.plugin.full-modal.min.js', ['jquery'], $this->version, true);
+        wp_enqueue_script('fullpagetab-js',plugin_dir_url(__FILE__).'js/cbpFWTabs.js', ['jquery'], $this->version, true);
         wp_enqueue_script($this->plugin_slug, plugin_dir_url(__FILE__).'js/plugin-name-frontend.js', ['jquery'], $this->version, true);
-
         // AJAX
         wp_localize_script($this->plugin_slug, 'object', ['ajaxurl' => admin_url('admin-ajax.php'), 'home_url' => home_url(), 'ajax_nonce' => wp_create_nonce('predictor_nonce')]);
     }
-
     /**
      * Render the view using MVC pattern.
      */
     public function render() {
-
         // Model
         $settings = $this->settings;
         // View
@@ -82,48 +74,45 @@ class Frontend
         check_ajax_referer('predictor_nonce', 'security');
         $event = $_POST['eventID'];
         $user = $_POST['userID'];
-        $ans  = $_POST['answer'];
-        $teamName  = $_POST['team'];
-        $teamID  = $_POST['teamid'];
-        $qtype  = $_POST['qtype'];
-        $isUpdateable = $this->isAnswerUpdateable($user, $event, $teamName, $teamID, $qtype);
+        $qid  = $_POST['qid'];
+        $qans  = $_POST['qans'];
+        $teamID  = $_POST['teamID'];
+        $isUpdateable = $this->isAnswerUpdateable($user, $event, $teamID, $qid);
+        // $_POST['updateable'] = $isUpdateable; echo json_encode($_POST); wp_die();
         if ($isUpdateable) {
-            if ($this->updateAnswer($event, $user, $ans)) echo 1;
+            // if (true) echo 1;
+            if ($this->updateAnswer($event, $user, $qid, $qans)) echo 1;
             else echo 0;
         } else {
             echo 3;
         }
         wp_die();
     }
-    function isAnswerUpdateable($user, $event, $teamName, $teamID, $qtype) {
-        $isValid = false;
+    function isAnswerUpdateable($user, $event, $teamID, $qid) {
+        $isValid = 0;
         $meta = get_post_meta($event, 'event_ops', true);
         $endTime = '';
         $test = [];
         if (!empty($meta['teams'])) {
             foreach ($meta['teams'] as $team) {
-                if ($team['name'] != $teamName) continue;
-                else if(($team['name'] == $teamName) && $team['end']) {
-                    if ($qtype != 'toss') $endTime = strtotime($team['end']);
-                    else {
-                        if ($meta[$teamID]) {
-                            foreach ($meta[$teamID] as $options) {
-                                if ($options['id'] != 'toss') continue;
-                                else if (($options['id'] == 'toss') && $options['time']) {
-                                    $endTime = strtotime($team['end']) - ($options['time'] * 60);
-                                }
+                $theID = 'team_'. predictor_id_from_string($team['name']);
+                if(($theID == $teamID) && $team['end']) {
+                    if (isset($meta[$theID])) {
+                        foreach ($meta[$theID] as $match) {
+                            $currentQID = $theID .'_'.predictor_id_from_string($match['title']);
+                            if ($currentQID == $qid) {
+                                $qtype = $match['id'];
+                                if ($qtype == 'toss') $endTime = strtotime($team['end']) - ($match['time'] * 60);
+                                else $endTime = strtotime($team['end']);
                             }
                         }
                     }
                 }
             }
         }
-        // $endTime = $endTime - (50 * 60);
-        if (time() < $endTime) $isValid = true;
+        // $endTime = $endTime - (46 * 60);
+        if (time() < $endTime) $isValid = 1;
         return $isValid;
-        // wp_die("endTime : ". date('F d Y H:i:s', $endTime) ." == current: ". date('F d Y H:i:s') ." == is valid : $isValid");
-        // wp_die(json_encode($test));
-        // wp_die("$user, $event, $teamName, $teamID, $qtype");
     }
     // LOAD ANSWERS
     function load_events_answers() {
@@ -145,7 +134,6 @@ class Frontend
             $contributedUsers = $contributedUsers ? array_values(array_unique($contributedUsers)) : [];
         }
         // wp_die(count($contributedUsers).' === '.json_encode($contributedUsers));
-
         // GIVEN ANSWERS
         $userBasedAns = [];
         if ($events) {
@@ -154,7 +142,6 @@ class Frontend
             }
         }
         // echo '<br> ==========================================<br>'; echo count($userBasedAns).' === '.json_encode($userBasedAns); wp_die();
-
         // SLIDER HEADER & FOOTER
         if ($contributedUsers) {
             $header = $footer = [];
@@ -178,14 +165,12 @@ class Frontend
                                 $header[$uID] .= get_user_meta($user->ID, 'description', true);
                         $header[$uID] .= '</div>';
                     $header[$uID] .= '</div>';
-
                     $footer[$uID] = '';
                     $footer[$uID] .= '<a class="userNavItem'. $rank['class'] .'" href="#'.$uID.'">'.get_avatar( $user->user_email , '40 ') . '</a>';;
                 }
             }
         }
         // echo '<br> ==========================================<br>'; echo count($header).' === '.json_encode($header); wp_die();
-
         $html = $userNav = '';
         $owlSelector = 'owlCarousel_'. $_POST['events'];
         $html .= '<div class="owl-carousel '. $owlSelector .' owl-theme">';
@@ -204,7 +189,6 @@ class Frontend
             $html .= '<script> jQuery(".'. $owlSelector .'").owlCarousel({loop:true, margin: 10, nav: true, autoplay:true, autoplayTimeout:15000, URLhashListener:true, autoplayHoverPause:true, startPosition: "URLHash", responsive: {0: {items: 1 }, 600: {items: 1 }, 1000: {items: '. $ditems .' } } }) </script>';
             $html .= '<span class="eventsRefreshButton fusion-button button-default button-small" event="'. str_replace('_', ',', $_POST['events']) .'" ditems='. $ditems .'>Reload</span>';
         }
-
         echo $html;
         wp_die();
     }
@@ -261,7 +245,6 @@ class Frontend
                                     $givenAnswers .= '</div>'; 
                                 }
                             }
-
                             if ($givenAnswers) {
                                 $html .= '<div class="teamAnsContainer">';
                                 $html .= '<h3 class="teamName">'. $team['name'] .'</h3>';
@@ -273,8 +256,6 @@ class Frontend
                 }
             }
             $userBasedAns[$uID] = $html;
-            // $userBasedAns[$uID] .= ' === $html_'. $uID .' === event : '. $eventID;
-            // $userBasedAns[$uID] = '$html_'. $uID;
         }
         return $userBasedAns;
     }
@@ -297,7 +278,6 @@ class Frontend
                     $answers = answersHTML($meta, $ans, $ID, $ditems);
                 }
             }
-
             if ($answers) {
                 $html .= '<span class="refreshButton fusion-button button-default button-small" event="'. $ID .'">Reload</span>';
                 $html .= $answers;
@@ -306,16 +286,13 @@ class Frontend
         echo $html;
         wp_die();
     }
-    function updateAnswer($ID, $user, $ans) {
+    function updateAnswer($ID, $user, $qid, $qans) {
+        $prevAns = [];
         $answers = (array) get_post_meta($ID, 'event_ans', true);
         if ($answers[$user]) $prevAns = $answers[$user];
-        else $prevAns = [];
-        $answers[$user] = array_merge($prevAns,  $ans);
-        if ($answers) {
-            return update_post_meta($ID, 'event_ans', $answers);
-        } else {
-            return add_post_meta($ID, 'event_ans', $answers);
-        }
+        $answers[$user] = array_merge($prevAns,  [$qid => $qans]);
+        if ($answers) return update_post_meta($ID, 'event_ans', $answers);
+        else return add_post_meta($ID, 'event_ans', $answers);
     }
     function load_tournament() {
         check_ajax_referer('predictor_nonce', 'security');

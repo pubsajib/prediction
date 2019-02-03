@@ -142,43 +142,49 @@
             }
         });
     }
-    var saveQAns = function(teamID) {
-        // PREPARE AJAX POST DATA
-        var ajaxData = {};
-        ajaxData['security'] = object.ajax_nonce;
-        ajaxData['eventID'] = $('#eventID').val();
-        ajaxData['userID'] = $('#userID').val();
-        ajaxData['action'] = 'save_answer';
-        // GIVEN ANSWERS ARRAY
-        var radioValue = {};
-        var radioValueCount = false;
-        var Question = $('#'+teamID);
-        var radioName = Question.prop('id');
-        var radioVal = $("input[name='"+ radioName +"']:checked").val();
-        radioValue[radioName] = radioVal;
-        if (radioVal) { radioValueCount = true; }
-
-        if (radioValue) {
-            ajaxData['answer'] = radioValue;
-            jQuery.ajax({
-                type: 'POST',
-                url: object.ajaxurl,
-                cache: false,
-                data: ajaxData,
-                success: function(response, status, xhr) {
-                    // console.log(response == 1);
-                    // $('.modalWrapper').html('');
-                    $('.modalWrapper').iziModal('destroy');
-                    if (response == 1) {
-                        var teamWrapper = $('#'+Question.parents('.teamQuestionContainer').attr('id'));
-                        $('#'+ teamID).remove();
-                        removeEmptyParent(teamWrapper);
+    var saveQAns = function(questionID) {
+        if (questionID != $('#QID').val()) location.reload();
+        else {
+            // PREPARE AJAX POST DATA
+            var ajaxData = {};
+            ajaxData['security']    = object.ajax_nonce;
+            ajaxData['eventID']     = $('#eventID').val();
+            ajaxData['userID']      = $('#userID').val();
+            ajaxData['teamID']      = $('#TID').val();
+            ajaxData['qid']         = questionID;
+            ajaxData['qans']        = $('#QAns').val();
+            ajaxData['action']      = 'save_answer';
+            // GIVEN ANSWERS ARRAY
+            if (ajaxData['qans']) {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: object.ajaxurl,
+                    cache: false,
+                    data: ajaxData,
+                    success: function(response, status, xhr) {
+                        // console.log(response);
+                        if (response == 1) {
+                            $('.modalWrapper').iziModal('destroy');
+                            var questionNODE = $('#'+ questionID);
+                            var teamWrapper = questionNODE.parents('.teamQuestionContainer');
+                            questionNODE.remove();
+                            removeEmptyParent(teamWrapper);
+                        }
+                        if (response == 3) {
+                            var questionNODE = $('#'+ questionID);
+                            var teamWrapper = questionNODE.parents('.teamQuestionContainer');
+                            questionNODE.remove();
+                            removeEmptyParent(teamWrapper);
+                            $('.modalWrapper footer .confirmed').attr('disabled', true).removeClass('btn-green').addClass('btn-gray');
+                            $('.modalWrapper .iziModal-content .content').html('<p style="text-align:center;font-weight:bold;color:red;">Prediction time is over.</p>');
+                            console.log('Times up');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
                     }
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
+                });
+            }
         }
         return false;
     }
@@ -220,21 +226,16 @@
         });
     }
     $(document).ready(function() {
-        favoriteTeamAnimation();
-        if ($('#team_test_1_toss_winner___end').is('.endTTime')) {
-            // alert('okay');
-        }
-		// Ranking Slider 		
-		$('.owl-rank').owlCarousel({
-			loop:true,
-			margin:10,
-			nav:true,
-			responsive:{
+        // Ranking Slider 		
+        $('.owl-rank').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            responsive:{
                 0:{items:1 },
-				1000:{items:2 }
-			}
-		})
-		
+                1000:{items:2 }
+            }
+        })
         // $('#team_test_1_toss_winner___end').parents('.autoRemoveAble').first().css('border', '1px solid red');
         $(document).on('change', '#tournaments', function(event) {
             event.preventDefault();
@@ -368,44 +369,44 @@
                 }
             }
         });
-		//Tab 		
-		$('#protab').tabslet();
+        //Tab 		
+        $('#protab').tabslet();
+        $('#TopPredictor').tabslet();
+        $('#Roadtotop').tabslet();
         //ProgressBar
         $(".progress-bar").loading(); 
         // SAVE PREDICTIONS
         $(document).on('click', '.saveQAns', function(event) {
             event.preventDefault();
             var button = $(this);
-            var teamID = $(this).parents('.predictionContainer').attr('id');
-            // PREPARE AJAX POST DATA
-            var ajaxData = {};
-            ajaxData['security'] = object.ajax_nonce;
-            ajaxData['eventID'] = $('#eventID').val();
-            ajaxData['userID'] = $('#userID').val();
-            ajaxData['action'] = 'save_answers';
+            var teamID = button.parents('.teamQuestionContainer').attr('id');
+            var Question = button.parents('.predictionContainer');
+            var questionID = button.parents('.predictionContainer').attr('id');
+
             // GIVEN ANSWERS ARRAY
             var warnings = '';
-            var radioValues = {};
             var radioValueCount = 0;
-            warnings = '<h3 class="wTitle">'+ $(this).parents('.teamQuestionContainer').find('.teamName strong').text() +'</h3>';
-            var Questions = $(this).parents('.predictionContainer');
-            var radioTitle = Questions.find('.title').text();
-            var radioName = Questions.prop('id');
-            var radioVal = $("input[name='"+ radioName +"']:checked").val();
-            radioValues[radioName] = radioVal;
+            warnings = '<h3 class="wTitle">'+ button.parents('.teamQuestionContainer').find('.teamName strong').text() +'</h3>';
+            var radioTitle = Question.find('.title').text();
+
+            var radioVal = $("input[name='"+ questionID +"']:checked").val();
             if (radioVal) { 
+                $('#TID').val(teamID);
+                $('#QID').val(questionID);
+                $('#QAns').val(radioVal);
                 warnings += '<p class="given"><span class="title">'+ radioTitle +' : </span><span class="ans">'+ radioVal +'</span></p>';
-                radioValueCount += 1; 
+                cofirmBox(warnings, questionID);
             } else {
-                warnings += '<p class="empty"><span class="title">'+ radioTitle +' : </span><span class="ans">unknown </span></p>';
+                $('#TID').val('');
+                $('#QID').val('');
+                $('#QAns').val('');
+                alert('You didn\'t select any answer.');
             }
-            if (!radioValueCount) alert('You didn\'t select any answer.');
-            else cofirmBox(warnings, teamID);
         })
         $(document).on('click', '.confirmed', function(event) {
             event.preventDefault();
-            var teamID = $(this).attr('team');
-            saveQAns(teamID);
+            var questionID = $(this).attr('team');
+            saveQAns(questionID);
         });
         // ANSWERS
         $('.answersWrapper').each(function(index) {

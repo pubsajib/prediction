@@ -36,10 +36,10 @@ class top {
 				}/*Profile Picture*/
 				if ($attr['info']) {
 					$html .= '<h3><a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$user->ID) .'</a></h3>';
-// 					$html .= '<p>';
+					// $html .= '<p>';
 					if ($user->user_url) $html .= '<strong>Website:</strong> <a href="'. $user->user_url .'">'. $user->user_url .'</a><br />';
 					if ($user->user_description) $html .= $user->user_description;
-// 					$html .= '</p>';
+					// $html .= '</p>';
 				}/*Info*/
 				$html .= '</div>';
 				if ($attr['session-accuracy']) {

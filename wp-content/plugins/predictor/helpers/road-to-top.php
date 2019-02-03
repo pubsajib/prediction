@@ -1,5 +1,6 @@
 <?php 
-function RoadToTop($user=null) {
+function RoadToTop($user=null, $min=null) {
+	$min = ['avg' => 50, 'match' => 70, 'engagement' => 40];
 	if (!$user) $user = wp_get_current_user();
 	if ( !in_array( 'predictor', (array) $user->roles ) ) echo "Not a predictor";
 	else{
@@ -29,9 +30,10 @@ function RoadToTop($user=null) {
 		
 		// ACCURICY
 		if ($UP['avg']) {
+		    $class = $UP['avg'] >= $min['avg'] ? 'green' : 'red';
 			echo '<div class="item">
 					<h3>Accuracy</h3>
-					<div class="circle green">
+					<div class="circle '. $class .'">
 						<p>'. $UP['avg']['all']['rate'] .'</p>
 					</div>
 					<div class="additional">
@@ -41,11 +43,12 @@ function RoadToTop($user=null) {
 			</div>';
 		}
 		
-		// ENGAGEMENT
+		// ENGAGEMENT (red/green)
 		if ($lifeTimeEvents) {
+		    $class = $engagement >= $min['engagement'] ? 'green' : 'red';
 			echo '<div class="item">
 					<h3>Engagement</h3>
-					<div class="circle red">
+					<div class="circle '. $class .'">
 						<p>'. $engagement .'</p>
 					</div>
 					<div class="additional">
@@ -57,9 +60,10 @@ function RoadToTop($user=null) {
 
 		// PARTICIPATED
 		if ($rankInfo) {
+		    $class = $rankInfo['participated'] >= $min['match'] ? 'green' : 'red';
 			echo '<div class="item">
 					<h3>Participated</h3>
-					<div class="circle red">
+					<div class="circle '. $class .'">
 						<p>'. $rankInfo['participated'] .'</p>
 					</div>
 					<div class="additional">
@@ -95,11 +99,15 @@ function profileEvents($user=null) {
         'post_type' => 'event',
         'post_status' => 'publish',
         'posts_per_page' => -1,
-        'date_query' => ['after' => $registered],
+        // 'date_query' => ['after' => $registered],
+        'orderby' => 'publish_date',
+    	'order' => 'DESC',
     );
     $events = new WP_Query($query);
     $events = $events->posts;
+    // help($events); exit();
     if ($events) {
+    	$eventSI = 0;
 		foreach ($events as $event) {
 			$eventInfo = [
 				'ID'=>$event->ID, 
@@ -114,7 +122,8 @@ function profileEvents($user=null) {
 
 			if (!empty($meta['teams'])) {
 				$teamInfo = [];
-        		foreach ($meta['teams'] as $itemSI => $team) {
+				$itemSI = 0;
+        		foreach ($meta['teams'] as $team) {
         			$ID     	= predictor_id_from_string($team['name']);
             		$teamID 	= 'team_'. $ID;
             		$teamInfo[$itemSI] 	= [
@@ -123,9 +132,10 @@ function profileEvents($user=null) {
             			'time'		=> $team['end'] ? date('d-m-Y H:i:s A', strtotime($team['end'])) : '',
             		];
 
+            		$teamOpts = [];
             		if (!empty($meta[$teamID])) {
-            			$teamOpts = [];
-            			foreach ($meta[$teamID] as $SI => $option) {
+            			$SI = 0;
+            			foreach ($meta[$teamID] as $option) {
             				$optionID 	= predictor_id_from_string($option['title']);
 		                    $defaultID 	= 'default_'. $ID .'_'. $optionID;
 		                    $answerID 	= $teamID .'_'. $optionID;
@@ -141,7 +151,7 @@ function profileEvents($user=null) {
             					// 'answerable' => 0,
             					'answer'	=> $ans[$user->ID][$answerID] ?? 'N/A',
             				];
-            				if ($published) {
+            				if ($published && isset($teamOpts[$type]['default'])) {
             					if ($teamOpts[$type]['default'] === 'abandon') $teamOpts[$type]['isCorrect'] = $teamOpts[$type]['default'];
             					else $teamOpts[$type]['isCorrect'] = $teamOpts[$type]['default'] == $teamOpts[$type]['answer'];
             					$teamOpts[$type]['status'] = getWLStatus($teamOpts[$type]['answer'], $teamOpts[$type]['isCorrect'], 1);
@@ -149,39 +159,33 @@ function profileEvents($user=null) {
             					$teamOpts[$type]['status'] = getWLStatus($teamOpts[$type]['answer'], 0, 0);
             					if (time() < strtotime($team['end'])) $teamOpts[$type]['answerable'] = 1;
             				}
+            				$SI++;
             			}
-            			$teamInfo[$itemSI]['opt'] = $teamOpts;
             		}
+            		$teamInfo[$itemSI]['opt'] = $teamOpts;
+            		$itemSI++;
         		}
-        		if ($teamInfo && count($teamInfo) <= 10) {
-        			$items[$itemSI] = $eventInfo;
-        			$items[$itemSI]['match'] = $teamInfo;
+        		if ($teamInfo && count($items) <= 9) {
+        			$items[$eventSI] = $eventInfo;
+        			$items[$eventSI]['match'] = $teamInfo;
         		}
+            	$eventSI++;
         	}
 
 		}
 	}
 	return $items;
 }
-function profileEvents2($uID=507) {
+function recentMatches($tournament=null) {
 	$items = [];
-	$udata = get_userdata($uID);
-	$registered = $udata->user_registered;
-	// $registered = '2019-01-02 20:17:00'; // YYYY-mm-dd
-	$query = array(
-        'post_type' => 'event',
-        'post_status' => 'publish',
-        'posts_per_page' => -1,
-        'date_query' => ['after' => $registered],
-    );
+	$itemSI = 0;
+	$query = ['post_type' => 'event', 'post_status' => 'publish', 'posts_per_page' => 20,];
     $events = new WP_Query($query);
     // $events = $events->found_posts;
     $events = $events->posts;
     if ($events) {
 		foreach ($events as $event) {
-			$eventInfo = ['ID'=>$event->ID, 'title'=> $event->post_title, 'slug'=>$event->post_name, 'cats' => getEventCategories($event)];
 			$meta  = get_post_meta($event->ID, 'event_ops', true);
-			$ans  = get_post_meta($event->ID, 'event_ans', true);
 			if (!empty($meta['teams'])) {
         		foreach ($meta['teams'] as $team) {
         			$ID     	= predictor_id_from_string($team['name']);
@@ -191,39 +195,36 @@ function profileEvents2($uID=507) {
             			'ID'		=> $teamID, 
             			'title'		=> $team['name'], 
             			'time'		=> $team['end'] ? date('d-m-Y H:i:s A', strtotime($team['end'])) : '',
+            			'cats' 		=> getEventCategories($event),
+            			'eventID'	=>$event->ID, 
+            			'slug'		=>$event->post_name,
             		];
-
+            		$itemInfo = [];
             		if (!empty($meta[$teamID])) {
+            			$itemSI = 0;
             			foreach ($meta[$teamID] as $option) {
             				$optionID 	= predictor_id_from_string($option['title']);
 		                    $defaultID 	= 'default_'. $ID .'_'. $optionID;
 		                    $answerID 	= $teamID .'_'. $optionID;
 		                    $published 	= $meta[$defaultID.'_published'] ?? 0;
-            				$itemInfo 	= [
+            				$itemInfo[$itemSI] 	= [
             					'ID'		=> $answerID, 
             					'title'		=> $option['title'], 
             					'type'		=> $option['id'], 
             					'published'	=> $published,
             					'options'	=> getOptions($option['weight']),
-            					'default'	=> $meta[$defaultID] ?? '', 
-            					'answer'	=> $ans[$uID][$answerID] ?? 'N/A',
+            					'default'	=> $meta[$defaultID] ?? '',
             					'answerable' => 0,
             				];
-            				if ($published) {
-            					if ($itemInfo['default'] === 'abandon') $itemInfo['isCorrect'] = $itemInfo['default'];
-            					else $itemInfo['isCorrect'] = $itemInfo['default'] == $itemInfo['answer'];
-            					$itemInfo['status'] = getWLStatus($itemInfo['answer'], $itemInfo['isCorrect'], 1);
-            				} else {
-            					$itemInfo['status'] = getWLStatus($itemInfo['answer'], 0, 0);
-            					if (time() < strtotime($teamInfo['time'])) $itemInfo['answerable'] = 1;
-            				}
-		                    $items[] = [
-		                    	'event' => $eventInfo,
-		                    	'team' 	=> $teamInfo, 
-		                    	'item' 	=> $itemInfo,
-		                    ];
+            				if ($published) $itemInfo[$itemSI]['answer'] = $itemInfo[$itemSI]['default'];
+            				$itemSI++;
             			}
             		}
+            		if ($itemInfo) {
+	                    $items[$itemSI] = $teamInfo;
+	                    $items[$itemSI]['item'] = $itemInfo;
+            		}
+            		$itemSI++;
         		}
         	}
 		}

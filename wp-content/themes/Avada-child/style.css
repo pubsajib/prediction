@@ -1,0 +1,21 @@
+/*
+Theme Name: Avada Child
+Theme URI: http://avada.theme-fusion.com/
+Template: Avada
+Author: ThemeFusion
+Author URI: http://themeforest.net/user/ThemeFusion
+Description: The #1 selling theme of all time that allows you to build virtually any design style.
+Version: 5.7.2.1547992965
+Updated: 2019-01-20 20:02:45
+
+*/
+.custom-menus {
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	z-index: 99;
+}
+
+.ibs-full-modal {
+	left: 0;
+}

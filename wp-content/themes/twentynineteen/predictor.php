@@ -4,8 +4,8 @@ get_header();
 // $ranking = tournamentData($userID=1, $tournamentID=4);
 $ranking = getRakingFor();
 // $userRank = userRankingStatusFor(516, $ranking);
-help($userRank);
-help($ranking);
+// help($userRank);
+// help($ranking);
 $permited = ['all', 'match', 'toss'];
 // Set the Current Author Variable $user
 $user = (isset($_GET['p'])) ? get_user_by('login', $_GET['p']) : [];

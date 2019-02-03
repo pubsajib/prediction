@@ -25,8 +25,11 @@ class Prediction {
 						if (@$meta['published']) $html .= 'Event prediction time is over'; // Event is already published
 						else {
 							$html .= '<form action="" method="post">';
-								$html .= '<input id="eventID" type="hidden" name="event" value="'. $ID .'">';
 								$html .= '<input id="userID" type="hidden" name="user" value="'. $userID .'">';
+								$html .= '<input id="eventID" type="hidden" name="event" value="'. $ID .'">';
+								$html .= '<input id="TID" type="hidden" name="team">';
+								$html .= '<input id="QID" type="hidden" name="qid">';
+								$html .= '<input id="QAns" type="hidden" name="qans">';
 								if ($meta['teams']) {
 									$html .= '<div class="teamQuestionWrapper">';
 									foreach ($meta['teams'] as $team) {
@@ -88,7 +91,6 @@ class Prediction {
 				}
 			}
 		}
-		
 		return $html;
 	}
  }
