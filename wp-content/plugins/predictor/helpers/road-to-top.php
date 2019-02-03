@@ -179,10 +179,12 @@ function profileEvents($user=null) {
 function recentMatches($tournament=null) {
 	$items = [];
 	$itemSI = 0;
-	$query = ['post_type' => 'event', 'post_status' => 'publish', 'posts_per_page' => 20,];
+	$query = ['post_type' => 'event', 'post_status' => 'publish', 'posts_per_page' => 2,];
+	if ($tournament) $query['tax_query'] = [['taxonomy' => 'tournament', 'field' => 'term_id', 'terms' => $tournament]];
     $events = new WP_Query($query);
     // $events = $events->found_posts;
     $events = $events->posts;
+    // help($events);
     if ($events) {
 		foreach ($events as $event) {
 			$meta  = get_post_meta($event->ID, 'event_ops', true);
@@ -190,33 +192,27 @@ function recentMatches($tournament=null) {
         		foreach ($meta['teams'] as $team) {
         			$ID     	= predictor_id_from_string($team['name']);
             		$teamID 	= 'team_'. $ID;
-            		// $teamInfo 	= ['ID'=>$teamID, 'title'=>$team['name'], 'end'=>$team['end']];
             		$teamInfo 	= [
-            			'ID'		=> $teamID, 
+            			'eventID'	=>$event->ID, 
             			'title'		=> $team['name'], 
+            			'slug'		=>$event->post_name,
             			'time'		=> $team['end'] ? date('d-m-Y H:i:s A', strtotime($team['end'])) : '',
             			'cats' 		=> getEventCategories($event),
-            			'eventID'	=>$event->ID, 
-            			'slug'		=>$event->post_name,
             		];
             		$itemInfo = [];
             		if (!empty($meta[$teamID])) {
-            			$itemSI = 0;
             			foreach ($meta[$teamID] as $option) {
             				$optionID 	= predictor_id_from_string($option['title']);
 		                    $defaultID 	= 'default_'. $ID .'_'. $optionID;
 		                    $answerID 	= $teamID .'_'. $optionID;
 		                    $published 	= $meta[$defaultID.'_published'] ?? 0;
             				$itemInfo[$itemSI] 	= [
-            					'ID'		=> $answerID, 
-            					'title'		=> $option['title'], 
-            					'type'		=> $option['id'], 
-            					'published'	=> $published,
+            					// 'ID'		=> $answerID, 
+            					'title'		=> $option['title'],
             					'options'	=> getOptions($option['weight']),
-            					'default'	=> $meta[$defaultID] ?? '',
-            					'answerable' => 0,
+            					'default'	=> 'N/A'
             				];
-            				if ($published) $itemInfo[$itemSI]['answer'] = $itemInfo[$itemSI]['default'];
+            				if ($published) $itemInfo[$itemSI]['default'] = $meta[$defaultID] ?? '';
             				$itemSI++;
             			}
             		}

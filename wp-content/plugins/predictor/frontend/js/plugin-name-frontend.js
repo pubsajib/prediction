@@ -1,7 +1,7 @@
 (function($) {
     'use strict';
-    var owlCarousel = function(ID, end) {
-        $('.notWorking').owlCarousel({
+    var owlCarousel = function() {
+        $('.owlCarousel_headerNotification').owlCarousel({
             loop:true,
             margin: 10,
             nav: true,
@@ -13,7 +13,7 @@
             responsive: {
                 0: {items: 1 }, 
                 600: {items: 1 }, 
-                1000: {items: 2 }
+                1000: {items: 4 }
             }
         })
     };
@@ -226,6 +226,7 @@
         });
     }
     $(document).ready(function() {
+        owlCarousel();
         // Ranking Slider 		
         $('.owl-rank').owlCarousel({
             loop:true,
@@ -373,6 +374,7 @@
         $('#protab').tabslet();
         $('#TopPredictor').tabslet();
         $('#Roadtotop').tabslet();
+        $('#headerNotification').tabslet();
         //ProgressBar
         $(".progress-bar").loading(); 
         // SAVE PREDICTIONS
