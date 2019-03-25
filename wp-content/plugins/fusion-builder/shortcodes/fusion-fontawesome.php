@@ -137,7 +137,7 @@ if ( fusion_is_element_enabled( 'fusion_fontawesome' ) ) {
 
 				// Legacy icon, where no margin option was present: use the old default ,argin calcs.
 				if ( $this->args['legacy_icon'] ) {
-					$icon_margin  = $this->args['font_size'] * 0.5;
+					$icon_margin = $this->args['font_size'] * 0.5;
 
 					if ( 'left' === $this->args['alignment'] ) {
 						$icon_margin_position = 'right';
@@ -250,10 +250,10 @@ if ( fusion_is_element_enabled( 'fusion_fontawesome' ) ) {
 			public function add_options() {
 
 				return array(
-					'icon_shortcode_section' => array(
-						'label'       => esc_html__( 'Icon Element', 'fusion-builder' ),
+					'font_awesome_icon_shortcode_section' => array(
+						'label'       => esc_html__( 'Font Awesome Icon Element', 'fusion-builder' ),
 						'description' => '',
-						'id'          => 'icon_shortcode_section',
+						'id'          => 'font_awesome_icon_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
 							'icon_circle_color' => array(
@@ -270,7 +270,7 @@ if ( fusion_is_element_enabled( 'fusion_fontawesome' ) ) {
 								'default'     => '#333333',
 								'type'        => 'color-alpha',
 							),
-							'icon_color' => array(
+							'icon_color'        => array(
 								'label'       => esc_html__( 'Icon Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the icon.', 'fusion-builder' ),
 								'id'          => 'icon_color',

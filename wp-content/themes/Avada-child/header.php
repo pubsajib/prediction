@@ -53,59 +53,60 @@ if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
 
 ?>
 <body <?php body_class(); ?>>
-	 
-	<div class="ibs-full-modal-container" id="modal1">
-  <div class="ibs-full-modal">
-    <header class="ibs-modal-header">
-      <h4 class="ibs-modal-title">Default Modal</h4>
-      <span class="ibs-btn-close">&times;</span>
-    </header>
-    <div class="ibs-modal-body has-header has-footer">
-		<div id="tabs" class="tabs">
-				<nav>
-					<ul>
-						<li><a href="#section-1" class="icon-shop"><span>Shop</span></a></li>
-						<li><a href="#section-2" class="icon-cup"><span>Drinks</span></a></li>
-					</ul>
-				</nav>
-				<div class="content">
-					<section id="section-1">
-						<div class="mediabox">
-							<h3>Sushi Gumbo Beetroot</h3>
-							<p>Sushi gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.</p>
-						</div>
-						<div class="mediabox">
-							<h3>Pea Sprouts Fava Soup</h3>
-							<p>Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea.</p>
-						</div>
-						<div class="mediabox">
-							<h3>Turnip Broccoli Sashimi</h3>
-							<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
-						</div>
-					</section>
-					<section id="section-2">
-						<div class="mediabox">
-							<h3>Asparagus Cucumber Cake</h3>
-							<p>Chickweed okra pea winter purslane coriander yarrow sweet pepper radish garlic brussels sprout groundnut summer purslane earthnut pea tomato spring onion azuki bean gourd. </p>
-						</div>
-						<div class="mediabox">
-							<h3>Magis Kohlrabi Gourd</h3>
-							<p>Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.</p>
-						</div>
-						<div class="mediabox">
-							<h3>Ricebean Rutabaga</h3>
-							<p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. </p>
-						</div>
-					</section>
-				</div><!-- /content -->
-			</div>
-    </div>
-    <div class="ibs-modal-footer">
-		<p>Here you will find FREE cricket predictions on a wide range of games. Also covering Royal London One-Day Cup, One day and T20 matches. You will also find predictions for all the major 				international games, test matches, one day internationals and of course tips on the Cricket World cup. And you get free sessions call too!!!</p>
-    </div>
-  </div>
-</div>
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'Avada' ); ?></a>
+	<?php if (false): ?>
+		<div class="ibs-full-modal-container" id="modal1">
+		  <div class="ibs-full-modal">
+		    <header class="ibs-modal-header">
+		      <h4 class="ibs-modal-title">Default Modal</h4>
+		      <span class="ibs-btn-close">&times;</span>
+		    </header>
+		    <div class="ibs-modal-body has-header has-footer">
+				<div id="tabs" class="tabs">
+						<nav>
+							<ul>
+								<li><a href="#section-1" class="icon-shop"><span>Shop</span></a></li>
+								<li><a href="#section-2" class="icon-cup"><span>Drinks</span></a></li>
+							</ul>
+						</nav>
+						<div class="content">
+							<section id="section-1">
+								<div class="mediabox">
+									<h3>Sushi Gumbo Beetroot</h3>
+									<p>Sushi gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.</p>
+								</div>
+								<div class="mediabox">
+									<h3>Pea Sprouts Fava Soup</h3>
+									<p>Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea.</p>
+								</div>
+								<div class="mediabox">
+									<h3>Turnip Broccoli Sashimi</h3>
+									<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
+								</div>
+							</section>
+							<section id="section-2">
+								<div class="mediabox">
+									<h3>Asparagus Cucumber Cake</h3>
+									<p>Chickweed okra pea winter purslane coriander yarrow sweet pepper radish garlic brussels sprout groundnut summer purslane earthnut pea tomato spring onion azuki bean gourd. </p>
+								</div>
+								<div class="mediabox">
+									<h3>Magis Kohlrabi Gourd</h3>
+									<p>Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.</p>
+								</div>
+								<div class="mediabox">
+									<h3>Ricebean Rutabaga</h3>
+									<p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. </p>
+								</div>
+							</section>
+						</div><!-- /content -->
+					</div>
+		    </div>
+		    <div class="ibs-modal-footer">
+				<p>Here you will find FREE cricket predictions on a wide range of games. Also covering Royal London One-Day Cup, One day and T20 matches. You will also find predictions for all the major international games, test matches, one day internationals and of course tips on the Cricket World cup. And you get free sessions call too!!!</p>
+		    </div>
+		  </div>
+		</div>
+		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'Avada' ); ?></a>
+	<?php endif; ?>
 	<?php
 	do_action( 'avada_before_body_content' );
 

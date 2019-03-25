@@ -8,6 +8,21 @@ $options      = array();
 // -----------------------------------------
 // Page Metabox Options                    -
 // -----------------------------------------
+// $options[] = array(
+// 	'id' => 'date',
+// 	'title' => 'Date Option',
+// 	'post_type' => 'event',
+// 	'context' => 'side',
+// 	'priority' => 'default',
+// 	'sections' => array(
+// 		array(
+// 			'name' => 'Date',
+// 			'fields' =>  [
+//                 ['id' => 'start', 'type'  => 'text', 'title' => 'Start Date'],
+//             ]
+// 		),
+// 	),
+// );
 $options[]    = array(
     'id'        => 'event_ops',
     'title'     => 'Custom Event Options',
@@ -32,6 +47,8 @@ $options[]    = array(
                     'fields' => [
                         ['id' => 'name', 'type' => 'text', 'title' => 'Name'],
                         ['id' => 'end', 'type' => 'datetime', 'title' => 'End date'],
+                        ['id' => 'subtitle', 'type' => 'text', 'title' => 'Sub title'],
+                        ['id' => 'discussion', 'type' => 'text', 'title' => 'Discussion'],
                     ],
                 ],
             ),
@@ -50,24 +67,24 @@ $options[]    = array(
         // ],
     ),
 );
-$options[]    =  [
-    'id'        => 'date_ops',
-    'title'     => 'Custom Blog Options',
-    'post_type' => 'post',
-    'context'   => 'normal',
-    'priority'  => 'default',
-    'sections'  => [
-        [
-            'name' => 'date', 
-            'title' => 'Event Date', 
-            'icon'  => 'fa fa-check-square', 
-            'fields' => [
-                ['id' => 'start', 'type' => 'datetime', 'title' => 'Start date'],
-                ['id' => 'end', 'type' => 'datetime', 'title' => 'End date']
-            ]
-        ],
-    ],
-];
+// $options[]    =  [
+//     'id'        => 'date_ops',
+//     'title'     => 'Custom Blog Options',
+//     'post_type' => 'post',
+//     'context'   => 'normal',
+//     'priority'  => 'default',
+//     'sections'  => [
+//         [
+//             'name' => 'date', 
+//             'title' => 'Event Date', 
+//             'icon'  => 'fa fa-check-square', 
+//             'fields' => [
+//                 ['id' => 'start', 'type' => 'datetime', 'title' => 'Start date'],
+//                 ['id' => 'end', 'type' => 'datetime', 'title' => 'End date']
+//             ]
+//         ],
+//     ],
+// ];
 CSFramework_Metabox::instance( $options );
 class CSFramework_Option_weight extends CSFramework_Options {
     protected $defaults = '';

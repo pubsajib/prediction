@@ -73,11 +73,11 @@ class Fusion_Builder_Dynamic_CSS extends Fusion_Dynamic_CSS {
 		$dynamic_css_helpers = $dynamic_css->get_helpers();
 		$css                 = array();
 
-		$info_background_color    = '' !== $fusion_settings->get( 'info_bg_color' ) ? strtolower( $fusion_settings->get( 'info_bg_color' ) ) : '#ffffff';
-		$info_accent_color        = $fusion_settings->get( 'info_accent_color' );
+		$info_background_color = '' !== $fusion_settings->get( 'info_bg_color' ) ? strtolower( $fusion_settings->get( 'info_bg_color' ) ) : '#ffffff';
+		$info_accent_color     = $fusion_settings->get( 'info_accent_color' );
 
-		$danger_background_color  = '' !== $fusion_settings->get( 'danger_bg_color' ) ? strtolower( $fusion_settings->get( 'danger_bg_color' ) ) : '#f2dede';
-		$danger_accent_color      = $fusion_settings->get( 'danger_accent_color' );
+		$danger_background_color = '' !== $fusion_settings->get( 'danger_bg_color' ) ? strtolower( $fusion_settings->get( 'danger_bg_color' ) ) : '#f2dede';
+		$danger_accent_color     = $fusion_settings->get( 'danger_accent_color' );
 
 		$success_background_color = '' !== $fusion_settings->get( 'success_bg_color' ) ? strtolower( $fusion_settings->get( 'success_bg_color' ) ) : '#dff0d8';
 		$success_accent_color     = $fusion_settings->get( 'success_accent_color' );
@@ -92,20 +92,20 @@ class Fusion_Builder_Dynamic_CSS extends Fusion_Dynamic_CSS {
 				'.wpcf7-form .wpcf7-validation-errors',
 			);
 			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-color'] = $danger_background_color;
-			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border'] = '1px solid ' . $danger_accent_color;
-			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $danger_accent_color;
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border']           = '1px solid ' . $danger_accent_color;
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']            = $danger_accent_color;
 
 			// CF7 success notice.
 			$css['global']['.wpcf7-form .wpcf7-mail-sent-ok']['background-color'] = $success_background_color;
-			$css['global']['.wpcf7-form .wpcf7-mail-sent-ok']['border'] = '1px solid ' . $success_accent_color;
-			$css['global']['.wpcf7-form .wpcf7-mail-sent-ok']['color'] = $success_accent_color;
+			$css['global']['.wpcf7-form .wpcf7-mail-sent-ok']['border']           = '1px solid ' . $success_accent_color;
+			$css['global']['.wpcf7-form .wpcf7-mail-sent-ok']['color']            = $success_accent_color;
 		}
 
 		if ( class_exists( 'WooCommerce' ) ) {
 			// WooCommerce error notice.
 			$css['global']['.woocommerce-error li']['background-color'] = $danger_background_color;
-			$css['global']['.woocommerce-error li']['border'] = '1px solid ' . $danger_accent_color;
-			$css['global']['.woocommerce-error li']['color'] = $danger_accent_color;
+			$css['global']['.woocommerce-error li']['border']           = '1px solid ' . $danger_accent_color;
+			$css['global']['.woocommerce-error li']['color']            = $danger_accent_color;
 
 			// WooCommerce general notice.
 			$elements = array(
@@ -114,10 +114,21 @@ class Fusion_Builder_Dynamic_CSS extends Fusion_Dynamic_CSS {
 			);
 
 			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-color'] = $info_background_color;
-			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-top'] = '1px solid ' . $info_accent_color;
-			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-bottom'] = '1px solid ' . $info_accent_color;
-			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $info_accent_color;
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-top']       = '1px solid ' . $info_accent_color;
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-bottom']    = '1px solid ' . $info_accent_color;
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']            = $info_accent_color;
 
+			$elements = array(
+				'.validate-required.woocommerce-invalid input',
+				'.validate-required.woocommerce-invalid .select2-selection--single'
+			);
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['box-shadow'] = 'inset 3px 0 0 ' . $danger_accent_color . '!important';
+
+			$elements = array(
+				'.validate-required.woocommerce-validated input',
+				'.validate-required.woocommerce-validated .select2-selection--single'
+			);
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['box-shadow'] = 'inset 3px 0 0 ' . $success_accent_color . '!important';
 		}
 
 		if ( class_exists( 'bbPress' ) ) {
@@ -128,7 +139,7 @@ class Fusion_Builder_Dynamic_CSS extends Fusion_Dynamic_CSS {
 			);
 
 			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = $info_background_color;
-			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border'] = '1px solid ' . $info_accent_color;
+			$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border']     = '1px solid ' . $info_accent_color;
 
 		}
 
@@ -140,23 +151,23 @@ class Fusion_Builder_Dynamic_CSS extends Fusion_Dynamic_CSS {
 		);
 
 		$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-color'] = $info_background_color;
-		$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-color'] = $info_accent_color;
-		$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $info_accent_color;
+		$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-color']     = $info_accent_color;
+		$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']            = $info_accent_color;
 
 		// Error notice.
 		$css['global']['.alert-danger']['background-color'] = $danger_background_color;
-		$css['global']['.alert-danger']['border-color'] = $danger_accent_color;
-		$css['global']['.alert-danger']['color'] = $danger_accent_color;
+		$css['global']['.alert-danger']['border-color']     = $danger_accent_color;
+		$css['global']['.alert-danger']['color']            = $danger_accent_color;
 
 		// Success notice.
 		$css['global']['.alert-success']['background-color'] = $success_background_color;
-		$css['global']['.alert-success']['border-color'] = $success_accent_color;
-		$css['global']['.alert-success']['color'] = $success_accent_color;
+		$css['global']['.alert-success']['border-color']     = $success_accent_color;
+		$css['global']['.alert-success']['color']            = $success_accent_color;
 
 		// Warning notice.
 		$css['global']['.alert-warning']['background-color'] = $warning_background_color;
-		$css['global']['.alert-warning']['border-color'] = $warning_accent_color;
-		$css['global']['.alert-warning']['color'] = $warning_accent_color;
+		$css['global']['.alert-warning']['border-color']     = $warning_accent_color;
+		$css['global']['.alert-warning']['color']            = $warning_accent_color;
 
 		// End FIXME.
 		$css = array_replace_recursive( $css, $original_css );

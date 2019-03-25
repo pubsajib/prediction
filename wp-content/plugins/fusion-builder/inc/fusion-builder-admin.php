@@ -63,7 +63,7 @@ class Fusion_Builder_Admin {
 		global $submenu;
 
 		$whatsnew = add_menu_page( esc_attr__( 'Fusion Builder', 'fusion-builder' ), esc_attr__( 'Fusion Builder', 'fusion-builder' ), 'manage_options', 'fusion-builder-options', array( $this, 'whatsnew' ), 'dashicons-fusiona-logo', '2.222222' );
-		$library   = add_submenu_page( 'fusion-builder-options', esc_attr__( 'Library', 'fusion-builder' ), esc_attr__( 'Library', 'fusion-builder' ), 'manage_options', 'fusion-builder-library', array( $this, 'library' ) );
+		$library  = add_submenu_page( 'fusion-builder-options', esc_attr__( 'Library', 'fusion-builder' ), esc_attr__( 'Library', 'fusion-builder' ), 'manage_options', 'fusion-builder-library', array( $this, 'library' ) );
 		$addons   = add_submenu_page( 'fusion-builder-options', esc_attr__( 'Add-ons', 'fusion-builder' ), esc_attr__( 'Add-ons', 'fusion-builder' ), 'manage_options', 'fusion-builder-addons', array( $this, 'addons' ) );
 
 		if ( current_user_can( 'switch_themes' ) ) {
@@ -77,7 +77,7 @@ class Fusion_Builder_Admin {
 
 			// Add menu items if Avada is active.
 			if ( ! defined( 'ENVATO_HOSTED_SITE' ) ) {
-				$support  = add_submenu_page( 'fusion-builder-options', esc_attr__( 'Support', 'fusion-builder' ), esc_attr__( 'Support', 'fusion-builder' ), 'manage_options', 'fusion-builder-support', array( $this, 'support_tab' ) );
+				$support = add_submenu_page( 'fusion-builder-options', esc_attr__( 'Support', 'fusion-builder' ), esc_attr__( 'Support', 'fusion-builder' ), 'manage_options', 'fusion-builder-support', array( $this, 'support_tab' ) );
 			}
 			$faq      = add_submenu_page( 'fusion-builder-options', esc_attr__( 'FAQ', 'fusion-builder' ), esc_attr__( 'FAQ', 'fusion-builder' ), 'manage_options', 'fusion-builder-faq', array( $this, 'faq_tab' ) );
 			$settings = add_submenu_page( 'fusion-builder-options', esc_attr__( 'Settings', 'fusion-builder' ), esc_attr__( 'Settings', 'fusion-builder' ), 'manage_options', 'fusion-builder-settings', array( $this, 'settings' ) );
@@ -183,10 +183,10 @@ class Fusion_Builder_Admin {
 		}
 
 		if ( $active_page == $page ) {
-			$link = 'javascript:void(0);';
+			$link       = 'javascript:void(0);';
 			$active_tab = ' nav-tab-active';
 		} else {
-			$link = 'admin.php?page=' . $page;
+			$link       = 'admin.php?page=' . $page;
 			$active_tab = '';
 		}
 

@@ -102,19 +102,19 @@ if ( fusion_is_element_enabled( 'fusion_pricing_table' ) ) {
 
 				$defaults = FusionBuilder::set_shortcode_defaults(
 					array(
-						'hide_on_mobile'          => fusion_builder_default_visibility( 'string' ),
-						'class'                   => '',
-						'id'                      => '',
-						'backgroundcolor'         => $fusion_settings->get( 'pricing_bg_color' ),
-						'background_color_hover'  => $fusion_settings->get( 'pricing_background_color_hover' ),
-						'bordercolor'             => $fusion_settings->get( 'pricing_border_color' ),
-						'heading_color_style_1'   => $fusion_settings->get( 'full_boxed_pricing_box_heading_color' ),
-						'heading_color_style_2'   => $fusion_settings->get( 'sep_pricing_box_heading_color' ),
-						'pricing_color'           => $fusion_settings->get( 'pricing_box_color' ),
-						'body_text_color'         => $fusion_settings->get( 'body_typography', 'color' ),
-						'columns'                 => '',
-						'dividercolor'            => $fusion_settings->get( 'pricing_divider_color' ),
-						'type'                    => '1',
+						'hide_on_mobile'         => fusion_builder_default_visibility( 'string' ),
+						'class'                  => '',
+						'id'                     => '',
+						'backgroundcolor'        => $fusion_settings->get( 'pricing_bg_color' ),
+						'background_color_hover' => $fusion_settings->get( 'pricing_background_color_hover' ),
+						'bordercolor'            => $fusion_settings->get( 'pricing_border_color' ),
+						'heading_color_style_1'  => $fusion_settings->get( 'full_boxed_pricing_box_heading_color' ),
+						'heading_color_style_2'  => $fusion_settings->get( 'sep_pricing_box_heading_color' ),
+						'pricing_color'          => $fusion_settings->get( 'pricing_box_color' ),
+						'body_text_color'        => $fusion_settings->get( 'body_typography', 'color' ),
+						'columns'                => '',
+						'dividercolor'           => $fusion_settings->get( 'pricing_divider_color' ),
+						'type'                   => '1',
 					),
 					$args,
 					'fusion_pricing_table'
@@ -307,7 +307,7 @@ if ( fusion_is_element_enabled( 'fusion_pricing_table' ) ) {
 				if ( isset( $price ) && ( ! empty( $price ) || ( '0' == $price ) ) ) {
 
 					$pricing_class = $pricing = '';
-					$price = explode( '.', $price );
+					$price         = explode( '.', $price );
 					if ( array_key_exists( '1', $price ) ) {
 						$pricing_class = 'price-with-decimal';
 					}
@@ -370,7 +370,7 @@ if ( fusion_is_element_enabled( 'fusion_pricing_table' ) ) {
 				$html = '';
 
 				if ( $this->is_first_row ) {
-					$html = '<ul ' . FusionBuilder::attributes( 'list-group' ) . '>';
+					$html               = '<ul ' . FusionBuilder::attributes( 'list-group' ) . '>';
 					$this->is_first_row = false;
 				}
 
@@ -446,50 +446,50 @@ if ( fusion_is_element_enabled( 'fusion_pricing_table' ) ) {
 
 				$css['global']['.sep-boxed-pricing .panel-heading h3']['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'sep_pricing_box_heading_color' ) );
 
-				$css[ $content_min_media_query ]['.sep-boxed-pricing .panel-wrapper']['padding'] = '0';
+				$css[ $content_min_media_query ]['.sep-boxed-pricing .panel-wrapper']['padding']                = '0';
 				$css[ $content_min_media_query ]['.fusion-pricing-table .standout .panel-container']['z-index'] = '1000';
 				$css[ $content_min_media_query ]['.fusion-pricing-table .standout .panel-footer, .fusion-pricing-table .standout .panel-heading']['padding'] = '20px';
-				$css[ $content_min_media_query ]['.full-boxed-pricing']['padding'] = '0 9px';
-				$css[ $content_min_media_query ]['.full-boxed-pricing']['background-color'] = '#F8F8F8';
+				$css[ $content_min_media_query ]['.full-boxed-pricing']['padding']                  = '0 9px';
+				$css[ $content_min_media_query ]['.full-boxed-pricing']['background-color']         = '#F8F8F8';
 				$css[ $content_min_media_query ]['.full-boxed-pricing .panel-container']['padding'] = '9px 0';
 				$css[ $content_min_media_query ]['.full-boxed-pricing .panel-wrapper:last-child .fusion-panel']['border-right'] = '1px solid #E5E4E3';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .fusion-panel']['border-right'] = 'none';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['position'] = 'relative';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['box-sizing'] = 'content-box';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['margin'] = '-10px -9px';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['padding'] = '9px';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['box-shadow'] = '0 0 6px 6px rgba(0, 0, 0, 0.08)';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['background-color'] = '#F8F8F8';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .fusion-panel']['border-right'] = '1px solid #E5E4E3';
-				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-heading h3']['color'] = '#A0CE4E';
-				$css[ $content_min_media_query ]['.sep-boxed-pricing']['margin'] = '0 -15px 20px';
-				$css[ $content_min_media_query ]['.sep-boxed-pricing .panel-wrapper']['margin'] = '0';
-				$css[ $content_min_media_query ]['.sep-boxed-pricing .panel-wrapper']['padding'] = '0 12px';
-				$css[ $content_min_media_query ]['.sep-boxed-pricing .standout .panel-container']['margin'] = '-10px';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .fusion-panel']['border-right']                           = 'none';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['position']                  = 'relative';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['box-sizing']                = 'content-box';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['margin']                    = '-10px -9px';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['padding']                   = '9px';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['box-shadow']                = '0 0 6px 6px rgba(0, 0, 0, 0.08)';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-container']['background-color']          = '#F8F8F8';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .fusion-panel']['border-right']                 = '1px solid #E5E4E3';
+				$css[ $content_min_media_query ]['.full-boxed-pricing .standout .panel-heading h3']['color']                    = '#A0CE4E';
+				$css[ $content_min_media_query ]['.sep-boxed-pricing']['margin']                                = '0 -15px 20px';
+				$css[ $content_min_media_query ]['.sep-boxed-pricing .panel-wrapper']['margin']                 = '0';
+				$css[ $content_min_media_query ]['.sep-boxed-pricing .panel-wrapper']['padding']                = '0 12px';
+				$css[ $content_min_media_query ]['.sep-boxed-pricing .standout .panel-container']['margin']     = '-10px';
 				$css[ $content_min_media_query ]['.sep-boxed-pricing .standout .panel-container']['box-shadow'] = '0 0 15px 5px rgba(0, 0, 0, 0.16)';
 
 				$css[ $three_twenty_six_fourty_media_query ]['#wrapper .sep-boxed-pricing .panel-wrapper']['padding'] = '0';
-				$css[ $ipad_portrait_media_query ]['#wrapper .sep-boxed-pricing .panel-wrapper']['padding'] = '0';
+				$css[ $ipad_portrait_media_query ]['#wrapper .sep-boxed-pricing .panel-wrapper']['padding']           = '0';
 
 				$elements = array(
 					'.full-boxed-pricing .column',
 					'.sep-boxed-pricing .column',
 				);
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['float']         = 'none';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '10px';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-left']   = '0';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['width']         = '100%';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['float']         = 'none';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '10px';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-left']   = '0';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['width']         = '100%';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['float']                      = 'none';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom']              = '10px';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-left']                = '0';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['width']                      = '100%';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['float']                   = 'none';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom']           = '10px';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-left']             = '0';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['width']                   = '100%';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['float']         = 'none';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '10px';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-left']   = '0';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['width']         = '100%';
 
 				$css['global']['.table-2 table thead']['background-color'] = $fusion_library->sanitize->color( fusion_library()->get_option( 'primary_color' ) );
-				$css['global']['.table-2 table thead']['border-color'] = $fusion_library->sanitize->color( fusion_library()->get_option( 'primary_color' ) );
+				$css['global']['.table-2 table thead']['border-color']     = $fusion_library->sanitize->color( fusion_library()->get_option( 'primary_color' ) );
 
 				return $css;
 			}
@@ -525,14 +525,14 @@ if ( fusion_is_element_enabled( 'fusion_pricing_table' ) ) {
 								'default'     => '#333333',
 								'type'        => 'color-alpha',
 							),
-							'pricing_box_color' => array(
+							'pricing_box_color'     => array(
 								'label'       => esc_html__( 'Pricing Box Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color portions of pricing boxes.', 'fusion-builder' ),
 								'id'          => 'pricing_box_color',
 								'default'     => '#a0ce4e',
 								'type'        => 'color-alpha',
 							),
-							'pricing_bg_color' => array(
+							'pricing_bg_color'      => array(
 								'label'       => esc_html__( 'Pricing Box Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the main background and title background.', 'fusion-builder' ),
 								'id'          => 'pricing_bg_color',
@@ -546,7 +546,7 @@ if ( fusion_is_element_enabled( 'fusion_pricing_table' ) ) {
 								'default'     => $fusion_settings->get( 'pricing_border_color' ),
 								'type'        => 'color-alpha',
 							),
-							'pricing_border_color' => array(
+							'pricing_border_color'  => array(
 								'label'       => esc_html__( 'Pricing Box Border Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the outer border, pricing row and footer row backgrounds.', 'fusion-builder' ),
 								'id'          => 'pricing_border_color',
@@ -582,19 +582,19 @@ function fusion_element_pricing_table() {
 
 	fusion_builder_map(
 		array(
-			'name'       => esc_attr__( 'Pricing Table', 'fusion-builder' ),
-			'shortcode'  => 'fusion_pricing_table',
-			'icon'       => 'fusiona-dollar',
-			'preview'    => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-pricing-table-preview.php',
-			'preview_id' => 'fusion-builder-block-module-pricing-table-preview-template',
+			'name'                          => esc_attr__( 'Pricing Table', 'fusion-builder' ),
+			'shortcode'                     => 'fusion_pricing_table',
+			'icon'                          => 'fusiona-dollar',
+			'preview'                       => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-pricing-table-preview.php',
+			'preview_id'                    => 'fusion-builder-block-module-pricing-table-preview-template',
 
 			'custom_settings_view_name'     => 'ModuleSettingsTableView',
 			'custom_settings_view_js'       => FUSION_BUILDER_PLUGIN_URL . 'inc/templates/custom/js/fusion-pricing-table-settings.js',
 			'custom_settings_template_file' => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/custom/fusion-pricing-table-settings.php',
 			// 'custom_settings_template_css'  => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/custom/css/fusion-pricing-table-settings.css',
-			'on_save'           => 'pricingTableShortcodeFilter',
-			'admin_enqueue_js'  => FUSION_BUILDER_PLUGIN_URL . 'shortcodes/js/fusion-pricing-table.js',
-			'params'            => array(
+			'on_save'                       => 'pricingTableShortcodeFilter',
+			'admin_enqueue_js'              => FUSION_BUILDER_PLUGIN_URL . 'shortcodes/js/fusion-pricing-table.js',
+			'params'                        => array(
 				array(
 					'type'        => 'radio_button_set',
 					'heading'     => esc_attr__( 'Type', 'fusion-builder' ),

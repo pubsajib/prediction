@@ -37,7 +37,7 @@ if ( ! class_exists( 'FusionSC_ColumnInner' ) ) {
 			$content_id = get_the_id();
 
 			if ( ! isset( $atts['padding'] ) ) {
-				$padding_values = array();
+				$padding_values           = array();
 				$padding_values['top']    = ( isset( $atts['padding_top'] ) && '' !== $atts['padding_top'] ) ? $atts['padding_top'] : '0px';
 				$padding_values['right']  = ( isset( $atts['padding_right'] ) && '' !== $atts['padding_right'] ) ? $atts['padding_right'] : '0px';
 				$padding_values['bottom'] = ( isset( $atts['padding_bottom'] ) && '' !== $atts['padding_bottom'] ) ? $atts['padding_bottom'] : '0px';
@@ -116,14 +116,14 @@ if ( ! class_exists( 'FusionSC_ColumnInner' ) ) {
 
 			// Set the row and column index as well as the column type for the current column.
 			if ( '' !== $row_column_index ) {
-				$row_column_index = explode( '_', $row_column_index );
-				$current_row_index = $row_column_index[0];
+				$row_column_index     = explode( '_', $row_column_index );
+				$current_row_index    = $row_column_index[0];
 				$current_column_index = $row_column_index[1];
-				$current_row = $global_column_inner_array[ $content_id ][ $current_row_index ];
+				$current_row          = $global_column_inner_array[ $content_id ][ $current_row_index ];
 
 				if ( isset( $current_row ) && is_array( $current_row ) ) {
 					$current_row_number_of_columns = count( $current_row );
-					$current_column_type = $current_row[ $current_column_index ][1];
+					$current_column_type           = $current_row[ $current_column_index ][1];
 				}
 			}
 
@@ -131,51 +131,51 @@ if ( ! class_exists( 'FusionSC_ColumnInner' ) ) {
 			switch ( $type ) {
 				case '1_1':
 					$column_size = 1;
-					$classes .= ' fusion-one-full';
+					$classes    .= ' fusion-one-full';
 					break;
 				case '1_4':
 					$column_size = 0.25;
-					$classes .= ' fusion-one-fourth';
+					$classes    .= ' fusion-one-fourth';
 					break;
 				case '3_4':
 					$column_size = 0.75;
-					$classes .= ' fusion-three-fourth';
+					$classes    .= ' fusion-three-fourth';
 					break;
 				case '1_2':
 					$column_size = 0.50;
-					$classes .= ' fusion-one-half';
+					$classes    .= ' fusion-one-half';
 					break;
 				case '1_3':
 					$column_size = 0.3333;
-					$classes .= ' fusion-one-third';
+					$classes    .= ' fusion-one-third';
 					break;
 				case '2_3':
 					$column_size = 0.6666;
-					$classes .= ' fusion-two-third';
+					$classes    .= ' fusion-two-third';
 					break;
 				case '1_5':
 					$column_size = 0.20;
-					$classes .= ' fusion-one-fifth';
+					$classes    .= ' fusion-one-fifth';
 					break;
 				case '2_5':
 					$column_size = 0.40;
-					$classes .= ' fusion-two-fifth';
+					$classes    .= ' fusion-two-fifth';
 					break;
 				case '3_5':
 					$column_size = 0.60;
-					$classes .= ' fusion-three-fifth';
+					$classes    .= ' fusion-three-fifth';
 					break;
 				case '4_5':
 					$column_size = 0.80;
-					$classes .= ' fusion-four-fifth';
+					$classes    .= ' fusion-four-fifth';
 					break;
 				case '5_6':
 					$column_size = 0.8333;
-					$classes .= ' fusion-five-sixth';
+					$classes    .= ' fusion-five-sixth';
 					break;
 				case '1_6':
 					$column_size = 0.1666;
-					$classes .= ' fusion-one-sixth';
+					$classes    .= ' fusion-one-sixth';
 					break;
 			}
 
@@ -219,7 +219,7 @@ if ( ! class_exists( 'FusionSC_ColumnInner' ) ) {
 
 				if ( false !== strpos( $current_column_type, 'last' ) ) {
 					$classes .= ' fusion-column-last';
-					$last = 'yes';
+					$last     = 'yes';
 				} else {
 					$last = 'no';
 				}
@@ -236,13 +236,13 @@ if ( ! class_exists( 'FusionSC_ColumnInner' ) ) {
 				}
 				$inner_columns += $column_size;
 				if ( 0.990 < $inner_columns ) {
-					$last = 'yes';
+					$last          = 'yes';
 					$inner_columns = 0;
 				}
 				if ( 1 < $inner_columns ) {
-					$last = 'no';
+					$last          = 'no';
 					$inner_columns = $column_size;
-					$classes .= ' fusion-column-first';
+					$classes      .= ' fusion-column-first';
 				}
 
 				if ( 'yes' === $last ) {
@@ -391,7 +391,7 @@ if ( ! class_exists( 'FusionSC_ColumnInner' ) ) {
 
 			// Animation.
 			$animation = fusion_builder_animation_data( $animation_type, $animation_direction, $animation_speed, $animation_offset );
-			$classes .= $animation['class'];
+			$classes  .= $animation['class'];
 
 			// Style.
 			$style = ! empty( $style ) ? " style='{$style}'" : '';
@@ -664,19 +664,19 @@ function fusion_element_column_inner() {
 						'padding_bottom' => '',
 						'padding_left'   => '',
 					),
-					'group'       => esc_attr__( 'Design', 'fusion-builder' ),
+					'group'            => esc_attr__( 'Design', 'fusion-builder' ),
 				),
 				array(
-					'type'         => 'dimension',
+					'type'             => 'dimension',
 					'remove_from_atts' => true,
-					'heading'     => esc_attr__( 'Margin', 'fusion-builder' ),
-					'description' => esc_attr__( 'Spacing above and below the column. In px, em or %, e.g. 10px.', 'fusion-builder' ),
-					'param_name'  => 'dimension_margin',
-					'value'       => array(
+					'heading'          => esc_attr__( 'Margin', 'fusion-builder' ),
+					'description'      => esc_attr__( 'Spacing above and below the column. In px, em or %, e.g. 10px.', 'fusion-builder' ),
+					'param_name'       => 'dimension_margin',
+					'value'            => array(
 						'margin_top'    => '',
 						'margin_bottom' => '',
 					),
-					'group'       => esc_attr__( 'Design', 'fusion-builder' ),
+					'group'            => esc_attr__( 'Design', 'fusion-builder' ),
 				),
 				array(
 					'type'        => 'select',

@@ -2,8 +2,10 @@
 /**
  * Loads common Fusion libraries.
  *
+ * Plugin Name: Fusion Library
+ *
  * @package Fusion-Library
- * @version 1.7.2
+ * @version 1.8.1
  */
 
 // Do not allow directly accessing this file.
@@ -12,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Don't use a constant, we need this as a simple var.
-$fusion_library_version = '1.7.2';
+$fusion_library_version = '1.8.1';
 
 $current_dir = dirname( __FILE__ );
 
@@ -59,11 +61,6 @@ if ( ! defined( 'FUSION_LIBRARY_URL' ) ) {
 	}
 
 	define( 'FUSION_LIBRARY_URL', $fusion_library_url );
-}
-
-// Font Awesome path.
-if ( ! defined( 'FUSION_FA_PATH' ) ) {
-	define( 'FUSION_FA_PATH', FUSION_LIBRARY_PATH . '/assets/fonts/fontawesome/font-awesome.css' );
 }
 
 // Include functions.

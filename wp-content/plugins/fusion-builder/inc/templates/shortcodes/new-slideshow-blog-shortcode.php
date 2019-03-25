@@ -84,29 +84,29 @@ $post_video = fusion_get_page_option( 'video', get_the_ID() );
 			if ( 'grid' === $atts['layout'] || 'masonry' === $atts['layout'] ) {
 				$fusion_library->images->set_grid_image_meta(
 					array(
-						'layout' => $atts['layout'],
-						'columns' => $atts['blog_grid_columns'],
+						'layout'       => $atts['layout'],
+						'columns'      => $atts['blog_grid_columns'],
 						'gutter_width' => $atts['blog_grid_column_spacing'],
 					)
 				);
 			} elseif ( 'timeline' === $atts['layout'] ) {
 				$fusion_library->images->set_grid_image_meta(
 					array(
-						'layout' => $atts['layout'],
+						'layout'  => $atts['layout'],
 						'columns' => '2',
 					)
 				);
 			} elseif ( false !== strpos( $atts['layout'], 'large' ) && 'full' == $size ) {
 				$fusion_library->images->set_grid_image_meta(
 					array(
-						'layout' => $atts['layout'],
+						'layout'  => $atts['layout'],
 						'columns' => '1',
 					)
 				);
 			}
 			?>
 			<?php if ( has_post_thumbnail() ) : ?>
-				<?php $full_image      = wp_get_attachment_image_src( $thumbnail_id, 'full' ); ?>
+				<?php $full_image = wp_get_attachment_image_src( $thumbnail_id, 'full' ); ?>
 				<li><?php echo fusion_render_first_featured_image_markup( $post->ID, $size, $permalink ); // WPCS: XSS ok. ?></li>
 			<?php endif; ?>
 
@@ -121,7 +121,7 @@ $post_video = fusion_get_page_option( 'video', get_the_ID() );
 
 					$attachment_image = wp_get_attachment_image_src( $attachment_id, $size );
 					if ( 'grid' === $atts['layout'] ) {
-						$image_size = $fusion_library->images->get_grid_image_base_size( $attachment_id, Fusion_Images::$grid_image_meta['layout'], Fusion_Images::$grid_image_meta['columns'] );
+						$image_size       = $fusion_library->images->get_grid_image_base_size( $attachment_id, Fusion_Images::$grid_image_meta['layout'], Fusion_Images::$grid_image_meta['columns'] );
 						$attachment_image = wp_get_attachment_image_src( $attachment_id, $image_size );
 					}
 					?>

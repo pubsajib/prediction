@@ -45,13 +45,13 @@ function fusion_builder_options_section_elements( $sections ) {
 					),
 				),
 			),
-			'carousel_shortcode_section' => array(
-				'label'       => esc_html__( 'Carousel Element', 'fusion-builder' ),
+			'carousel_shortcode_section'   => array(
+				'label'       => esc_html__( 'Carousel Elements', 'fusion-builder' ),
 				'description' => '',
 				'id'          => 'carousel_shortcode_section',
 				'type'        => 'accordion',
 				'fields'      => array(
-					'carousel_nav_color' => array(
+					'carousel_nav_color'   => array(
 						'label'       => esc_html__( 'Carousel Navigation Box Color', 'fusion-builder' ),
 						'description' => esc_html__( 'Controls the color of the navigation box for carousel sliders.', 'fusion-builder' ),
 						'id'          => 'carousel_nav_color',
@@ -67,7 +67,7 @@ function fusion_builder_options_section_elements( $sections ) {
 						'type'        => 'color-alpha',
 						'option_name' => $option_name,
 					),
-					'carousel_speed' => array(
+					'carousel_speed'       => array(
 						'label'       => esc_html__( 'Carousel Speed', 'fusion-builder' ),
 						'description' => esc_html__( 'Controls the speed of all carousel elements. ex: 1000 = 1 second.', 'fusion-builder' ),
 						'id'          => 'carousel_speed',
@@ -88,7 +88,7 @@ function fusion_builder_options_section_elements( $sections ) {
 				'description' => '',
 				'type'        => 'accordion',
 				'fields'      => array(
-					'visibility_small' => array(
+					'visibility_small'  => array(
 						'label'       => esc_html__( 'Small Screen', 'fusion-builder' ),
 						'description' => esc_html__( 'Controls when the small screen visibility should take effect.', 'fusion-builder' ),
 						'id'          => 'visibility_small',
@@ -110,7 +110,7 @@ function fusion_builder_options_section_elements( $sections ) {
 						'max'         => '2000',
 						'option_name' => $option_name,
 					),
-					'visibility_large' => array(
+					'visibility_large'  => array(
 						'label'       => esc_html__( 'Large Screen', 'fusion-builder' ),
 						'description' => esc_html__( 'Any screen larger than that which is defined as the medium screen will be counted as a large screen.', 'fusion-builder' ),
 						'id'          => 'visibility_large',

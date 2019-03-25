@@ -21,6 +21,15 @@ if ( fusion_is_element_enabled( 'fusion_images' ) ) {
 			private $image_carousel_counter = 1;
 
 			/**
+			 * Total number of images.
+			 *
+			 * @access private
+			 * @since 1.8
+			 * @var int
+			 */
+			private $number_of_images = 1;
+
+			/**
 			 * The image data.
 			 *
 			 * @access private
@@ -111,6 +120,12 @@ if ( fusion_is_element_enabled( 'fusion_images' ) ) {
 				extract( $defaults );
 
 				$this->parent_args = $defaults;
+
+				preg_match_all( '/\[fusion_image (.*?)\]/s', $content, $matches );
+
+				if ( isset( $matches[0] ) ) {
+					$this->number_of_images = count( $matches[0] );
+				}
 
 				$html  = '<div ' . FusionBuilder::attributes( 'image-carousel-shortcode' ) . '>';
 				$html .= '<div ' . FusionBuilder::attributes( 'image-carousel-shortcode-carousel' ) . '>';
@@ -237,14 +252,36 @@ if ( fusion_is_element_enabled( 'fusion_images' ) ) {
 
 				$output = '';
 				if ( $this->image_data['id'] ) {
+
+					// Responsive images.
+					$number_of_columns = ( $this->number_of_images < $this->parent_args['columns'] ) ? $this->number_of_images : $this->parent_args['columns'];
+
+					if ( 1 < $number_of_columns || 'full' !== $image_size ) {
+						$fusion_library->images->set_grid_image_meta(
+							array(
+								'layout'       => 'grid',
+								'columns'      => $number_of_columns,
+								'gutter_width' => $this->parent_args['column_spacing'],
+							)
+						);
+					}
+
 					if ( $alt ) {
 						$output = wp_get_attachment_image( $this->image_data['id'], $image_size, false, array( 'alt' => $alt ) );
 					} else {
 						$output = wp_get_attachment_image( $this->image_data['id'], $image_size );
 					}
+
+					if ( 'full' === $image_size ) {
+						$output = $fusion_library->images->edit_grid_image_src( $output, null, $this->image_data['id'], 'full' );
+					}
+
+					$fusion_library->images->set_grid_image_meta( array() );
 				} else {
 					$output = '<img src="' . $image . '" alt="' . $alt . '"/>';
 				}
+
+				$output = $fusion_library->images->apply_lazy_loading( $output, null, $this->image_data['id'], 'full' );
 
 				if ( 'no' === $this->parent_args['mouse_scroll'] && ( $link || 'yes' === $this->parent_args['lightbox'] ) ) {
 					$output = '<a ' . FusionBuilder::attributes( 'image-carousel-shortcode-slide-link' ) . '>' . $output . '</a>';
@@ -270,12 +307,12 @@ if ( fusion_is_element_enabled( 'fusion_images' ) ) {
 						$this->child_args['link'] = $this->child_args['image'];
 					}
 
-					$attr['data-rel'] = 'iLightbox[gallery_image_' . $this->image_carousel_counter . ']';
+					$attr['data-rel'] = 'iLightbox[image_carousel_' . $this->image_carousel_counter . ']';
 
 					if ( $this->image_data ) {
 						$attr['data-caption'] = $this->image_data['caption'];
-						$attr['data-title'] = $this->image_data['title'];
-						$attr['aria-label'] = $this->image_data['title'];
+						$attr['data-title']   = $this->image_data['title'];
+						$attr['aria-label']   = $this->image_data['title'];
 					}
 				}
 
@@ -355,7 +392,7 @@ if ( fusion_is_element_enabled( 'fusion_images' ) ) {
 				preg_match_all( '!\d+!', $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ), $matches );
 				$half_slider_nav_box_height = '' !== $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ? $matches[0][0] / 2 . $fusion_library->sanitize->get_unit( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ) : '';
 
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']     = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['margin-top'] = '-' . $half_slider_nav_box_height;
 
 				$elements = array(
@@ -582,8 +619,8 @@ function fusion_element_fusion_image() {
 				),
 				array(
 					'type'        => 'link_selector',
-					'heading'     => esc_attr__( 'Image Website Link', 'fusion-builder' ),
-					'description' => esc_attr__( "Add the url to image's website. If lightbox option is enabled, you have to add the full image link to show it in the lightbox.", 'fusion-builder' ),
+					'heading'     => esc_attr__( 'Image Link', 'fusion-builder' ),
+					'description' => esc_attr__( 'Add the url the image should link to. If lightbox option is enabled, you can also use this to open a different image in the lightbox.', 'fusion-builder' ),
 					'param_name'  => 'link',
 					'value'       => '',
 				),

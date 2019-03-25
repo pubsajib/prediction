@@ -33,5 +33,5 @@
         // alert(event+' == '+ user+' == '+ answerid); return false; 
         if (confirm('Are you sure ?')) deleteAnswers(event, user, answerid, button);
 	})
-    // $( 'select[name="role"]' ).closest( '.answer' ).remove();
+    $( 'select[name="role"]' ).closest( '.answer' ).remove();
 })(jQuery);

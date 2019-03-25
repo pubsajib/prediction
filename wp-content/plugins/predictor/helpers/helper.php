@@ -21,7 +21,6 @@ function help($array=[], $key='', $echo=true) {
 }
 function getUserNameByID($userID) {
     $user_info = get_userdata($userID);
-    help($user_info);
     if ($user_info) return $user_info->user_nicename;
     return false;
 }

@@ -437,4 +437,46 @@ class Fusion_Sanitize {
 		// Fallback to the value as-is.
 		return $value;
 	}
+
+	/**
+	 * Converts a non-px font size to .
+	 *
+	 * @since 1.8.2
+	 *
+	 * @param string $font_size The font size to be changed.
+	 * @param string $base_font_size The font size to base calcs on.
+	 * @return string The changed font size.
+	 */
+	public static function convert_font_size_to_px( $font_size, $base_font_size ) {
+		$font_size_unit = self::get_unit( $font_size );
+		$font_size_number = self::number( $font_size );
+
+		$base_font_size_unit = self::get_unit( $base_font_size );
+		$base_font_size_number = self::number( $base_font_size );
+
+		if ( 'px' === $font_size_unit || ! $font_size_number ) {
+			return $font_size;
+		}
+
+		// Browser default font size. This is the average between Safari, Chrome and FF.
+		$default_font_size = 15;
+
+		if ( 'em' === $base_font_size_unit || 'rem' === $base_font_size_unit ) {
+			$base_font_size_number = $default_font_size * $base_font_size_number;
+		} elseif ( '%' === $base_font_size_unit ) {
+			$base_font_size_number = $default_font_size * $base_font_size_number / 100;
+		} elseif ( 'px' !== $base_font_size_unit ) {
+			$base_font_size_number = $default_font_size;
+		}
+
+		if ( 'em' === $font_size_unit || 'rem' === $font_size_unit ) {
+			$font_size_number = $base_font_size_number * $font_size_number;
+		} elseif ( '%' === $font_size_unit ) {
+			$font_size_number = $base_font_size_number * $font_size_number / 100;
+		} elseif ( 'px' !== $font_size_unit ) {
+			$font_size_number = $base_font_size_number;
+		}
+
+		return $font_size_number;
+	}
 }

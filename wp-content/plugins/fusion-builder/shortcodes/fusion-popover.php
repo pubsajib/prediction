@@ -186,21 +186,21 @@ if ( fusion_is_element_enabled( 'fusion_popover' ) ) {
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'popover_border_color' => array(
+							'popover_border_color'     => array(
 								'label'       => esc_html__( 'Popover Border Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border color of popover box.', 'fusion-builder' ),
 								'id'          => 'popover_border_color',
 								'default'     => '#ebebeb',
 								'type'        => 'color-alpha',
 							),
-							'popover_text_color' => array(
+							'popover_text_color'       => array(
 								'label'       => esc_html__( 'Popover Text Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the popover text.', 'fusion-builder' ),
 								'id'          => 'popover_text_color',
 								'default'     => '#747474',
 								'type'        => 'color-alpha',
 							),
-							'popover_placement' => array(
+							'popover_placement'        => array(
 								'label'       => esc_html__( 'Popover Position', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the position of the popover in reference to the triggering element.', 'fusion-builder' ),
 								'id'          => 'popover_placement',

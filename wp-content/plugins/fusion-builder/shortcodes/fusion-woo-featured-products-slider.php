@@ -77,8 +77,8 @@ if ( fusion_is_element_enabled( 'fusion_featured_products_slider' ) ) {
 
 					$defaults['column_spacing'] = FusionBuilder::validate_shortcode_attr_value( $defaults['column_spacing'], '' );
 
-					$defaults['show_cats'] = ( 'yes' == $defaults['show_cats'] ) ? 'enable' : 'disable';
-					$defaults['show_price'] = ( 'yes' == $defaults['show_price'] );
+					$defaults['show_cats']    = ( 'yes' == $defaults['show_cats'] ) ? 'enable' : 'disable';
+					$defaults['show_price']   = ( 'yes' == $defaults['show_price'] );
 					$defaults['show_buttons'] = ( 'yes' == $defaults['show_buttons'] );
 
 					extract( $defaults );
@@ -121,13 +121,13 @@ if ( fusion_is_element_enabled( 'fusion_featured_products_slider' ) ) {
 
 							$id      = get_the_ID();
 							$in_cart = in_array( $id, $items_in_cart );
-							$image = $price_tag = $terms = '';
+							$image   = $price_tag = $terms = '';
 
 							if ( 'auto' === $picture_size ) {
 								$fusion_library->images->set_grid_image_meta(
 									array(
-										'layout' => 'grid',
-										'columns' => $columns,
+										'layout'       => 'grid',
+										'columns'      => $columns,
 										'gutter_width' => $column_spacing,
 									)
 								);
@@ -241,7 +241,7 @@ if ( fusion_is_element_enabled( 'fusion_featured_products_slider' ) ) {
 				);
 
 				if ( 'title_below_image' == $this->args['carousel_layout'] ) {
-					$attr['class'] .= ' fusion-carousel-title-below-image';
+					$attr['class']           .= ' fusion-carousel-title-below-image';
 					$attr['data-metacontent'] = 'yes';
 				} else {
 					$attr['class'] .= ' fusion-carousel-title-on-rollover';
@@ -280,7 +280,7 @@ if ( fusion_is_element_enabled( 'fusion_featured_products_slider' ) ) {
 				preg_match_all( '!\d+!', $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ), $matches );
 				$half_slider_nav_box_height = '' !== $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ? $matches[0][0] / 2 . $fusion_library->sanitize->get_unit( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ) : '';
 
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']     = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['margin-top'] = '-' . $half_slider_nav_box_height;
 
 				$elements = array(
@@ -391,7 +391,7 @@ function fusion_element_featured_products_slider() {
 							'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 							'no'  => esc_attr__( 'No', 'fusion-builder' ),
 						),
-						'default' => 'yes',
+						'default'     => 'yes',
 					),
 					array(
 						'type'        => 'radio_button_set',
@@ -413,7 +413,7 @@ function fusion_element_featured_products_slider() {
 							'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 							'no'  => esc_attr__( 'No', 'fusion-builder' ),
 						),
-						'default' => 'yes',
+						'default'     => 'yes',
 					),
 					array(
 						'type'        => 'radio_button_set',

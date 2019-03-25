@@ -166,9 +166,9 @@ class Fusion_Patcher_Admin_Screen {
 			$theme_options_entry = ( isset( $submenu['avada'][7] ) ) ? $submenu['avada'][7] : false;
 			$patcher_entry = $submenu['avada'][8];
 
-			$submenu['avada'][7] = $patcher_entry;
+			$submenu['avada'][7] = $patcher_entry; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 			if ( $theme_options_entry ) {
-				$submenu['avada'][8] = $theme_options_entry;
+				$submenu['avada'][8] = $theme_options_entry; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 			} else {
 				unset( $submenu['avada'][8] );
 			}

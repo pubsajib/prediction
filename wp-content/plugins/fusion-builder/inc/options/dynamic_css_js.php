@@ -26,7 +26,7 @@ function fusion_builder_options_section_advanced( $sections ) {
 				'id'          => 'js_compiler_note',
 				'type'        => 'custom',
 			),
-			'js_compiler' => array(
+			'js_compiler'      => array(
 				'label'       => esc_html__( 'Enable JS compiler', 'fusion-builder' ),
 				'description' => ( Fusion_Dynamic_JS::is_http2() ) ? esc_html__( 'We have detected that your server supports HTTP/2. We recommend you leave the compiler disabled as that will improve performance of your site by allowing multiple JS files to be downloaded simultaneously.', 'fusion-builder' ) : esc_html__( 'By default all the javascript files are combined. Disabling the JS compiler will load non-combined javascript files. This will have an impact on the performance of your site.', 'fusion-builder' ),
 				'id'          => 'js_compiler',
@@ -45,7 +45,7 @@ function fusion_builder_options_section_advanced( $sections ) {
 					'off'  => esc_attr__( 'Off', 'fusion-builder' ),
 				),
 			),
-			'cache_server_ip' => array(
+			'cache_server_ip'  => array(
 				'label'       => esc_html__( 'Cache Server IP', 'fusion-builder' ),
 				'description' => esc_html__( 'For unique cases where you are using cloud flare and a cache server, ex: varnish cache. Enter your cache server IP to clear the theme options dynamic CSS cache. Consult with your server admin for help.', 'fusion-builder' ),
 				'id'          => 'cache_server_ip',

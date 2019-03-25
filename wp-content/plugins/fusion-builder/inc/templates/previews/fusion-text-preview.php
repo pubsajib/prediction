@@ -5,10 +5,10 @@ if ( ! $fusion_settings ) {
 }
 
 $column_min_width_default = $fusion_settings->get( 'text_column_min_width' );
-$column_spacing_default = $fusion_settings->get( 'text_column_spacing' );
-$rule_style_default = $fusion_settings->get( 'text_rule_style' );
-$rule_size_default = $fusion_settings->get( 'text_rule_size' );
-$rule_color_default = $fusion_settings->get( 'text_rule_color' );
+$column_spacing_default   = $fusion_settings->get( 'text_column_spacing' );
+$rule_style_default       = $fusion_settings->get( 'text_rule_style' );
+$rule_size_default        = $fusion_settings->get( 'text_rule_size' );
+$rule_color_default       = $fusion_settings->get( 'text_rule_color' );
 ?>
 
 <script type="text/template" id="fusion-builder-block-module-text-preview-template">

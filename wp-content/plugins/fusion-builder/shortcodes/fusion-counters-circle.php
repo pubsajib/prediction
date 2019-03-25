@@ -182,7 +182,7 @@ if ( fusion_is_element_enabled( 'fusion_counters_circle' ) ) {
 				$stroke_size   = 11 * $multiplicator;
 				$font_size     = 50 * $multiplicator;
 
-				$attr['data-percent']       = $this->child_args['value'];
+				$attr['data-percent'] = $this->child_args['value'];
 
 				if ( $this->child_args['countdown'] ) {
 					$attr['data-percent-original'] = $this->child_args['value'];
@@ -211,8 +211,8 @@ if ( fusion_is_element_enabled( 'fusion_counters_circle' ) ) {
 			public function child_wrapper_attr() {
 
 				$attr = array(
-					'class' => 'counter-circle-wrapper',
-					'style' => 'height:' . $this->child_args['size'] . 'px;width:' . $this->child_args['size'] . 'px;line-height:' . $this->child_args['size'] . 'px;',
+					'class'             => 'counter-circle-wrapper',
+					'style'             => 'height:' . $this->child_args['size'] . 'px;width:' . $this->child_args['size'] . 'px;line-height:' . $this->child_args['size'] . 'px;',
 					'data-originalsize' => $this->child_args['size'],
 				);
 
@@ -239,7 +239,7 @@ if ( fusion_is_element_enabled( 'fusion_counters_circle' ) ) {
 						'id'          => 'cc_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'counter_filled_color' => array(
+							'counter_filled_color'   => array(
 								'label'       => esc_html__( 'Counter Circles Filled Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the filled circle.', 'fusion-builder' ),
 								'id'          => 'counter_filled_color',

@@ -4,7 +4,7 @@
 Plugin Name: Fusion Builder
 Plugin URI: http://www.theme-fusion.com
 Description: ThemeFusion Page Builder Plugin
-Version: 1.7.2
+Version: 1.8.2
 Author: ThemeFusion
 Author URI: http://www.theme-fusion.com
 */
@@ -21,7 +21,7 @@ if ( ! defined( 'FUSION_BUILDER_DEV_MODE' ) ) {
 
 // Plugin version.
 if ( ! defined( 'FUSION_BUILDER_VERSION' ) ) {
-	define( 'FUSION_BUILDER_VERSION', '1.7.2' );
+	define( 'FUSION_BUILDER_VERSION', '1.8.2' );
 }
 // Plugin Folder Path.
 if ( ! defined( 'FUSION_BUILDER_PLUGIN_DIR' ) ) {
@@ -192,8 +192,8 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 		 * @since 1.0
 		 */
 		private function __construct() {
-			$path = ( true == FUSION_BUILDER_DEV_MODE ) ? '' : '/min';
-			self::$js_folder_url = FUSION_BUILDER_PLUGIN_URL . 'assets/js' . $path;
+			$path                 = ( true == FUSION_BUILDER_DEV_MODE ) ? '' : '/min';
+			self::$js_folder_url  = FUSION_BUILDER_PLUGIN_URL . 'assets/js' . $path;
 			self::$js_folder_path = FUSION_BUILDER_PLUGIN_DIR . 'assets/js' . $path;
 
 			$this->set_is_updating();
@@ -235,7 +235,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'shortcode_scripts' ) );
 
 			// Display Fusion Builder wrapper.
-			$options = get_option( 'fusion_builder_settings' );
+			$options           = get_option( 'fusion_builder_settings' );
 			$enable_builder_ui = '1';
 			if ( isset( $options['enable_builder_ui'] ) ) {
 				$enable_builder_ui = $options['enable_builder_ui'];
@@ -362,10 +362,10 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 		 */
 		public static function activation() {
 
-			$installed_plugins = get_plugins();
-			$keys = array_keys( get_plugins() );
-			$fusion_core_key = '';
-			$fusion_core_slug = 'fusion-core';
+			$installed_plugins   = get_plugins();
+			$keys                = array_keys( get_plugins() );
+			$fusion_core_key     = '';
+			$fusion_core_slug    = 'fusion-core';
 			$fusion_core_version = '';
 
 			foreach ( $keys as $key ) {
@@ -375,11 +375,11 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 			}
 
 			if ( $fusion_core_key ) {
-				$fusion_core = $installed_plugins[ $fusion_core_key ];
+				$fusion_core         = $installed_plugins[ $fusion_core_key ];
 				$fusion_core_version = $fusion_core['Version'];
 
 				if ( version_compare( $fusion_core_version, '3.0', '<' ) ) {
-					$message = '<style>#error-page > p{display:-webkit-flex;display:flex;}#error-page img {height: 120px;margin-right:25px;}.fb-heading{font-size: 1.17em; font-weight: bold; display: block; margin-bottom: 15px;}.fb-link{display: inline-block;margin-top:15px;}.fb-link:focus{outline:none;box-shadow:none;}</style>';
+					$message  = '<style>#error-page > p{display:-webkit-flex;display:flex;}#error-page img {height: 120px;margin-right:25px;}.fb-heading{font-size: 1.17em; font-weight: bold; display: block; margin-bottom: 15px;}.fb-link{display: inline-block;margin-top:15px;}.fb-link:focus{outline:none;box-shadow:none;}</style>';
 					$message .= '<img src="' . plugins_url( 'images/icons/fb_logo.svg', __FILE__ ) . '" />';
 					$message .= '<span><span class="fb-heading">Fusion Builder could not be activated</span>';
 					$message .= '<span>Fusion Builder can only be activated on installs that use Fusion Core 3.0 or higher. Click the link below to install/activate Fusion Core 3.0, then you can activate Fusion Builder.</span>';
@@ -531,22 +531,22 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 				$fusion_settings = Fusion_Settings::get_instance();
 			}
 
-			$c_page_id = Fusion::$c_page_id;
-			$dynamic_css = $this->fusion_builder_dynamic_css;
+			$c_page_id           = Fusion::$c_page_id;
+			$dynamic_css         = $this->fusion_builder_dynamic_css;
 			$dynamic_css_helpers = $dynamic_css->get_helpers();
 
-			$side_header_width = ( 'Top' === $fusion_settings->get( 'header_position' ) ) ? 0 : intval( $fusion_settings->get( 'side_header_width' ) );
-			$content_media_query = '@media only screen and (max-width: ' . ( intval( $side_header_width ) + intval( $fusion_settings->get( 'content_break_point' ) ) ) . 'px)';
-			$six_fourty_media_query = '@media only screen and (max-width: ' . ( intval( $side_header_width ) + 640 ) . 'px)';
+			$side_header_width       = ( 'Top' === $fusion_settings->get( 'header_position' ) ) ? 0 : intval( $fusion_settings->get( 'side_header_width' ) );
+			$content_media_query     = '@media only screen and (max-width: ' . ( intval( $side_header_width ) + intval( $fusion_settings->get( 'content_break_point' ) ) ) . 'px)';
+			$six_fourty_media_query  = '@media only screen and (max-width: ' . ( intval( $side_header_width ) + 640 ) . 'px)';
 			$content_min_media_query = '@media only screen and (min-width: ' . ( intval( $side_header_width ) + intval( $fusion_settings->get( 'content_break_point' ) ) ) . 'px)';
 
 			$three_twenty_six_fourty_media_query = '@media only screen and (min-device-width: 320px) and (max-device-width: 640px)';
-			$ipad_portrait_media_query = '@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)';
+			$ipad_portrait_media_query           = '@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)';
 
 			// Visible options for shortcodes.
-			$small_media_query = '@media screen and (max-width: ' . intval( $fusion_settings->get( 'visibility_small' ) ) . 'px)';
+			$small_media_query  = '@media screen and (max-width: ' . intval( $fusion_settings->get( 'visibility_small' ) ) . 'px)';
 			$medium_media_query = '@media screen and (min-width: ' . ( intval( $fusion_settings->get( 'visibility_small' ) ) + 1 ) . 'px) and (max-width: ' . intval( $fusion_settings->get( 'visibility_medium' ) ) . 'px)';
-			$large_media_query = '@media screen and (min-width: ' . ( intval( $fusion_settings->get( 'visibility_medium' ) ) + 1 ) . 'px)';
+			$large_media_query  = '@media screen and (min-width: ' . ( intval( $fusion_settings->get( 'visibility_medium' ) ) + 1 ) . 'px)';
 
 			// # Grid System.
 			$main_break_point = (int) $fusion_settings->get( 'grid_main_break_point' );
@@ -745,9 +745,9 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 
 			global $global_column_array, $global_column_inner_array;
 			$is_in_widget = false;
-			$content_id = get_the_id();
+			$content_id   = get_the_id();
 			if ( is_object( $widget ) && isset( $widget->id ) ) {
-				$content_id = $widget->id;
+				$content_id   = $widget->id;
 				$is_in_widget = true;
 			}
 
@@ -755,26 +755,26 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 
 			$needles = array(
 				array(
-					'row_opening' => '[fusion_builder_row]',
-					'row_closing' => '[/fusion_builder_row]',
+					'row_opening'    => '[fusion_builder_row]',
+					'row_closing'    => '[/fusion_builder_row]',
 					'column_opening' => '[fusion_builder_column ',
 				),
 				array(
-					'row_opening' => '[fusion_builder_row_inner]',
-					'row_closing' => '[/fusion_builder_row_inner]',
+					'row_opening'    => '[fusion_builder_row_inner]',
+					'row_closing'    => '[/fusion_builder_row_inner]',
 					'column_opening' => '[fusion_builder_column_inner ',
 				),
 			);
 
 			$column_opening_positions_index = array();
-			$php_version = phpversion();
+			$php_version                    = phpversion();
 
 			foreach ( $needles as $needle ) {
-				$column_array = array();
-				$last_pos = -1;
-				$positions = array();
-				$row_index = -1;
-				$row_shortcode_name_length = strlen( $needle['row_opening'] );
+				$column_array                 = array();
+				$last_pos                     = -1;
+				$positions                    = array();
+				$row_index                    = -1;
+				$row_shortcode_name_length    = strlen( $needle['row_opening'] );
 				$column_shortcode_name_length = strlen( $needle['column_opening'] );
 
 				// Get all positions of [fusion_builder_row shortcode.
@@ -790,17 +790,17 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 					// Search within this range/row.
 					$range = $row_closing_position - $position + 1;
 					// Row content.
-					$row_content = substr( $content, $position + strlen( $needle['row_opening'] ), $range );
+					$row_content          = substr( $content, $position + strlen( $needle['row_opening'] ), $range );
 					$original_row_content = $row_content;
 
-					$row_last_pos = -1;
-					$row_position_change = 0;
-					$element_positions = array();
+					$row_last_pos             = -1;
+					$row_position_change      = 0;
+					$element_positions        = array();
 					$container_column_counter = 0;
-					$column_index = 0;
+					$column_index             = 0;
 					$row_index++;
 					$element_position_change = 0;
-					$last_column_was_full = false;
+					$last_column_was_full    = false;
 
 					while ( ( $row_last_pos = strpos( $row_content, $needle['column_opening'], $row_last_pos + 1 ) ) !== false ) {
 						$element_positions[] = $row_last_pos;
@@ -819,7 +819,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 						}
 
 						if ( version_compare( $php_version, '5.3', '<' ) ) {
-							$params = explode( ']', substr( $row_content, $element_position + $column_shortcode_name_length, $end_position ), 2 );
+							$params        = explode( ']', substr( $row_content, $element_position + $column_shortcode_name_length, $end_position ), 2 );
 							$column_values = shortcode_parse_atts( $params[0] );
 						} else {
 							$column_values = shortcode_parse_atts( strstr( substr( $row_content, $element_position + $column_shortcode_name_length, $end_position ), ']', true ) );
@@ -827,10 +827,10 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 
 						// Check that type parameter is found, if so calculate row and set spacing to array.
 						if ( isset( $column_values['type'] ) ) {
-							$column_type = explode( '_', $column_values['type'] );
-							$column_width = intval( $column_type[0] ) / intval( $column_type[1] );
+							$column_type               = explode( '_', $column_values['type'] );
+							$column_width              = intval( $column_type[0] ) / intval( $column_type[1] );
 							$container_column_counter += $column_width;
-							$column_spacing = ( isset( $column_values['spacing'] ) ) ? $column_values['spacing'] : '4%';
+							$column_spacing            = ( isset( $column_values['spacing'] ) ) ? $column_values['spacing'] : '4%';
 
 							// First column.
 							if ( 0 === $key ) {
@@ -987,8 +987,6 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 			if ( ! $fusion_settings ) {
 				$fusion_settings = Fusion_Settings::get_instance();
 			}
-			$dynamic_css_obj = Fusion_Dynamic_CSS::get_instance();
-			$mode = ( method_exists( $dynamic_css_obj, 'get_mode' ) ) ? $dynamic_css_obj->get_mode() : $dynamic_css_obj->mode;
 
 			// If we're compiling CSS then we don't need to enqueue separate files.
 			// Look at the shortcode_styles_dynamic_css method.
@@ -1009,12 +1007,6 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 			// Fusion Builder frontend js.
 			// @codingStandardsIgnoreLine
 			// wp_enqueue_script( 'fusion_builder_frontend', FUSION_BUILDER_PLUGIN_URL . 'js/fusion-builder-front.js', array( 'jquery' ), FUSION_BUILDER_VERSION, true );
-
-			// Font-awesome CSS.
-			if ( fusion_library()->get_option( 'status_fontawesome' ) ) {
-				wp_enqueue_style( 'fontawesome', FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/fonts/fontawesome/font-awesome.css', array(), FUSION_BUILDER_VERSION );
-			}
-
 		}
 
 		/**
@@ -1033,8 +1025,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 			}
 
 			$dynamic_css_obj = Fusion_Dynamic_CSS::get_instance();
-			$mode = ( method_exists( $dynamic_css_obj, 'get_mode' ) ) ? $dynamic_css_obj->get_mode() : $dynamic_css_obj->mode;
-			$styles = '';
+			$styles          = '';
 
 			if ( 'off' !== $fusion_settings->get( 'css_cache_method' ) ) {
 
@@ -1054,16 +1045,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 					// @codingStandardsIgnoreLine
 					$ilightbox_styles = @file_get_contents( FUSION_BUILDER_PLUGIN_DIR . 'assets/css/ilightbox.min.css' );
 					$ilightbox_url    = set_url_scheme( FUSION_BUILDER_PLUGIN_URL . 'assets/images/' );
-					$styles .= str_replace( 'url(../../assets/images/', 'url(' . $ilightbox_url, $ilightbox_styles );
-				}
-
-				// Stylesheet ID: fusion-font-awesome.
-				if ( fusion_library()->get_option( 'status_fontawesome' ) && ! class_exists( 'Avada' ) ) {
-					// @codingStandardsIgnoreLine
-					$font_awesome_styles = @file_get_contents( FUSION_BUILDER_PLUGIN_DIR . 'inc/lib/assets/fonts/fontawesome/font-awesome.min.css' );
-					$font_awesome_url    = set_url_scheme( FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/fonts/fontawesome/' );
-
-					$styles .= str_replace( 'url(./webfonts', 'url(' . $font_awesome_url . '/webfonts', $font_awesome_styles );
+					$styles          .= str_replace( 'url(../../assets/images/', 'url(' . $ilightbox_url, $ilightbox_styles );
 				}
 			}
 			return $styles . $original_styles;
@@ -1156,7 +1138,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 		 * @return void
 		 */
 		public function admin_scripts( $hook ) {
-			global $typenow, $fusion_builder_elements, $fusion_builder_multi_elements, $pagenow;
+			global $typenow, $fusion_builder_elements, $fusion_builder_multi_elements, $pagenow, $fusion_settings;
 
 			// Load Fusion builder importer js.
 			// @codingStandardsIgnoreLine
@@ -1168,7 +1150,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 					'fusion_builder_importer_js',
 					'fusionBuilderConfig',
 					array(
-						'ajaxurl' => admin_url( 'admin-ajax.php' ),
+						'ajaxurl'             => admin_url( 'admin-ajax.php' ),
 						'fusion_import_nonce' => wp_create_nonce( 'fusion_import_nonce' ),
 					)
 				);
@@ -1218,11 +1200,20 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 				wp_enqueue_script( 'wnumb-js', FUSION_BUILDER_PLUGIN_URL . 'js/wNumb.js', array( 'jquery' ), '1.0.2', true );
 
 				// FontAwesome.
-				wp_enqueue_style( 'fontawesome', FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/fonts/fontawesome/font-awesome.css', array(), FUSION_BUILDER_VERSION );
-				wp_enqueue_script( 'fontawesome-shim-script', FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/fonts/fontawesome/js/fa-v4-shims.js', array(), FUSION_BUILDER_VERSION );
+				wp_enqueue_style( 'fontawesome', Fusion_Font_Awesome::get_backend_css_url(), array(), FUSION_BUILDER_VERSION );
 
+				if ( '1' === $fusion_settings->get( 'fontawesome_v4_compatibility' ) ) {
+					wp_enqueue_script( 'fontawesome-shim-script', FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/fonts/fontawesome/js/fa-v4-shims.js', array(), FUSION_BUILDER_VERSION );
+
+					wp_enqueue_style( 'fontawesome-shims', Fusion_Font_Awesome::get_backend_shims_css_url(), array(), FUSION_BUILDER_VERSION );
+				}
+
+				if ( '1' === $fusion_settings->get( 'status_fontawesome_pro' ) ) {
+					wp_enqueue_script( 'fontawesome-search-script', FUSION_LIBRARY_URL . '/assets/fonts/fontawesome/js/icons-search-pro.js', array(), FUSION_BUILDER_VERSION );
+				} else {
+					wp_enqueue_script( 'fontawesome-search-script', FUSION_LIBRARY_URL . '/assets/fonts/fontawesome/js/icons-search-free.js', array(), FUSION_BUILDER_VERSION );
+				}
 				wp_enqueue_script( 'fuse-script', FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/min/js/library/fuse.js', array(), FUSION_BUILDER_VERSION );
-				wp_enqueue_script( 'fontawesome-search-script', FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/fonts/fontawesome/js/icons-search.js', array(), FUSION_BUILDER_VERSION );
 
 				// Icomoon font.
 				wp_enqueue_style( 'fusion-font-icomoon', FUSION_BUILDER_PLUGIN_URL . 'inc/lib/assets/fonts/icomoon-admin/icomoon.css', false, FUSION_BUILDER_VERSION, 'all' );
@@ -1304,6 +1295,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 							'ajaxurl'                   => admin_url( 'admin-ajax.php' ),
 							'fusion_load_nonce'         => wp_create_nonce( 'fusion_load_nonce' ),
 							'fontawesomeicons'          => fusion_get_icons_array(),
+							'fontawesomesubsets'        => fusion_library()->get_option( 'status_fontawesome' ),
 							'fusion_builder_plugin_dir' => FUSION_BUILDER_PLUGIN_URL,
 							'includes_url'              => includes_url(),
 							'disable_encoding'          => get_option( 'avada_disable_encoding' ),
@@ -1328,6 +1320,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 							'ajaxurl'                   => admin_url( 'admin-ajax.php' ),
 							'fusion_load_nonce'         => wp_create_nonce( 'fusion_load_nonce' ),
 							'fontawesomeicons'          => fusion_get_icons_array(),
+							'fontawesomesubsets'        => fusion_library()->get_option( 'status_fontawesome' ),
 							'fusion_builder_plugin_dir' => FUSION_BUILDER_PLUGIN_URL,
 							'includes_url'              => includes_url(),
 							'disable_encoding'          => get_option( 'avada_disable_encoding' ),
@@ -1469,7 +1462,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 				$builder_active = 'active' === get_post_meta( $post->ID, 'fusion_builder_status', true ) ? true : false;
 
 				$builder_enabled_data = '';
-				$builder_settings = get_option( 'fusion_builder_settings' );
+				$builder_settings     = get_option( 'fusion_builder_settings' );
 				if ( ( isset( $builder_settings['enable_builder_ui_by_default'] ) && $builder_settings['enable_builder_ui_by_default'] && 'active' !== get_post_meta( $post->ID, 'fusion_builder_status', true ) ) || ( 'fusion_element' == $typenow && 'active' !== get_post_meta( $post->ID, 'fusion_builder_status', true ) ) ) {
 					$builder_enabled_data = ' data-enabled="1"';
 				}
@@ -1553,7 +1546,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 
 			// The "plugin_locale" filter is also used in load_plugin_textdomain().
 			$user_locale = fusion_get_user_locale();
-			$locale = apply_filters( 'plugin_locale', $user_locale, $domain );
+			$locale      = apply_filters( 'plugin_locale', $user_locale, $domain );
 
 			// Create path to custom language file.
 			$custom_mo = WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo';
@@ -1602,7 +1595,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 		 */
 		public static function attributes( $slug, $attributes = array() ) {
 
-			$out = '';
+			$out  = '';
 			$attr = apply_filters( "fusion_attr_{$slug}", $attributes );
 
 			if ( empty( $attr ) ) {
@@ -1612,7 +1605,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 			foreach ( $attr as $name => $value ) {
 				if ( 'valueless_attribute' === $value ) {
 					$out .= ' ' . esc_html( $name );
-				} else if ( ! empty( $value ) || strlen( $value ) > 0 || is_bool( $value ) ) {
+				} elseif ( ! empty( $value ) || strlen( $value ) > 0 || is_bool( $value ) ) {
 					$out .= ' ' . esc_html( $name ) . '="' . esc_attr( $value ) . '"';
 				}
 			}
@@ -1893,7 +1886,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 
 				if ( ! in_array( $args['type'], array( 'bounce', 'flash', 'shake', 'rubberBand' ), true ) ) {
 					$direction_suffix = 'In' . ucfirst( $args['direction'] );
-					$args['type'] .= $direction_suffix;
+					$args['type']    .= $direction_suffix;
 				}
 
 				$animation_attribues['data-animationType'] = $args['type'];
@@ -1929,7 +1922,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 		 */
 		public static function strip_unit( $value, $unit_to_strip = 'px' ) {
 			$value_length = strlen( $value );
-			$unit_length = strlen( $unit_to_strip );
+			$unit_length  = strlen( $unit_to_strip );
 
 			if ( $value_length > $unit_length && 0 === substr_compare( $value, $unit_to_strip, $unit_length * ( -1 ), $unit_length ) ) {
 				return substr( $value, 0, $value_length - $unit_length );
@@ -1995,7 +1988,7 @@ if ( ! class_exists( 'FusionBuilder' ) ) :
 			$sidebars = array();
 
 			foreach ( $wp_registered_sidebars as $sidebar_id => $sidebar ) {
-				$name = $sidebar['name'];
+				$name                    = $sidebar['name'];
 				$sidebars[ $sidebar_id ] = $name;
 			}
 

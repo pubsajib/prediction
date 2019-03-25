@@ -493,6 +493,7 @@ class Fusion_FusionRedux {
 					'minimumResultsForSearch' => '-1',
 					'allowClear'              => false,
 				);
+				$args['validate_callback'] = 'fusion_fusionredux_validate_select';
 				break;
 			case 'slider':
 				$not_in_pixels = apply_filters( 'fusion_options_sliders_not_in_pixels', array() );

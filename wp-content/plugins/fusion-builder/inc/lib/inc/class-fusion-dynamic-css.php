@@ -259,6 +259,8 @@ class Fusion_Dynamic_CSS {
 		// Strip protocols. This helps avoid any issues with https sites.
 		$content = str_replace( array( 'https://', 'http://' ), '//', $content );
 
+		$content = '/********* Compiled CSS - Do not edit *********/ ' . $content;
+
 		return $content;
 
 	}

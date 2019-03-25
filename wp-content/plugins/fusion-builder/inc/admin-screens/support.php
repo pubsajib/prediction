@@ -2,9 +2,9 @@
 $avada_theme = wp_get_theme();
 if ( $avada_theme->parent_theme ) {
 	$template_dir = basename( get_template_directory() );
-	$avada_theme = wp_get_theme( $template_dir );
+	$avada_theme  = wp_get_theme( $template_dir );
 }
-$avada_version = $avada_theme->get( 'Version' );
+$avada_version    = $avada_theme->get( 'Version' );
 $theme_fusion_url = 'https://theme-fusion.com/';
 ?>
 
@@ -18,39 +18,39 @@ $theme_fusion_url = 'https://theme-fusion.com/';
 	</div>
 
 	<div class="avada-registration-steps">
-
-		<div class="col three-col">
+		<div class="feature-section col three-col">
 			<div class="col">
-				<h3 class="title"><span class="dashicons dashicons-sos"></span><?php echo esc_attr__( 'Submit A Ticket', 'fusion-builder' ); ?></h3>
-				<p><?php esc_attr_e( 'We offer excellent support through our advanced ticket system. Make sure to register your purchase first to access our support services and other resources.', 'fusion-builder' ); ?></p>
-				<a href="<?php echo esc_url_raw( $theme_fusion_url ); ?>support/submit-a-ticket/" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_attr_e( 'Submit A Ticket', 'fusion-builder' ); ?></a>
+				<h3 class="title"><span class="dashicons dashicons-lightbulb"></span><?php esc_attr_e( 'Starter Guide', 'fusion-builder' ); ?></h3>
+				<p><?php esc_attr_e( 'We understand that it can be a daunting process getting started with WordPress. In light of this, we have prepared a starter pack for you, which includes all you need to know.', 'fusion-builder' ); ?></p>
+				<a href="<?php echo esc_url_raw( trailingslashit( $theme_fusion_url ) ) . 'support/starter-guide/'; ?>" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Starter Guide', 'fusion-builder' ); ?></a>
 			</div>
 			<div class="col">
 				<h3 class="title"><span class="dashicons dashicons-book"></span><?php esc_attr_e( 'Documentation', 'fusion-builder' ); ?></h3>
 				<p><?php esc_attr_e( 'This is the place to go to reference different aspects of the Fusion Builder. Our online documentaiton is organized and provides the information to get you started.', 'fusion-builder' ); ?></p>
-				<a href="<?php echo esc_url_raw( $theme_fusion_url ); ?>support/" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_attr_e( 'Documentation', 'fusion-builder' ); ?></a>
+				<a href="<?php echo esc_url_raw( trailingslashit( $theme_fusion_url ) ) . 'support/'; ?>" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Documentation', 'fusion-builder' ); ?></a>
 			</div>
 			<div class="col last-feature">
-				<h3 class="title"><span class="dashicons dashicons-portfolio"></span><?php esc_attr_e( 'Knowledgebase', 'fusion-builder' ); ?></h3>
-				<p><?php esc_attr_e( 'Our knowledgebase contains additional content that is not inside of our documentation. This information is more specific and unique to various versions or aspects of the Fusion Builder.', 'fusion-builder' ); ?></p>
-				<a href="<?php echo esc_url_raw( $theme_fusion_url ); ?>documentation/avada/knowledgebase/" class="button button-large button-primary avada-large-button" target="_blank"><?php esc_attr_e( 'Knowledgebase', 'fusion-builder' ); ?></a>
+				<h3 class="title"><span class="dashicons dashicons-sos"></span><?php esc_attr_e( 'Submit A Ticket', 'fusion-builder' ); ?></h3>
+				<p><?php esc_attr_e( 'We offer excellent support through our advanced ticket system. Make sure to register your purchase first to access our support services and other resources.', 'fusion-builder' ); ?></p>
+				<a href="<?php echo esc_url_raw( trailingslashit( $theme_fusion_url ) ) . 'support/submit-a-ticket/'; ?>" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Submit a ticket', 'fusion-builder' ); ?></a>
 			</div>
 			<div class="col">
 				<h3 class="title"><span class="dashicons dashicons-format-video"></span><?php esc_attr_e( 'Video Tutorials', 'fusion-builder' ); ?></h3>
-				<p><?php esc_attr_e( 'Nothing is better than watching a video to learn. We have a growing library of high-definititon, narrated video tutorials to help teach you the different aspects of using Fusion Builder.', 'fusion-builder' ); ?></p>
-				<a href="<?php echo esc_url_raw( $theme_fusion_url ); ?>documentation/fusion-builder/videos/" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_attr_e( 'Watch Videos', 'fusion-builder' ); ?></a>
+				<p><?php esc_attr_e( 'Nothing is better than watching a video to learn. We have a growing library of narrated HD video tutorials to help teach you the different aspects of using Avada.', 'fusion-builder' ); ?></p>
+				<a href="<?php echo esc_url_raw( trailingslashit( $theme_fusion_url ) ) . 'documentation/fusion-builder/videos/"'; ?>" class="button button-large button-primary avada-large-button" target="_blank"><?php esc_html_e( 'Watch Videos', 'fusion-builder' ); ?></a>
 			</div>
 			<div class="col">
 				<h3 class="title"><span class="dashicons dashicons-groups"></span><?php esc_attr_e( 'Community Forum', 'fusion-builder' ); ?></h3>
-				<p><?php esc_attr_e( 'We have a community forum for user to user interactions. Ask and share information with other Fusion Builder users. Please note that ThemeFusion does not provide product support here.', 'fusion-builder' ); ?></p>
-				<a href="<?php echo esc_url_raw( $theme_fusion_url ); ?>community/forum/" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_attr_e( 'Community Forum', 'fusion-builder' ); ?></a>
+				<p><?php esc_attr_e( 'We also have a community forum for user to user interactions. Ask another Avada user! Please note that ThemeFusion does not provide product support here.', 'fusion-builder' ); ?></p>
+				<a href="<?php echo esc_url_raw( trailingslashit( $theme_fusion_url ) ) . 'community/forum/'; ?>" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Community Forum', 'fusion-builder' ); ?></a>
 			</div>
 			<div class="col last-feature">
 				<h3 class="title"><span class="dashicons dashicons-facebook"></span><?php esc_attr_e( 'Facebook Group', 'fusion-builder' ); ?></h3>
-				<p><?php esc_attr_e( 'We have a new Facebook Group to celebrate the new Fusion Builder and help build a community of mutual users willing to help one another! Come, share and help grow the community!', 'fusion-builder' ); ?></p>
-				<a href="https://www.facebook.com/groups/FusionBuilder/" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_attr_e( 'Facebook Group', 'fusion-builder' ); ?></a>
+				<p><?php esc_attr_e( 'We have an amazing Facebook Group! Share with other Avada users and help grow our community. Please note, ThemeFusion does not provide support here.', 'fusion-builder' ); ?></p>
+				<a href="https://www.facebook.com/groups/AvadaUsers/" class="button button-large button-primary avada-large-button" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Facebook Group', 'fusion-builder' ); ?></a>
 			</div>
 		</div>
+		<?php do_action( 'avada_admin_pages_support_after_list' ); ?>
 	</div>
 	<?php Fusion_Builder_Admin::footer(); ?>
 </div>

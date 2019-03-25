@@ -466,7 +466,8 @@ var FusionPageBuilder = FusionPageBuilder || {};
 							model: this,
 							el: this.$el.find( '.fusion-builder-option-advanced-module-settings' ),
 							attributes: {
-								cid: viewCID
+								cid: viewCID,
+								parentCid: this.model.get( 'cid' )
 							}
 						} );
 

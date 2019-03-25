@@ -59,7 +59,7 @@ if ( fusion_is_element_enabled( 'fusion_widget_area' ) ) {
 				}
 
 				if ( ! isset( $args['padding'] ) ) {
-					$padding_values = array();
+					$padding_values           = array();
 					$padding_values['top']    = ( isset( $args['padding_top'] ) && '' !== $args['padding_top'] ) ? $args['padding_top'] : '0px';
 					$padding_values['right']  = ( isset( $args['padding_right'] ) && '' !== $args['padding_right'] ) ? $args['padding_right'] : '0px';
 					$padding_values['bottom'] = ( isset( $args['padding_bottom'] ) && '' !== $args['padding_bottom'] ) ? $args['padding_bottom'] : '0px';
@@ -76,8 +76,8 @@ if ( fusion_is_element_enabled( 'fusion_widget_area' ) ) {
 						'background_color' => '',
 						'name'             => '',
 						'padding'          => '',
-						'title_color'    => $fusion_settings->get( 'widget_area_title_color' ),
-						'title_size'     => $fusion_settings->get( 'widget_area_title_size' ),
+						'title_color'      => $fusion_settings->get( 'widget_area_title_color' ),
+						'title_size'       => $fusion_settings->get( 'widget_area_title_size' ),
 					),
 					$args,
 					'fusion_widget_area'
@@ -89,7 +89,7 @@ if ( fusion_is_element_enabled( 'fusion_widget_area' ) ) {
 
 				$this->args = $defaults;
 
-				$html = '<div ' . FusionBuilder::attributes( 'widget-shortcode' ) . '>';
+				$html  = '<div ' . FusionBuilder::attributes( 'widget-shortcode' ) . '>';
 				$html .= self::get_styles();
 
 				ob_start();
@@ -159,7 +159,7 @@ if ( fusion_is_element_enabled( 'fusion_widget_area' ) ) {
 					}
 
 					$_padding = $fusion_library->sanitize->get_value_with_unit( $this->args['padding'] );
-					$styles .= '.fusion-widget-area-' . $this->widget_counter . ' {padding:' . $_padding . ';}';
+					$styles  .= '.fusion-widget-area-' . $this->widget_counter . ' {padding:' . $_padding . ';}';
 				}
 
 				if ( $this->args['title_color'] ) {
@@ -197,7 +197,7 @@ if ( fusion_is_element_enabled( 'fusion_widget_area' ) ) {
 						'id'          => 'widget_area_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'widget_area_title_size' => array(
+							'widget_area_title_size'  => array(
 								'label'       => esc_html__( 'Widget Title Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the size of widget titles. In pixels.', 'fusion-builder' ),
 								'id'          => 'widget_area_title_size',

@@ -106,7 +106,7 @@ class Fusion_Builder_Gutenberg {
 				<?php
 			} elseif ( isset( $_GET['gutenberg-editor'] ) ) {
 				$editor_label = esc_attr__( 'Edit With Fusion Builder', 'fusion-builder' );
-				$post_link = add_query_arg( 'fb-be-editor', '', get_edit_post_link( $post->ID, 'raw' ) );
+				$post_link    = add_query_arg( 'fb-be-editor', '', get_edit_post_link( $post->ID, 'raw' ) );
 				$button       = '<a href="' . $post_link . '" id="fusion_builder_switch" class="button button-primary button-large">' . $editor_label . '</a>'; // WPCS: XSS ok.
 				?>
 				<script type="text/javascript">
@@ -263,9 +263,9 @@ class Fusion_Builder_Gutenberg {
 			return $actions;
 		}
 
-		$edit_url = get_edit_post_link( $post->ID, 'raw' );
+		$edit_url      = get_edit_post_link( $post->ID, 'raw' );
 		$gutenberg_url = add_query_arg( 'gutenberg-editor', '', $edit_url );
-		$classic_url = add_query_arg( 'classic-editor', '', $edit_url );
+		$classic_url   = add_query_arg( 'classic-editor', '', $edit_url );
 
 		// Build the classic edit action. See also: WP_Posts_List_Table::handle_row_actions().
 		$title       = _draft_or_post_title( $post->ID );
@@ -282,7 +282,7 @@ class Fusion_Builder_Gutenberg {
 				),
 				__( 'Gutenberg Editor', 'fusion-builder' )
 			),
-			'classic' => sprintf(
+			'classic'   => sprintf(
 				'<a href="%s" aria-label="%s">%s</a>',
 				esc_url( $classic_url ),
 				esc_attr(

@@ -379,7 +379,7 @@ class Fusion_Dynamic_CSS_Helpers {
 	public function get_dynamic_css() {
 		if ( ! self::$dynamic_css_parsed ) {
 			$dynamic_css_array        = apply_filters( 'fusion_dynamic_css_array', self::$dynamic_css );
-			self::$dynamic_css_parsed = '/********* Compiled CSS - Do not edit *********/' . $this->parser( $dynamic_css_array );
+			self::$dynamic_css_parsed = $this->parser( $dynamic_css_array );
 		}
 		return self::$dynamic_css_parsed;
 	}

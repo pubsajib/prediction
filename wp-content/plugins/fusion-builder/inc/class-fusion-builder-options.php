@@ -25,7 +25,7 @@ class Fusion_Builder_Options {
 	 * @access public
 	 * @var array
 	 */
-	public $sections      = array();
+	public $sections = array();
 
 	/**
 	 * An array of our fields.
@@ -152,7 +152,7 @@ class Fusion_Builder_Options {
 
 		// Get the options object.
 		$fusion_builder_new_options = ( class_exists( 'Avada' ) ) ? Avada::$options : false;
-		$fields = array();
+		$fields                     = array();
 
 		if ( ! $fusion_builder_new_options ) {
 			return array();

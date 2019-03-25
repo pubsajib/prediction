@@ -106,6 +106,16 @@ class Fusion_Scripts {
 				true,
 			),
 
+			// Lazy Loading.
+			array(
+				'lazysizes',
+				self::$js_folder_url . '/library/lazysizes.js',
+				self::$js_folder_path . '/library/lazysizes.js',
+				array( 'jquery' ),
+				'4.1.5',
+				true,
+			),
+
 			// Bootstrap.
 			array(
 				'bootstrap-collapse',
@@ -463,16 +473,12 @@ class Fusion_Scripts {
 			$map_protocol = ( is_ssl() ) ? 'https' : 'http';
 			$map_key      = apply_filters( 'fusion_google_maps_api_key', fusion_library()->get_option( 'gmap_api' ) );
 			$map_key      = ( $map_key ) ? 'key=' . $map_key . '&' : '';
-			$map_api      = $map_protocol . '://maps.googleapis.com/maps/api/js?' . $map_key . 'language=' . substr( get_locale(), 0, 2 );
+			$lang_codes   = array( 'en_Au', 'en_GB', 'pt_BR', 'pt_PT', 'zh_CN', 'zh_TW' );
+			$lang_locale  = get_locale();
+			$lang_code    = in_array( $lang_locale, $lang_codes ) ? str_replace( '_', '-', $lang_locale ) : substr( get_locale(), 0, 2 );
+			$map_api      = $map_protocol . '://maps.googleapis.com/maps/api/js?' . $map_key . 'language=' . $lang_code;
 			wp_register_script( 'google-maps-api', $map_api, array(), '1', true );
 			wp_register_script( 'google-maps-infobox', self::$js_folder_url . '/library/infobox_packed.js', array(), '1', true );
-		}
-
-		// Conditional loading for older IE versions.
-		if ( function_exists( 'wp_script_add_data' ) ) {
-			wp_register_script( 'fusion-ie9', FUSION_LIBRARY_URL . '/assets/min/js/general/fusion-ie9.js', array(), '1', true );
-			wp_enqueue_script( 'fusion-ie9' );
-			wp_script_add_data( 'fusion-ie9', 'conditional', 'IE 9' );
 		}
 	}
 
@@ -492,16 +498,6 @@ class Fusion_Scripts {
 			self::$js_folder_url . '/general/fusion-general-global.js',
 			self::$js_folder_path . '/general/fusion-general-global.js',
 			array( 'jquery', 'jquery-placeholder' ),
-			'1',
-			true
-		);
-
-		// IE 10-11.
-		Fusion_Dynamic_JS::enqueue_script(
-			'fusion-ie1011',
-			self::$js_folder_url . '/general/fusion-ie1011.js',
-			self::$js_folder_path . '/general/fusion-ie1011.js',
-			array( 'jquery', 'cssua' ),
 			'1',
 			true
 		);
@@ -625,13 +621,6 @@ class Fusion_Scripts {
 			array(
 				'related_posts_speed' => fusion_library()->get_option( 'related_posts_speed' ) ? (int) fusion_library()->get_option( 'related_posts_speed' ) : 5000,
 				'carousel_speed'      => fusion_library()->get_option( 'carousel_speed' ) ? (int) fusion_library()->get_option( 'carousel_speed' ) : 5000,
-			)
-		);
-		Fusion_Dynamic_JS::localize_script(
-			'fusion-ie1011',
-			'fusionIe1011Vars',
-			array(
-				'form_bg_color' => fusion_library()->get_option( 'form_bg_color' ) ? fusion_library()->get_option( 'form_bg_color' ) : '#ffffff',
 			)
 		);
 		Fusion_Dynamic_JS::localize_script(

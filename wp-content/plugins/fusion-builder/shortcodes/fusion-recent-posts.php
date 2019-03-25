@@ -69,7 +69,7 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 			 */
 			public function render( $args, $content = '' ) {
 
-				global $fusion_settings;
+				global $fusion_settings, $fusion_library;
 
 				$defaults = FusionBuilder::set_shortcode_defaults(
 					array(
@@ -97,6 +97,7 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 						'meta_tags'           => 'no',
 						'number_posts'        => '4',
 						'offset'              => '',
+						'picture_size'        => 'fixed',
 						'scrolling'           => 'no',
 						'strip_html'          => 'yes',
 						'title'               => 'yes',
@@ -148,7 +149,7 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 					}
 
 					// Setting up cats to be used and exclution using '-' prefix on cats param; transform slugs to ids.
-					$cat_ids = '';
+					$cat_ids    = '';
 					$categories = explode( ',', $defaults['cat_slug'] );
 					if ( isset( $categories ) && $categories ) {
 						foreach ( $categories as $category ) {
@@ -170,7 +171,7 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 				} else {
 					// Check for tags to exclude; needs to be checked via exclude_tags param
 					// and '-' prefixed tags on tags param exclusion via exclude_tags param.
-					$tags_to_exclude = explode( ',', $defaults['exclude_tags'] );
+					$tags_to_exclude    = explode( ',', $defaults['exclude_tags'] );
 					$tags_id_to_exclude = array();
 					if ( $tags_to_exclude ) {
 						foreach ( $tags_to_exclude as $tag_to_exclude ) {
@@ -305,7 +306,9 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 
 					if ( 'yes' === $thumbnail && 'date-on-side' !== $layout && ! post_password_required( get_the_ID() ) ) {
 
-						if ( 'default' == $layout ) {
+						if ( 'auto' === $picture_size ) {
+							$image_size = 'full';
+						} elseif ( 'default' == $layout ) {
 							$image_size = 'recent-posts';
 						} elseif ( 'thumbnails-on-side' == $layout ) {
 							$image_size = 'portfolio-five';
@@ -319,18 +322,30 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 							}
 
 							if ( has_post_thumbnail() ) {
-								$attachment_image   = wp_get_attachment_image_src( get_post_thumbnail_id(), $image_size );
-								$attachment_img_tag = wp_get_attachment_image( get_post_thumbnail_id(), $image_size );
 
-								$attachment_img_tag_custom = '<img src="' . $attachment_image[0] . '" alt="' . get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ) . '" />';
-								$full_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
-								$attachment_data = wp_get_attachment_metadata( get_post_thumbnail_id() );
-								$attachment = get_post( get_post_thumbnail_id() );
+								// Responsive images.
+								if ( 'full' === $image_size ) {
+									$fusion_library->images->set_grid_image_meta(
+										array(
+											'layout'       => 'grid',
+											'columns'      => $columns,
+											'gutter_width' => '30',
+										)
+									);
 
-								$slides .= '<li><a href="' . get_permalink( get_the_ID() ) . '" ' . FusionBuilder::attributes( 'recentposts-shortcode-img-link' ) . '>' . $attachment_img_tag_custom . '</a></li>';
+									$attachment_image = wp_get_attachment_image( get_post_thumbnail_id(), $image_size );
+
+									$attachment_image = $fusion_library->images->edit_grid_image_src( $attachment_image, null, get_post_thumbnail_id(), 'full' );
+
+									$fusion_library->images->set_grid_image_meta( array() );
+								} else {
+									$attachment_image = wp_get_attachment_image( get_post_thumbnail_id(), $image_size );
+								}
+
+								$slides .= '<li><a href="' . get_permalink( get_the_ID() ) . '" ' . FusionBuilder::attributes( 'recentposts-shortcode-img-link' ) . '>' . $attachment_image . '</a></li>';
 							}
 
-							$i = 2;
+							$i                      = 2;
 							$posts_slideshow_number = $fusion_settings->get( 'posts_slideshow_number' );
 							if ( '' === $posts_slideshow_number ) {
 								$posts_slideshow_number = 5;
@@ -344,13 +359,27 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 								}
 
 								if ( $attachment_new_id ) {
-									$attachment_image          = wp_get_attachment_image_src( $attachment_new_id, $image_size );
-									$attachment_img_tag        = wp_get_attachment_image( $attachment_new_id, $image_size );
-									$attachment_img_tag_custom = '<img src="' . $attachment_image[0] . '" alt="' . get_post_meta( $attachment_new_id, '_wp_attachment_image_alt', true ) . '" />';
-									$full_image      = wp_get_attachment_image_src( $attachment_new_id, 'full' );
-									$attachment_data = wp_get_attachment_metadata( $attachment_new_id );
 
-									$slides .= '<li><a href="' . get_permalink( get_the_ID() ) . '" ' . FusionBuilder::attributes( 'recentposts-shortcode-img-link' ) . '>' . $attachment_img_tag_custom . '</a></li>';
+									// Responsive images.
+									if ( 'full' === $image_size ) {
+										$fusion_library->images->set_grid_image_meta(
+											array(
+												'layout'  => 'grid',
+												'columns' => $columns,
+												'gutter_width' => '30',
+											)
+										);
+
+										$attachment_image = wp_get_attachment_image( $attachment_new_id, $image_size );
+
+										$attachment_image = $fusion_library->images->edit_grid_image_src( $attachment_image, null, $attachment_new_id, 'full' );
+
+										$fusion_library->images->set_grid_image_meta( array() );
+									} else {
+										$attachment_image = wp_get_attachment_image( $attachment_new_id, $image_size );
+									}
+
+									$slides .= '<li><a href="' . get_permalink( get_the_ID() ) . '" ' . FusionBuilder::attributes( 'recentposts-shortcode-img-link' ) . '>' . $attachment_image . '</a></li>';
 								}
 								$i++;
 							}
@@ -360,7 +389,7 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 					}
 
 					if ( 'yes' == $title ) {
-						$content .= ( function_exists( 'fusion_builder_render_rich_snippets_for_pages' ) ) ? fusion_builder_render_rich_snippets_for_pages( false ) : '';
+						$content    .= ( function_exists( 'fusion_builder_render_rich_snippets_for_pages' ) ) ? fusion_builder_render_rich_snippets_for_pages( false ) : '';
 						$entry_title = '';
 						if ( $fusion_settings->get( 'disable_date_rich_snippet_pages' ) && $fusion_settings->get( 'disable_rich_snippet_title' ) ) {
 							$entry_title = 'entry-title';
@@ -372,12 +401,12 @@ if ( fusion_is_element_enabled( 'fusion_recent_posts' ) ) {
 
 					if ( 'yes' == $meta ) {
 						$meta_data = fusion_builder_render_post_metadata( 'recent_posts', $this->meta_info_settings );
-						$content .= '<p ' . FusionBuilder::attributes( 'meta' ) . '>' . $meta_data . '</p>';
+						$content  .= '<p ' . FusionBuilder::attributes( 'meta' ) . '>' . $meta_data . '</p>';
 					}
 
 					if ( 'yes' === $excerpt ) {
 						$content .= fusion_builder_get_post_content( '', 'yes', $excerpt_words, $strip_html );
-					} else if ( 'full' === $excerpt ) {
+					} elseif ( 'full' === $excerpt ) {
 						$content .= fusion_builder_get_post_content( '', 'no', $excerpt_words, $strip_html );
 					}
 
@@ -686,6 +715,29 @@ function fusion_element_recent_posts() {
 				),
 				array(
 					'type'        => 'radio_button_set',
+					'heading'     => esc_attr__( 'Picture Size', 'fusion-builder' ),
+					'description' => __( 'Fixed = width and height will be fixed.<br/>Auto = width and height will adjust to the image.<br/>', 'fusion-builder' ),
+					'param_name'  => 'picture_size',
+					'default'     => 'fixed',
+					'value'       => array(
+						'fixed' => esc_attr__( 'Fixed', 'fusion-builder' ),
+						'auto'  => esc_attr__( 'Auto', 'fusion-builder' ),
+					),
+					'dependency'  => array(
+						array(
+							'element'  => 'layout',
+							'value'    => 'date-on-side',
+							'operator' => '!=',
+						),
+						array(
+							'element'  => 'thumbnail',
+							'value'    => 'yes',
+							'operator' => '==',
+						),
+					),
+				),
+				array(
+					'type'        => 'radio_button_set',
 					'heading'     => esc_attr__( 'Hover Type', 'fusion-builder' ),
 					'description' => esc_attr__( 'Select the hover effect type.', 'fusion-builder' ),
 					'param_name'  => 'hover_type',
@@ -696,6 +748,18 @@ function fusion_element_recent_posts() {
 						'liftup'  => esc_attr__( 'Lift Up', 'fusion-builder' ),
 					),
 					'default'     => 'none',
+					'dependency'  => array(
+						array(
+							'element'  => 'layout',
+							'value'    => 'date-on-side',
+							'operator' => '!=',
+						),
+						array(
+							'element'  => 'thumbnail',
+							'value'    => 'yes',
+							'operator' => '==',
+						),
+					),
 				),
 				array(
 					'type'        => 'range',
@@ -953,10 +1017,10 @@ function fusion_element_recent_posts() {
 					'heading'     => esc_attr__( 'Text display', 'fusion-builder' ),
 					'description' => esc_attr__( 'Choose to display the post excerpt.', 'fusion-builder' ),
 					'param_name'  => 'excerpt',
-					'value'   => array(
-						'yes'   => esc_attr__( 'Excerpt', 'fusion-builder' ),
-						'full'  => esc_attr__( 'Full Content', 'fusion-builder' ),
-						'no'    => esc_attr__( 'None', 'fusion-builder' ),
+					'value'       => array(
+						'yes'  => esc_attr__( 'Excerpt', 'fusion-builder' ),
+						'full' => esc_attr__( 'Full Content', 'fusion-builder' ),
+						'no'   => esc_attr__( 'None', 'fusion-builder' ),
 					),
 					'default'     => 'yes',
 				),

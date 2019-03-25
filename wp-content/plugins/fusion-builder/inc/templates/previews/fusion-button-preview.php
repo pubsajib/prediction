@@ -5,16 +5,16 @@ if ( ! $fusion_settings ) {
 	$fusion_settings = Fusion_Settings::get_instance();
 }
 
-$size  = strtolower( $fusion_settings->get( 'button_size' ) );
-$shape = strtolower( $fusion_settings->get( 'button_shape' ) );
-$type  = strtolower( $fusion_settings->get( 'button_type' ) );
+$size         = strtolower( $fusion_settings->get( 'button_size' ) );
+$shape        = strtolower( $fusion_settings->get( 'button_shape' ) );
+$type         = strtolower( $fusion_settings->get( 'button_type' ) );
 $gradient_top = $gradient_bottom = $accent_color = $border_color = $border_width = '';
 
-$gradient_top = fusion_color_needs_adjustment( $fusion_settings->get( 'button_gradient_top_color' ) ) ? '#f8f8f8' : $fusion_settings->get( 'button_gradient_top_color' );
+$gradient_top    = fusion_color_needs_adjustment( $fusion_settings->get( 'button_gradient_top_color' ) ) ? '#f8f8f8' : $fusion_settings->get( 'button_gradient_top_color' );
 $gradient_bottom = fusion_color_needs_adjustment( $fusion_settings->get( 'button_gradient_bottom_color' ) ) ? '#f8f8f8' : $fusion_settings->get( 'button_gradient_bottom_color' );
-$accent_color = fusion_color_needs_adjustment( $fusion_settings->get( 'button_accent_color' ) ) ? '#f8f8f8' : $fusion_settings->get( 'button_accent_color' );
-$border_width = $fusion_settings->get( 'button_border_width' );
-$text_transform = $fusion_settings->get( 'button_text_transform' );
+$accent_color    = fusion_color_needs_adjustment( $fusion_settings->get( 'button_accent_color' ) ) ? '#f8f8f8' : $fusion_settings->get( 'button_accent_color' );
+$border_width    = $fusion_settings->get( 'button_border_width' );
+$text_transform  = $fusion_settings->get( 'button_text_transform' );
 ?>
 
 <script type="text/template" id="fusion-builder-block-module-button-preview-template">
@@ -89,12 +89,21 @@ $text_transform = $fusion_settings->get( 'button_text_transform' );
 	}
 	#>
 
+	<#
+	if ( 'right' === params.icon_position ) {
+		var buttonContent = '<span class="fusion-module-icon ' + button_icon + '"></span>' + params.element_content;
+	} else {
+		var buttonContent = params.element_content + '<span class="fusion-module-icon ' + button_icon + '" style="margin-left:0.5em;margin-right:0;"></span>';
+	}
+	#>
+
 	<# if ( 'custom' === params.color || 'default' === params.color ) { #>
 
-		<a class="fusion-button button-default button-{{ button_shape }} button-{{ button_type }} button-{{ button_size }}" style="background: {{ button_background }}; border: {{ border_width }} solid {{ accent_color }}; color: {{ accent_color }}; text-transform: {{ text_transform }};"><span class="fusion-button-text"><span class="fusion-module-icon {{ button_icon }}"></span>{{{ params.element_content }}}</span></a>
+		<a class="fusion-button button-default button-{{ button_shape }} button-{{ button_type }} button-{{ button_size }}" style="background: {{ button_background }}; border: {{ border_width }} solid {{ accent_color }}; color: {{ accent_color }}; text-transform: {{ text_transform }};"><span class="fusion-button-text">{{{ buttonContent }}}</span></a>
 
 	<# } else { #>
 
-		<a class="fusion-button button-default button-{{ button_shape }} button-{{ button_type }} button-{{ button_size }} button-{{ button_color }}" style="text-transform: {{ text_transform }};"><span class="fusion-button-text"><span class="fusion-module-icon {{ button_icon }}"></span>{{{ params.element_content }}}</span></a>
+		<a class="fusion-button button-default button-{{ button_shape }} button-{{ button_type }} button-{{ button_size }} button-{{ button_color }}" style="text-transform: {{ text_transform }};"><span class="fusion-button-text">{{{ buttonContent }}}</span></a>
+
 	<# }#>
 </script>

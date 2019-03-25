@@ -220,7 +220,7 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 
 				$fusion_library->images->set_grid_image_meta(
 					array(
-						'layout' => 'large',
+						'layout'  => 'large',
 						'columns' => '1',
 					)
 				);
@@ -228,6 +228,8 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 				if ( function_exists( 'wp_make_content_images_responsive' ) ) {
 					$content = wp_make_content_images_responsive( $content );
 				}
+
+				$content = $fusion_library->images->apply_lazy_loading( $content, null, $image_id, 'full' );
 
 				$fusion_library->images->set_grid_image_meta( array() );
 
@@ -245,7 +247,7 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 				$html = '<span ' . FusionBuilder::attributes( 'image-shortcode' ) . '>' . $output . '</span>';
 
 				if ( 'liftup' === $hover_type || ( 'bottomshadow' === $style && ( 'none' === $hover_type || 'zoomin' === $hover_type || 'zoomout' === $hover_type ) ) ) {
-					$stylecolor   = ( '#' === $this->args['stylecolor'][0] ) ? Fusion_Color::new_color( $this->args['stylecolor'] )->get_new( 'alpha', '0.4' )->to_css( 'rgba' ) : Fusion_Color::new_color( $this->args['stylecolor'] )->to_css( 'rgba' );
+					$stylecolor = ( '#' === $this->args['stylecolor'][0] ) ? Fusion_Color::new_color( $this->args['stylecolor'] )->get_new( 'alpha', '0.4' )->to_css( 'rgba' ) : Fusion_Color::new_color( $this->args['stylecolor'] )->to_css( 'rgba' );
 
 					if ( 'liftup' === $hover_type ) {
 						$wrapper_classes = 'imageframe-liftup';
@@ -274,16 +276,16 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 					} else {
 						$wrapper_classes = 'fusion-image-frame-bottomshadow image-frame-shadow-' . $this->imageframe_counter;
 						$element_styles  = '';
-						$element_styles  = '<style scoped="scoped">.element-bottomshadow.image-frame-shadow-' . $this->imageframe_counter . '{';
+						$element_styles  = '<style scoped="scoped">.fusion-image-frame-bottomshadow.image-frame-shadow-' . $this->imageframe_counter . '{';
 						if ( 'left' === $align ) {
 							$element_styles .= 'margin-right:25px;float:left;';
 						} elseif ( 'right' === $align ) {
-							$element_styles  .= 'margin-left:25px;float:right;';
+							$element_styles .= 'margin-left:25px;float:right;';
 						}
-						$element_styles  .= 'display:inline-block}';
+						$element_styles .= 'display:inline-block}';
 
-						$element_styles  .= '.element-bottomshadow.imageframe-' . $this->imageframe_counter . ':before, .element-bottomshadow.imageframe-' . $this->imageframe_counter . ':after{';
-						$element_styles  .= '-webkit-box-shadow: 0 17px 10px ' . $stylecolor . ';box-shadow: 0 17px 10px ' . $stylecolor . ';}';
+						$element_styles .= '.element-bottomshadow.imageframe-' . $this->imageframe_counter . ':before, .element-bottomshadow.imageframe-' . $this->imageframe_counter . ':after{';
+						$element_styles .= '-webkit-box-shadow: 0 17px 10px ' . $stylecolor . ';box-shadow: 0 17px 10px ' . $stylecolor . ';}';
 
 						$element_styles .= '</style>';
 					}
@@ -324,14 +326,14 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 				);
 
 				$visibility_classes_need_set = false;
-				$bordercolor  = $this->args['bordercolor'];
-				$stylecolor   = ( '#' === $this->args['stylecolor'][0] ) ? Fusion_Color::new_color( $this->args['stylecolor'] )->get_new( 'alpha', '0.3' )->to_css( 'rgba' ) : Fusion_Color::new_color( $this->args['stylecolor'] )->to_css( 'rgba' );
-				$blur         = $this->args['blur'];
-				$blur_radius  = ( (int) $blur + 4 ) . 'px';
-				$bordersize   = $this->args['bordersize'];
-				$borderradius = $this->args['borderradius'];
-				$style        = $this->args['style'];
-				$img_styles   = '';
+				$bordercolor                 = $this->args['bordercolor'];
+				$stylecolor                  = ( '#' === $this->args['stylecolor'][0] ) ? Fusion_Color::new_color( $this->args['stylecolor'] )->get_new( 'alpha', '0.3' )->to_css( 'rgba' ) : Fusion_Color::new_color( $this->args['stylecolor'] )->to_css( 'rgba' );
+				$blur                        = $this->args['blur'];
+				$blur_radius                 = ( (int) $blur + 4 ) . 'px';
+				$bordersize                  = $this->args['bordersize'];
+				$borderradius                = $this->args['borderradius'];
+				$style                       = $this->args['style'];
+				$img_styles                  = '';
 
 				if ( '0' != $bordersize && '0px' !== $bordersize ) {
 					$img_styles .= "border:{$bordersize} solid {$bordercolor};";
@@ -439,12 +441,12 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 					}
 
 					if ( $this->image_data ) {
-						$attr['title']        = $this->image_data['title'];
+						$attr['title'] = $this->image_data['title'];
 					}
 				} elseif ( $this->args['link'] ) {
-					$attr['class']  = 'fusion-no-lightbox';
-					$attr['href']   = $this->args['link'];
-					$attr['target'] = $this->args['linktarget'];
+					$attr['class']      = 'fusion-no-lightbox';
+					$attr['href']       = $this->args['link'];
+					$attr['target']     = $this->args['linktarget'];
 					$attr['aria-label'] = ( $this->image_data ) ? $this->image_data['title'] : '';
 					if ( '_blank' === $this->args['linktarget'] ) {
 						$attr['rel'] = 'noopener noreferrer';
@@ -465,13 +467,13 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 			public function add_options() {
 
 				return array(
-					'image_shortcode_section' => array(
+					'image_a_shortcode_section' => array(
 						'label'       => esc_html__( 'Image Element', 'fusion-builder' ),
 						'description' => '',
-						'id'          => 'image_shortcode_section',
+						'id'          => 'image_a_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'imageframe_style_type' => array(
+							'imageframe_style_type'    => array(
 								'label'       => esc_html__( 'Image Style Type', 'fusion-builder' ),
 								'description' => esc_html__( 'Select the style type.', 'fusion-builder' ),
 								'id'          => 'imageframe_style_type',
@@ -484,7 +486,7 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 									'bottomshadow' => esc_attr__( 'Bottom Shadow', 'fusion-builder' ),
 								),
 							),
-							'imageframe_blur' => array(
+							'imageframe_blur'          => array(
 								'label'       => esc_html__( 'Image Glow / Drop Shadow Blur', 'fusion-builder' ),
 								'description' => esc_html__( 'Choose the amount of blur added to glow or drop shadow effect.', 'fusion-builder' ),
 								'id'          => 'imageframe_blur',
@@ -508,7 +510,7 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 									),
 								),
 							),
-							'imgframe_style_color' => array(
+							'imgframe_style_color'     => array(
 								'label'       => esc_html__( 'Image Style Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the style color for all style types except border. Hex colors will use a subtle auto added alpha level to produce a nice effect.', 'fusion-builder' ),
 								'id'          => 'imgframe_style_color',
@@ -522,7 +524,7 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 									),
 								),
 							),
-							'imageframe_border_size' => array(
+							'imageframe_border_size'   => array(
 								'label'       => esc_html__( 'Image Border Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border size of the image.', 'fusion-builder' ),
 								'id'          => 'imageframe_border_size',
@@ -534,7 +536,7 @@ if ( fusion_is_element_enabled( 'fusion_imageframe' ) ) {
 									'step' => '1',
 								),
 							),
-							'imgframe_border_color' => array(
+							'imgframe_border_color'    => array(
 								'label'       => esc_html__( 'Image Border Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border color of the image.', 'fusion-builder' ),
 								'id'          => 'imgframe_border_color',

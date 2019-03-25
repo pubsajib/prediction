@@ -17,9 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function fusion_builder_fix_shortcodes( $content ) {
 	$replace_tags_from_to = array(
-		'<p>[' => '[',
-		']</p>' => ']',
-		']<br />' => ']',
+		'<p>['      => '[',
+		']</p>'     => ']',
+		']<br />'   => ']',
 		"<br />\n[" => '[',
 	);
 
@@ -43,15 +43,15 @@ function fusion_builder_get_video_provider( $video_string ) {
 		if ( isset( $id[1] ) ) {
 			$video_id = $id[1];
 		}
-	} else if ( preg_match( '/youtube\.com\/embed\/([^\&\?\/]+)/', $video_string, $id ) ) {
+	} elseif ( preg_match( '/youtube\.com\/embed\/([^\&\?\/]+)/', $video_string, $id ) ) {
 		if ( isset( $id[1] ) ) {
 			$video_id = $id[1];
 		}
-	} else if ( preg_match( '/youtube\.com\/v\/([^\&\?\/]+)/', $video_string, $id ) ) {
+	} elseif ( preg_match( '/youtube\.com\/v\/([^\&\?\/]+)/', $video_string, $id ) ) {
 		if ( isset( $id[1] ) ) {
 			$video_id = $id[1];
 		}
-	} else if ( preg_match( '/youtu\.be\/([^\&\?\/]+)/', $video_string, $id ) ) {
+	} elseif ( preg_match( '/youtu\.be\/([^\&\?\/]+)/', $video_string, $id ) ) {
 		if ( isset( $id[1] ) ) {
 			$video_id = $id[1];
 		}
@@ -103,8 +103,8 @@ function fusion_builder_get_video_provider( $video_string ) {
  */
 function fusion_builder_animation_data( $animation_type = '', $animation_direction = '', $animation_speed = '', $animation_offset = '' ) {
 
-	$animation = array();
-	$animation['data'] = '';
+	$animation          = array();
+	$animation['data']  = '';
 	$animation['class'] = '';
 
 	if ( ! empty( $animation_type ) ) {
@@ -194,7 +194,7 @@ function fusion_builder_get_layerslider_slides() {
  */
 function fusion_builder_get_revslider_slides() {
 	$revsliders[] = 'Select a slider';
-	$revsliders = array( '0' => 'Select a slider' );
+	$revsliders   = array( '0' => 'Select a slider' );
 
 	// Check if slider revolution is active.
 	if ( shortcode_exists( 'rev_slider' ) ) {
@@ -240,7 +240,7 @@ function fusion_builder_shortcodes_categories( $taxonomy, $empty_choice = false,
 				if ( array_key_exists( 'slug', $cat ) &&
 					array_key_exists( 'name', $cat )
 				) {
-					$label = $cat->name . ( ( array_key_exists( 'count', $cat ) ) ? ' (' . $cat->count . ')' : '' );
+					$label                                      = $cat->name . ( ( array_key_exists( 'count', $cat ) ) ? ' (' . $cat->count . ')' : '' );
 					$post_categories[ urldecode( $cat->slug ) ] = $label;
 				}
 			}
@@ -278,7 +278,7 @@ function fusion_builder_shortcodes_tags( $taxonomy, $empty_choice = false, $empt
 		if ( $get_terms && is_array( $get_terms ) ) {
 			foreach ( $get_terms as $term ) {
 
-					$label = $term->name . ( ( array_key_exists( 'count', $term ) ) ? ' (' . $term->count . ')' : '' );
+					$label                                 = $term->name . ( ( array_key_exists( 'count', $term ) ) ? ' (' . $term->count . ')' : '' );
 					$post_tags[ urldecode( $term->slug ) ] = $label;
 
 			}
@@ -763,12 +763,12 @@ function fusion_builder_custom_css() {
 	}
 
 	$saved_custom_css = get_post_meta( $post->ID, '_fusion_builder_custom_css', true );
-	?>
-	<?php if ( isset( $saved_custom_css ) && '' != $saved_custom_css ) : ?>
-		<style type="text/css"><?php echo stripslashes_deep( $saved_custom_css ); // WPCS: XSS ok. ?></style>
-	<?php endif; ?>
-	<?php
 
+	if ( isset( $saved_custom_css ) && '' != $saved_custom_css ) {
+		echo '<style type="text/css">';
+		echo stripslashes_deep( $saved_custom_css ); // WPCS: XSS ok.
+		echo '</style>';
+	}
 }
 add_action( 'wp_head', 'fusion_builder_custom_css', 11 );
 
@@ -917,6 +917,7 @@ function fusion_builder_textdomain_strings() {
 		'toggle_all_sections'                         => esc_attr__( 'Toggle All Containers', 'fusion-builder' ),
 		'cloned_section'                              => esc_attr__( 'Cloned Container', 'fusion-builder' ),
 		'deleted_section'                             => esc_attr__( 'Deleted Container', 'fusion-builder' ),
+		'image'                                       => esc_attr__( 'Image', 'fusion-builder' ),
 		'select_image'                                => esc_attr__( 'Select Image', 'fusion-builder' ),
 		'select_images'                               => esc_attr__( 'Select Images', 'fusion-builder' ),
 		'select_video'                                => esc_attr__( 'Select Video', 'fusion-builder' ),
@@ -975,9 +976,9 @@ function fusion_builder_textdomain_strings() {
  */
 function fusion_builder_add_quicktags_button() {
 	?>
-	<?php if ( get_current_screen()->base == 'post' ) : ?>
+	<?php if ( 'post' === get_current_screen()->base ) : ?>
 		<script type="text/javascript" charset="utf-8">
-			if ( typeof( QTags ) == 'function' ) {
+			if ( 'function' === typeof QTags ) {
 				QTags.addButton( 'fusion_shortcodes_text_mode', ' ','', '', 'f' );
 			}
 		</script>
@@ -1003,8 +1004,8 @@ function fusion_builder_build_social_links( $social_networks = '', $filter, $def
 		$fusion_settings = Fusion_Settings::get_instance();
 	}
 
-	$use_brand_colors = false;
-	$icons = '';
+	$use_brand_colors   = false;
+	$icons              = '';
 	$shortcode_defaults = array();
 
 	if ( '' != $social_networks && is_array( $social_networks ) ) {
@@ -1020,6 +1021,13 @@ function fusion_builder_build_social_links( $social_networks = '', $filter, $def
 		}
 
 		extract( $shortcode_defaults );
+
+		// Custom social icon colors.
+		$icon_colors = explode( '|', $icon_colors );
+		$box_colors  = explode( '|', $box_colors );
+
+		$num_of_icon_colors = count( $icon_colors );
+		$num_of_box_colors  = count( $box_colors );
 
 		// Check for icon color type.
 		if ( 'brand' == $color_type || ( '' == $color_type && 'brand' == $fusion_settings->get( 'social_links_color_type' ) ) ) {
@@ -1037,13 +1045,6 @@ function fusion_builder_build_social_links( $social_networks = '', $filter, $def
 			);
 
 		} else {
-
-			// Custom social icon colors.
-			$icon_colors = explode( '|', $icon_colors );
-			$box_colors  = explode( '|', $box_colors );
-
-			$num_of_icon_colors = count( $icon_colors );
-			$num_of_box_colors  = count( $box_colors );
 
 			$social_networks_count = count( $social_networks );
 
@@ -1071,7 +1072,7 @@ function fusion_builder_build_social_links( $social_networks = '', $filter, $def
 							if ( true === $use_brand_colors ) {
 								$custom_icon_box_color = ( $box_colors[ $network ]['color'] ) ? $box_colors[ $network ]['color'] : '';
 							} else {
-								$custom_icon_box_color = $i < count( $box_colors ) ? $box_colors[ $i ] : '';
+								$custom_icon_box_color = isset( $num_of_box_colors[ $i ] ) ? $box_colors[ $i ] : '';
 							}
 						} else {
 							$custom_icon_box_color = '';
@@ -1097,7 +1098,7 @@ function fusion_builder_build_social_links( $social_networks = '', $filter, $def
 						$icon_options = array(
 							'social_network' => $social_media_icons['custom_title'][ $custom_key ],
 							'social_link'    => $url,
-							'icon_color'     => $i < count( $icon_colors ) ? $icon_colors[ $i ] : '',
+							'icon_color'     => isset( $icon_colors[ $i ] ) ? $icon_colors[ $i ] : '',
 							'box_color'      => $custom_icon_box_color,
 						);
 
@@ -1111,7 +1112,7 @@ function fusion_builder_build_social_links( $social_networks = '', $filter, $def
 							$icons .= ' alt="' . $social_media_icons['custom_title'][ $custom_key ] . '"';
 						}
 						if ( isset( $social_media_icons['custom_source'][ $custom_key ]['width'] ) && $social_media_icons['custom_source'][ $custom_key ]['width'] ) {
-							$width = intval( $social_media_icons['custom_source'][ $custom_key ]['width'] );
+							$width  = intval( $social_media_icons['custom_source'][ $custom_key ]['width'] );
 							$icons .= ' width="' . $width . '"';
 						}
 						if ( isset( $social_media_icons['custom_source'][ $custom_key ]['height'] ) && $social_media_icons['custom_source'][ $custom_key ]['height'] ) {
@@ -1134,8 +1135,8 @@ function fusion_builder_build_social_links( $social_networks = '', $filter, $def
 						$icon_options = array(
 							'social_network' => $network,
 							'social_link'    => $link,
-							'icon_color'     => $i < count( $icon_colors ) ? $icon_colors[ $i ] : '',
-							'box_color'      => $i < count( $box_colors ) ? $box_colors[ $i ] : '',
+							'icon_color'     => isset( $icon_colors[ $i ] ) ? $icon_colors[ $i ] : '',
+							'box_color'      => isset( $box_colors[ $i ] ) ? $box_colors[ $i ] : '',
 						);
 					}
 					$icons .= '<a ' . FusionBuilder::attributes( $filter, $icon_options ) . '></a>';
@@ -1352,7 +1353,7 @@ function fusion_builder_get_custom_social_networks() {
 	if ( is_array( $social_media_icons ) && isset( $social_media_icons['icon'] ) && is_array( $social_media_icons['icon'] ) ) {
 		foreach ( $social_media_icons['icon'] as $key => $icon ) {
 			if ( 'custom' == $icon && isset( $social_media_icons['url'][ $key ] ) && ! empty( $social_media_icons['url'][ $key ] ) ) {
-				$social_links_array[ $key ]  = array(
+				$social_links_array[ $key ] = array(
 					'url'   => $social_media_icons['url'][ $key ],
 					'title' => $social_media_icons['custom_title'][ $key ],
 				);
@@ -1502,8 +1503,8 @@ function fusion_section_deprecated_args( $args ) {
 function fusion_builder_placeholder( $post_type, $label ) {
 	if ( current_user_can( 'publish_posts' ) ) {
 		$string = sprintf( esc_html__( 'Please add %s for them to display here.', 'fusion-builder' ), $label );
-		$link = admin_url( 'post-new.php?post_type=' . $post_type );
-		$html = '<a href="' . $link . '" class="fusion-builder-placeholder">' . $string . '</a>';
+		$link   = admin_url( 'post-new.php?post_type=' . $post_type );
+		$html   = '<a href="' . $link . '" class="fusion-builder-placeholder">' . $string . '</a>';
 		return $html;
 	}
 }
@@ -1532,11 +1533,11 @@ function fusion_builder_single_dimension( $dimensions, $direction ) {
 	if ( 4 === count( $dimensions ) ) {
 		list( $top, $right, $bottom, $left ) = $dimensions;
 	} elseif ( 3 === count( $dimensions ) ) {
-		$top = $dimensions[0];
-		$right = $left = $dimensions[1];
+		$top    = $dimensions[0];
+		$right  = $left = $dimensions[1];
 		$bottom = $dimensions[2];
 	} elseif ( 2 === count( $dimensions ) ) {
-		$top = $bottom = $dimensions[0];
+		$top   = $bottom = $dimensions[0];
 		$right = $left = $dimensions[1];
 	} else {
 		$top = $right = $bottom = $left = $dimensions[0];
@@ -1561,8 +1562,8 @@ function fusion_builder_add_notice_of_disabled_rich_editor() {
 	if ( ! isset( $uri_parts['query'] ) ) {
 		$uri_parts['query'] = '';
 	}
-	$path = explode( '/', $uri_parts['path'] );
-	$last = end( $path );
+	$path      = explode( '/', $uri_parts['path'] );
+	$last      = end( $path );
 	$full_link = admin_url() . $last . '?' . $uri_parts['query'];
 
 	// Check that the user hasn't already clicked to ignore the message.
@@ -1626,397 +1627,397 @@ function fusion_builder_map_descriptions( $shortcode, $param ) {
 	$shortcode_option_map = apply_filters( 'fusion_builder_map_descriptions', array() );
 
 	// Alert.
-	$shortcode_option_map['text_align']['fusion_alert'] = array(
+	$shortcode_option_map['text_align']['fusion_alert']     = array(
 		'theme-option' => 'alert_box_text_align',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 	$shortcode_option_map['text_transform']['fusion_alert'] = array(
 		'theme-option' => 'alert_box_text_transform',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['dismissable']['fusion_alert'] = array(
+	$shortcode_option_map['dismissable']['fusion_alert']    = array(
 		'theme-option' => 'alert_box_dismissable',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['box_shadow']['fusion_alert'] = array(
+	$shortcode_option_map['box_shadow']['fusion_alert']     = array(
 		'theme-option' => 'alert_box_shadow',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['border_size']['fusion_alert'] = array(
+	$shortcode_option_map['border_size']['fusion_alert']    = array(
 		'theme-option' => 'alert_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
 
 	// Blog.
-	$shortcode_option_map['blog_grid_columns']['fusion_blog'] = array(
+	$shortcode_option_map['blog_grid_columns']['fusion_blog']         = array(
 		'theme-option' => 'blog_grid_columns',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['blog_grid_column_spacing']['fusion_blog'] = array(
+	$shortcode_option_map['blog_grid_column_spacing']['fusion_blog']  = array(
 		'theme-option' => 'blog_grid_column_spacing',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['grid_box_color']['fusion_blog'] = array(
+	$shortcode_option_map['grid_box_color']['fusion_blog']            = array(
 		'theme-option' => 'timeline_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['grid_element_color']['fusion_blog'] = array(
+	$shortcode_option_map['grid_element_color']['fusion_blog']        = array(
 		'theme-option' => 'timeline_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['grid_separator_style_type']['fusion_blog'] = array(
 		'theme-option' => 'grid_separator_style_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['grid_separator_color']['fusion_blog'] = array(
+	$shortcode_option_map['grid_separator_color']['fusion_blog']      = array(
 		'theme-option' => 'grid_separator_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['blog_grid_padding']['fusion_blog'] = array(
+	$shortcode_option_map['blog_grid_padding']['fusion_blog']         = array(
 		'theme-option' => 'blog_grid_padding',
-		'subset' => array( 'top', 'left', 'bottom', 'right' ),
+		'subset'       => array( 'top', 'left', 'bottom', 'right' ),
 	);
-	$shortcode_option_map['excerpt']['fusion_blog'] = array(
+	$shortcode_option_map['excerpt']['fusion_blog']                   = array(
 		'theme-option' => 'blog_excerpt',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['blog_masonry_grid_ratio']['fusion_blog'] = array(
+	$shortcode_option_map['blog_masonry_grid_ratio']['fusion_blog']   = array(
 		'theme-option' => 'masonry_grid_ratio',
-		'type' => 'range',
+		'type'         => 'range',
 	);
 	$shortcode_option_map['blog_masonry_width_double']['fusion_blog'] = array(
 		'theme-option' => 'masonry_width_double',
-		'type' => 'range',
+		'type'         => 'range',
 	);
 
 	// Button.
-	$shortcode_option_map['size']['fusion_button'] = array(
+	$shortcode_option_map['size']['fusion_button']                               = array(
 		'theme-option' => 'button_size',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['stretch']['fusion_button'] = array(
+	$shortcode_option_map['stretch']['fusion_button']                            = array(
 		'theme-option' => 'button_span',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['type']['fusion_button'] = array(
+	$shortcode_option_map['type']['fusion_button']                               = array(
 		'theme-option' => 'button_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['shape']['fusion_button'] = array(
+	$shortcode_option_map['shape']['fusion_button']                              = array(
 		'theme-option' => 'button_shape',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['button_gradient_top_color']['fusion_button'] = array(
+	$shortcode_option_map['button_gradient_top_color']['fusion_button']          = array(
 		'theme-option' => 'button_gradient_top_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['button_gradient_bottom_color']['fusion_button'] = array(
+	$shortcode_option_map['button_gradient_bottom_color']['fusion_button']       = array(
 		'theme-option' => 'button_gradient_bottom_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['button_gradient_top_color_hover']['fusion_button'] = array(
+	$shortcode_option_map['button_gradient_top_color_hover']['fusion_button']    = array(
 		'theme-option' => 'button_gradient_top_color_hover',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['button_gradient_bottom_color_hover']['fusion_button'] = array(
 		'theme-option' => 'button_gradient_bottom_color_hover',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['accent_color']['fusion_button'] = array(
+	$shortcode_option_map['accent_color']['fusion_button']                       = array(
 		'theme-option' => 'button_accent_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['accent_hover_color']['fusion_button'] = array(
+	$shortcode_option_map['accent_hover_color']['fusion_button']                 = array(
 		'theme-option' => 'button_accent_hover_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['bevel_color']['fusion_button'] = array(
+	$shortcode_option_map['bevel_color']['fusion_button']                        = array(
 		'theme-option' => 'button_bevel_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['border_width']['fusion_button'] = array(
+	$shortcode_option_map['border_width']['fusion_button']                       = array(
 		'theme-option' => 'button_border_width',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['text_transform']['fusion_button'] = array(
+	$shortcode_option_map['text_transform']['fusion_button']                     = array(
 		'theme-option' => 'button_text_transform',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
-	$shortcode_option_map['button_fullwidth']['fusion_login'] = array(
+	$shortcode_option_map['button_fullwidth']['fusion_login']         = array(
 		'theme-option' => 'button_span',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['button_fullwidth']['fusion_register'] = array(
+	$shortcode_option_map['button_fullwidth']['fusion_register']      = array(
 		'theme-option' => 'button_span',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 	$shortcode_option_map['button_fullwidth']['fusion_lost_password'] = array(
 		'theme-option' => 'button_span',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['button_size']['fusion_tagline_box'] = array(
+	$shortcode_option_map['button_size']['fusion_tagline_box']        = array(
 		'theme-option' => 'button_size',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['button_type']['fusion_tagline_box'] = array(
+	$shortcode_option_map['button_type']['fusion_tagline_box']        = array(
 		'theme-option' => 'button_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['button_shape']['fusion_tagline_box'] = array(
+	$shortcode_option_map['button_shape']['fusion_tagline_box']       = array(
 		'theme-option' => 'button_shape',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Checklist.
-	$shortcode_option_map['iconcolor']['fusion_checklist'] = array(
+	$shortcode_option_map['iconcolor']['fusion_checklist']     = array(
 		'theme-option' => 'checklist_icons_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['circle']['fusion_checklist'] = array(
+	$shortcode_option_map['circle']['fusion_checklist']        = array(
 		'theme-option' => 'checklist_circle',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['circlecolor']['fusion_checklist'] = array(
+	$shortcode_option_map['circlecolor']['fusion_checklist']   = array(
 		'theme-option' => 'checklist_circle_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['divider']['fusion_checklist'] = array(
+	$shortcode_option_map['divider']['fusion_checklist']       = array(
 		'theme-option' => 'checklist_divider',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 	$shortcode_option_map['divider_color']['fusion_checklist'] = array(
 		'theme-option' => 'checklist_divider_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['size']['fusion_checklist'] = array(
+	$shortcode_option_map['size']['fusion_checklist']          = array(
 		'theme-option' => 'checklist_item_size',
 	);
 
 	// Columns.
-	$shortcode_option_map['dimension_margin']['fusion_builder_column'] = array(
+	$shortcode_option_map['dimension_margin']['fusion_builder_column']       = array(
 		'theme-option' => 'col_margin',
-		'subset' => array( 'top', 'bottom' ),
+		'subset'       => array( 'top', 'bottom' ),
 	);
 	$shortcode_option_map['dimension_margin']['fusion_builder_column_inner'] = array(
 		'theme-option' => 'col_margin',
-		'subset' => array( 'top', 'bottom' ),
+		'subset'       => array( 'top', 'bottom' ),
 	);
 
 	// Container.
 	$shortcode_option_map['background_color']['fusion_builder_container'] = array(
 		'theme-option' => 'full_width_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['border_size']['fusion_builder_container'] = array(
+	$shortcode_option_map['border_size']['fusion_builder_container']      = array(
 		'theme-option' => 'full_width_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['border_color']['fusion_builder_container'] = array(
+	$shortcode_option_map['border_color']['fusion_builder_container']     = array(
 		'theme-option' => 'full_width_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// Content Box.
-	$shortcode_option_map['backgroundcolor']['fusion_content_boxes'] = array(
+	$shortcode_option_map['backgroundcolor']['fusion_content_boxes']        = array(
 		'theme-option' => 'content_box_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['title_size']['fusion_content_boxes'] = array( 'theme-option' => 'content_box_title_size' );
-	$shortcode_option_map['title_color']['fusion_content_boxes'] = array(
+	$shortcode_option_map['title_size']['fusion_content_boxes']             = array( 'theme-option' => 'content_box_title_size' );
+	$shortcode_option_map['title_color']['fusion_content_boxes']            = array(
 		'theme-option' => 'content_box_title_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['body_color']['fusion_content_boxes'] = array(
+	$shortcode_option_map['body_color']['fusion_content_boxes']             = array(
 		'theme-option' => 'content_box_body_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_size']['fusion_content_boxes'] = array(
+	$shortcode_option_map['icon_size']['fusion_content_boxes']              = array(
 		'theme-option' => 'content_box_icon_size',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['iconcolor']['fusion_content_boxes'] = array(
+	$shortcode_option_map['iconcolor']['fusion_content_boxes']              = array(
 		'theme-option' => 'content_box_icon_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_circle']['fusion_content_boxes'] = array(
+	$shortcode_option_map['icon_circle']['fusion_content_boxes']            = array(
 		'theme-option' => 'content_box_icon_circle',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['icon_circle_radius']['fusion_content_boxes'] = array( 'theme-option' => 'content_box_icon_circle_radius' );
-	$shortcode_option_map['circlecolor']['fusion_content_boxes'] = array(
+	$shortcode_option_map['icon_circle_radius']['fusion_content_boxes']     = array( 'theme-option' => 'content_box_icon_circle_radius' );
+	$shortcode_option_map['circlecolor']['fusion_content_boxes']            = array(
 		'theme-option' => 'content_box_icon_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['circlebordercolor']['fusion_content_boxes'] = array(
+	$shortcode_option_map['circlebordercolor']['fusion_content_boxes']      = array(
 		'theme-option' => 'content_box_icon_bg_inner_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['outercirclebordercolor']['fusion_content_boxes'] = array(
 		'theme-option' => 'content_box_icon_bg_outer_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['circlebordersize']['fusion_content_boxes'] = array(
+	$shortcode_option_map['circlebordersize']['fusion_content_boxes']       = array(
 		'theme-option' => 'content_box_icon_bg_inner_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['outercirclebordersize']['fusion_content_boxes'] = array(
+	$shortcode_option_map['outercirclebordersize']['fusion_content_boxes']  = array(
 		'theme-option' => 'content_box_icon_bg_outer_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['icon_hover_type']['fusion_content_boxes'] = array(
+	$shortcode_option_map['icon_hover_type']['fusion_content_boxes']        = array(
 		'theme-option' => 'content_box_icon_hover_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['button_span']['fusion_content_boxes'] = array(
+	$shortcode_option_map['button_span']['fusion_content_boxes']            = array(
 		'theme-option' => 'content_box_button_span',
-		'reset' => true,
-		'type' => 'select',
+		'reset'        => true,
+		'type'         => 'select',
 	);
-	$shortcode_option_map['hover_accent_color']['fusion_content_boxes'] = array(
+	$shortcode_option_map['hover_accent_color']['fusion_content_boxes']     = array(
 		'theme-option' => 'content_box_hover_animation_accent_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['link_type']['fusion_content_boxes'] = array(
+	$shortcode_option_map['link_type']['fusion_content_boxes']              = array(
 		'theme-option' => 'content_box_link_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['link_area']['fusion_content_boxes'] = array(
+	$shortcode_option_map['link_area']['fusion_content_boxes']              = array(
 		'theme-option' => 'content_box_link_area',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['link_target']['fusion_content_boxes'] = array(
+	$shortcode_option_map['link_target']['fusion_content_boxes']            = array(
 		'theme-option' => 'content_box_link_target',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['margin_top']['fusion_content_boxes'] = array(
+	$shortcode_option_map['margin_top']['fusion_content_boxes']             = array(
 		'theme-option' => 'content_box_margin',
-		'subset' => 'top',
+		'subset'       => 'top',
 	);
-	$shortcode_option_map['margin_bottom']['fusion_content_boxes'] = array(
+	$shortcode_option_map['margin_bottom']['fusion_content_boxes']          = array(
 		'theme-option' => 'content_box_margin',
-		'subset' => 'bottom',
+		'subset'       => 'bottom',
 	);
-	$shortcode_option_map['backgroundcolor']['fusion_content_box'] = array(
+	$shortcode_option_map['backgroundcolor']['fusion_content_box']          = array(
 		'theme-option' => 'content_box_bg_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['iconcolor']['fusion_content_box'] = array(
+	$shortcode_option_map['iconcolor']['fusion_content_box']                = array(
 		'theme-option' => 'content_box_icon_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_circle_radius']['fusion_content_box'] = array(
+	$shortcode_option_map['icon_circle_radius']['fusion_content_box']       = array(
 		'theme-option' => 'content_box_icon_circle_radius',
-		'type' => 'child',
+		'type'         => 'child',
 	);
-	$shortcode_option_map['circlecolor']['fusion_content_box'] = array(
+	$shortcode_option_map['circlecolor']['fusion_content_box']              = array(
 		'theme-option' => 'content_box_icon_bg_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['circlebordercolor']['fusion_content_box'] = array(
+	$shortcode_option_map['circlebordercolor']['fusion_content_box']        = array(
 		'theme-option' => 'content_box_icon_bg_inner_border_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['outercirclebordercolor']['fusion_content_box'] = array(
+	$shortcode_option_map['outercirclebordercolor']['fusion_content_box']   = array(
 		'theme-option' => 'content_box_icon_bg_outer_border_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['circlebordersize']['fusion_content_box'] = array(
+	$shortcode_option_map['circlebordersize']['fusion_content_box']         = array(
 		'theme-option' => 'content_box_icon_bg_inner_border_size',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['outercirclebordersize']['fusion_content_box'] = array(
+	$shortcode_option_map['outercirclebordersize']['fusion_content_box']    = array(
 		'theme-option' => 'content_box_icon_bg_outer_border_size',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
 
 	// Countdown.
-	$shortcode_option_map['timezone']['fusion_countdown'] = array(
+	$shortcode_option_map['timezone']['fusion_countdown']              = array(
 		'theme-option' => 'countdown_timezone',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['show_weeks']['fusion_countdown'] = array(
+	$shortcode_option_map['show_weeks']['fusion_countdown']            = array(
 		'theme-option' => 'countdown_show_weeks',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['background_color']['fusion_countdown'] = array(
+	$shortcode_option_map['background_color']['fusion_countdown']      = array(
 		'theme-option' => 'countdown_background_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['background_image']['fusion_countdown'] = array(
+	$shortcode_option_map['background_image']['fusion_countdown']      = array(
 		'theme-option' => 'countdown_background_image',
-		'subset' => 'thumbnail',
+		'subset'       => 'thumbnail',
 	);
-	$shortcode_option_map['background_repeat']['fusion_countdown'] = array( 'theme-option' => 'countdown_background_repeat' );
-	$shortcode_option_map['background_position']['fusion_countdown'] = array( 'theme-option' => 'countdown_background_position' );
-	$shortcode_option_map['counter_box_color']['fusion_countdown'] = array(
+	$shortcode_option_map['background_repeat']['fusion_countdown']     = array( 'theme-option' => 'countdown_background_repeat' );
+	$shortcode_option_map['background_position']['fusion_countdown']   = array( 'theme-option' => 'countdown_background_position' );
+	$shortcode_option_map['counter_box_color']['fusion_countdown']     = array(
 		'theme-option' => 'countdown_counter_box_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['counter_text_color']['fusion_countdown'] = array(
+	$shortcode_option_map['counter_text_color']['fusion_countdown']    = array(
 		'theme-option' => 'countdown_counter_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['heading_text_color']['fusion_countdown'] = array(
+	$shortcode_option_map['heading_text_color']['fusion_countdown']    = array(
 		'theme-option' => 'countdown_heading_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['subheading_text_color']['fusion_countdown'] = array(
 		'theme-option' => 'countdown_subheading_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['link_text_color']['fusion_countdown'] = array(
+	$shortcode_option_map['link_text_color']['fusion_countdown']       = array(
 		'theme-option' => 'countdown_link_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['link_target']['fusion_countdown'] = array(
+	$shortcode_option_map['link_target']['fusion_countdown']           = array(
 		'theme-option' => 'countdown_link_target',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Counter box.
-	$shortcode_option_map['color']['fusion_counters_box'] = array(
+	$shortcode_option_map['color']['fusion_counters_box']        = array(
 		'theme-option' => 'counter_box_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['title_size']['fusion_counters_box'] = array( 'theme-option' => 'counter_box_title_size' );
-	$shortcode_option_map['icon_size']['fusion_counters_box'] = array( 'theme-option' => 'counter_box_icon_size' );
-	$shortcode_option_map['body_color']['fusion_counters_box'] = array(
+	$shortcode_option_map['title_size']['fusion_counters_box']   = array( 'theme-option' => 'counter_box_title_size' );
+	$shortcode_option_map['icon_size']['fusion_counters_box']    = array( 'theme-option' => 'counter_box_icon_size' );
+	$shortcode_option_map['body_color']['fusion_counters_box']   = array(
 		'theme-option' => 'counter_box_body_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['body_size']['fusion_counters_box'] = array( 'theme-option' => 'counter_box_body_size' );
+	$shortcode_option_map['body_size']['fusion_counters_box']    = array( 'theme-option' => 'counter_box_body_size' );
 	$shortcode_option_map['border_color']['fusion_counters_box'] = array(
 		'theme-option' => 'counter_box_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_top']['fusion_counters_box'] = array(
+	$shortcode_option_map['icon_top']['fusion_counters_box']     = array(
 		'theme-option' => 'counter_box_icon_top',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 
 	// Counter Circle.
-	$shortcode_option_map['filledcolor']['fusion_counter_circle'] = array(
+	$shortcode_option_map['filledcolor']['fusion_counter_circle']   = array(
 		'theme-option' => 'counter_filled_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['unfilledcolor']['fusion_counter_circle'] = array(
 		'theme-option' => 'counter_unfilled_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// Dropcap.
 	$shortcode_option_map['color']['fusion_dropcap'] = array(
 		'theme-option' => 'dropcap_color',
-		'shortcode' => 'fusion_dropcap',
-		'reset' => true,
+		'shortcode'    => 'fusion_dropcap',
+		'reset'        => true,
 	);
 
 	// Events.
@@ -2051,702 +2052,702 @@ function fusion_builder_map_descriptions( $shortcode, $param ) {
 	);
 
 	// Flipboxes.
-	$shortcode_option_map['icon_color']['fusion_flip_boxes'] = array(
+	$shortcode_option_map['icon_color']['fusion_flip_boxes']           = array(
 		'theme-option' => 'icon_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['circle_color']['fusion_flip_boxes'] = array(
+	$shortcode_option_map['circle_color']['fusion_flip_boxes']         = array(
 		'theme-option' => 'icon_circle_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['circle_border_color']['fusion_flip_boxes'] = array(
+	$shortcode_option_map['circle_border_color']['fusion_flip_boxes']  = array(
 		'theme-option' => 'icon_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['background_color_front']['fusion_flip_box'] = array(
 		'theme-option' => 'flip_boxes_front_bg',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['title_front_color']['fusion_flip_box'] = array(
+	$shortcode_option_map['title_front_color']['fusion_flip_box']      = array(
 		'theme-option' => 'flip_boxes_front_heading',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['text_front_color']['fusion_flip_box'] = array(
+	$shortcode_option_map['text_front_color']['fusion_flip_box']       = array(
 		'theme-option' => 'flip_boxes_front_text',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['background_color_back']['fusion_flip_box'] = array(
+	$shortcode_option_map['background_color_back']['fusion_flip_box']  = array(
 		'theme-option' => 'flip_boxes_back_bg',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['title_back_color']['fusion_flip_box'] = array(
+	$shortcode_option_map['title_back_color']['fusion_flip_box']       = array(
 		'theme-option' => 'flip_boxes_back_heading',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['text_back_color']['fusion_flip_box'] = array(
+	$shortcode_option_map['text_back_color']['fusion_flip_box']        = array(
 		'theme-option' => 'flip_boxes_back_text',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['border_size']['fusion_flip_box'] = array(
+	$shortcode_option_map['border_size']['fusion_flip_box']            = array(
 		'theme-option' => 'flip_boxes_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['border_color']['fusion_flip_box'] = array( 'theme-option' => 'flip_boxes_border_color' );
-	$shortcode_option_map['border_radius']['fusion_flip_box'] = array( 'theme-option' => 'flip_boxes_border_radius' );
-	$shortcode_option_map['circle_color']['fusion_flip_box'] = array(
+	$shortcode_option_map['border_color']['fusion_flip_box']           = array( 'theme-option' => 'flip_boxes_border_color' );
+	$shortcode_option_map['border_radius']['fusion_flip_box']          = array( 'theme-option' => 'flip_boxes_border_radius' );
+	$shortcode_option_map['circle_color']['fusion_flip_box']           = array(
 		'theme-option' => 'icon_circle_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['circle_border_color']['fusion_flip_box'] = array(
+	$shortcode_option_map['circle_border_color']['fusion_flip_box']    = array(
 		'theme-option' => 'icon_border_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_color']['fusion_flip_box'] = array(
+	$shortcode_option_map['icon_color']['fusion_flip_box']             = array(
 		'theme-option' => 'icon_color',
-		'type' => 'child',
-		'reset' => true,
+		'type'         => 'child',
+		'reset'        => true,
 	);
 
 	// Google Map element.
 	$shortcode_option_map['api_type']['fusion_map'] = array(
 		'theme-option' => 'google_map_api_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Icon Element.
-	$shortcode_option_map['circlecolor']['fusion_fontawesome'] = array(
+	$shortcode_option_map['circlecolor']['fusion_fontawesome']       = array(
 		'theme-option' => 'icon_circle_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['circlebordercolor']['fusion_fontawesome'] = array(
 		'theme-option' => 'icon_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['iconcolor']['fusion_fontawesome'] = array(
+	$shortcode_option_map['iconcolor']['fusion_fontawesome']         = array(
 		'theme-option' => 'icon_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// Image.
 	$shortcode_option_map['style_type']['fusion_imageframe'] = array( 'theme-option' => 'imageframe_style_type' );
 
-	$shortcode_option_map['blur']['fusion_imageframe'] = array(
+	$shortcode_option_map['blur']['fusion_imageframe']         = array(
 		'theme-option' => 'imageframe_blur',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['stylecolor']['fusion_imageframe'] = array(
+	$shortcode_option_map['stylecolor']['fusion_imageframe']   = array(
 		'theme-option' => 'imgframe_style_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['bordersize']['fusion_imageframe'] = array(
+	$shortcode_option_map['bordersize']['fusion_imageframe']   = array(
 		'theme-option' => 'imageframe_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['bordercolor']['fusion_imageframe'] = array(
+	$shortcode_option_map['bordercolor']['fusion_imageframe']  = array(
 		'theme-option' => 'imgframe_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['borderradius']['fusion_imageframe'] = array( 'theme-option' => 'imageframe_border_radius' );
 
 	$shortcode_option_map['lightbox']['fusion_imageframe'] = array(
 		'theme-option' => 'status_lightbox',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 
 	// Image Compare.
-	$shortcode_option_map['type']['fusion_image_before_after'] = array(
+	$shortcode_option_map['type']['fusion_image_before_after']            = array(
 		'theme-option' => 'before_after_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['font_size']['fusion_image_before_after'] = array(
+	$shortcode_option_map['font_size']['fusion_image_before_after']       = array(
 		'theme-option' => 'before_after_font_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['accent_color']['fusion_image_before_after'] = array(
+	$shortcode_option_map['accent_color']['fusion_image_before_after']    = array(
 		'theme-option' => 'before_after_accent_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['label_placement']['fusion_image_before_after'] = array(
 		'theme-option' => 'before_after_label_placement',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['handle_type']['fusion_image_before_after'] = array(
+	$shortcode_option_map['handle_type']['fusion_image_before_after']     = array(
 		'theme-option' => 'before_after_handle_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['handle_color']['fusion_image_before_after'] = array(
+	$shortcode_option_map['handle_color']['fusion_image_before_after']    = array(
 		'theme-option' => 'before_after_handle_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['handle_bg']['fusion_image_before_after'] = array(
+	$shortcode_option_map['handle_bg']['fusion_image_before_after']       = array(
 		'theme-option' => 'before_after_handle_bg',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['transition_time']['fusion_image_before_after'] = array(
 		'theme-option' => 'before_after_transition_time',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['offset']['fusion_image_before_after'] = array(
+	$shortcode_option_map['offset']['fusion_image_before_after']          = array(
 		'theme-option' => 'before_after_offset',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['orientation']['fusion_image_before_after'] = array(
+	$shortcode_option_map['orientation']['fusion_image_before_after']     = array(
 		'theme-option' => 'before_after_orientation',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 	$shortcode_option_map['handle_movement']['fusion_image_before_after'] = array(
 		'theme-option' => 'before_after_handle_movement',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Modal.
-	$shortcode_option_map['background']['fusion_modal'] = array(
+	$shortcode_option_map['background']['fusion_modal']   = array(
 		'theme-option' => 'modal_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['border_color']['fusion_modal'] = array(
 		'theme-option' => 'modal_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// Person.
 	$shortcode_option_map['background_color']['fusion_person'] = array(
 		'theme-option' => 'person_background_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['pic_style']['fusion_person'] = array( 'theme-option' => 'person_pic_style' );
+	$shortcode_option_map['pic_style']['fusion_person']        = array( 'theme-option' => 'person_pic_style' );
 
-	$shortcode_option_map['pic_style_blur']['fusion_person'] = array(
+	$shortcode_option_map['pic_style_blur']['fusion_person']    = array(
 		'theme-option' => 'person_pic_style_blur',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['pic_style_color']['fusion_person'] = array(
+	$shortcode_option_map['pic_style_color']['fusion_person']   = array(
 		'theme-option' => 'person_style_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['pic_bordercolor']['fusion_person'] = array(
+	$shortcode_option_map['pic_bordercolor']['fusion_person']   = array(
 		'theme-option' => 'person_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['pic_bordersize']['fusion_person'] = array(
+	$shortcode_option_map['pic_bordersize']['fusion_person']    = array(
 		'theme-option' => 'person_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['pic_borderradius']['fusion_person'] = array( 'theme-option' => 'person_border_radius' );
-	$shortcode_option_map['pic_style_color']['fusion_person'] = array(
+	$shortcode_option_map['pic_borderradius']['fusion_person']  = array( 'theme-option' => 'person_border_radius' );
+	$shortcode_option_map['pic_style_color']['fusion_person']   = array(
 		'theme-option' => 'person_style_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['content_alignment']['fusion_person'] = array(
 		'theme-option' => 'person_alignment',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['icon_position']['fusion_person'] = array(
+	$shortcode_option_map['icon_position']['fusion_person']     = array(
 		'theme-option' => 'person_icon_position',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Popover.
-	$shortcode_option_map['title_bg_color']['fusion_popover'] = array(
+	$shortcode_option_map['title_bg_color']['fusion_popover']   = array(
 		'theme-option' => 'popover_heading_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['content_bg_color']['fusion_popover'] = array(
 		'theme-option' => 'popover_content_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['bordercolor']['fusion_popover'] = array(
+	$shortcode_option_map['bordercolor']['fusion_popover']      = array(
 		'theme-option' => 'popover_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['textcolor']['fusion_popover'] = array(
+	$shortcode_option_map['textcolor']['fusion_popover']        = array(
 		'theme-option' => 'popover_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['placement']['fusion_popover'] = array(
+	$shortcode_option_map['placement']['fusion_popover']        = array(
 		'theme-option' => 'popover_placement',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Pricing table.
-	$shortcode_option_map['backgroundcolor']['fusion_pricing_table'] = array(
+	$shortcode_option_map['backgroundcolor']['fusion_pricing_table']        = array(
 		'theme-option' => 'pricing_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['background_color_hover']['fusion_pricing_table'] = array(
 		'theme-option' => 'pricing_background_color_hover',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['bordercolor']['fusion_pricing_table'] = array(
+	$shortcode_option_map['bordercolor']['fusion_pricing_table']            = array(
 		'theme-option' => 'pricing_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['dividercolor']['fusion_pricing_table'] = array(
+	$shortcode_option_map['dividercolor']['fusion_pricing_table']           = array(
 		'theme-option' => 'pricing_divider_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['heading_color_style_1']['fusion_pricing_table'] = array(
+	$shortcode_option_map['heading_color_style_1']['fusion_pricing_table']  = array(
 		'theme-option' => 'full_boxed_pricing_box_heading_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['heading_color_style_2']['fusion_pricing_table'] = array(
+	$shortcode_option_map['heading_color_style_2']['fusion_pricing_table']  = array(
 		'theme-option' => 'sep_pricing_box_heading_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['pricing_color']['fusion_pricing_table'] = array(
+	$shortcode_option_map['pricing_color']['fusion_pricing_table']          = array(
 		'theme-option' => 'pricing_box_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['body_text_color']['fusion_pricing_table'] = array(
+	$shortcode_option_map['body_text_color']['fusion_pricing_table']        = array(
 		'theme-option' => 'body_typography',
-		'reset' => true,
-		'subset' => 'color',
+		'reset'        => true,
+		'subset'       => 'color',
 	);
 
 	// Progress bar.
-	$shortcode_option_map['height']['fusion_progress'] = array( 'theme-option' => 'progressbar_height' );
-	$shortcode_option_map['text_position']['fusion_progress'] = array(
+	$shortcode_option_map['height']['fusion_progress']            = array( 'theme-option' => 'progressbar_height' );
+	$shortcode_option_map['text_position']['fusion_progress']     = array(
 		'theme-option' => 'progressbar_text_position',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['filledcolor']['fusion_progress'] = array(
+	$shortcode_option_map['filledcolor']['fusion_progress']       = array(
 		'theme-option' => 'progressbar_filled_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['filledbordercolor']['fusion_progress'] = array(
 		'theme-option' => 'progressbar_filled_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['filledbordersize']['fusion_progress'] = array(
+	$shortcode_option_map['filledbordersize']['fusion_progress']  = array(
 		'theme-option' => 'progressbar_filled_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['unfilledcolor']['fusion_progress'] = array(
+	$shortcode_option_map['unfilledcolor']['fusion_progress']     = array(
 		'theme-option' => 'progressbar_unfilled_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['textcolor']['fusion_progress'] = array(
+	$shortcode_option_map['textcolor']['fusion_progress']         = array(
 		'theme-option' => 'progressbar_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// Section Separator.
 	$shortcode_option_map['backgroundcolor']['fusion_section_separator'] = array(
 		'theme-option' => 'section_sep_bg',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['bordersize']['fusion_section_separator'] = array(
+	$shortcode_option_map['bordersize']['fusion_section_separator']      = array(
 		'theme-option' => 'section_sep_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['bordercolor']['fusion_section_separator'] = array(
+	$shortcode_option_map['bordercolor']['fusion_section_separator']     = array(
 		'theme-option' => 'section_sep_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_color']['fusion_section_separator'] = array(
+	$shortcode_option_map['icon_color']['fusion_section_separator']      = array(
 		'theme-option' => 'icon_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// Separator.
-	$shortcode_option_map['border_size']['fusion_separator'] = array(
+	$shortcode_option_map['border_size']['fusion_separator']       = array(
 		'theme-option' => 'separator_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['icon_circle']['fusion_separator'] = array(
+	$shortcode_option_map['icon_circle']['fusion_separator']       = array(
 		'theme-option' => 'separator_circle',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 	$shortcode_option_map['icon_circle_color']['fusion_separator'] = array(
 		'theme-option' => 'separator_circle_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['sep_color']['fusion_separator'] = array(
+	$shortcode_option_map['sep_color']['fusion_separator']         = array(
 		'theme-option' => 'sep_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['style_type']['fusion_separator'] = array(
+	$shortcode_option_map['style_type']['fusion_separator']        = array(
 		'theme-option' => 'separator_style_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Social Icons.
-	$shortcode_option_map['color_type']['fusion_social_links'] = array(
+	$shortcode_option_map['color_type']['fusion_social_links']         = array(
 		'theme-option' => 'social_links_color_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['icon_colors']['fusion_social_links'] = array( 'theme-option' => 'social_links_icon_color' );
-	$shortcode_option_map['icons_boxed']['fusion_social_links'] = array(
+	$shortcode_option_map['icon_colors']['fusion_social_links']        = array( 'theme-option' => 'social_links_icon_color' );
+	$shortcode_option_map['icons_boxed']['fusion_social_links']        = array(
 		'theme-option' => 'social_links_boxed',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['box_colors']['fusion_social_links'] = array( 'theme-option' => 'social_links_box_color' );
+	$shortcode_option_map['box_colors']['fusion_social_links']         = array( 'theme-option' => 'social_links_box_color' );
 	$shortcode_option_map['icons_boxed_radius']['fusion_social_links'] = array( 'theme-option' => 'social_links_boxed_radius' );
-	$shortcode_option_map['tooltip_placement']['fusion_social_links'] = array(
+	$shortcode_option_map['tooltip_placement']['fusion_social_links']  = array(
 		'theme-option' => 'social_links_tooltip_placement',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Social Icons for Person.
-	$shortcode_option_map['social_icon_font_size']['fusion_person'] = array( 'theme-option' => 'social_links_font_size' );
-	$shortcode_option_map['social_icon_padding']['fusion_person'] = array( 'theme-option' => 'social_links_boxed_padding' );
-	$shortcode_option_map['social_icon_color_type']['fusion_person'] = array(
+	$shortcode_option_map['social_icon_font_size']['fusion_person']    = array( 'theme-option' => 'social_links_font_size' );
+	$shortcode_option_map['social_icon_padding']['fusion_person']      = array( 'theme-option' => 'social_links_boxed_padding' );
+	$shortcode_option_map['social_icon_color_type']['fusion_person']   = array(
 		'theme-option' => 'social_links_color_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['social_icon_colors']['fusion_person'] = array( 'theme-option' => 'social_links_icon_color' );
-	$shortcode_option_map['social_icon_boxed']['fusion_person'] = array(
+	$shortcode_option_map['social_icon_colors']['fusion_person']       = array( 'theme-option' => 'social_links_icon_color' );
+	$shortcode_option_map['social_icon_boxed']['fusion_person']        = array(
 		'theme-option' => 'social_links_boxed',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 	$shortcode_option_map['social_icon_boxed_colors']['fusion_person'] = array( 'theme-option' => 'social_links_box_color' );
 	$shortcode_option_map['social_icon_boxed_radius']['fusion_person'] = array( 'theme-option' => 'social_links_boxed_radius' );
-	$shortcode_option_map['social_icon_tooltip']['fusion_person'] = array(
+	$shortcode_option_map['social_icon_tooltip']['fusion_person']      = array(
 		'theme-option' => 'social_links_tooltip_placement',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
 	// Sharing Box.
-	$shortcode_option_map['backgroundcolor']['fusion_sharing'] = array(
+	$shortcode_option_map['backgroundcolor']['fusion_sharing']    = array(
 		'theme-option' => 'social_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['icons_boxed']['fusion_sharing'] = array(
+	$shortcode_option_map['icons_boxed']['fusion_sharing']        = array(
 		'theme-option' => 'social_links_boxed',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 	$shortcode_option_map['icons_boxed_radius']['fusion_sharing'] = array( 'theme-option' => 'social_links_boxed_radius' );
-	$shortcode_option_map['tagline_color']['fusion_sharing'] = array(
+	$shortcode_option_map['tagline_color']['fusion_sharing']      = array(
 		'theme-option' => 'sharing_box_tagline_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['tooltip_placement']['fusion_sharing'] = array(
+	$shortcode_option_map['tooltip_placement']['fusion_sharing']  = array(
 		'theme-option' => 'sharing_social_links_tooltip_placement',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['color_type']['fusion_sharing'] = array(
+	$shortcode_option_map['color_type']['fusion_sharing']         = array(
 		'theme-option' => 'social_links_color_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['icon_colors']['fusion_sharing'] = array( 'theme-option' => 'social_links_icon_color' );
-	$shortcode_option_map['box_colors']['fusion_sharing'] = array( 'theme-option' => 'social_links_box_color' );
+	$shortcode_option_map['icon_colors']['fusion_sharing']        = array( 'theme-option' => 'social_links_icon_color' );
+	$shortcode_option_map['box_colors']['fusion_sharing']         = array( 'theme-option' => 'social_links_box_color' );
 
 	// Tabs.
 	$shortcode_option_map['backgroundcolor']['fusion_tabs'] = array(
 		'theme-option' => 'tabs_bg_color',
-		'shortcode' => 'fusion_tabs',
-		'reset' => true,
+		'shortcode'    => 'fusion_tabs',
+		'reset'        => true,
 	);
-	$shortcode_option_map['inactivecolor']['fusion_tabs'] = array(
+	$shortcode_option_map['inactivecolor']['fusion_tabs']   = array(
 		'theme-option' => 'tabs_inactive_color',
-		'shortcode' => 'fusion_tabs',
-		'reset' => true,
+		'shortcode'    => 'fusion_tabs',
+		'reset'        => true,
 	);
-	$shortcode_option_map['bordercolor']['fusion_tabs'] = array(
+	$shortcode_option_map['bordercolor']['fusion_tabs']     = array(
 		'theme-option' => 'tabs_border_color',
-		'shortcode' => 'fusion_tabs',
-		'reset' => true,
+		'shortcode'    => 'fusion_tabs',
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_position']['fusion_tabs'] = array(
+	$shortcode_option_map['icon_position']['fusion_tabs']   = array(
 		'theme-option' => 'tabs_icon_position',
-		'shortcode' => 'fusion_tabs',
-		'type' => 'select',
+		'shortcode'    => 'fusion_tabs',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['icon_size']['fusion_tabs'] = array(
+	$shortcode_option_map['icon_size']['fusion_tabs']       = array(
 		'theme-option' => 'tabs_icon_size',
-		'shortcode' => 'fusion_tabs',
-		'type' => 'range',
+		'shortcode'    => 'fusion_tabs',
+		'type'         => 'range',
 	);
 
 	// Tagline.
 	$shortcode_option_map['backgroundcolor']['fusion_tagline_box'] = array(
 		'theme-option' => 'tagline_bg',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['bordercolor']['fusion_tagline_box'] = array(
+	$shortcode_option_map['bordercolor']['fusion_tagline_box']     = array(
 		'theme-option' => 'tagline_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['margin_top']['fusion_tagline_box'] = array(
+	$shortcode_option_map['margin_top']['fusion_tagline_box']      = array(
 		'theme-option' => 'tagline_margin',
-		'subset' => 'top',
+		'subset'       => 'top',
 	);
-	$shortcode_option_map['margin_bottom']['fusion_tagline_box'] = array(
+	$shortcode_option_map['margin_bottom']['fusion_tagline_box']   = array(
 		'theme-option' => 'tagline_margin',
-		'subset' => 'bottom',
+		'subset'       => 'bottom',
 	);
 
 	// Testimonials.
-	$shortcode_option_map['speed']['fusion_testimonials'] = array(
+	$shortcode_option_map['speed']['fusion_testimonials']           = array(
 		'theme-option' => 'testimonials_speed',
-		'type' => 'range',
-		'reset' => true,
+		'type'         => 'range',
+		'reset'        => true,
 	);
 	$shortcode_option_map['backgroundcolor']['fusion_testimonials'] = array(
 		'theme-option' => 'testimonial_bg_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['textcolor']['fusion_testimonials'] = array(
+	$shortcode_option_map['textcolor']['fusion_testimonials']       = array(
 		'theme-option' => 'testimonial_text_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['random']['fusion_testimonials'] = array(
+	$shortcode_option_map['random']['fusion_testimonials']          = array(
 		'theme-option' => 'testimonials_random',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 
 	// Text.
-	$shortcode_option_map['columns']['fusion_text'] = array(
+	$shortcode_option_map['columns']['fusion_text']          = array(
 		'theme-option' => 'text_columns',
 		'type'         => 'range',
 	);
 	$shortcode_option_map['column_min_width']['fusion_text'] = array(
 		'theme-option' => 'text_column_min_width',
 	);
-	$shortcode_option_map['column_spacing']['fusion_text'] = array(
+	$shortcode_option_map['column_spacing']['fusion_text']   = array(
 		'theme-option' => 'text_column_spacing',
 	);
-	$shortcode_option_map['rule_style']['fusion_text'] = array(
+	$shortcode_option_map['rule_style']['fusion_text']       = array(
 		'theme-option' => 'text_rule_style',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['rule_size']['fusion_text'] = array(
+	$shortcode_option_map['rule_size']['fusion_text']        = array(
 		'theme-option' => 'text_rule_size',
 		'type'         => 'range',
 	);
-	$shortcode_option_map['rule_color']['fusion_text'] = array(
+	$shortcode_option_map['rule_color']['fusion_text']       = array(
 		'theme-option' => 'text_rule_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// Title.
 	$shortcode_option_map['style_type']['fusion_title'] = array(
 		'theme-option' => 'title_style_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['sep_color']['fusion_title'] = array(
+	$shortcode_option_map['sep_color']['fusion_title']  = array(
 		'theme-option' => 'title_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 	$shortcode_option_map['dimensions']['fusion_title'] = array(
 		'theme-option' => 'title_margin',
-		'subset' => array( 'top', 'bottom' ),
+		'subset'       => array( 'top', 'bottom' ),
 	);
 
 	// Toggles.
-	$shortcode_option_map['type']['fusion_accordion'] = array(
+	$shortcode_option_map['type']['fusion_accordion']                      = array(
 		'theme-option' => 'accordion_type',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['divider_line']['fusion_accordion'] = array(
+	$shortcode_option_map['divider_line']['fusion_accordion']              = array(
 		'theme-option' => 'accordion_divider_line',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['boxed_mode']['fusion_accordion'] = array(
+	$shortcode_option_map['boxed_mode']['fusion_accordion']                = array(
 		'theme-option' => 'accordion_boxed_mode',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['border_size']['fusion_accordion'] = array(
+	$shortcode_option_map['border_size']['fusion_accordion']               = array(
 		'theme-option' => 'accordion_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['border_color']['fusion_accordion'] = array(
+	$shortcode_option_map['border_color']['fusion_accordion']              = array(
 		'theme-option' => 'accordian_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['background_color']['fusion_accordion'] = array(
+	$shortcode_option_map['background_color']['fusion_accordion']          = array(
 		'theme-option' => 'accordian_background_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['hover_color']['fusion_accordion'] = array(
+	$shortcode_option_map['hover_color']['fusion_accordion']               = array(
 		'theme-option' => 'accordian_hover_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['title_font_size']['fusion_accordion'] = array(
+	$shortcode_option_map['title_font_size']['fusion_accordion']           = array(
 		'theme-option' => 'accordion_title_font_size',
 	);
-	$shortcode_option_map['icon_size']['fusion_accordion'] = array(
+	$shortcode_option_map['icon_size']['fusion_accordion']                 = array(
 		'theme-option' => 'accordion_icon_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['icon_color']['fusion_accordion'] = array(
+	$shortcode_option_map['icon_color']['fusion_accordion']                = array(
 		'theme-option' => 'accordian_icon_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_boxed_mode']['fusion_accordion'] = array(
+	$shortcode_option_map['icon_boxed_mode']['fusion_accordion']           = array(
 		'theme-option' => 'accordion_icon_boxed',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['icon_box_color']['fusion_accordion'] = array(
+	$shortcode_option_map['icon_box_color']['fusion_accordion']            = array(
 		'theme-option' => 'accordian_inactive_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['icon_alignment']['fusion_accordion'] = array(
+	$shortcode_option_map['icon_alignment']['fusion_accordion']            = array(
 		'theme-option' => 'accordion_icon_align',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 	$shortcode_option_map['toggle_hover_accent_color']['fusion_accordion'] = array(
 		'theme-option' => 'accordian_active_color',
-		'reset' => true,
+		'reset'        => true,
 	);
 
 	// User Login Element.
-	$shortcode_option_map['text_align']['fusion_login'] = array(
+	$shortcode_option_map['text_align']['fusion_login']            = array(
 		'theme-option' => 'user_login_text_align',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['form_field_layout']['fusion_login'] = array(
+	$shortcode_option_map['form_field_layout']['fusion_login']     = array(
 		'theme-option' => 'user_login_form_field_layout',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 	$shortcode_option_map['form_background_color']['fusion_login'] = array(
 		'theme-option' => 'user_login_form_background_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['show_labels']['fusion_login'] = array(
+	$shortcode_option_map['show_labels']['fusion_login']           = array(
 		'theme-option' => 'user_login_form_show_labels',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['show_placeholders']['fusion_login'] = array(
+	$shortcode_option_map['show_placeholders']['fusion_login']     = array(
 		'theme-option' => 'user_login_form_show_placeholders',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['show_remember_me']['fusion_login'] = array(
+	$shortcode_option_map['show_remember_me']['fusion_login']      = array(
 		'theme-option' => 'user_login_form_show_remember_me',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
-	$shortcode_option_map['text_align']['fusion_register'] = array(
+	$shortcode_option_map['text_align']['fusion_register']            = array(
 		'theme-option' => 'user_login_text_align',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['form_field_layout']['fusion_register'] = array(
+	$shortcode_option_map['form_field_layout']['fusion_register']     = array(
 		'theme-option' => 'user_login_form_field_layout',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 	$shortcode_option_map['form_background_color']['fusion_register'] = array(
 		'theme-option' => 'user_login_form_background_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['show_labels']['fusion_register'] = array(
+	$shortcode_option_map['show_labels']['fusion_register']           = array(
 		'theme-option' => 'user_login_form_show_labels',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['show_placeholders']['fusion_register'] = array(
+	$shortcode_option_map['show_placeholders']['fusion_register']     = array(
 		'theme-option' => 'user_login_form_show_placeholders',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 
-	$shortcode_option_map['text_align']['fusion_lost_password'] = array(
+	$shortcode_option_map['text_align']['fusion_lost_password']            = array(
 		'theme-option' => 'user_login_text_align',
-		'type' => 'select',
+		'type'         => 'select',
 	);
 	$shortcode_option_map['form_background_color']['fusion_lost_password'] = array(
 		'theme-option' => 'user_login_form_background_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['show_labels']['fusion_lost_password'] = array(
+	$shortcode_option_map['show_labels']['fusion_lost_password']           = array(
 		'theme-option' => 'user_login_form_show_labels',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['show_placeholders']['fusion_lost_password'] = array(
+	$shortcode_option_map['show_placeholders']['fusion_lost_password']     = array(
 		'theme-option' => 'user_login_form_show_placeholders',
-		'type' => 'select',
+		'type'         => 'select',
 	);
-	$shortcode_option_map['link_color']['fusion_login'] = array( 'theme-option' => 'link_color' );
-	$shortcode_option_map['link_color']['fusion_register'] = array( 'theme-option' => 'link_color' );
-	$shortcode_option_map['link_color']['fusion_lost_password'] = array( 'theme-option' => 'link_color' );
+	$shortcode_option_map['link_color']['fusion_login']                    = array( 'theme-option' => 'link_color' );
+	$shortcode_option_map['link_color']['fusion_register']                 = array( 'theme-option' => 'link_color' );
+	$shortcode_option_map['link_color']['fusion_lost_password']            = array( 'theme-option' => 'link_color' );
 
 	// Widget Area Element.
 	$shortcode_option_map['title_color']['fusion_widget_area'] = array(
 		'theme-option' => 'widget_area_title_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['title_size']['fusion_widget_area'] = array( 'theme-option' => 'widget_area_title_size' );
+	$shortcode_option_map['title_size']['fusion_widget_area']  = array( 'theme-option' => 'widget_area_title_size' );
 
 	// Gallery.
-	$shortcode_option_map['picture_size']['fusion_gallery'] = array(
+	$shortcode_option_map['picture_size']['fusion_gallery']                 = array(
 		'theme-option' => 'gallery_picture_size',
-		'reset' => true,
-		'type' => 'select',
+		'reset'        => true,
+		'type'         => 'select',
 	);
-	$shortcode_option_map['layout']['fusion_gallery'] = array(
+	$shortcode_option_map['layout']['fusion_gallery']                       = array(
 		'theme-option' => 'gallery_layout',
-		'reset' => true,
-		'type' => 'select',
+		'reset'        => true,
+		'type'         => 'select',
 	);
-	$shortcode_option_map['columns']['fusion_gallery'] = array(
+	$shortcode_option_map['columns']['fusion_gallery']                      = array(
 		'theme-option' => 'gallery_columns',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['column_spacing']['fusion_gallery'] = array(
+	$shortcode_option_map['column_spacing']['fusion_gallery']               = array(
 		'theme-option' => 'gallery_column_spacing',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['lightbox_content']['fusion_gallery'] = array(
+	$shortcode_option_map['lightbox_content']['fusion_gallery']             = array(
 		'theme-option' => 'gallery_lightbox_content',
-		'reset' => true,
-		'type' => 'select',
+		'reset'        => true,
+		'type'         => 'select',
 	);
-	$shortcode_option_map['lightbox']['fusion_gallery'] = array(
+	$shortcode_option_map['lightbox']['fusion_gallery']                     = array(
 		'theme-option' => 'status_lightbox',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
-	$shortcode_option_map['hover_type']['fusion_gallery'] = array(
+	$shortcode_option_map['hover_type']['fusion_gallery']                   = array(
 		'theme-option' => 'gallery_hover_type',
-		'reset' => true,
-		'type' => 'select',
+		'reset'        => true,
+		'type'         => 'select',
 	);
-	$shortcode_option_map['gallery_masonry_grid_ratio']['fusion_gallery'] = array(
+	$shortcode_option_map['gallery_masonry_grid_ratio']['fusion_gallery']   = array(
 		'theme-option' => 'masonry_grid_ratio',
-		'type' => 'range',
+		'type'         => 'range',
 	);
 	$shortcode_option_map['gallery_masonry_width_double']['fusion_gallery'] = array(
 		'theme-option' => 'masonry_width_double',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['bordersize']['fusion_gallery'] = array(
+	$shortcode_option_map['bordersize']['fusion_gallery']                   = array(
 		'theme-option' => 'gallery_border_size',
-		'type' => 'range',
+		'type'         => 'range',
 	);
-	$shortcode_option_map['bordercolor']['fusion_gallery'] = array(
+	$shortcode_option_map['bordercolor']['fusion_gallery']                  = array(
 		'theme-option' => 'gallery_border_color',
-		'reset' => true,
+		'reset'        => true,
 	);
-	$shortcode_option_map['border_radius']['fusion_gallery'] = array(
+	$shortcode_option_map['border_radius']['fusion_gallery']                = array(
 		'theme-option' => 'gallery_border_radius',
 	);
 
 	// Image Carousel.
 	$shortcode_option_map['lightbox']['fusion_images'] = array(
 		'theme-option' => 'status_lightbox',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 
 	// Slide.
 	$shortcode_option_map['lightbox']['fusion_slide'] = array(
 		'theme-option' => 'status_lightbox',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 
 	// Post Slider.
 	$shortcode_option_map['lightbox']['fusion_postslider'] = array(
 		'theme-option' => 'status_lightbox',
-		'type' => 'yesno',
+		'type'         => 'yesno',
 	);
 
 	// Syntax Highlighter.
-	$shortcode_option_map['theme']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['theme']['fusion_syntax_highlighter']                        = array(
 		'theme-option' => 'syntax_highlighter_theme',
 		'type'         => 'select',
 	);
-	$shortcode_option_map['line_numbers']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['line_numbers']['fusion_syntax_highlighter']                 = array(
 		'theme-option' => 'syntax_highlighter_line_numbers',
 		'type'         => 'select',
 	);
-	$shortcode_option_map['background_color']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['background_color']['fusion_syntax_highlighter']             = array(
 		'theme-option' => 'syntax_highlighter_background_color',
 		'reset'        => true,
 	);
@@ -2754,39 +2755,39 @@ function fusion_builder_map_descriptions( $shortcode, $param ) {
 		'theme-option' => 'syntax_highlighter_line_number_background_color',
 		'reset'        => true,
 	);
-	$shortcode_option_map['line_number_text_color']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['line_number_text_color']['fusion_syntax_highlighter']       = array(
 		'theme-option' => 'syntax_highlighter_line_number_text_color',
 		'reset'        => true,
 	);
-	$shortcode_option_map['line_wrapping']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['line_wrapping']['fusion_syntax_highlighter']                = array(
 		'theme-option' => 'syntax_highlighter_line_wrapping',
 		'type'         => 'select',
 	);
-	$shortcode_option_map['copy_to_clipboard']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['copy_to_clipboard']['fusion_syntax_highlighter']            = array(
 		'theme-option' => 'syntax_highlighter_copy_to_clipboard',
 		'type'         => 'select',
 	);
-	$shortcode_option_map['copy_to_clipboard_text']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['copy_to_clipboard_text']['fusion_syntax_highlighter']       = array(
 		'theme-option' => 'syntax_highlighter_copy_to_clipboard_text',
 		'type'         => 'reset',
 	);
-	$shortcode_option_map['font_size']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['font_size']['fusion_syntax_highlighter']                    = array(
 		'theme-option' => 'syntax_highlighter_font_size',
 		'type'         => 'range',
 	);
-	$shortcode_option_map['border_size']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['border_size']['fusion_syntax_highlighter']                  = array(
 		'theme-option' => 'syntax_highlighter_border_size',
 		'type'         => 'range',
 	);
-	$shortcode_option_map['border_color']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['border_color']['fusion_syntax_highlighter']                 = array(
 		'theme-option' => 'syntax_highlighter_border_color',
 		'reset'        => true,
 	);
-	$shortcode_option_map['border_style']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['border_style']['fusion_syntax_highlighter']                 = array(
 		'theme-option' => 'syntax_highlighter_border_style',
 		'type'         => 'select',
 	);
-	$shortcode_option_map['margin']['fusion_syntax_highlighter'] = array(
+	$shortcode_option_map['margin']['fusion_syntax_highlighter']                       = array(
 		'theme-option' => 'syntax_highlighter_margin',
 		'subset'       => array( 'top', 'left', 'bottom', 'right' ),
 	);
@@ -2805,7 +2806,7 @@ function fusion_builder_map_descriptions( $shortcode, $param ) {
 	if ( 'animation_offset' === $param ) {
 		return array(
 			'theme-option' => 'animation_offset',
-			'type' => 'select',
+			'type'         => 'select',
 		);
 	}
 
@@ -2835,14 +2836,14 @@ function fusion_builder_element_dependencies( $dependencies, $shortcode, $option
 
 	// Blog.
 	$blog_is_excerpt = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'blog_excerpt',
-			'value' => 'yes',
-			'operator' => '!=',
+			'value'          => 'yes',
+			'operator'       => '!=',
 		),
 		'output' => array(
-			'element' => 'excerpt',
-			'value' => '',
+			'element'  => 'excerpt',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
@@ -2850,7 +2851,7 @@ function fusion_builder_element_dependencies( $dependencies, $shortcode, $option
 	$shortcode_option_map['strip_html']['fusion_blog'][]     = $blog_is_excerpt;
 
 	$blog_is_single_column = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'blog_grid_columns',
 			'value'          => '1',
 			'operator'       => '==',
@@ -2866,69 +2867,69 @@ function fusion_builder_element_dependencies( $dependencies, $shortcode, $option
 
 	// Google Map.
 	$is_embed_map = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'google_map_api_type',
-			'value' => 'embed',
-			'operator' => '!=',
+			'value'          => 'embed',
+			'operator'       => '!=',
 		),
 		'output' => array(
-			'element' => 'api_type',
-			'value' => '',
+			'element'  => 'api_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['embed_address']['fusion_map'][]  = $is_embed_map;
 	$shortcode_option_map['embed_map_type']['fusion_map'][] = $is_embed_map;
 
-	$is_not_embed_map = array(
-		'check' => array(
+	$is_not_embed_map                                = array(
+		'check'  => array(
 			'element-option' => 'google_map_api_type',
-			'value' => 'embed',
-			'operator' => '==',
+			'value'          => 'embed',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'api_type',
-			'value' => '',
+			'element'  => 'api_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['address']['fusion_map'][]  = $is_not_embed_map;
-	$shortcode_option_map['type']['fusion_map'][]     = $is_not_embed_map;
+	$shortcode_option_map['address']['fusion_map'][] = $is_not_embed_map;
+	$shortcode_option_map['type']['fusion_map'][]    = $is_not_embed_map;
 
-	$is_static_map = array(
-		'check' => array(
+	$is_static_map                                       = array(
+		'check'  => array(
 			'element-option' => 'google_map_api_type',
-			'value' => 'static',
-			'operator' => '!=',
+			'value'          => 'static',
+			'operator'       => '!=',
 		),
 		'output' => array(
-			'element' => 'api_type',
-			'value' => '',
+			'element'  => 'api_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['icon_static']['fusion_map'][]      = $is_static_map;
+	$shortcode_option_map['icon_static']['fusion_map'][] = $is_static_map;
 	$shortcode_option_map['static_map_color']['fusion_map'][] = $is_static_map;
 
 	$is_js_map = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'google_map_api_type',
-			'value' => 'js',
-			'operator' => '!=',
+			'value'          => 'js',
+			'operator'       => '!=',
 		),
 		'output' => array(
-			'element' => 'api_type',
-			'value' => '',
+			'element'  => 'api_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['scrollwheel']['fusion_map'][]     = $is_js_map;
-	$shortcode_option_map['scale']['fusion_map'][]           = $is_js_map;
-	$shortcode_option_map['zoom_pancontrol']['fusion_map'][] = $is_js_map;
-	$shortcode_option_map['animation']['fusion_map'][]       = $is_js_map;
-	$shortcode_option_map['popup']['fusion_map'][]           = $is_js_map;
-	$shortcode_option_map['map_style']['fusion_map'][]       = $is_js_map;
-	$shortcode_option_map['overlay_color']['fusion_map'][]   = $is_js_map;
+	$shortcode_option_map['scrollwheel']['fusion_map'][]              = $is_js_map;
+	$shortcode_option_map['scale']['fusion_map'][]                    = $is_js_map;
+	$shortcode_option_map['zoom_pancontrol']['fusion_map'][]          = $is_js_map;
+	$shortcode_option_map['animation']['fusion_map'][]                = $is_js_map;
+	$shortcode_option_map['popup']['fusion_map'][]                    = $is_js_map;
+	$shortcode_option_map['map_style']['fusion_map'][]                = $is_js_map;
+	$shortcode_option_map['overlay_color']['fusion_map'][]            = $is_js_map;
 	$shortcode_option_map['infobox_content']['fusion_map'][]          = $is_js_map;
 	$shortcode_option_map['infobox']['fusion_map'][]                  = $is_js_map;
 	$shortcode_option_map['icon']['fusion_map'][]                     = $is_js_map;
@@ -2937,678 +2938,678 @@ function fusion_builder_element_dependencies( $dependencies, $shortcode, $option
 
 	// Progress.
 	$shortcode_option_map['filledbordercolor']['fusion_progress'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'progressbar_filled_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'filledbordersize',
-			'value' => '',
+			'element'  => 'filledbordersize',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Social links.
 	$shortcode_option_map['icons_boxed_radius']['fusion_social_links'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'social_links_boxed',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'icons_boxed',
-			'value' => '',
+			'element'  => 'icons_boxed',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['box_colors']['fusion_social_links'][] = array(
-		'check' => array(
+	$shortcode_option_map['box_colors']['fusion_social_links'][]         = array(
+		'check'  => array(
 			'element-option' => 'social_links_boxed',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'icons_boxed',
-			'value' => '',
+			'element'  => 'icons_boxed',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['icon_colors']['fusion_social_links'][] = array(
-		'check' => array(
+	$shortcode_option_map['icon_colors']['fusion_social_links'][]        = array(
+		'check'  => array(
 			'element-option' => 'social_links_color_type',
-			'value' => 'brand',
-			'operator' => '==',
+			'value'          => 'brand',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'color_type',
-			'value' => '',
+			'element'  => 'color_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['box_colors']['fusion_social_links'][] = array(
-		'check' => array(
+	$shortcode_option_map['box_colors']['fusion_social_links'][]         = array(
+		'check'  => array(
 			'element-option' => 'social_links_color_type',
-			'value' => 'brand',
-			'operator' => '==',
+			'value'          => 'brand',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'color_type',
-			'value' => '',
+			'element'  => 'color_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Sharing box.
 	$shortcode_option_map['icons_boxed_radius']['fusion_sharing'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'social_links_boxed',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'icons_boxed',
-			'value' => '',
+			'element'  => 'icons_boxed',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['box_colors']['fusion_sharing'][] = array(
-		'check' => array(
+	$shortcode_option_map['box_colors']['fusion_sharing'][]         = array(
+		'check'  => array(
 			'element-option' => 'social_links_color_type',
-			'value' => 'brand',
-			'operator' => '==',
+			'value'          => 'brand',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'color_type',
-			'value' => '',
+			'element'  => 'color_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['box_colors']['fusion_sharing'][] = array(
-		'check' => array(
+	$shortcode_option_map['box_colors']['fusion_sharing'][]         = array(
+		'check'  => array(
 			'element-option' => 'social_links_boxed',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'icons_boxed',
-			'value' => '',
+			'element'  => 'icons_boxed',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['icon_colors']['fusion_sharing'][] = array(
-		'check' => array(
+	$shortcode_option_map['icon_colors']['fusion_sharing'][]        = array(
+		'check'  => array(
 			'element-option' => 'social_links_color_type',
-			'value' => 'brand',
-			'operator' => '==',
+			'value'          => 'brand',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'color_type',
-			'value' => '',
+			'element'  => 'color_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Toggles.
-	$shortcode_option_map['divider_line']['fusion_accordion'][] = array(
-		'check' => array(
+	$shortcode_option_map['divider_line']['fusion_accordion'][]     = array(
+		'check'  => array(
 			'element-option' => 'accordion_boxed_mode',
-			'value' => '1',
-			'operator' => '==',
+			'value'          => '1',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'boxed_mode',
-			'value' => '',
+			'element'  => 'boxed_mode',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['border_size']['fusion_accordion'][] = array(
-		'check' => array(
+	$shortcode_option_map['border_size']['fusion_accordion'][]      = array(
+		'check'  => array(
 			'element-option' => 'accordion_boxed_mode',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'boxed_mode',
-			'value' => '',
+			'element'  => 'boxed_mode',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['border_color']['fusion_accordion'][] = array(
-		'check' => array(
+	$shortcode_option_map['border_color']['fusion_accordion'][]     = array(
+		'check'  => array(
 			'element-option' => 'accordion_boxed_mode',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'boxed_mode',
-			'value' => '',
+			'element'  => 'boxed_mode',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['background_color']['fusion_accordion'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'accordion_boxed_mode',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'boxed_mode',
-			'value' => '',
+			'element'  => 'boxed_mode',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['icon_box_color']['fusion_accordion'][] = array(
-		'check' => array(
+	$shortcode_option_map['icon_box_color']['fusion_accordion'][]   = array(
+		'check'  => array(
 			'element-option' => 'accordion_icon_boxed',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'icon_boxed_mode',
-			'value' => '',
+			'element'  => 'icon_boxed_mode',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['hover_color']['fusion_accordion'][] = array(
-		'check' => array(
+	$shortcode_option_map['hover_color']['fusion_accordion'][]      = array(
+		'check'  => array(
 			'element-option' => 'accordion_boxed_mode',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'boxed_mode',
-			'value' => '',
+			'element'  => 'boxed_mode',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Checklist.
-	$shortcode_option_map['circlecolor']['fusion_checklist'][] = array(
-		'check' => array(
+	$shortcode_option_map['circlecolor']['fusion_checklist'][]   = array(
+		'check'  => array(
 			'element-option' => 'checklist_circle',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'circle',
-			'value' => '',
+			'element'  => 'circle',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['divider_color']['fusion_checklist'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'checklist_divider',
-			'value' => 'no',
-			'operator' => '==',
+			'value'          => 'no',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'divider',
-			'value' => '',
+			'element'  => 'divider',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Image.
-	$shortcode_option_map['blur']['fusion_imageframe'][] = array(
-		'check' => array(
+	$shortcode_option_map['blur']['fusion_imageframe'][]        = array(
+		'check'  => array(
 			'element-option' => 'imageframe_style_type',
-			'value' => 'none',
-			'operator' => '==',
+			'value'          => 'none',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'style_type',
-			'value' => '',
+			'element'  => 'style_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['stylecolor']['fusion_imageframe'][] = array(
-		'check' => array(
+	$shortcode_option_map['stylecolor']['fusion_imageframe'][]  = array(
+		'check'  => array(
 			'element-option' => 'imageframe_style_type',
-			'value' => 'none',
-			'operator' => '==',
+			'value'          => 'none',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'style_type',
-			'value' => '',
+			'element'  => 'style_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['bordercolor']['fusion_imageframe'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'imageframe_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'bordersize',
-			'value' => '',
+			'element'  => 'bordersize',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Image Compare.
-	$shortcode_option_map['before_label']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['before_label']['fusion_image_before_after'][]    = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['after_label']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['after_label']['fusion_image_before_after'][]     = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['font_size']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['font_size']['fusion_image_before_after'][]       = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['accent_color']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['accent_color']['fusion_image_before_after'][]    = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['label_placement']['fusion_image_before_after'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['handle_type']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['handle_type']['fusion_image_before_after'][]     = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['handle_color']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['handle_color']['fusion_image_before_after'][]    = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['handle_bg']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['handle_bg']['fusion_image_before_after'][]       = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['handle_bg']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['handle_bg']['fusion_image_before_after'][]       = array(
+		'check'  => array(
 			'element-option' => 'before_after_handle_type',
-			'value' => 'arrows',
-			'operator' => '==',
+			'value'          => 'arrows',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'handle_type',
-			'value' => '',
+			'element'  => 'handle_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['handle_bg']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['handle_bg']['fusion_image_before_after'][]       = array(
+		'check'  => array(
 			'element-option' => 'before_after_handle_type',
-			'value' => 'circle',
-			'operator' => '==',
+			'value'          => 'circle',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'handle_type',
-			'value' => '',
+			'element'  => 'handle_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['transition_time']['fusion_image_before_after'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'before_after',
-			'operator' => '==',
+			'value'          => 'before_after',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['offset']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['offset']['fusion_image_before_after'][]          = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['orientation']['fusion_image_before_after'][] = array(
-		'check' => array(
+	$shortcode_option_map['orientation']['fusion_image_before_after'][]     = array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['handle_movement']['fusion_image_before_after'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'before_after_type',
-			'value' => 'switch',
-			'operator' => '==',
+			'value'          => 'switch',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Button.
 	$shortcode_option_map['bevel_color']['fusion_button'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'button_type',
-			'value' => 'Flat',
-			'operator' => '==',
+			'value'          => 'Flat',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'type',
-			'value' => '',
+			'element'  => 'type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Gallery.
-	$shortcode_option_map['bordercolor']['fusion_gallery'][] = array(
-		'check' => array(
+	$shortcode_option_map['bordercolor']['fusion_gallery'][]   = array(
+		'check'  => array(
 			'element-option' => 'gallery_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'bordersize',
-			'value' => '',
+			'element'  => 'bordersize',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['border_radius']['fusion_gallery'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'gallery_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'bordersize',
-			'value' => '',
+			'element'  => 'bordersize',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Person.
-	$shortcode_option_map['pic_style_blur']['fusion_person'][] = array(
-		'check' => array(
+	$shortcode_option_map['pic_style_blur']['fusion_person'][]           = array(
+		'check'  => array(
 			'element-option' => 'person_pic_style',
-			'value' => 'none',
-			'operator' => '==',
+			'value'          => 'none',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'pic_style',
-			'value' => '',
+			'element'  => 'pic_style',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['pic_style_color']['fusion_person'][] = array(
-		'check' => array(
+	$shortcode_option_map['pic_style_color']['fusion_person'][]          = array(
+		'check'  => array(
 			'element-option' => 'person_pic_style',
-			'value' => 'none',
-			'operator' => '==',
+			'value'          => 'none',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'pic_style',
-			'value' => '',
+			'element'  => 'pic_style',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['social_icon_boxed_radius']['fusion_person'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'social_links_boxed',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'social_icon_boxed',
-			'value' => '',
+			'element'  => 'social_icon_boxed',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['social_icon_boxed_colors']['fusion_person'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'social_links_boxed',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'social_icon_boxed',
-			'value' => '',
+			'element'  => 'social_icon_boxed',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['social_icon_boxed_colors']['fusion_person'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'social_links_color_type',
-			'value' => 'brand',
-			'operator' => '==',
+			'value'          => 'brand',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'social_icon_color_type',
-			'value' => '',
+			'element'  => 'social_icon_color_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['social_icon_colors']['fusion_person'][] = array(
-		'check' => array(
+	$shortcode_option_map['social_icon_colors']['fusion_person'][]       = array(
+		'check'  => array(
 			'element-option' => 'social_links_color_type',
-			'value' => 'brand',
-			'operator' => '==',
+			'value'          => 'brand',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'social_icon_color_type',
-			'value' => '',
+			'element'  => 'social_icon_color_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Content boxes.
-	$shortcode_option_map['circlebordercolor']['fusion_content_boxes'][] = array(
-		'check' => array(
+	$shortcode_option_map['circlebordercolor']['fusion_content_boxes'][]      = array(
+		'check'  => array(
 			'element-option' => 'content_box_icon_bg_inner_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'circlebordersize',
-			'value' => '',
+			'element'  => 'circlebordersize',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['outercirclebordercolor']['fusion_content_boxes'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'content_box_icon_bg_outer_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'outercirclebordersize',
-			'value' => '',
+			'element'  => 'outercirclebordersize',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['button_span']['fusion_content_boxes'][] = array(
-		'check' => array(
+	$shortcode_option_map['button_span']['fusion_content_boxes'][]            = array(
+		'check'  => array(
 			'element-option' => 'content_box_link_type',
-			'value' => 'button',
-			'operator' => '!=',
+			'value'          => 'button',
+			'operator'       => '!=',
 		),
 		'output' => array(
-			'element' => 'link_type',
-			'value' => '',
+			'element'  => 'link_type',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$boxed_content_boxes = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'content_box_icon_circle',
-			'value' => 'no',
-			'operator' => '==',
+			'value'          => 'no',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'icon_circle',
-			'value' => '',
+			'element'  => 'icon_circle',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['icon_circle_radius']['fusion_content_boxes'][] = $boxed_content_boxes;
-	$shortcode_option_map['circlecolor']['fusion_content_boxes'][] = $boxed_content_boxes;
-	$shortcode_option_map['circlebordercolor']['fusion_content_boxes'][] = $boxed_content_boxes;
-	$shortcode_option_map['circlebordersize']['fusion_content_boxes'][] = $boxed_content_boxes;
+	$shortcode_option_map['icon_circle_radius']['fusion_content_boxes'][]     = $boxed_content_boxes;
+	$shortcode_option_map['circlecolor']['fusion_content_boxes'][]            = $boxed_content_boxes;
+	$shortcode_option_map['circlebordercolor']['fusion_content_boxes'][]      = $boxed_content_boxes;
+	$shortcode_option_map['circlebordersize']['fusion_content_boxes'][]       = $boxed_content_boxes;
 	$shortcode_option_map['outercirclebordercolor']['fusion_content_boxes'][] = $boxed_content_boxes;
-	$shortcode_option_map['outercirclebordersize']['fusion_content_boxes'][] = $boxed_content_boxes;
+	$shortcode_option_map['outercirclebordersize']['fusion_content_boxes'][]  = $boxed_content_boxes;
 
-	$parent_boxed_content_boxes = array(
-		'check' => array(
+	$parent_boxed_content_boxes                                        = array(
+		'check'  => array(
 			'element-option' => 'content_box_icon_circle',
-			'value' => 'no',
-			'operator' => '==',
+			'value'          => 'no',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'parent_icon_circle',
-			'value' => '',
+			'element'  => 'parent_icon_circle',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
-	$shortcode_option_map['circlecolor']['fusion_content_box'][] = $parent_boxed_content_boxes;
+	$shortcode_option_map['circlecolor']['fusion_content_box'][]       = $parent_boxed_content_boxes;
 	$shortcode_option_map['circlebordercolor']['fusion_content_box'][] = $parent_boxed_content_boxes;
-	$shortcode_option_map['circlebordersize']['fusion_content_box'][] = $parent_boxed_content_boxes;
+	$shortcode_option_map['circlebordersize']['fusion_content_box'][]  = $parent_boxed_content_boxes;
 	$shortcode_option_map['outercirclebordercolor']['fusion_content_box'][] = $parent_boxed_content_boxes;
-	$shortcode_option_map['outercirclebordersize']['fusion_content_box'][] = $parent_boxed_content_boxes;
+	$shortcode_option_map['outercirclebordersize']['fusion_content_box'][]  = $parent_boxed_content_boxes;
 
 	// Flip boxes.
 	$shortcode_option_map['border_color']['fusion_flip_box'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'flip_boxes_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'border_size',
-			'value' => '',
+			'element'  => 'border_size',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Container.
 	$shortcode_option_map['border_color']['fusion_builder_container'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'full_width_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'border_size',
-			'value' => '',
+			'element'  => 'border_size',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 	$shortcode_option_map['border_style']['fusion_builder_container'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'full_width_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'border_size',
-			'value' => '',
+			'element'  => 'border_size',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Section separator.
 	$shortcode_option_map['bordercolor']['fusion_section_separator'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'section_sep_border_size',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'bordersize',
-			'value' => '',
+			'element'  => 'bordersize',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
 
 	// Separator.
 	$shortcode_option_map['icon_circle_color']['fusion_separator'][] = array(
-		'check' => array(
+		'check'  => array(
 			'element-option' => 'separator_circle',
-			'value' => '0',
-			'operator' => '==',
+			'value'          => '0',
+			'operator'       => '==',
 		),
 		'output' => array(
-			'element' => 'icon_circle',
-			'value' => '',
+			'element'  => 'icon_circle',
+			'value'    => '',
 			'operator' => '!=',
 		),
 	);
@@ -3617,7 +3618,7 @@ function fusion_builder_element_dependencies( $dependencies, $shortcode, $option
 	if ( isset( $shortcode_option_map[ $option ][ $shortcode ] ) && is_array( $shortcode_option_map[ $option ][ $shortcode ] ) ) {
 		foreach ( $shortcode_option_map[ $option ][ $shortcode ] as $option_check ) {
 			$option_value = $fusion_settings->get( $option_check['check']['element-option'] );
-			$pass = false;
+			$pass         = false;
 
 			// Check the result of check.
 			if ( '==' == $option_check['check']['operator'] ) {
@@ -3658,7 +3659,7 @@ if ( ! function_exists( 'fusion_builder_render_rich_snippets_for_pages' ) ) {
 
 			<?php if ( $title_tag && $fusion_settings->get( 'disable_rich_snippet_title' ) ) : ?>
 				<span class="entry-title" style="display: none;">
-					<?php echo get_the_title(); ?>
+					<?php the_title(); ?>
 				</span>
 			<?php endif; ?>
 
@@ -3779,13 +3780,13 @@ if ( ! function_exists( 'fusion_builder_get_post_content_excerpt' ) ) {
 		if ( ! has_excerpt() ) {
 			// Check if the excerpting should be char or word based.
 			if ( 'Characters' === $fusion_settings->get( 'excerpt_base' ) ) {
-				$content = mb_substr( $content, 0, $limit );
+				$content  = mb_substr( $content, 0, $limit );
 				$content .= $read_more;
 			} else { // Excerpting is word based.
 				$content = explode( ' ', $content, $limit + 1 );
 				if ( count( $content ) > $limit ) {
 					array_pop( $content );
-					$content = implode( ' ', $content );
+					$content  = implode( ' ', $content );
 					$content .= $read_more;
 				} else {
 					$content = implode( ' ', $content );
@@ -3833,7 +3834,7 @@ if ( ! function_exists( 'fusion_builder_render_post_metadata' ) ) {
 			'post_meta_comments' => fusion_library()->get_option( 'post_meta_comments' ),
 		);
 
-		$settings = wp_parse_args( $settings, $default_settings );
+		$settings  = wp_parse_args( $settings, $default_settings );
 		$post_meta = get_post_meta( get_queried_object_id(), 'pyre_post_meta', true );
 
 		// Check if meta data is enabled.
@@ -3866,8 +3867,8 @@ if ( ! function_exists( 'fusion_builder_render_post_metadata' ) ) {
 				$metadata .= fusion_builder_render_rich_snippets_for_pages( false, false, true );
 
 				$formatted_date = get_the_time( $fusion_settings->get( 'date_format' ) );
-				$date_markup = '<span>' . $formatted_date . '</span><span class="fusion-inline-sep">|</span>';
-				$metadata .= apply_filters( 'fusion_post_metadata_date', $date_markup, $formatted_date );
+				$date_markup    = '<span>' . $formatted_date . '</span><span class="fusion-inline-sep">|</span>';
+				$metadata      .= apply_filters( 'fusion_post_metadata_date', $date_markup, $formatted_date );
 			} else {
 				$date .= fusion_builder_render_rich_snippets_for_pages( false, false, true );
 			}
@@ -3900,7 +3901,7 @@ if ( ! function_exists( 'fusion_builder_render_post_metadata' ) ) {
 			if ( $settings['post_meta_comments'] && 'grid_timeline' !== $layout ) {
 				ob_start();
 				comments_popup_link( esc_html__( '0 Comments', 'fusion-builder' ), esc_html__( '1 Comment', 'fusion-builder' ), esc_html__( '% Comments', 'fusion-builder' ) );
-				$comments = ob_get_clean();
+				$comments  = ob_get_clean();
 				$metadata .= '<span class="fusion-comments">' . $comments . '</span>';
 			}
 
@@ -4029,7 +4030,7 @@ function fusion_get_plugin_info( $plugin_name, $plugins ) {
 	foreach ( $plugins as $plugin_file => $plugin_info ) {
 		if ( $plugin_info['Name'] == $plugin_name ) {
 			$plugin_info['plugin_file'] = $plugin_file;
-			$plugin_info['is_active'] = is_plugin_active( $plugin_file );
+			$plugin_info['is_active']   = is_plugin_active( $plugin_file );
 			return $plugin_info;
 		}
 	}
@@ -4044,7 +4045,7 @@ function fusion_get_plugin_info( $plugin_name, $plugins ) {
  * @return string
  */
 function fusion_wrap_embed_with_div( $html ) {
-	$wrapper = '<div ' . FusionBuilder::attributes( 'video-shortcode' ) . '>';
+	$wrapper  = '<div ' . FusionBuilder::attributes( 'video-shortcode' ) . '>';
 	$wrapper .= $html;
 	$wrapper .= '</div>';
 

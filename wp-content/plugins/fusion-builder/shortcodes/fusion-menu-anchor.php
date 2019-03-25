@@ -97,12 +97,12 @@ if ( fusion_is_element_enabled( 'fusion_menu_anchor' ) ) {
 function fusion_element_menu_anchor() {
 	fusion_builder_map(
 		array(
-			'name'              => esc_attr__( 'Menu Anchor', 'fusion-builder' ),
-			'shortcode'         => 'fusion_menu_anchor',
-			'icon'              => 'fusiona-anchor',
-			'preview'           => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-menu-anchor-preview.php',
-			'preview_id'        => 'fusion-builder-block-module-menu-anchor-preview-template',
-			'params'            => array(
+			'name'       => esc_attr__( 'Menu Anchor', 'fusion-builder' ),
+			'shortcode'  => 'fusion_menu_anchor',
+			'icon'       => 'fusiona-anchor',
+			'preview'    => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-menu-anchor-preview.php',
+			'preview_id' => 'fusion-builder-block-module-menu-anchor-preview-template',
+			'params'     => array(
 				array(
 					'type'        => 'textfield',
 					'heading'     => esc_attr__( 'Name', 'fusion-builder' ),

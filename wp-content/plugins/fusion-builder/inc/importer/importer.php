@@ -120,7 +120,7 @@ function fusion_export_xml() {
 
 	if ( isset( $_GET['page'] ) && 'fusion-builder-options' == $_GET['page'] ) {
 
-		$action = filter_input( INPUT_GET, 'fusion_action', FILTER_SANITIZE_STRING );
+		$action    = filter_input( INPUT_GET, 'fusion_action', FILTER_SANITIZE_STRING );
 		$post_type = filter_input( INPUT_GET, 'fusion_export_type', FILTER_SANITIZE_STRING );
 
 		if ( 'export' == $action ) {
@@ -152,7 +152,7 @@ function fusion_export_filename( $wp_filename ) {
 
 	if ( isset( $_GET['page'] ) && 'fusion-builder-options' == $_GET['page'] ) {
 
-		$post_type = filter_input( INPUT_GET, 'fusion_export_type', FILTER_SANITIZE_STRING );
+		$post_type   = filter_input( INPUT_GET, 'fusion_export_type', FILTER_SANITIZE_STRING );
 		$wp_filename = $post_type . '-' . $wp_filename;
 		return $wp_filename;
 	}

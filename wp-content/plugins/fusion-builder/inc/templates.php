@@ -128,7 +128,7 @@ function fusion_element_options_loop( $params ) {
 					);
 					?>
 					<?php
-						$fields  = apply_filters( 'fusion_builder_fields', $field_types );
+						$fields = apply_filters( 'fusion_builder_fields', $field_types );
 					?>
 					<?php foreach ( $fields as $field_type ) : ?>
 						<?php if ( is_array( $field_type ) && ! empty( $field_type ) ) : ?>

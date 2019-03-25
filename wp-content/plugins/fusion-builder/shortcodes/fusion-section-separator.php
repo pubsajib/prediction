@@ -114,7 +114,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 					}
 
 					$candy .= '</svg>';
-					$html = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
+					$html   = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
 				} elseif ( 'slant' === $divider_type ) {
 					$candy = '<svg class="slantCandy" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 102" preserveAspectRatio="none" ' . FusionBuilder::attributes( 'section-separator-shortcode-divider-svg' ) . '>';
 
@@ -128,10 +128,10 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 						$candy .= '<path d="M0 0 L0 99 L100 99 Z"></path>';
 					}
 					$candy .= '</svg>';
-					$html = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
+					$html   = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
 				} elseif ( 'rounded-split' === $divider_type ) {
 					$candy = sprintf( '<div %s></div>', FusionBuilder::attributes( 'section-separator-shortcode-divider-rounded-split' ) );
-					$html = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
+					$html  = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
 				} elseif ( 'big-half-circle' === $divider_type ) {
 					$candy = '<svg id="bigHalfCircleCandy" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none" ' . FusionBuilder::attributes( 'section-separator-shortcode-divider-svg' ) . '>';
 
@@ -142,7 +142,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 					}
 
 					$candy .= '</svg>';
-					$html = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
+					$html   = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
 				} elseif ( 'curved' === $divider_type ) {
 					$candy = '<svg id="curvedCandy" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none" ' . FusionBuilder::attributes( 'section-separator-shortcode-divider-svg' ) . '>';
 
@@ -161,9 +161,9 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 					}
 
 					$candy .= '</svg>';
-					$html = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
+					$html   = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
 				} elseif ( 'clouds' === $divider_type ) {
-					$candy = '<svg id="cloudsCandy" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none" ' . FusionBuilder::attributes( 'section-separator-shortcode-divider-svg' ) . '>';
+					$candy  = '<svg id="cloudsCandy" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none" ' . FusionBuilder::attributes( 'section-separator-shortcode-divider-svg' ) . '>';
 					$candy .= '<path d="M-5 100 Q 0 20 5 100 Z"></path>
 								<path d="M0 100 Q 5 0 10 100"></path>
 								<path d="M5 100 Q 10 30 15 100"></path>
@@ -186,7 +186,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 								<path d="M90 100 Q 95 25 100 100"></path>
 								<path d="M95 100 Q 100 15 105 100 Z"></path>';
 					$candy .= '</svg>';
-					$html = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
+					$html   = '<div ' . FusionBuilder::attributes( 'section-separator-shortcode' ) . '>' . $candy . '</div>';
 				}
 
 				return $html;
@@ -253,7 +253,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 					$margin_left_unitless  = (int) filter_var( $margin_left, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
 					$margin_right_unitless = (int) filter_var( $margin_right, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
 
-					$container_percentage  = 100 - $margin_left_unitless - $margin_right_unitless;
+					$container_percentage = 100 - $margin_left_unitless - $margin_right_unitless;
 					if ( false !== strpos( $margin_left, '%' ) ) {
 						$margin_left_unitless_scaled = $margin_left_unitless / $container_percentage * 100;
 					}
@@ -277,11 +277,11 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 
 						// Both container paddings use px.
 						if ( false !== strpos( $margin_left, 'px' ) && false !== strpos( $margin_right, 'px' ) ) {
-							$margin_unit = 'px';
+							$margin_unit            = 'px';
 							$margin_difference_half = abs( $margin_left_unitless - $margin_right_unitless ) / 2 . $margin_unit;
 
 							if ( 'Boxed' === $fusion_settings->get( 'layout' ) ) {
-								$margin_left_negative = '-' . $margin_left;
+								$margin_left_negative  = '-' . $margin_left;
 								$margin_right_negative = '-' . $margin_right;
 							} else {
 								if ( $margin_left_unitless > $margin_right_unitless ) {
@@ -295,7 +295,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 									$margin_right = '';
 								}
 
-								$margin_left_negative = 'calc( (' . $viewport_width . ' - 100% ) / -2 ' . $margin_left . ' )';
+								$margin_left_negative  = 'calc( (' . $viewport_width . ' - 100% ) / -2 ' . $margin_left . ' )';
 								$margin_right_negative = 'calc( (' . $viewport_width . ' - 100% ) / -2  ' . $margin_right . ' )';
 							}
 							$attr['class'] .= ' fusion-section-separator-with-offset';
@@ -307,7 +307,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 								$margin_unit = '%';
 
 								$main_padding_unitless = filter_var( $fusion_settings->get( 'hundredp_padding' ), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
-								$main_padding_unit = str_replace( $main_padding_unitless, '', $fusion_settings->get( 'hundredp_padding' ) );
+								$main_padding_unit     = str_replace( $main_padding_unitless, '', $fusion_settings->get( 'hundredp_padding' ) );
 
 								$margin_left_negative  = 'calc( ( 100% - ' . ( 2 * $main_padding_unitless ) . $main_padding_unit . ' ) * ' . ( -1 / 100 ) * $margin_left_unitless_scaled . ' )';
 								$margin_right_negative = 'calc( ( 100% - ' . ( 2 * $main_padding_unitless ) . $main_padding_unit . ' ) * ' . ( -1 / 100 ) * $margin_right_unitless_scaled . ' )';
@@ -446,14 +446,14 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 
 				if ( 'bottom' === $divider_candy ) {
 					$attr['class'] .= ' bottom';
-					$attr['style'] = 'bottom:-' . ( FusionBuilder::strip_unit( $this->args['bordersize'] ) + 20 ) . 'px;border-bottom:1px solid ' . $this->args['bordercolor'] . ';border-left:1px solid ' . $this->args['bordercolor'] . ';';
+					$attr['style']  = 'bottom:-' . ( FusionBuilder::strip_unit( $this->args['bordersize'] ) + 20 ) . 'px;border-bottom:1px solid ' . $this->args['bordercolor'] . ';border-left:1px solid ' . $this->args['bordercolor'] . ';';
 				} elseif ( 'top' === $divider_candy ) {
 					$attr['class'] .= ' top';
-					$attr['style'] = 'top:-' . ( FusionBuilder::strip_unit( $this->args['bordersize'] ) + 20 ) . 'px;border-bottom:1px solid ' . $this->args['bordercolor'] . ';border-left:1px solid ' . $this->args['bordercolor'] . ';';
+					$attr['style']  = 'top:-' . ( FusionBuilder::strip_unit( $this->args['bordersize'] ) + 20 ) . 'px;border-bottom:1px solid ' . $this->args['bordercolor'] . ';border-left:1px solid ' . $this->args['bordercolor'] . ';';
 					// Modern setup, that won't work in IE8.
 				} elseif ( false !== strpos( $this->args['divider_candy'], 'top' ) && false !== strpos( $this->args['divider_candy'], 'bottom' ) ) {
 					$attr['class'] .= ' both';
-					$attr['style'] = 'background-color:' . $this->args['backgroundcolor'] . ';border:1px solid ' . $this->args['bordercolor'] . ';';
+					$attr['style']  = 'background-color:' . $this->args['backgroundcolor'] . ';border:1px solid ' . $this->args['bordercolor'] . ';';
 				}
 
 				return $attr;
@@ -484,10 +484,10 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 
 				if ( 'bottom' === $divider_candy ) {
 					$attr['class'] .= ' bottom';
-					$attr['style'] = 'top:' . $arrow_position . 'px;border-top-color: ' . $this->args['backgroundcolor'] . ';';
+					$attr['style']  = 'top:' . $arrow_position . 'px;border-top-color: ' . $this->args['backgroundcolor'] . ';';
 				} elseif ( 'top' === $divider_candy ) {
 					$attr['class'] .= ' top';
-					$attr['style'] = 'bottom:' . $arrow_position . 'px;border-bottom-color: ' . $this->args['backgroundcolor'] . ';';
+					$attr['style']  = 'bottom:' . $arrow_position . 'px;border-bottom-color: ' . $this->args['backgroundcolor'] . ';';
 				}
 
 				return $attr;
@@ -510,7 +510,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 						'id'          => 'sectionseparator_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'section_sep_border_size' => array(
+							'section_sep_border_size'  => array(
 								'label'       => esc_html__( 'Section Separator Border Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border size of the section separator.', 'fusion-builder' ),
 								'id'          => 'section_sep_border_size',
@@ -522,7 +522,7 @@ if ( fusion_is_element_enabled( 'fusion_section_separator' ) ) {
 									'step' => '1',
 								),
 							),
-							'section_sep_bg' => array(
+							'section_sep_bg'           => array(
 								'label'       => esc_html__( 'Section Separator Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background color of the section separator style.', 'fusion-builder' ),
 								'id'          => 'section_sep_bg',
@@ -576,7 +576,7 @@ function fusion_element_section_separator() {
 						'big-half-circle' => esc_attr__( 'Big Half Circle', 'fusion-builder' ),
 						'clouds'          => esc_attr__( 'Clouds', 'fusion-builder' ),
 					),
-					'default' => 'triangle',
+					'default'     => 'triangle',
 				),
 				array(
 					'type'        => 'radio_button_set',
@@ -622,8 +622,8 @@ function fusion_element_section_separator() {
 						'bottom'     => esc_attr__( 'Bottom', 'fusion-builder' ),
 						'bottom,top' => esc_attr__( 'Top and Bottom', 'fusion-builder' ),
 					),
-					'default'      => 'top',
-					'dependency'   => array(
+					'default'     => 'top',
+					'dependency'  => array(
 						array(
 							'element'  => 'divider_type',
 							'value'    => 'clouds',

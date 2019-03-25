@@ -84,57 +84,57 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 
 			$this->args = FusionBuilder::set_shortcode_defaults(
 				array(
-					'admin_label'                           => '',
-					'is_nested'                             => '0', // Variable that simply checks if the current container is a nested one (e.g. from FAQ or blog element).
-					'hide_on_mobile'                        => fusion_builder_default_visibility( 'string' ),
-					'id'                                    => '',
-					'class'                                 => '',
-					'status'                                => 'published',
-					'publish_date'                          => '',
+					'admin_label'                   => '',
+					'is_nested'                     => '0', // Variable that simply checks if the current container is a nested one (e.g. from FAQ or blog element).
+					'hide_on_mobile'                => fusion_builder_default_visibility( 'string' ),
+					'id'                            => '',
+					'class'                         => '',
+					'status'                        => 'published',
+					'publish_date'                  => '',
 
 					// Background.
-					'background_color'                      => $fusion_settings->get( 'full_width_bg_color' ),
-					'background_image'                      => '',
-					'background_position'                   => 'center center',
-					'background_repeat'                     => 'no-repeat',
-					'background_parallax'                   => 'none',
-					'parallax_speed'                        => '0.3',
-					'opacity'                               => '100',
-					'break_parents'                         => '0',
-					'fade'                                  => 'no',
+					'background_color'              => $fusion_settings->get( 'full_width_bg_color' ),
+					'background_image'              => '',
+					'background_position'           => 'center center',
+					'background_repeat'             => 'no-repeat',
+					'background_parallax'           => 'none',
+					'parallax_speed'                => '0.3',
+					'opacity'                       => '100',
+					'break_parents'                 => '0',
+					'fade'                          => 'no',
 
 					// Style.
-					'hundred_percent'                       => 'no',
-					'hundred_percent_height'                => 'no',
-					'hundred_percent_height_scroll'         => 'no',
+					'hundred_percent'               => 'no',
+					'hundred_percent_height'        => 'no',
+					'hundred_percent_height_scroll' => 'no',
 					'hundred_percent_height_center_content' => 'no',
-					'padding_bottom'                        => '',
-					'padding_left'                          => '',
-					'padding_right'                         => '',
-					'padding_top'                           => '',
-					'border_color'                          => $fusion_settings->get( 'full_width_border_color' ),
-					'border_size'                           => $fusion_settings->get( 'full_width_border_size' ),
-					'border_style'                          => 'solid',
-					'equal_height_columns'                  => 'no',
-					'data_bg_height'                        => '',
-					'data_bg_width'                         => '',
-					'enable_mobile'                         => 'no',
-					'menu_anchor'                           => '',
-					'margin_top'                            => '',
-					'margin_bottom'                         => '',
+					'padding_bottom'                => '',
+					'padding_left'                  => '',
+					'padding_right'                 => '',
+					'padding_top'                   => '',
+					'border_color'                  => $fusion_settings->get( 'full_width_border_color' ),
+					'border_size'                   => $fusion_settings->get( 'full_width_border_size' ),
+					'border_style'                  => 'solid',
+					'equal_height_columns'          => 'no',
+					'data_bg_height'                => '',
+					'data_bg_width'                 => '',
+					'enable_mobile'                 => 'no',
+					'menu_anchor'                   => '',
+					'margin_top'                    => '',
+					'margin_bottom'                 => '',
 
 					// Video Background.
-					'video_mp4'                             => '',
-					'video_webm'                            => '',
-					'video_ogv'                             => '',
-					'video_loop'                            => 'yes',
-					'video_mute'                            => 'yes',
-					'video_preview_image'                   => '',
-					'overlay_color'                         => '',
-					'overlay_opacity'                       => '0.5',
-					'video_url'                             => '',
-					'video_loop_refinement'                 => '',
-					'video_aspect_ratio'                    => '16:9',
+					'video_mp4'                     => '',
+					'video_webm'                    => '',
+					'video_ogv'                     => '',
+					'video_loop'                    => 'yes',
+					'video_mute'                    => 'yes',
+					'video_preview_image'           => '',
+					'overlay_color'                 => '',
+					'overlay_opacity'               => '0.5',
+					'video_url'                     => '',
+					'video_loop_refinement'         => '',
+					'video_aspect_ratio'            => '16:9',
 
 				),
 				$atts,
@@ -153,18 +153,23 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 
 			$fusion_fwc_type = array();
 
-			$style = '';
-			$classes = 'fusion-fullwidth fullwidth-box';
+			$style      = '';
+			$classes    = 'fusion-fullwidth fullwidth-box';
 			$outer_html = '';
+			$lazy_load  = $fusion_settings->get( 'lazy_load' );
+
+			if ( ! $background_image || '' === $background_image ) {
+				$lazy_load = false;
+			}
 
 			// Video background.
-			$video_bg = false;
+			$video_bg  = false;
 			$video_src = '';
 
 			// TODO: refactor this whole section.
 			$c_page_id = $fusion_library->get_page_id();
 
-			$width_100 = false;
+			$width_100     = false;
 			$page_template = '';
 
 			// Placeholder background color.
@@ -201,17 +206,17 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 
 			if ( ! empty( $video_mp4 ) ) {
 				$video_src .= '<source src="' . $video_mp4 . '" type="video/mp4">';
-				$video_bg = true;
+				$video_bg   = true;
 			}
 
 			if ( ! empty( $video_webm ) ) {
 				$video_src .= '<source src="' . $video_webm . '" type="video/webm">';
-				$video_bg = true;
+				$video_bg   = true;
 			}
 
 			if ( ! empty( $video_ogv ) ) {
 				$video_src .= '<source src="' . $video_ogv . '" type="video/ogg">';
-				$video_bg = true;
+				$video_bg   = true;
 			}
 
 			if ( ! empty( $video_url ) ) {
@@ -244,7 +249,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 					// Video Preview Image.
 					if ( ! empty( $video_preview_image ) ) {
 						$video_preview_image_style = 'background-image:url(' . $video_preview_image . ');';
-						$outer_html .= '<div class="fullwidth-video-image" style="' . $video_preview_image_style . '"></div>';
+						$outer_html               .= '<div class="fullwidth-video-image" style="' . $video_preview_image_style . '"></div>';
 					}
 
 					$outer_html .= '<div class="fullwidth-video"><video ' . $video_attributes . '>' . $video_src . '</video></div>';
@@ -253,7 +258,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 				// Video Overlay.
 				if ( ! empty( $background_color ) && 1 > $alpha ) {
 					$overlay_style = 'background-color:' . $background_color . ';';
-					$outer_html .= '<div class="fullwidth-overlay" style="' . $overlay_style . '"></div>';
+					$outer_html   .= '<div class="fullwidth-overlay" style="' . $overlay_style . '"></div>';
 				}
 			}
 
@@ -262,7 +267,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 				$style .= 'background-color: ' . esc_attr( $background_color ) . ';';
 			}
 
-			if ( ! empty( $background_image ) && 'yes' !== $fade ) {
+			if ( ! empty( $background_image ) && 'yes' !== $fade && ! $lazy_load ) {
 				$style .= 'background-image: url("' . esc_url_raw( $background_image ) . '");';
 			}
 
@@ -283,7 +288,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 				if ( '' === ${$padding_name} ) {
 
 					// TO padding.
-					${$padding_name} = $fusion_settings->get( 'container_padding_default', $padding );
+					${$padding_name}             = $fusion_settings->get( 'container_padding_default', $padding );
 					$is_hundred_percent_template = apply_filters( 'fusion_is_hundred_percent_template', false, $c_page_id );
 					if ( $is_hundred_percent_template ) {
 						${$padding_name} = $fusion_settings->get( 'container_padding_100', $padding );
@@ -318,9 +323,9 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 			if ( 'yes' === $fade && ! empty( $background_image ) && false === $video_bg ) {
 				$bg_type    = 'faded';
 				$fade_style = '';
-				$classes .= ' faded-background';
+				$classes   .= ' faded-background';
 
-				if ( 'none' !== $background_parallax ) {
+				if ( 'fixed' === $background_parallax ) {
 					$fade_style .= 'background-attachment:' . $background_parallax . ';';
 				}
 
@@ -328,7 +333,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 					$fade_style .= 'background-color:' . $background_color . ';';
 				}
 
-				if ( $background_image ) {
+				if ( $background_image && ! $lazy_load ) {
 					$fade_style .= 'background-image: url(' . $background_image . ');';
 				}
 
@@ -344,7 +349,11 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 					$fade_style .= '-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;';
 				}
 
-				$outer_html .= '<div class="fullwidth-faded" style="' . $fade_style . '"></div>';
+				if ( ! $lazy_load ) {
+					$outer_html .= '<div class="fullwidth-faded" style="' . $fade_style . '"></div>';
+				} else {
+					$outer_html .= '<div class="fullwidth-faded lazyload" style="' . $fade_style . '" data-bg="' . $background_image . '"></div>';
+				}
 			}
 
 			if ( ! empty( $background_image ) && false == $video_bg ) {
@@ -379,7 +388,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 					$classes .= " fusion-parallax-{$background_parallax}";
 				}
 
-				if ( 'none' !== $background_parallax ) {
+				if ( 'fixed' === $background_parallax ) {
 					$style .= 'background-attachment:' . $background_parallax . ';';
 				}
 			}
@@ -398,11 +407,11 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 			}
 
 			// Hundred percent.
-			$classes .= ( 'yes' === $hundred_percent ) ? ' hundred-percent-fullwidth' : ' nonhundred-percent-fullwidth';
-			$fusion_fwc_type['content'] = ( 'yes' === $hundred_percent ) ? 'fullwidth' : 'contained';
+			$classes                             .= ( 'yes' === $hundred_percent ) ? ' hundred-percent-fullwidth' : ' nonhundred-percent-fullwidth';
+			$fusion_fwc_type['content']           = ( 'yes' === $hundred_percent ) ? 'fullwidth' : 'contained';
 			$fusion_fwc_type['width_100_percent'] = $width_100;
-			$fusion_fwc_type['padding'] = array(
-				'left' => $padding_left,
+			$fusion_fwc_type['padding']           = array(
+				'left'  => $padding_left,
 				'right' => $padding_right,
 			);
 
@@ -430,7 +439,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 					if ( '' !== $id ) {
 						$css_id = $id;
 					}
-					$id = 'fusion-scroll-section-element-' . $this->scroll_section_counter . '-' . $this->scroll_section_element_counter;
+					$id        = 'fusion-scroll-section-element-' . $this->scroll_section_counter . '-' . $this->scroll_section_element_counter;
 					$data_attr = ' data-section="' . $this->scroll_section_counter . '" data-element="' . $this->scroll_section_element_counter . '"';
 
 					$this->scroll_section_navigation .= '<li><a href="#' . $id . '" class="fusion-scroll-section-link" data-name="' . $admin_label . '" data-element="' . $this->scroll_section_element_counter . '"><span class="fusion-scroll-section-link-bullet"></span></a></li>';
@@ -448,11 +457,11 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 				if ( 1 < $this->scroll_section_element_counter ) {
 					$scroll_navigation_position = ( 'Right' === $fusion_settings->get( 'header_position' ) || is_rtl() ) ? 'scroll-navigation-left' : 'scroll-navigation-right';
 					$scroll_section_container   = '<nav id="fusion-scroll-section-nav-' . $this->scroll_section_counter . '" class="fusion-scroll-section-nav ' . $scroll_navigation_position . '" data-section="' . $this->scroll_section_counter . '"><ul>' . $this->scroll_section_navigation . '</ul></nav>';
-					$scroll_section_container   .= '</div>';
+					$scroll_section_container  .= '</div>';
 				}
 
 				$this->scroll_section_element_counter = 1;
-				$this->scroll_section_navigation = '';
+				$this->scroll_section_navigation      = '';
 			}
 
 			// Equal column height.
@@ -478,6 +487,10 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 			// Custom CSS ID.
 			$id = ( '' !== $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
 
+			if ( $lazy_load ) {
+				$classes .= ' lazyload';
+				$style   .= ' data-bg="' . $background_image . '"';
+			}
 			$output = $parallax_helper . '<div' . $id . ' class="' . $classes . '" ' . $style . '>' . $outer_html . $main_content . '</div>';
 
 			// Menu anchor.
@@ -534,7 +547,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 			}
 
 			// Set to show until or after.
-			$time_check = strtotime( $this->args['publish_date'] );
+			$time_check    = strtotime( $this->args['publish_date'] );
 			$wp_local_time = current_time( 'timestamp' );
 			if ( '' !== $this->args['publish_date'] && $time_check ) {
 				if ( 'published_until' === $this->args['status'] ) {
@@ -561,7 +574,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 
 			$css['global']['.fusion-builder-row.fusion-row']['max-width'] = $fusion_library->sanitize->size( $fusion_settings->get( 'site_width' ) );
 
-			$css['global']['.fusion-scroll-section-nav']['background-color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'container_scroll_nav_bg_color' ) );
+			$css['global']['.fusion-scroll-section-nav']['background-color']         = $fusion_library->sanitize->color( $fusion_settings->get( 'container_scroll_nav_bg_color' ) );
 			$css['global']['.fusion-scroll-section-link-bullet']['background-color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'container_scroll_nav_bullet_color' ) );
 
 			return $css;
@@ -583,52 +596,52 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 					'id'          => 'fullwidth_shortcode_section',
 					'type'        => 'accordion',
 					'fields'      => array(
-						'container_padding_default' => array(
+						'container_padding_default'     => array(
 							'label'       => esc_html__( 'Container Padding for Default Template', 'fusion-builder' ),
 							'description' => esc_html__( 'Controls the top/right/bottom/left padding of the container element when using the Default page template. ', 'fusion-builder' ),
 							'id'          => 'container_padding_default',
 							'choices'     => array(
-								'top'     => true,
-								'bottom'  => true,
-								'left'    => true,
-								'right'   => true,
-								'units'   => array( 'px', '%' ),
+								'top'    => true,
+								'bottom' => true,
+								'left'   => true,
+								'right'  => true,
+								'units'  => array( 'px', '%' ),
 							),
 							'default'     => array(
-								'top'     => '0px',
-								'bottom'  => '0px',
-								'left'    => '0px',
-								'right'   => '0px',
+								'top'    => '0px',
+								'bottom' => '0px',
+								'left'   => '0px',
+								'right'  => '0px',
 							),
 							'type'        => 'spacing',
 						),
-						'container_padding_100' => array(
+						'container_padding_100'         => array(
 							'label'       => esc_html__( 'Container Padding for 100% Width Template', 'fusion-builder' ),
 							'description' => esc_html__( 'Controls the top/right/bottom/left padding of the container element when using the 100% width page template.', 'fusion-builder' ),
 							'id'          => 'container_padding_100',
 							'choices'     => array(
-								'top'     => true,
-								'bottom'  => true,
-								'left'    => true,
-								'right'   => true,
-								'units'   => array( 'px', '%' ),
+								'top'    => true,
+								'bottom' => true,
+								'left'   => true,
+								'right'  => true,
+								'units'  => array( 'px', '%' ),
 							),
 							'default'     => array(
-								'top'     => '0px',
-								'bottom'  => '0px',
-								'left'    => '30px',
-								'right'   => '30px',
+								'top'    => '0px',
+								'bottom' => '0px',
+								'left'   => '30px',
+								'right'  => '30px',
 							),
 							'type'        => 'spacing',
 						),
-						'full_width_bg_color' => array(
+						'full_width_bg_color'           => array(
 							'label'       => esc_html__( 'Container Background Color', 'fusion-builder' ),
 							'description' => esc_html__( 'Controls the background color of the container element.', 'fusion-builder' ),
 							'id'          => 'full_width_bg_color',
 							'default'     => 'rgba(255,255,255,0)',
 							'type'        => 'color-alpha',
 						),
-						'full_width_border_size' => array(
+						'full_width_border_size'        => array(
 							'label'       => esc_html__( 'Container Border Size', 'fusion-builder' ),
 							'description' => esc_html__( 'Controls the top and bottom border size of the container element.', 'fusion-builder' ),
 							'id'          => 'full_width_border_size',
@@ -640,7 +653,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 								'step' => '1',
 							),
 						),
-						'full_width_border_color' => array(
+						'full_width_border_color'       => array(
 							'label'       => esc_html__( 'Container Border Color', 'fusion-builder' ),
 							'description' => esc_html__( 'Controls the border color of the container element.', 'fusion-builder' ),
 							'id'          => 'full_width_border_color',
@@ -688,7 +701,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 			}
 
 			$is_sticky_header_transparent = 0;
-			$c_page_id = $fusion_library->get_page_id();
+			$c_page_id                    = $fusion_library->get_page_id();
 			if ( 1 > Fusion_Color::new_color( $fusion_settings->get( 'header_sticky_bg_color' ) )->alpha ) {
 				$is_sticky_header_transparent = 1;
 			}
@@ -705,7 +718,7 @@ if ( ! class_exists( 'FusionSC_Container' ) ) {
 				'fusion-container',
 				'fusionContainerVars',
 				array(
-					'content_break_point' => intval( $fusion_settings->get( 'content_break_point' ) ),
+					'content_break_point'          => intval( $fusion_settings->get( 'content_break_point' ) ),
 					'container_hundred_percent_height_mobile' => intval( $fusion_settings->get( 'container_hundred_percent_height_mobile' ) ),
 					'is_sticky_header_transparent' => $is_sticky_header_transparent,
 				)
@@ -727,9 +740,9 @@ function fusion_builder_add_section() {
 	if ( ! $fusion_settings ) {
 		$fusion_settings = Fusion_Settings::get_instance();
 	}
-	$subset = array( 'top', 'right', 'bottom', 'left' );
-	$setting = 'container_padding';
-	$default = rtrim( $fusion_settings->get_default_description( $setting . '_default', $subset, '' ), '.' );
+	$subset   = array( 'top', 'right', 'bottom', 'left' );
+	$setting  = 'container_padding';
+	$default  = rtrim( $fusion_settings->get_default_description( $setting . '_default', $subset, '' ), '.' );
 	$default .= __( ' on default template. ', 'fusion-builder' );
 	$default .= rtrim( $fusion_settings->get_default_description( $setting . '_100', $subset, '' ), '.' );
 	$default .= __( ' on 100% width template.', 'fusion-builder' );
@@ -1036,7 +1049,7 @@ function fusion_builder_add_section() {
 				array(
 					'type'        => 'uploadfile',
 					'heading'     => esc_attr__( 'Video MP4 Upload', 'fusion-builder' ),
-					'description' => esc_attr__( 'Video must be in a 16:9 aspect ratio. Add your WebM video file. WebM and MP4 format must be included to render your video with cross browser compatibility. OGV is optional.', 'fusion-builder' ),
+					'description' => esc_attr__( 'Add your MP4 video file. This format must be included to render your video with cross-browser compatibility. WebM and OGV are optional. Using videos in a 16:9 aspect ratio is recommended.', 'fusion-builder' ),
 					'param_name'  => 'video_mp4',
 					'value'       => '',
 					'group'       => esc_attr__( 'Background', 'fusion-builder' ),
@@ -1044,7 +1057,7 @@ function fusion_builder_add_section() {
 				array(
 					'type'        => 'uploadfile',
 					'heading'     => esc_attr__( 'Video WebM Upload', 'fusion-builder' ),
-					'description' => esc_attr__( 'Video must be in a 16:9 aspect ratio. Add your WebM video file. WebM and MP4 format must be included to render your video with cross browser compatibility. OGV is optional.', 'fusion-builder' ),
+					'description' => esc_attr__( 'Add your WebM video file. This is optional, only MP4 is required to render your video with cross-browser compatibility. Using videos in a 16:9 aspect ratio is recommended.', 'fusion-builder' ),
 					'param_name'  => 'video_webm',
 					'value'       => '',
 					'group'       => esc_attr__( 'Background', 'fusion-builder' ),
@@ -1052,7 +1065,7 @@ function fusion_builder_add_section() {
 				array(
 					'type'        => 'uploadfile',
 					'heading'     => esc_attr__( 'Video OGV Upload', 'fusion-builder' ),
-					'description' => esc_attr__( 'Add your OGV video file. This is optional.', 'fusion-builder' ),
+					'description' => esc_attr__( 'Add your OGV video file. This is optional, only MP4 is required to render your video with cross-browser compatibility. Using videos in a 16:9 aspect ratio is recommended.', 'fusion-builder' ),
 					'param_name'  => 'video_ogv',
 					'value'       => '',
 					'group'       => esc_attr__( 'Background', 'fusion-builder' ),
@@ -1097,17 +1110,17 @@ function fusion_builder_add_section() {
 					),
 				),
 				array(
-					'type'        => 'radio_button_set',
-					'heading'     => esc_attr__( 'Loop Video', 'fusion-builder' ),
-					'param_name'  => 'video_loop',
-					'value'       => array(
+					'type'       => 'radio_button_set',
+					'heading'    => esc_attr__( 'Loop Video', 'fusion-builder' ),
+					'param_name' => 'video_loop',
+					'value'      => array(
 						'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 						'no'  => esc_attr__( 'No', 'fusion-builder' ),
 					),
-					'default'     => 'yes',
-					'group'       => esc_attr__( 'Background', 'fusion-builder' ),
-					'or'          => true,
-					'dependency'  => array(
+					'default'    => 'yes',
+					'group'      => esc_attr__( 'Background', 'fusion-builder' ),
+					'or'         => true,
+					'dependency' => array(
 						array(
 							'element'  => 'video_mp4',
 							'value'    => '',
@@ -1244,17 +1257,17 @@ function fusion_builder_add_section() {
 					),
 				),
 				array(
-					'type'        => 'dimension',
+					'type'             => 'dimension',
 					'remove_from_atts' => true,
-					'heading'     => esc_attr__( 'Margin', 'fusion-builder' ),
-					'param_name'  => 'spacing',
-					'value'       => array(
+					'heading'          => esc_attr__( 'Margin', 'fusion-builder' ),
+					'param_name'       => 'spacing',
+					'value'            => array(
 						'margin_top'    => '',
 						'margin_bottom' => '',
 
 					),
-					'description' => esc_attr__( 'Spacing above and below the section. Enter values including any valid CSS unit, ex: 4%.', 'fusion-builder' ),
-					'group'       => esc_attr__( 'Design', 'fusion-builder' ),
+					'description'      => esc_attr__( 'Spacing above and below the section. Enter values including any valid CSS unit, ex: 4%.', 'fusion-builder' ),
+					'group'            => esc_attr__( 'Design', 'fusion-builder' ),
 				),
 				array(
 					'type'             => 'dimension',

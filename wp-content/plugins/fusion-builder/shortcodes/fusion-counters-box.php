@@ -84,8 +84,8 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 				);
 
 				$defaults['title_size'] = FusionBuilder::validate_shortcode_attr_value( $defaults['title_size'], '' );
-				$defaults['icon_size'] = FusionBuilder::validate_shortcode_attr_value( $defaults['icon_size'], '' );
-				$defaults['body_size'] = FusionBuilder::validate_shortcode_attr_value( $defaults['body_size'], '' );
+				$defaults['icon_size']  = FusionBuilder::validate_shortcode_attr_value( $defaults['icon_size'], '' );
+				$defaults['body_size']  = FusionBuilder::validate_shortcode_attr_value( $defaults['body_size'], '' );
 
 				extract( $defaults );
 
@@ -172,7 +172,7 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 
 				$this->child_args = $defaults;
 
-				$value = str_replace( ',', '.', $value );
+				$value                     = str_replace( ',', '.', $value );
 				$this->child_args['value'] = $value;
 
 				$float = explode( '.', $value );
@@ -219,7 +219,7 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 			 */
 			public function child_attr() {
 
-				$attr    = array();
+				$attr = array();
 
 				$columns = 1;
 				if ( $this->parent_args['columns'] && ! empty( $this->parent_args['columns'] ) ) {
@@ -297,7 +297,7 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 					'data-value'     => $this->child_args['value'],
 					'data-delimiter' => $this->child_args['delimiter'],
 					'data-direction' => $this->child_args['direction'],
-					'data-decimals' => $this->child_args['decimals'],
+					'data-decimals'  => $this->child_args['decimals'],
 				);
 			}
 
@@ -364,11 +364,11 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .content-box-percentage' );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'counter_filled_color' ) );
 
-				$css[ $content_media_query ]['.fusion-counters-box .fusion-counter-box']['margin-bottom'] = '20px';
-				$css[ $content_media_query ]['.fusion-counters-box .fusion-counter-box']['padding']       = '0 15px';
-				$css[ $content_media_query ]['.fusion-counters-box .fusion-counter-box:last-child']['margin-bottom'] = '0';
-				$css[ $ipad_portrait_media_query ]['.fusion-counters-box .fusion-counter-box']['margin-bottom'] = '20px';
-				$css[ $ipad_portrait_media_query ]['.fusion-counters-box .fusion-counter-box']['padding']       = '0 15px';
+				$css[ $content_media_query ]['.fusion-counters-box .fusion-counter-box']['margin-bottom']                  = '20px';
+				$css[ $content_media_query ]['.fusion-counters-box .fusion-counter-box']['padding']                        = '0 15px';
+				$css[ $content_media_query ]['.fusion-counters-box .fusion-counter-box:last-child']['margin-bottom']       = '0';
+				$css[ $ipad_portrait_media_query ]['.fusion-counters-box .fusion-counter-box']['margin-bottom']            = '20px';
+				$css[ $ipad_portrait_media_query ]['.fusion-counters-box .fusion-counter-box']['padding']                  = '0 15px';
 				$css[ $ipad_portrait_media_query ]['.fusion-counters-box .fusion-counter-box:last-child']['margin-bottom'] = '0';
 
 				return $css;
@@ -419,7 +419,7 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 						'id'          => 'counterb_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'counter_box_speed' => array(
+							'counter_box_speed'        => array(
 								'label'       => esc_html__( 'Counter Boxes Speed', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the speed of the counter boxes elements. ex: 1000 = 1 second.', 'fusion-builder' ),
 								'id'          => 'counter_box_speed',
@@ -431,35 +431,35 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 									'step' => '250',
 								),
 							),
-							'counter_box_color' => array(
+							'counter_box_color'        => array(
 								'label'       => esc_html__( 'Counter Boxes Title Font Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the counter values and icons.', 'fusion-builder' ),
 								'id'          => 'counter_box_color',
 								'default'     => '#a0ce4e',
 								'type'        => 'color-alpha',
 							),
-							'counter_box_title_size' => array(
+							'counter_box_title_size'   => array(
 								'label'       => esc_html__( 'Counter Boxes Title Font Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the size of the counter value and icon.', 'fusion-builder' ),
 								'id'          => 'counter_box_title_size',
 								'default'     => '50px',
 								'type'        => 'dimension',
 							),
-							'counter_box_icon_size' => array(
+							'counter_box_icon_size'    => array(
 								'label'       => esc_html__( 'Counter Boxes Icon Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the size of the icon.', 'fusion-builder' ),
 								'id'          => 'counter_box_icon_size',
 								'default'     => '50px',
 								'type'        => 'dimension',
 							),
-							'counter_box_body_color' => array(
+							'counter_box_body_color'   => array(
 								'label'       => esc_html__( 'Counter Boxes Body Font Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the counter boxes body text.', 'fusion-builder' ),
 								'id'          => 'counter_box_body_color',
 								'default'     => '#747474',
 								'type'        => 'color-alpha',
 							),
-							'counter_box_body_size' => array(
+							'counter_box_body_size'    => array(
 								'label'       => esc_html__( 'Counter Boxes Body Font Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the size of the counter boxes body text.', 'fusion-builder' ),
 								'id'          => 'counter_box_body_size',
@@ -473,7 +473,7 @@ if ( fusion_is_element_enabled( 'fusion_counters_box' ) ) {
 								'default'     => '#e0dede',
 								'type'        => 'color-alpha',
 							),
-							'counter_box_icon_top' => array(
+							'counter_box_icon_top'     => array(
 								'label'       => esc_html__( 'Counter Boxes Icon On Top', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on to display the icon on top of the counter value.', 'fusion-builder' ),
 								'id'          => 'counter_box_icon_top',

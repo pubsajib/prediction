@@ -75,7 +75,7 @@ if ( fusion_is_element_enabled( 'fusion_flip_boxes' ) ) {
 
 				$defaults = FusionBuilder::set_shortcode_defaults(
 					array(
-						'hide_on_mobile' => fusion_builder_default_visibility( 'string' ),
+						'hide_on_mobile'      => fusion_builder_default_visibility( 'string' ),
 						'class'               => '',
 						'id'                  => '',
 						'columns'             => '1',
@@ -212,8 +212,9 @@ if ( fusion_is_element_enabled( 'fusion_flip_boxes' ) ) {
 					if ( $image_data['url'] ) {
 						$image = $image_data['url'];
 					}
-
-					$icon_output = '<img src="' . $image . '" width="' . $image_width . '" height="' . $image_height . '" alt="' . $image_data['alt'] . '" />';
+					$image       = '<img src="' . $image . '" width="' . $image_width . '" height="' . $image_height . '" alt="' . $image_data['alt'] . '" />';
+					$image       = $fusion_library->images->apply_lazy_loading( $image, null, $this->child_args['image_id'], 'full' );
+					$icon_output = $image;
 
 				} elseif ( $icon ) {
 
@@ -526,7 +527,7 @@ if ( fusion_is_element_enabled( 'fusion_flip_boxes' ) ) {
 						'id'          => 'flipb_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'flip_boxes_front_bg' => array(
+							'flip_boxes_front_bg'      => array(
 								'label'       => esc_html__( 'Flip Box Background Color Frontside', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the frontside background.', 'fusion-builder' ),
 								'id'          => 'flip_boxes_front_bg',
@@ -540,35 +541,35 @@ if ( fusion_is_element_enabled( 'fusion_flip_boxes' ) ) {
 								'default'     => '#333333',
 								'type'        => 'color-alpha',
 							),
-							'flip_boxes_front_text' => array(
+							'flip_boxes_front_text'    => array(
 								'label'       => esc_html__( 'Flip Box Text Color Frontside', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the frontside text.', 'fusion-builder' ),
 								'id'          => 'flip_boxes_front_text',
 								'default'     => '#747474',
 								'type'        => 'color-alpha',
 							),
-							'flip_boxes_back_bg' => array(
+							'flip_boxes_back_bg'       => array(
 								'label'       => esc_html__( 'Flip Box Background Color Backside', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the backside background.', 'fusion-builder' ),
 								'id'          => 'flip_boxes_back_bg',
 								'default'     => '#a0ce4e',
 								'type'        => 'color-alpha',
 							),
-							'flip_boxes_back_heading' => array(
+							'flip_boxes_back_heading'  => array(
 								'label'       => esc_html__( 'Flip Box Heading Color Backside', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the backside heading.', 'fusion-builder' ),
 								'id'          => 'flip_boxes_back_heading',
 								'default'     => '#eeeded',
 								'type'        => 'color-alpha',
 							),
-							'flip_boxes_back_text' => array(
+							'flip_boxes_back_text'     => array(
 								'label'       => esc_html__( 'Flip Box Text Color Backside', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the backside text.', 'fusion-builder' ),
 								'id'          => 'flip_boxes_back_text',
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'flip_boxes_border_size' => array(
+							'flip_boxes_border_size'   => array(
 								'label'       => esc_html__( 'Flip Box Border Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border size of the flip box background.', 'fusion-builder' ),
 								'id'          => 'flip_boxes_border_size',
@@ -580,7 +581,7 @@ if ( fusion_is_element_enabled( 'fusion_flip_boxes' ) ) {
 									'step' => '1',
 								),
 							),
-							'flip_boxes_border_color' => array(
+							'flip_boxes_border_color'  => array(
 								'label'       => esc_html__( 'Flip Box Border Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border color of flip box background.', 'fusion-builder' ),
 								'id'          => 'flip_boxes_border_color',
@@ -651,7 +652,7 @@ function fusion_element_flip_boxes() {
 					'heading'     => esc_attr__( 'Content', 'fusion-builder' ),
 					'description' => esc_attr__( 'Enter some content for this contentbox.', 'fusion-builder' ),
 					'param_name'  => 'element_content',
-					'value'       => '[fusion_flip_box title_front="' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '" title_back="' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '" text_front="' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '" background_color_front="" title_front_color="" text_front_color="" background_color_back="" title_back_color="" text_back_color="" border_size="" border_color="" border_radius="" icon="" icon_color="" circle="" circle_color="" circle_border_color="" icon_flip="" icon_rotate="" icon_spin="no" image="" image_width="35" image_height="35" animation_offset="" animation_type="" animation_direction="left" animation_speed="0.1"]' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '[/fusion_flip_box]',
+					'value'       => '[fusion_flip_box title_front="' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '" title_back="' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '" text_front="' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '" background_color_front="" title_front_color="" text_front_color="" background_color_back="" title_back_color="" text_back_color="" border_size="" border_color="" border_radius="" icon="" icon_color="" circle="" circle_color="" circle_border_color="" icon_flip="" icon_rotate="" icon_spin="" image="" image_width="35" image_height="35" animation_offset="" animation_type="" animation_direction="left" animation_speed="0.1"]' . esc_attr__( 'Your Content Goes Here', 'fusion-builder' ) . '[/fusion_flip_box]',
 				),
 				array(
 					'type'        => 'range',
@@ -826,7 +827,7 @@ function fusion_element_flip_box() {
 			'shortcode'         => 'fusion_flip_box',
 			'hide_from_builder' => true,
 			'allow_generator'   => true,
-			'params' => array(
+			'params'            => array(
 				array(
 					'type'        => 'textfield',
 					'heading'     => esc_attr__( 'Flip Box Frontside Heading', 'fusion-builder' ),
@@ -1047,7 +1048,7 @@ function fusion_element_flip_box() {
 					'description' => esc_attr__( 'Choose to rotate the icon.', 'fusion-builder' ),
 					'param_name'  => 'icon_rotate',
 					'value'       => array(
-						''      => esc_attr__( 'Default', 'fusion-builder' ),
+						''     => esc_attr__( 'Default', 'fusion-builder' ),
 						'none' => esc_attr__( 'None', 'fusion-builder' ),
 						'90'   => '90',
 						'180'  => '180',

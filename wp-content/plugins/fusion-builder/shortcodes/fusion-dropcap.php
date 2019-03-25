@@ -85,7 +85,7 @@ if ( fusion_is_element_enabled( 'fusion_dropcap' ) ) {
 
 					if ( $this->args['boxed_radius'] || '0' === $this->args['boxed_radius'] ) {
 						$this->args['boxed_radius'] = ( 'round' == $this->args['boxed_radius'] ) ? '50%' : $this->args['boxed_radius'];
-						$attr['style'] = 'border-radius:' . $this->args['boxed_radius'] . ';';
+						$attr['style']              = 'border-radius:' . $this->args['boxed_radius'] . ';';
 					}
 
 					$attr['style'] .= 'background-color:' . $this->args['color'] . ';';
@@ -168,11 +168,11 @@ function fusion_element_dropcap() {
 
 	fusion_builder_map(
 		array(
-			'name'              => esc_attr__( 'Dropcap', 'fusion-builder' ),
-			'shortcode'         => 'fusion_dropcap',
-			'generator_only'    => true,
-			'icon'              => 'fusiona-font',
-			'params'            => array(
+			'name'           => esc_attr__( 'Dropcap', 'fusion-builder' ),
+			'shortcode'      => 'fusion_dropcap',
+			'generator_only' => true,
+			'icon'           => 'fusiona-font',
+			'params'         => array(
 				array(
 					'type'        => 'textarea',
 					'heading'     => esc_attr__( 'Dropcap Letter', 'fusion-builder' ),

@@ -108,7 +108,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 				);
 
 				$defaults['main_container'] = ( $defaults['disable_form'] ) ? 'div' : 'form';
-				$defaults['label_class'] = ( 'yes' === $defaults['show_labels'] ) ? 'fusion-login-label' : 'fusion-hidden-content';
+				$defaults['label_class']    = ( 'yes' === $defaults['show_labels'] ) ? 'fusion-login-label' : 'fusion-hidden-content';
 
 				return $defaults;
 			}
@@ -147,19 +147,19 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 					// Get the success/error notices.
 					$html .= $this->render_notices( $action );
 
-					$html .= '<div class="fusion-login-fields">';
-					$html .= '<div class="fusion-login-input-wrapper">';
-					$html .= '<label class="' . $label_class . '" for="user_login">' . esc_html__( 'Username', 'fusion-builder' ) . '</label>';
+					$html       .= '<div class="fusion-login-fields">';
+					$html       .= '<div class="fusion-login-input-wrapper">';
+					$html       .= '<label class="' . $label_class . '" for="user_login">' . esc_html__( 'Username', 'fusion-builder' ) . '</label>';
 					$placeholder = ( 'yes' === $show_placeholders ) ? ' placeholder="' . esc_attr__( 'Username', 'fusion-builder' ) . '"' : '';
-					$html .= '<input type="text" name="log"' . $placeholder . ' value="' . esc_attr( $user_login ) . '" size="20" class="fusion-login-username input-text" id="user_login" />';
-					$html .= '</div>';
+					$html       .= '<input type="text" name="log"' . $placeholder . ' value="' . esc_attr( $user_login ) . '" size="20" class="fusion-login-username input-text" id="user_login" />';
+					$html       .= '</div>';
 
-					$html .= '<div class="fusion-login-input-wrapper">';
-					$html .= '<label class="' . $label_class . '" for="user_pass">' . esc_html__( 'Password', 'fusion-builder' ) . '</label>';
+					$html       .= '<div class="fusion-login-input-wrapper">';
+					$html       .= '<label class="' . $label_class . '" for="user_pass">' . esc_html__( 'Password', 'fusion-builder' ) . '</label>';
 					$placeholder = ( 'yes' === $show_placeholders ) ? ' placeholder="' . esc_attr__( 'Password', 'fusion-builder' ) . '"' : '';
-					$html .= '<input type="password" name="pwd"' . $placeholder . ' value="" size="20" class="fusion-login-password input-text" id="user_pass" />';
-					$html .= '</div>';
-					$html .= '</div>';
+					$html       .= '<input type="password" name="pwd"' . $placeholder . ' value="" size="20" class="fusion-login-password input-text" id="user_pass" />';
+					$html       .= '</div>';
+					$html       .= '</div>';
 
 					$html .= '<div class="fusion-login-additional-content">';
 					$html .= '<div class="fusion-login-submit-wrapper">';
@@ -245,18 +245,18 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 					// Get the success/error notices.
 					$html .= $this->render_notices( $action );
 
-					$html .= '<div class="fusion-login-fields">';
-					$html .= '<div class="fusion-login-input-wrapper">';
-					$html .= '<label class="' . $label_class . '" for="user_login">' . esc_html__( 'Username', 'fusion-builder' ) . '</label>';
+					$html       .= '<div class="fusion-login-fields">';
+					$html       .= '<div class="fusion-login-input-wrapper">';
+					$html       .= '<label class="' . $label_class . '" for="user_login">' . esc_html__( 'Username', 'fusion-builder' ) . '</label>';
 					$placeholder = ( 'yes' === $show_placeholders ) ? ' placeholder="' . esc_attr__( 'Username', 'fusion-builder' ) . '"' : '';
-					$html .= '<input type="text" name="user_login"' . $placeholder . ' value="" size="20" class="fusion-login-username input-text" id="user_login" />';
-					$html .= '</div>';
+					$html       .= '<input type="text" name="user_login"' . $placeholder . ' value="" size="20" class="fusion-login-username input-text" id="user_login" />';
+					$html       .= '</div>';
 
-					$html .= '<div class="fusion-login-input-wrapper">';
-					$html .= '<label class="' . $label_class . '" for="user_pass">' . esc_html__( 'Email', 'fusion-builder' ) . '</label>';
+					$html       .= '<div class="fusion-login-input-wrapper">';
+					$html       .= '<label class="' . $label_class . '" for="user_pass">' . esc_html__( 'Email', 'fusion-builder' ) . '</label>';
 					$placeholder = ( 'yes' === $show_placeholders ) ? ' placeholder="' . esc_attr__( 'Email', 'fusion-builder' ) . '"' : '';
-					$html .= '<input type="text" name="user_email"' . $placeholder . ' value="" size="20" class="fusion-login-email input-text" id="user_email" />';
-					$html .= '</div>';
+					$html       .= '<input type="text" name="user_email"' . $placeholder . ' value="" size="20" class="fusion-login-email input-text" id="user_email" />';
+					$html       .= '</div>';
 
 					/* Only added as honeypot for spambots. */
 					$html .= '<div class="fusion-login-input-wrapper fusion-hidden">';
@@ -280,7 +280,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 							'fusion_builder_user_register_redirection_link',
 							$redirection_link,
 							array(
-								'action' => 'register',
+								'action'  => 'register',
 								'success' => '1',
 							)
 						)
@@ -334,11 +334,11 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 
 					$html .= '<p class="fusion-login-input-wrapper">' . esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'fusion-builder' ) . '</p>';
 
-					$html .= '<div class="fusion-login-input-wrapper">';
-					$html .= '<label class="' . $label_class . '" for="user_login">' . esc_html__( 'Username or Email', 'fusion-builder' ) . '</label>';
+					$html       .= '<div class="fusion-login-input-wrapper">';
+					$html       .= '<label class="' . $label_class . '" for="user_login">' . esc_html__( 'Username or Email', 'fusion-builder' ) . '</label>';
 					$placeholder = ( 'yes' === $show_placeholders ) ? ' placeholder="' . esc_attr__( 'Username or Email', 'fusion-builder' ) . '"' : '';
-					$html .= '<input type="text" name="user_login"' . $placeholder . 'value="" size="20" class="fusion-login-username input-text" id="user_login"/>';
-					$html .= '</div>';
+					$html       .= '<input type="text" name="user_login"' . $placeholder . 'value="" size="20" class="fusion-login-username input-text" id="user_login"/>';
+					$html       .= '</div>';
 
 					$html .= '<div class="fusion-login-submit-wrapper">';
 					$html .= '<button ' . FusionBuilder::attributes( 'login-shortcode-button' ) . '>' . esc_html__( 'Reset Password', 'fusion-builder' ) . '</button>';
@@ -352,7 +352,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 							'fusion_builder_user_lost_password_redirection_link',
 							$redirection_link,
 							array(
-								'action' => 'lostpassword',
+								'action'  => 'lostpassword',
 								'success' => '1',
 							)
 						)
@@ -537,7 +537,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 					wp_redirect(
 						add_query_arg(
 							array(
-								'action' => 'login',
+								'action'  => 'login',
 								'success' => '0',
 							),
 							$this->get_redirection_link( true )
@@ -569,7 +569,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 						wp_redirect(
 							add_query_arg(
 								array(
-									'action' => 'register',
+									'action'  => 'register',
 									'success' => '1',
 								),
 								$redirection_link
@@ -583,7 +583,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 						$redirection_link = $this->get_redirection_link( true );
 						$redirection_link = add_query_arg(
 							array(
-								'action' => 'register',
+								'action'  => 'register',
 								'success' => '0',
 							),
 							$redirection_link
@@ -627,12 +627,12 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 					check_admin_referer( 'fusion-login' );
 					$redirection_link = add_query_arg(
 						array(
-							'action' => 'lostpassword',
+							'action'  => 'lostpassword',
 							'success' => '0',
 						),
 						$this->get_redirection_link( true )
 					);
-					$user_data = '';
+					$user_data        = '';
 
 					// Error - empty input.
 					if ( empty( $_POST['user_login'] ) ) {
@@ -646,7 +646,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 						}
 					} else {
 						// Check username.
-						$login = trim( $_POST['user_login'] ); // WPCS: sanitization ok.
+						$login     = trim( $_POST['user_login'] ); // WPCS: sanitization ok.
 						$user_data = get_user_by( 'login', $login );
 
 						// Error - invalid username.
@@ -677,15 +677,15 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 				if ( isset( $_GET['action'] ) && $_GET['action'] === $context ) {
 					$notice_array = array(
 						'login'        => array(
-							'error'             => esc_html__( 'Login failed, please try again.', 'fusion-builder' ),
+							'error' => esc_html__( 'Login failed, please try again.', 'fusion-builder' ),
 						),
 						'register'     => array(
-							'success'           => esc_html__( 'Registration complete. Please check your email.', 'fusion-builder' ),
-							'empty_username'    => esc_html__( 'Please enter a username.', 'fusion-builder' ),
-							'empty_email'       => esc_html__( 'Please type your email address.', 'fusion-builder' ),
-							'username_exists'   => esc_html__( 'This username is already registered. Please choose another one.', 'fusion-builder' ),
-							'email_exists'      => esc_html__( 'This email is already registered, please choose another one.', 'fusion-builder' ),
-							'generic_error'     => esc_html__( 'Something went wrong during registration. Please try again.', 'fusion-builder' ),
+							'success'         => esc_html__( 'Registration complete. Please check your email.', 'fusion-builder' ),
+							'empty_username'  => esc_html__( 'Please enter a username.', 'fusion-builder' ),
+							'empty_email'     => esc_html__( 'Please type your email address.', 'fusion-builder' ),
+							'username_exists' => esc_html__( 'This username is already registered. Please choose another one.', 'fusion-builder' ),
+							'email_exists'    => esc_html__( 'This email is already registered, please choose another one.', 'fusion-builder' ),
+							'generic_error'   => esc_html__( 'Something went wrong during registration. Please try again.', 'fusion-builder' ),
 						),
 						'lostpassword' => array(
 							'success'           => esc_html__( 'Check your email for the confirmation link.', 'fusion-builder' ),
@@ -713,7 +713,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 							// Error.
 						} else {
 							$notice_type = 'error';
-							$notices = '';
+							$notices     = '';
 
 							// Empty username.
 							if ( isset( $_GET['empty_username'] ) ) {
@@ -938,7 +938,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 
 				$css[ $content_media_query ]['.fusion-login-box.fusion-login-field-layout-floated .fusion-login-links']['margin'] = '0 -10px';
 				$css[ $content_media_query ]['.fusion-login-box.fusion-login-field-layout-floated.fusion-login-align-textflow.fusion-login-box-register .fusion-login-registration-confirm']['margin'] = '0 0 20px 0';
-				$css[ $content_media_query ]['.fusion-login-box.fusion-login-field-layout-floated.fusion-login-align-textflow.fusion-login-box-login .fusion-login-submit-wrapper']['margin-bottom'] = '20px';
+				$css[ $content_media_query ]['.fusion-login-box.fusion-login-field-layout-floated.fusion-login-align-textflow.fusion-login-box-login .fusion-login-submit-wrapper']['margin-bottom']   = '20px';
 
 				return $css;
 
@@ -960,7 +960,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 						'description' => '',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'user_login_text_align' => array(
+							'user_login_text_align'        => array(
 								'label'       => esc_html__( 'User Login Text Align', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the alignment of all user login content. "Text Flow" follows the default text align of the site. "Center" will center all elements.', 'fusion-builder' ),
 								'id'          => 'user_login_text_align',
@@ -982,7 +982,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 									'floated' => esc_html__( 'Floated', 'fusion-builder' ),
 								),
 							),
-							'user_login_form_show_labels' => array(
+							'user_login_form_show_labels'  => array(
 								'label'       => esc_html__( 'User Login Show Labels', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls if the form field labels should be shown.', 'fusion-builder' ),
 								'id'          => 'user_login_form_show_labels',
@@ -990,7 +990,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
 									'yes' => esc_html__( 'Yes', 'fusion-builder' ),
-									'no'   => esc_html__( 'No', 'fusion-builder' ),
+									'no'  => esc_html__( 'No', 'fusion-builder' ),
 								),
 							),
 							'user_login_form_show_placeholders' => array(
@@ -1001,7 +1001,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
 									'yes' => esc_html__( 'Yes', 'fusion-builder' ),
-									'no'   => esc_html__( 'No', 'fusion-builder' ),
+									'no'  => esc_html__( 'No', 'fusion-builder' ),
 								),
 							),
 							'user_login_form_show_remember_me' => array(
@@ -1012,7 +1012,7 @@ if ( fusion_is_element_enabled( 'fusion_login' ) ||
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
 									'yes' => esc_html__( 'Yes', 'fusion-builder' ),
-									'no'   => esc_html__( 'No', 'fusion-builder' ),
+									'no'  => esc_html__( 'No', 'fusion-builder' ),
 								),
 							),
 							'user_login_form_background_color' => array(

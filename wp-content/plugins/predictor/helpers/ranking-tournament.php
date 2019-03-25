@@ -1,6 +1,6 @@
 <?php 
 // $ratingType = all, match, toss, ...
-function getRakingForTournament($ratingType='all', $tournamentID=false, $predictors='', $minItemToPredict=5, $itemGrace=0, $minParticipationRate=10, $minRate=10) {
+function getRakingForTournament($ratingType='all', $tournamentID=false, $predictors='', $minItemToPredict=5, $itemGrace=0, $minParticipationRate=95, $minRate=10) {
 	$top3 = 3;
 	$top10 = 10;
 	$ranking = [];

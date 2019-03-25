@@ -83,7 +83,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 
 				$slider = '';
 				if ( 'attachments' == $layout ) {
-					$slider = $this->attachments();
+					$slider     = $this->attachments();
 					$thumbnails = $this->get_attachments_thumbnails();
 				} elseif ( 'posts' == $layout ) {
 					$slider = $this->posts();
@@ -97,7 +97,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 
 				if ( 'attachments' == $layout ) {
 					$thumbnails_html = '';
-					$html .= '<div ' . FusionBuilder::attributes( 'flexslider-shortcode-thumbnails' ) . '>' . $thumbnails_html . '</div>';
+					$html           .= '<div ' . FusionBuilder::attributes( 'flexslider-shortcode-thumbnails' ) . '>' . $thumbnails_html . '</div>';
 				}
 
 				$this->flex_counter++;
@@ -114,6 +114,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 			 * @return string The HTML.
 			 */
 			public function attachments() {
+				global $fusion_library;
 
 				$html = '';
 
@@ -144,11 +145,27 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 						$thumb   = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
 						$caption = get_post_field( 'post_excerpt', $attachment->ID );
 
-						$image_output = '<img src="' . $image . '" alt="' . $alt . '" />';
+						$image_output = '<img class="wp-image-' . $attachment->ID . '" src="' . $image . '" alt="' . esc_attr( $alt ) . '" />';
+
+						$fusion_library->images->set_grid_image_meta(
+							array(
+								'layout'  => 'large',
+								'columns' => '1',
+							)
+						);
+
+						if ( function_exists( 'wp_make_content_images_responsive' ) ) {
+							$image_output = wp_make_content_images_responsive( $image_output );
+						}
+
+						$image_output = $fusion_library->images->apply_lazy_loading( $image_output, null, $attachment->ID, 'full' );
+
+						$fusion_library->images->set_grid_image_meta( array() );
+
 						$output = $image_output;
 
 						if ( 'yes' == $this->args['lightbox'] ) {
-							$output = '<a href="' . $image . '" data-title="' . $title . '" data-caption="' . $caption . '" title="' . $title . '" data-rel="prettyPhoto[flex_' . $this->flex_counter . ']">' . $image_output . '</a>';
+							$output = '<a href="' . $image . '" data-title="' . esc_attr( $title ) . '" data-caption="' . esc_attr( $caption ) . '" title="' . esc_attr( $title ) . '" data-rel="prettyPhoto[flex_' . $this->flex_counter . ']">' . $image_output . '</a>';
 						}
 
 						$html .= '<li data-thumb="' . $thumb[0] . '">' . $output . '</li>';
@@ -171,6 +188,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 			 * @return string HTML.
 			 */
 			public function get_attachments_thumbnails() {
+				global $fusion_library;
 
 				$html = '';
 
@@ -200,8 +218,9 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 						$alt   = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true );
 						$thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
 
-						$image_output = '<img src="' . $thumb[0] . '" alt="' . $alt . '" />';
-						$output = $image_output;
+						$image_output = '<img src="' . $thumb[0] . '" alt="' . esc_attr( $alt ) . '" />';
+						$image_output = $fusion_library->images->apply_lazy_loading( $image_output, null, $attachment->ID, 'full' );
+						$output       = $image_output;
 
 						$html .= '<li>' . $output . '</li>';
 
@@ -223,6 +242,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 			 * @return string HTML.
 			 */
 			public function posts() {
+				global $fusion_library;
 
 				$html = '';
 
@@ -236,7 +256,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 				);
 
 				if ( $this->args['post_id'] ) {
-					$post_ids = explode( ',', $this->args['post_id'] );
+					$post_ids         = explode( ',', $this->args['post_id'] );
 					$args['post__in'] = $post_ids;
 				}
 
@@ -251,14 +271,31 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 					while ( $query->have_posts() ) :
 						$query->the_post();
 
-						$image = wp_get_attachment_url( get_post_thumbnail_id() );
-						$title = get_post_field( 'post_excerpt', get_post_thumbnail_id() );
-						$alt   = get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true );
+						$post_thumbnail_id = get_post_thumbnail_id();
+						$image             = wp_get_attachment_url( $post_thumbnail_id );
+						$title             = get_post_field( 'post_excerpt', $post_thumbnail_id );
+						$alt               = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true );
 
-						$image_output = '<img src="' . $image . '" alt="' . $alt . '" />';
-						$link_output  = '<a href="' . get_permalink() . '" aria-label="' . the_title_attribute( array( 'echo' => false ) ) . '">' . $image_output . '</a>';
-						$title        = '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
-						$container    = '<div ' . FusionBuilder::attributes( 'flexslider-shortcode-title-container' ) . '>' . $title . '</div>';
+						$image_output = '<img class="wp-image-' . $post_thumbnail_id . '" src="' . $image . '" alt="' . esc_attr( $alt ) . '" />';
+
+						$fusion_library->images->set_grid_image_meta(
+							array(
+								'layout'  => 'large',
+								'columns' => '1',
+							)
+						);
+
+						if ( function_exists( 'wp_make_content_images_responsive' ) ) {
+							$image_output = wp_make_content_images_responsive( $image_output );
+						}
+
+						$image_output = $fusion_library->images->apply_lazy_loading( $image_output, null, $post_thumbnail_id, 'full' );
+
+						$fusion_library->images->set_grid_image_meta( array() );
+
+						$link_output = '<a href="' . get_permalink() . '" aria-label="' . the_title_attribute( array( 'echo' => false ) ) . '">' . $image_output . '</a>';
+						$title       = '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
+						$container   = '<div ' . FusionBuilder::attributes( 'flexslider-shortcode-title-container' ) . '>' . $title . '</div>';
 
 						$html .= '<li>' . $link_output . $container . '</li>';
 
@@ -280,6 +317,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 			 * @return string HTML.
 			 */
 			public function posts_excerpt() {
+				global $fusion_library;
 
 				$html = '';
 
@@ -293,7 +331,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 				);
 
 				if ( $this->args['post_id'] ) {
-					$post_ids = explode( ',', $this->args['post_id'] );
+					$post_ids         = explode( ',', $this->args['post_id'] );
 					$args['post__in'] = $post_ids;
 				}
 
@@ -312,7 +350,8 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 						$title = get_post_field( 'post_excerpt', get_post_thumbnail_id() );
 						$alt   = get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true );
 
-						$image_output = '<img src="' . $image . '" alt="' . $alt . '" />';
+						$image_output = '<img src="' . $image . '" alt="' . esc_attr( $alt ) . '" />';
+						$image_output = $fusion_library->images->apply_lazy_loading( $image_output, null, get_post_thumbnail_id(), 'full' );
 						$link_output  = '<a href="' . get_permalink() . '" aria-label="' . the_title_attribute( array( 'echo' => false ) ) . '">' . $image_output . '</a>';
 						$title        = '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
 						$excerpt      = fusion_builder_get_post_content( '', 'yes', $this->args['excerpt'], true );
@@ -449,7 +488,7 @@ if ( fusion_is_element_enabled( 'fusion_postslider' ) ) {
 				preg_match_all( '!\d+!', $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ), $matches );
 				$half_slider_nav_box_height = '' !== $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ? $matches[0][0] / 2 . $fusion_library->sanitize->get_unit( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ) : '';
 
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']      = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['line-height'] = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
 
 				return $css;

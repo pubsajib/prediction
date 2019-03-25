@@ -162,12 +162,12 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 
 				if ( ( '1' === $this->parent_args['icon_boxed_mode'] || 'yes' === $this->parent_args['icon_boxed_mode'] ) && ! empty( $this->parent_args['icon_box_color'] ) ) {
 					$icon_box_color = $fusion_library->sanitize->color( $this->parent_args['icon_box_color'] );
-					$styles .= '.fusion-accordian  #accordion-' . get_the_ID() . '-' . $this->accordian_counter . ' .fa-fusion-box { background-color: ' . $icon_box_color . ';border-color: ' . $icon_box_color . ';}';
+					$styles        .= '.fusion-accordian  #accordion-' . get_the_ID() . '-' . $this->accordian_counter . ' .fa-fusion-box { background-color: ' . $icon_box_color . ';border-color: ' . $icon_box_color . ';}';
 				}
 
 				if ( ! empty( $this->parent_args['toggle_hover_accent_color'] ) ) {
 					$toggle_hover_accent_color = $fusion_library->sanitize->color( $this->parent_args['toggle_hover_accent_color'] );
-					$styles .= '.fusion-accordian  #accordion-' . get_the_ID() . '-' . $this->accordian_counter . ' .panel-title a:hover, #accordion-' . get_the_ID() . '-' . $this->accordian_counter . ' .fusion-toggle-boxed-mode:hover .panel-title a { color: ' . $toggle_hover_accent_color . ';}';
+					$styles                   .= '.fusion-accordian  #accordion-' . get_the_ID() . '-' . $this->accordian_counter . ' .panel-title a:hover, #accordion-' . get_the_ID() . '-' . $this->accordian_counter . ' .fusion-toggle-boxed-mode:hover .panel-title a { color: ' . $toggle_hover_accent_color . ';}';
 
 					if ( '1' === $this->parent_args['icon_boxed_mode'] || 'yes' === $this->parent_args['icon_boxed_mode'] ) {
 						$styles .= '.fusion-accordian  #accordion-' . get_the_ID() . '-' . $this->accordian_counter . ' .panel-title .active .fa-fusion-box,';
@@ -272,7 +272,7 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 
 				extract( $defaults );
 
-				$this->child_args = $defaults;
+				$this->child_args                 = $defaults;
 				$this->child_args['toggle_class'] = '';
 
 				if ( 'yes' === $open ) {
@@ -390,8 +390,8 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 				global $fusion_library, $fusion_settings, $dynamic_css_helpers;
 
 				$main_elements = apply_filters( 'fusion_builder_element_classes', array( '.fusion-accordian' ), '.fusion-accordian' );
-				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .panel-title a:hover' );
-				$elements = array_merge( $elements, $dynamic_css_helpers->map_selector( $main_elements, ' .fusion-toggle-boxed-mode:hover .panel-title a' ) );
+				$elements      = $dynamic_css_helpers->map_selector( $main_elements, ' .panel-title a:hover' );
+				$elements      = array_merge( $elements, $dynamic_css_helpers->map_selector( $main_elements, ' .fusion-toggle-boxed-mode:hover .panel-title a' ) );
 
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'accordian_active_color' ) );
 
@@ -425,11 +425,11 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 
 				return array(
 					'toggle_shortcode_section' => array(
-						'label'       => esc_html__( 'Toggles Element', 'fusion-builder' ),
-						'id'          => 'accordion_shortcode_section',
-						'type'        => 'accordion',
-						'fields'      => array(
-							'accordion_type' => array(
+						'label'  => esc_html__( 'Toggles Element', 'fusion-builder' ),
+						'id'     => 'accordion_shortcode_section',
+						'type'   => 'accordion',
+						'fields' => array(
+							'accordion_type'             => array(
 								'label'       => esc_html__( 'Toggles or Accordions', 'fusion-builder' ),
 								'description' => esc_html__( 'Toggles allow several items to be open at a time. Accordions only allow one item to be open at a time.', 'fusion-builder' ),
 								'id'          => 'accordion_type',
@@ -440,14 +440,14 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 									'accordions' => esc_html__( 'Accordions', 'fusion-builder' ),
 								),
 							),
-							'accordion_boxed_mode' => array(
+							'accordion_boxed_mode'       => array(
 								'label'       => esc_html__( 'Toggle Boxed Mode', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on to display items in boxed mode. Toggle divider line must be disabled for this option to work.', 'fusion-builder' ),
 								'id'          => 'accordion_boxed_mode',
 								'default'     => '0',
 								'type'        => 'switch',
 							),
-							'accordion_border_size' => array(
+							'accordion_border_size'      => array(
 								'label'       => esc_html__( 'Toggle Boxed Mode Border Width', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border size of the toggle item.', 'fusion-builder' ),
 								'id'          => 'accordion_border_size',
@@ -466,7 +466,7 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 									'step' => '1',
 								),
 							),
-							'accordian_border_color' => array(
+							'accordian_border_color'     => array(
 								'label'       => esc_html__( 'Toggle Boxed Mode Border Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border color of the toggle item.', 'fusion-builder' ),
 								'id'          => 'accordian_border_color',
@@ -494,7 +494,7 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 									),
 								),
 							),
-							'accordian_hover_color' => array(
+							'accordian_hover_color'      => array(
 								'label'       => esc_html__( 'Toggle Boxed Mode Background Hover Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background hover color of the toggle item.', 'fusion-builder' ),
 								'id'          => 'accordian_hover_color',
@@ -508,7 +508,7 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 									),
 								),
 							),
-							'accordion_divider_line' => array(
+							'accordion_divider_line'     => array(
 								'label'       => esc_html__( 'Toggle Divider Line', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on to display a divider line between each item.', 'fusion-builder' ),
 								'id'          => 'accordion_divider_line',
@@ -522,14 +522,14 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 									),
 								),
 							),
-							'accordion_title_font_size' => array(
+							'accordion_title_font_size'  => array(
 								'label'       => esc_html__( 'Toggle Title Font Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the size of the title text.', 'fusion-builder' ),
 								'id'          => 'accordion_title_font_size',
 								'default'     => $fusion_settings->get( 'h4_typography', 'font-size' ),
 								'type'        => 'dimension',
 							),
-							'accordion_icon_size' => array(
+							'accordion_icon_size'        => array(
 								'label'       => esc_html__( 'Toggle Icon Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Set the size of the icon.', 'fusion-builder' ),
 								'id'          => 'accordion_icon_size',
@@ -539,21 +539,21 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 								'step'        => '1',
 								'type'        => 'slider',
 							),
-							'accordian_icon_color' => array(
+							'accordian_icon_color'       => array(
 								'label'       => esc_html__( 'Toggle Icon Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of icon in toggle box.', 'fusion-builder' ),
 								'id'          => 'accordian_icon_color',
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'accordion_icon_boxed' => array(
+							'accordion_icon_boxed'       => array(
 								'label'       => esc_html__( 'Toggle Icon Boxed Mode', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on to display toggle icon in boxed mode.', 'fusion-builder' ),
 								'id'          => 'accordion_icon_boxed',
 								'default'     => '1',
 								'type'        => 'switch',
 							),
-							'accordian_inactive_color' => array(
+							'accordian_inactive_color'   => array(
 								'label'       => esc_html__( 'Toggle Icon Inactive Box Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the inactive toggle box.', 'fusion-builder' ),
 								'id'          => 'accordian_inactive_color',
@@ -567,18 +567,18 @@ if ( fusion_is_element_enabled( 'fusion_accordion' ) ) {
 									),
 								),
 							),
-							'accordion_icon_align' => array(
+							'accordion_icon_align'       => array(
 								'label'       => esc_html__( 'Toggle Icon Alignment', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the alignment of toggle icon.', 'fusion-builder' ),
 								'id'          => 'accordion_icon_align',
 								'default'     => 'left',
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
-									'left'    => esc_html__( 'Left', 'fusion-builder' ),
-									'right'   => esc_html__( 'Right', 'fusion-builder' ),
+									'left'  => esc_html__( 'Left', 'fusion-builder' ),
+									'right' => esc_html__( 'Right', 'fusion-builder' ),
 								),
 							),
-							'accordian_active_color' => array(
+							'accordian_active_color'     => array(
 								'label'       => esc_html__( 'Toggle Hover Accent Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the accent color on hover for icon box and title.', 'fusion-builder' ),
 								'id'          => 'accordian_active_color',
@@ -651,7 +651,7 @@ function fusion_element_accordion() {
 						'toggles'    => esc_attr__( 'Toggles', 'fusion-builder' ),
 						'accordions' => esc_attr__( 'Accordions', 'fusion-builder' ),
 					),
-					'default' => '',
+					'default'     => '',
 				),
 				array(
 					'type'        => 'radio_button_set',
@@ -663,7 +663,7 @@ function fusion_element_accordion() {
 						'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 						'no'  => esc_attr__( 'No', 'fusion-builder' ),
 					),
-					'default' => '',
+					'default'     => '',
 				),
 				array(
 					'type'        => 'range',
@@ -743,7 +743,7 @@ function fusion_element_accordion() {
 						'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 						'no'  => esc_attr__( 'No', 'fusion-builder' ),
 					),
-					'default' => '',
+					'default'     => '',
 					'dependency'  => array(
 						array(
 							'element'  => 'boxed_mode',
@@ -787,7 +787,7 @@ function fusion_element_accordion() {
 						'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 						'no'  => esc_attr__( 'No', 'fusion-builder' ),
 					),
-					'default' => '',
+					'default'     => '',
 				),
 				array(
 					'type'        => 'colorpickeralpha',
@@ -810,11 +810,11 @@ function fusion_element_accordion() {
 					'description' => esc_attr__( 'Controls the alignment of toggle icon.', 'fusion-builder' ),
 					'param_name'  => 'icon_alignment',
 					'value'       => array(
-						''       => esc_attr__( 'Default', 'fusion-builder' ),
-						'left'   => esc_attr__( 'Left', 'fusion-builder' ),
-						'right'  => esc_attr__( 'Right', 'fusion-builder' ),
+						''      => esc_attr__( 'Default', 'fusion-builder' ),
+						'left'  => esc_attr__( 'Left', 'fusion-builder' ),
+						'right' => esc_attr__( 'Right', 'fusion-builder' ),
 					),
-					'default' => '',
+					'default'     => '',
 				),
 				array(
 					'type'        => 'colorpickeralpha',

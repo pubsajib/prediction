@@ -204,8 +204,8 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 
 				$tooltip = ucfirst( $args['social_network'] );
 				if ( 'custom_' === substr( $args['social_network'], 0, 7 ) ) {
-					$attr['class'] .= 'custom ';
-					$tooltip = str_replace( 'custom_', '', $args['social_network'] );
+					$attr['class']         .= 'custom ';
+					$tooltip                = str_replace( 'custom_', '', $args['social_network'] );
 					$args['social_network'] = strtolower( $tooltip );
 				}
 
@@ -222,7 +222,7 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 				}
 
 				if ( 'mail' === $args['social_network'] ) {
-					$link = ( 'http' === substr( $args['social_link'], 0, 4 ) ) ? $args['social_link'] : 'mailto:' . antispambot( str_replace( 'mailto:', '', $args['social_link'] ) );
+					$link           = ( 'http' === substr( $args['social_link'], 0, 4 ) ) ? $args['social_link'] : 'mailto:' . antispambot( str_replace( 'mailto:', '', $args['social_link'] ) );
 					$attr['target'] = '_self';
 				}
 
@@ -249,11 +249,11 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 
 				if ( 'none' !== strtolower( $this->args['tooltip_placement'] ) ) {
 					$attr['data-placement'] = strtolower( $this->args['tooltip_placement'] );
-					$tooltip = ( 'googleplus' === strtolower( $tooltip ) ) ? 'Google+' : $tooltip;
-					$tooltip = ( 'youtube' === strtolower( $tooltip ) ) ? 'YouTube' : $tooltip;
-					$tooltip = ( 'linkedin' === strtolower( $tooltip ) ) ? 'LinkedIn' : $tooltip;
-					$attr['data-title']  = $tooltip;
-					$attr['data-toggle'] = 'tooltip';
+					$tooltip                = ( 'googleplus' === strtolower( $tooltip ) ) ? 'Google+' : $tooltip;
+					$tooltip                = ( 'youtube' === strtolower( $tooltip ) ) ? 'YouTube' : $tooltip;
+					$tooltip                = ( 'linkedin' === strtolower( $tooltip ) ) ? 'LinkedIn' : $tooltip;
+					$attr['data-title']     = $tooltip;
+					$attr['data-toggle']    = 'tooltip';
 				}
 
 				$attr['title'] = $tooltip;
@@ -273,7 +273,7 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 
 				global $wp_version, $content_media_query, $six_fourty_media_query, $three_twenty_six_fourty_media_query, $ipad_portrait_media_query, $fusion_library, $fusion_settings, $dynamic_css_helpers;
 
-				$css['global']['.fusion-social-links .boxed-icons .fusion-social-networks-wrapper .fusion-social-network-icon']['width']   = 'calc(' . $fusion_library->sanitize->size( $fusion_settings->get( 'social_links_font_size' ) ) . ' + (2 * ' . $fusion_library->sanitize->size( $fusion_settings->get( 'social_links_boxed_padding' ) ) . ') + 2px)';
+				$css['global']['.fusion-social-links .boxed-icons .fusion-social-networks-wrapper .fusion-social-network-icon']['width'] = 'calc(' . $fusion_library->sanitize->size( $fusion_settings->get( 'social_links_font_size' ) ) . ' + (2 * ' . $fusion_library->sanitize->size( $fusion_settings->get( 'social_links_boxed_padding' ) ) . ') + 2px)';
 				$elements = array(
 					'.fusion-social-links .fusion-social-networks.boxed-icons a',
 				);
@@ -302,19 +302,19 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 						'id'          => 'sociallinks_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'social_links_info' => array(
+							'social_links_info'          => array(
 								'id'      => 'social_links_info',
 								'type'    => 'raw',
 								'content' => '<div class="fusion-redux-important-notice">' . __( '<strong>IMPORTANT NOTE:</strong> These social icon global options control both the social link element and person element.', 'fusion-builder' ) . '</div>',
 							),
-							'social_links_font_size' => array(
+							'social_links_font_size'     => array(
 								'label'       => esc_html__( 'Social Links Icons Font Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the font size for the social link icons.', 'fusion-builder' ),
 								'id'          => 'social_links_font_size',
 								'default'     => '16px',
 								'type'        => 'dimension',
 							),
-							'social_links_color_type' => array(
+							'social_links_color_type'    => array(
 								'label'       => esc_html__( 'Social Links Icon Color Type', 'fusion-builder' ),
 								'description' => esc_html__( 'Custom colors allow you to choose a color for icons and boxes. Brand colors will use the exact brand color of each network for the icons or boxes.', 'fusion-builder' ),
 								'id'          => 'social_links_color_type',
@@ -325,7 +325,7 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 									'brand'  => esc_html__( 'Brand Colors', 'fusion-builder' ),
 								),
 							),
-							'social_links_icon_color' => array(
+							'social_links_icon_color'    => array(
 								'label'       => esc_html__( 'Social Links Custom Icons Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the custom icons.', 'fusion-builder' ),
 								'id'          => 'social_links_icon_color',
@@ -339,14 +339,14 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 									),
 								),
 							),
-							'social_links_boxed' => array(
+							'social_links_boxed'         => array(
 								'label'       => esc_html__( 'Social Links Icons Boxed', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on to have the icon displayed in a small box. Turn off to have the icon displayed with no box.', 'fusion-builder' ),
 								'id'          => 'social_links_boxed',
 								'default'     => '0',
 								'type'        => 'switch',
 							),
-							'social_links_box_color' => array(
+							'social_links_box_color'     => array(
 								'label'       => esc_html__( 'Social Links Icons Custom Box Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Select a custom social icon box color.', 'fusion-builder' ),
 								'id'          => 'social_links_box_color',
@@ -365,7 +365,7 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 									),
 								),
 							),
-							'social_links_boxed_radius' => array(
+							'social_links_boxed_radius'  => array(
 								'label'       => esc_html__( 'Social Links Icons Boxed Radius', 'fusion-builder' ),
 								'description' => esc_html__( 'Box radius for the social icons.', 'fusion-builder' ),
 								'id'          => 'social_links_boxed_radius',
@@ -381,11 +381,11 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
 								),
 							),
 							'social_links_boxed_padding' => array(
-								'label'       => esc_html__( 'Social Links Icons Boxed Padding', 'fusion-builder' ),
-								'id'          => 'social_links_boxed_padding',
-								'default'     => '8px',
-								'type'        => 'dimension',
-								'required'    => array(
+								'label'    => esc_html__( 'Social Links Icons Boxed Padding', 'fusion-builder' ),
+								'id'       => 'social_links_boxed_padding',
+								'default'  => '8px',
+								'type'     => 'dimension',
+								'required' => array(
 									array(
 										'setting'  => 'social_links_boxed',
 										'operator' => '==',
@@ -434,7 +434,7 @@ if ( fusion_is_element_enabled( 'fusion_social_links' ) ) {
  * @since 1.0
  */
 function fusion_element_social_links() {
-	$social_options = array(
+	$social_options         = array(
 		'name'      => esc_attr__( 'Social Links', 'fusion-builder' ),
 		'shortcode' => 'fusion_social_links',
 		'icon'      => 'fusiona-link',

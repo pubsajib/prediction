@@ -40,8 +40,6 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 				$ranking[$predictor->ID]['id'] = $predictor->ID;
 				$ranking[$predictor->ID]['eligible'] = $isRankAble;
 				$ranking[$predictor->ID]['score'] = $score;
-				$ranking[$predictor->ID]['match'] = $prediction['avg']['match']['participated'];
-				$ranking[$predictor->ID]['toss'] = $prediction['avg']['toss']['participated'];
 				$ranking[$predictor->ID]['matchAccuracy'] = $PMatch;
 				$ranking[$predictor->ID]['tossAccuricy'] = $PToss;
 				$ranking[$predictor->ID]['participated'] = $participated;
@@ -62,8 +60,6 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 				$ranking[$predictor->ID]['id'] = $predictor->ID;
 				$ranking[$predictor->ID]['eligible'] = 0;
 				$ranking[$predictor->ID]['score'] = $score;
-				$ranking[$predictor->ID]['match'] = 0;
-				$ranking[$predictor->ID]['toss'] = 0;
 				$ranking[$predictor->ID]['matchAccuracy'] = $PMatch;
 				$ranking[$predictor->ID]['tossAccuricy'] = $PToss;
 				$ranking[$predictor->ID]['participated'] = $participated;
@@ -171,7 +167,7 @@ function isValidForRankingOld($criterias) {
 		return 1;
 	}
 }
-function lifeTimePublished($userID) {
+function lifeTimePublished($userID, $type=false) {
 	$published = [];
 	$udata = get_userdata($userID);
 	$registered = $udata->user_registered;
@@ -199,11 +195,11 @@ function lifeTimePublished($userID) {
             				$optionID = predictor_id_from_string($option['title']);
 		                    $defaultID = 'default_'. $ID .'_'. $optionID;
 		                    if (!@$meta[$defaultID.'_published']) continue;
-		                    $published[] = [
-		                    	'event' 	=> $eventID, 
-		                    	'team' 		=> $team['name'], 
-		                    	'item' 		=> $option['title']
-		                    ];
+		                    if (!$type) {
+		                    	$published[] = ['event' => $eventID, 'team' => $team['name'], 'item' => $option['title'], 'type' => $option['id']];
+		                    } else if($type == $option['id']){
+		                    	$published[] = ['event' => $eventID, 'team' => $team['name'], 'item' => $option['title'], 'type' => $option['id']];
+		                    }
             			}
             		}
         		}
@@ -212,7 +208,7 @@ function lifeTimePublished($userID) {
 	}
     return $published;
 }
-function totalPublished() {
+function totalPublished($type=false) {
 	$published = [];
 	$query = array(
         'post_type' => 'event',
@@ -236,11 +232,11 @@ function totalPublished() {
             				$optionID = predictor_id_from_string($option['title']);
 		                    $defaultID = 'default_'. $ID .'_'. $optionID;
 		                    if (!@$meta[$defaultID.'_published']) continue;
-		                    $published[] = [
-		                    	'event' 	=> $eventID, 
-		                    	'team' 		=> $team['name'], 
-		                    	'item' 		=> $option['title']
-		                    ];
+		                    if (!$type) {
+		                    	$published[] = ['event' => $eventID, 'team' => $team['name'], 'item' => $option['title'], 'type' => $option['id']];
+		                    } else if($type == $option['id']){
+		                    	$published[] = ['event' => $eventID, 'team' => $team['name'], 'item' => $option['title'], 'type' => $option['id']];
+		                    }
             			}
             		}
         		}

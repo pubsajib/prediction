@@ -236,8 +236,8 @@ if ( fusion_is_element_enabled( 'fusion_chart' ) ) {
 					$attr['data-legend_labels'] = $this->parent_args['legend_labels'];
 				}
 
-				if ( $this->parent_args['chart_border_size'] ) {
-					$attr['data-border_size'] = $this->parent_args['chart_border_size'];
+				if ( '' !== $this->parent_args['chart_border_size'] ) {
+					$attr['data-border_size'] = (int) $this->parent_args['chart_border_size'];
 				}
 
 				if ( $this->parent_args['chart_border_type'] ) {
@@ -312,7 +312,7 @@ if ( fusion_is_element_enabled( 'fusion_chart' ) ) {
 
 				$this->child_legend_text_colors[] = $this->child_args['legend_text_color'];
 
-				$html  = '<div ' . FusionBuilder::attributes( 'chart-dataset-shortcode' ) . '></div>';
+				$html = '<div ' . FusionBuilder::attributes( 'chart-dataset-shortcode' ) . '></div>';
 
 				$this->chart_dataset_counter++;
 
@@ -424,18 +424,18 @@ if ( fusion_is_element_enabled( 'fusion_chart' ) ) {
 									'off'    => esc_attr__( 'Off', 'fusion-builder' ),
 								),
 							),
-							'chart_show_tooltips' => array(
+							'chart_show_tooltips'   => array(
 								'label'       => esc_attr__( 'Show Tooltips', 'fusion-builder' ),
 								'description' => esc_attr__( 'Choose whether tooltips should be displayed on hover. If your chart is in a column and the column has a hover type or link, tooltips are disabled.', 'fusion-builder' ),
 								'id'          => 'chart_show_tooltips',
 								'default'     => 'yes',
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
-									'yes'  => esc_attr__( 'Yes', 'fusion-builder' ),
-									'no'   => esc_attr__( 'No', 'fusion-builder' ),
+									'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
+									'no'  => esc_attr__( 'No', 'fusion-builder' ),
 								),
 							),
-							'chart_bg_color' => array(
+							'chart_bg_color'        => array(
 								'label'       => esc_attr__( 'Chart Background Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Controls the background of the chart.', 'fusion-builder' ),
 								'id'          => 'chart_bg_color',
@@ -449,7 +449,7 @@ if ( fusion_is_element_enabled( 'fusion_chart' ) ) {
 								'default'     => '#666666',
 								'type'        => 'color-alpha',
 							),
-							'chart_gridline_color' => array(
+							'chart_gridline_color'  => array(
 								'label'       => esc_attr__( 'Chart Gridline Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Controls the color of the chart background grid lines and values.', 'fusion-builder' ),
 								'id'          => 'chart_gridline_color',
@@ -499,18 +499,18 @@ function fusion_element_chart() {
 
 	fusion_builder_map(
 		array(
-			'name'          => esc_attr__( 'Chart', 'fusion-builder' ),
-			'shortcode'     => 'fusion_chart',
-			'icon'          => 'fusiona-bar-chart',
-			'preview'       => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-chart-preview.php',
+			'name'                          => esc_attr__( 'Chart', 'fusion-builder' ),
+			'shortcode'                     => 'fusion_chart',
+			'icon'                          => 'fusiona-bar-chart',
+			'preview'                       => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-chart-preview.php',
 
 			'custom_settings_view_name'     => 'ModuleSettingsChartView',
 			'custom_settings_view_js'       => FUSION_BUILDER_PLUGIN_URL . 'inc/templates/custom/js/fusion-chart-settings.js',
 			'custom_settings_template_file' => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/custom/fusion-chart-settings.php',
-			'on_save'           => 'chartShortcodeFilter',
-			'admin_enqueue_js'  => FUSION_BUILDER_PLUGIN_URL . 'shortcodes/js/fusion-chart.js',
-			'preview_id'    => 'fusion-builder-block-module-chart-preview-template',
-			'params'        => array(
+			'on_save'                       => 'chartShortcodeFilter',
+			'admin_enqueue_js'              => FUSION_BUILDER_PLUGIN_URL . 'shortcodes/js/fusion-chart.js',
+			'preview_id'                    => 'fusion-builder-block-module-chart-preview-template',
+			'params'                        => array(
 				array(
 					'type'        => 'textfield',
 					'heading'     => esc_attr__( 'Title', 'fusion-builder' ),
@@ -623,9 +623,9 @@ function fusion_element_chart() {
 					'description' => esc_attr__( 'Select border type.', 'fusion-builder' ),
 					'param_name'  => 'chart_border_type',
 					'value'       => array(
-						'smooth'        => esc_attr__( 'Smooth', 'fusion-builder' ),
-						'non_smooth'    => esc_attr__( 'Non smooth', 'fusion-builder' ),
-						'stepped'       => esc_attr__( 'Stepped', 'fusion-builder' ),
+						'smooth'     => esc_attr__( 'Smooth', 'fusion-builder' ),
+						'non_smooth' => esc_attr__( 'Non smooth', 'fusion-builder' ),
+						'stepped'    => esc_attr__( 'Stepped', 'fusion-builder' ),
 					),
 					'default'     => 'smooth',
 					'dependency'  => array(
@@ -647,7 +647,7 @@ function fusion_element_chart() {
 						'origin' => esc_attr__( 'Origin', 'fusion-builder' ),
 						'off'    => esc_attr__( 'Not filled', 'fusion-builder' ),
 					),
-					'default'  => 'off',
+					'default'     => 'off',
 					'dependency'  => array(
 						array(
 							'element'  => 'chart_type',

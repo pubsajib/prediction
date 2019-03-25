@@ -96,7 +96,7 @@ if ( fusion_is_element_enabled( 'fusion_countdown' ) ) {
 
 				$this->args = $defaults;
 
-				$html = '<div ' . FusionBuilder::attributes( 'countdown-shortcode' ) . '>';
+				$html  = '<div ' . FusionBuilder::attributes( 'countdown-shortcode' ) . '>';
 				$html .= self::get_styles();
 				$html .= '<div ' . FusionBuilder::attributes( 'fusion-countdown-heading-wrapper' ) . '>';
 				$html .= '<div ' . FusionBuilder::attributes( 'fusion-countdown-subheading' ) . '>' . $subheading_text . '</div>';
@@ -334,12 +334,12 @@ if ( fusion_is_element_enabled( 'fusion_countdown' ) ) {
 				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['text-align'] = 'center';
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .fusion-countdown-counter-wrapper' );
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-top'] = '20px';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-top']    = '20px';
 				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '10px';
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .fusion-dash-title' );
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'block';
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding'] = '0';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display']   = 'block';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding']   = '0';
 				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['font-size'] = '16px';
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .fusion-countdown-link-wrapper' );
@@ -363,7 +363,7 @@ if ( fusion_is_element_enabled( 'fusion_countdown' ) ) {
 						'id'     => 'countdown_shortcode_section',
 						'type'   => 'accordion',
 						'fields' => array(
-							'countdown_timezone' => array(
+							'countdown_timezone'           => array(
 								'label'       => esc_html__( 'Countdown Timezone', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the timezone that is used for the countdown calculation.', 'fusion-builder' ),
 								'id'          => 'countdown_timezone',
@@ -374,25 +374,25 @@ if ( fusion_is_element_enabled( 'fusion_countdown' ) ) {
 									'user_time' => esc_html__( 'User Timezone', 'fusion-builder' ),
 								),
 							),
-							'countdown_show_weeks' => array(
+							'countdown_show_weeks'         => array(
 								'label'       => esc_html__( 'Countdown Show Weeks', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on to display the number of weeks in the countdown.', 'fusion-builder' ),
 								'id'          => 'countdown_show_weeks',
 								'default'     => 'no',
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
-									'yes'     => esc_html__( 'On', 'fusion-builder' ),
-									'no'      => esc_html__( 'Off', 'fusion-builder' ),
+									'yes' => esc_html__( 'On', 'fusion-builder' ),
+									'no'  => esc_html__( 'Off', 'fusion-builder' ),
 								),
 							),
-							'countdown_background_color' => array(
+							'countdown_background_color'   => array(
 								'label'       => esc_html__( 'Countdown Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background color for the countdown box.', 'fusion-builder' ),
 								'id'          => 'countdown_background_color',
 								'default'     => '#a0ce4e',
 								'type'        => 'color-alpha',
 							),
-							'countdown_background_image' => array(
+							'countdown_background_image'   => array(
 								'label'       => esc_html__( 'Countdown Background Image', 'fusion-builder' ),
 								'description' => esc_html__( 'Select an image for the countdown box background.', 'fusion-builder' ),
 								'id'          => 'countdown_background_image',
@@ -400,7 +400,7 @@ if ( fusion_is_element_enabled( 'fusion_countdown' ) ) {
 								'mod'         => '',
 								'type'        => 'media',
 							),
-							'countdown_background_repeat' => array(
+							'countdown_background_repeat'  => array(
 								'label'       => esc_html__( 'Countdown Background Repeat', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls how the background image repeats.', 'fusion-builder' ),
 								'id'          => 'countdown_background_repeat',
@@ -431,7 +431,7 @@ if ( fusion_is_element_enabled( 'fusion_countdown' ) ) {
 									'bottom right'  => esc_html__( 'bottom right', 'fusion-builder' ),
 								),
 							),
-							'countdown_counter_box_color' => array(
+							'countdown_counter_box_color'  => array(
 								'label'       => esc_html__( 'Countdown Counter Box Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background color for the counter boxes.', 'fusion-builder' ),
 								'id'          => 'countdown_counter_box_color',
@@ -459,14 +459,14 @@ if ( fusion_is_element_enabled( 'fusion_countdown' ) ) {
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'countdown_link_text_color' => array(
+							'countdown_link_text_color'    => array(
 								'label'       => esc_html__( 'Countdown Link Text Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color for the countdown link text.', 'fusion-builder' ),
 								'id'          => 'countdown_link_text_color',
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'countdown_link_target' => array(
+							'countdown_link_target'        => array(
 								'label'       => esc_html__( 'Countdown Link Target', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls how the link will open.', 'fusion-builder' ),
 								'id'          => 'countdown_link_target',

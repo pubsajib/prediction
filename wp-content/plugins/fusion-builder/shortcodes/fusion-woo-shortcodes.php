@@ -65,17 +65,17 @@ function fusion_element_woo_shortcodes() {
 	if ( class_exists( 'WooCommerce' ) ) {
 		fusion_builder_map(
 			array(
-				'name'              => esc_attr__( 'Woo Shortcodes', 'fusion-builder' ),
-				'shortcode'         => 'fusion_woo_shortcodes',
-				'icon'              => 'fusiona-tag',
-				'admin_enqueue_js'  => FUSION_BUILDER_PLUGIN_URL . 'shortcodes/js/fusion-woo-shortcodes.js',
-				'params'            => array(
+				'name'             => esc_attr__( 'Woo Shortcodes', 'fusion-builder' ),
+				'shortcode'        => 'fusion_woo_shortcodes',
+				'icon'             => 'fusiona-tag',
+				'admin_enqueue_js' => FUSION_BUILDER_PLUGIN_URL . 'shortcodes/js/fusion-woo-shortcodes.js',
+				'params'           => array(
 					array(
-						'type'        => 'select',
-						'heading'     => esc_attr__( 'Shortocode', 'fusion-builder' ),
-						'description' => esc_attr__( 'Choose woocommerce shortcode.', 'fusion-builder' ),
-						'param_name'  => 'fusion_woo_shortcode',
-						'value'       => array(
+						'type'             => 'select',
+						'heading'          => esc_attr__( 'Shortcode', 'fusion-builder' ),
+						'description'      => esc_attr__( 'Choose woocommerce shortcode.', 'fusion-builder' ),
+						'param_name'       => 'fusion_woo_shortcode',
+						'value'            => array(
 							'1' => esc_attr__( 'Order tracking', 'fusion-builder' ),
 							'2' => esc_attr__( 'Product price/cart button', 'fusion-builder' ),
 							'3' => esc_attr__( 'Product by SKU/ID', 'fusion-builder' ),

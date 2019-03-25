@@ -228,7 +228,7 @@ function fusion_element_youtube() {
 				array(
 					'type'        => 'textfield',
 					'heading'     => esc_attr__( 'Additional API Parameter', 'fusion-builder' ),
-					'description' => esc_attr__( 'Use additional API parameter, for example &rel=0 to disable related videos.', 'fusion-builder' ),
+					'description' => esc_attr__( 'Use an additional API parameter, for example, &rel=0 to only display related videos from the same channel.', 'fusion-builder' ),
 					'param_name'  => 'api_params',
 					'value'       => '',
 				),

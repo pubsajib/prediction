@@ -970,9 +970,27 @@
 .fusion-builder-sortable-options li .multi-element-child-name {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display:         inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
   font-weight: bold;
-  padding: .8em .8em .8em 1em;
+  padding: 0 .8em;
+  height: 39px;
+  vertical-align: middle;
+}
+.fusion-builder-sortable-options li .multi-element-child-name .fusion-child-element-image {
+  padding: 8px 8px 8px 0;
+  height: 23px;
+  vertical-align: middle;
+}
+.fusion-builder-sortable-options li .multi-element-child-name .fusion-child-name-label {
+  display: inline-block;
+  margin-top: -2px;
 }
 .fusion-builder-add-multi-child,
 .fusion-builder-sortable-options li,

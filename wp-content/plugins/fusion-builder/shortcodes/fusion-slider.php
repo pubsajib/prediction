@@ -156,7 +156,7 @@ if ( fusion_is_element_enabled( 'fusion_slider' ) ) {
 
 				$this->child_args = $defaults;
 
-				$this->child_args['src']   = $src = str_replace( '&#215;', 'x', $content );
+				$this->child_args['src'] = $src = str_replace( '&#215;', 'x', $content );
 
 				if ( 'image' === $type ) {
 
@@ -180,7 +180,22 @@ if ( fusion_is_element_enabled( 'fusion_slider' ) ) {
 				if ( ! empty( $type ) && 'video' === $type ) {
 					$html .= '<div ' . FusionBuilder::attributes( 'full-video' ) . '>' . do_shortcode( $content ) . '</div>';
 				} else {
-					$html .= '<span ' . FusionBuilder::attributes( 'slider-shortcode-slide-img-wrapper' ) . '><img role="presentation" ' . FusionBuilder::attributes( 'slider-shortcode-slide-img' ) . ' /></span>';
+					$image = '<span ' . FusionBuilder::attributes( 'slider-shortcode-slide-img-wrapper' ) . '><img ' . FusionBuilder::attributes( 'slider-shortcode-slide-img' ) . ' /></span>';
+
+					$fusion_library->images->set_grid_image_meta(
+						array(
+							'layout'  => 'large',
+							'columns' => '1',
+						)
+					);
+
+					if ( function_exists( 'wp_make_content_images_responsive' ) ) {
+						$image = wp_make_content_images_responsive( $image );
+					}
+
+					$fusion_library->images->set_grid_image_meta( array() );
+
+					$html .= $image;
 				}
 
 				if ( $link && ! empty( $link ) ) {
@@ -206,16 +221,16 @@ if ( fusion_is_element_enabled( 'fusion_slider' ) ) {
 				$attr = array();
 
 				if ( 'yes' === $this->child_args['lightbox'] ) {
-					$attr['class'] = 'lightbox-enabled';
-					$attr['data-rel'] = 'prettyPhoto[gallery_slider_' . $this->slider_counter . ']';
+					$attr['class']    = 'lightbox-enabled';
+					$attr['data-rel'] = 'iLightbox[slider_carousel_' . $this->slider_counter . ']';
 				}
 
-				$attr['title'] = $this->child_args['image_data']['title_attribute'];
+				$attr['title']        = $this->child_args['image_data']['title_attribute'];
 				$attr['data-caption'] = $this->child_args['image_data']['caption_attribute'];
-				$attr['data-title'] = $this->child_args['image_data']['title_attribute'];
-				$attr['aria-label'] = $this->child_args['image_data']['title_attribute'];
+				$attr['data-title']   = $this->child_args['image_data']['title_attribute'];
+				$attr['aria-label']   = $this->child_args['image_data']['title_attribute'];
 
-				$attr['href'] = $this->child_args['link'];
+				$attr['href']   = $this->child_args['link'];
 				$attr['target'] = $this->child_args['linktarget'];
 
 				if ( '_blank' == $attr['target'] ) {
@@ -247,10 +262,26 @@ if ( fusion_is_element_enabled( 'fusion_slider' ) ) {
 			 * @return array
 			 */
 			public function slide_img_attr() {
-				return array(
+				global $fusion_library;
+
+				$attr = array(
 					'src' => $this->child_args['src'],
-					'alt' => $this->child_args['image_data']['alt'],
 				);
+
+				if ( $this->child_args['image_data'] ) {
+					$attr['alt']    = $this->child_args['image_data']['alt'];
+					$attr['width']  = $this->child_args['image_data']['width'];
+					$attr['height'] = $this->child_args['image_data']['height'];
+				}
+
+				if ( ! empty( $this->child_args['image_id'] ) ) {
+					$image_id      = explode( '|', $this->child_args['image_id'] );
+					$attr['class'] = 'wp-image-' . $image_id[0];
+				}
+
+				$attr = $fusion_library->images->lazy_load_attributes( $attr, $this->child_args['image_id'] );
+
+				return $attr;
 			}
 
 			/**
@@ -297,7 +328,7 @@ if ( fusion_is_element_enabled( 'fusion_slider' ) ) {
 				preg_match_all( '!\d+!', $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ), $matches );
 				$half_slider_nav_box_height = '' !== $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ? $matches[0][0] / 2 . $fusion_library->sanitize->get_unit( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ) : '';
 
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']      = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['line-height'] = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
 
 				return $css;

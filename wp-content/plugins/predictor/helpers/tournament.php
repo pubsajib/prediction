@@ -28,6 +28,7 @@ function eventsByTournament($tournamentID=4) {
 	$args = array(
 	'post_type' => 'event',
 	'fields' => 'ids',
+	'posts_per_page' => -1,
 	'tax_query' => array(
 	    array(
 		    'taxonomy' => 'tournament',

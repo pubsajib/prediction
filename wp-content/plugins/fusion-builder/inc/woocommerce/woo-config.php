@@ -118,7 +118,7 @@ if ( ! class_exists( 'Avada_Woocommerce' ) && ! class_exists( 'FusionBuilder_Woo
 		public function woocommerce_scripts() {
 			wp_enqueue_script( 'fusion_builder_woocommerce_js', FUSION_BUILDER_PLUGIN_URL . 'inc/woocommerce/js/woocommerce.js', '', FUSION_BUILDER_VERSION, true );
 			$dynamic_css_obj = Fusion_Dynamic_CSS::get_instance();
-			$mode = ( method_exists( $dynamic_css_obj, 'get_mode' ) ) ? $dynamic_css_obj->get_mode() : $dynamic_css_obj->mode;
+			$mode            = ( method_exists( $dynamic_css_obj, 'get_mode' ) ) ? $dynamic_css_obj->get_mode() : $dynamic_css_obj->mode;
 
 			if ( 'file' !== $mode ) {
 				wp_enqueue_style( 'fusion-builder-woocommerce', FUSION_BUILDER_PLUGIN_URL . 'inc/woocommerce/css/woocommerce.min.css', array(), FUSION_BUILDER_VERSION );
@@ -135,8 +135,8 @@ if ( ! class_exists( 'Avada_Woocommerce' ) && ! class_exists( 'FusionBuilder_Woo
 		 */
 		public function woocommerce_styles_dynamic_css( $original_styles ) {
 			$dynamic_css_obj = Fusion_Dynamic_CSS::get_instance();
-			$mode = ( method_exists( $dynamic_css_obj, 'get_mode' ) ) ? $dynamic_css_obj->get_mode() : $dynamic_css_obj->mode;
-			$styles = '';
+			$mode            = ( method_exists( $dynamic_css_obj, 'get_mode' ) ) ? $dynamic_css_obj->get_mode() : $dynamic_css_obj->mode;
+			$styles          = '';
 
 			if ( 'file' === $mode ) {
 				$wp_filesystem = Fusion_Helper::init_filesystem();

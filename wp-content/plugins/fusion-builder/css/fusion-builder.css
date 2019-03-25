@@ -2027,6 +2027,7 @@
   list-style-type: decimal;
   list-style-position: inside;
   padding-left: 1em;
+  height: 41px;
 }
 .fusion-builder-sortable-options li:hover {
   background: #f7f7f7;
@@ -2055,11 +2056,37 @@
   background: #fff;
 }
 .fusion-builder-sortable-options li .multi-element-child-name {
-  font-weight: bold;
-  padding: 0.8em 0.8em 0.8em 1em;
-  display: inline-block;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  padding: 0 0.8em;
+  height: 39px;
+  vertical-align: middle;
+}
+.fusion-builder-sortable-options li .multi-element-child-name .fusion-child-element-image,
+.fusion-builder-sortable-options li .multi-element-child-name .fusion-image-placeholder {
+  padding: 8px 8px 8px 0;
+  height: 23px;
+  width: 23px;
+  vertical-align: middle;
+}
+.fusion-builder-sortable-options li .multi-element-child-name .fusion-image-placeholder {
+  display: inline-block;
+  line-height: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+.fusion-builder-sortable-options li .multi-element-child-name .fusion-child-name-label {
+  display: inline-block;
+  margin-top: -2px;
 }
 #fusion-builder-layouts-elements .fusion-page-layouts .fusion-page-layout {
   width: 30.3333%;
@@ -2981,6 +3008,35 @@ input[type=text].fusion-builder-section-name:hover {
   float: right;
   margin: 0.5em 15% 3em;
 }
+.fusion-builder-layouts-header .fusion-demo-selection-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  float: none;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+.fusion-builder-layouts-header .fusion-demo-selection-wrapper {
+  width: 47%;
+}
+#poststuff .fusion-builder-layouts-header .fusion-demo-selection-wrapper h2 {
+  font-size: 1.5em;
+  padding: 0 0 0.8em 0;
+}
+.fusion-builder-layouts-header .fusion-demo-selection-wrapper input {
+  width: calc(100% - 30px);
+}
+h2#fusion-builder-demo-url-invalid {
+  display: none;
+  font-size: 1.5em;
+  text-align: center;
+}
 .fusion-builder-layout-info {
   color: #999;
   font-style: italic;
@@ -3799,6 +3855,7 @@ tr:hover .fusion-builder-table-delete-row {
   background-repeat: no-repeat;
 }
 .quicktags-toolbar input[id*="fusion_shortcodes_text_mode"] {
+  display: none;
   background-image: url("../images/icons/fb_logo.svg");
   background-position: center center;
   width: 26px;
@@ -3817,6 +3874,13 @@ tr:hover .fusion-builder-table-delete-row {
   -webkit-background-size: 20px 20px;
           background-size: 20px 20px;
   background-repeat: no-repeat;
+}
+#wp-content-editor-container .quicktags-toolbar input[id*="fusion_shortcodes_text_mode"],
+#fusion_builder_layout .quicktags-toolbar input[id*="fusion_shortcodes_text_mode"],
+.fusion-builder-modal-settings-container .quicktags-toolbar input[id*="fusion_shortcodes_text_mode"],
+#wp-excerpt-wrap .quicktags-toolbar input[id*="fusion_shortcodes_text_mode"],
+.block-library-classic__toolbar .quicktags-toolbar input[id*="fusion_shortcodes_text_mode"] {
+  display: inline;
 }
 [aria-label="Fusion Builder Element Generator"] i {
   -webkit-background-size: 20px 20px;

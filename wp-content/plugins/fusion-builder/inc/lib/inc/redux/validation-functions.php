@@ -549,3 +549,23 @@ if ( ! function_exists( 'fusion_redux_validate_custom_fonts' ) ) {
 		);
 	}
 }
+
+if ( ! function_exists( 'fusion_fusionredux_validate_select' ) ) {
+	/**
+	 * Validates & sanitizes values for select controls.
+	 *
+	 * @since 5.8
+	 * @param array  $field          The field with all its arguments.
+	 * @param string $value          The field value.
+	 * @param string $existing_value The previous value of the control.
+	 * @return array
+	 */
+	function fusion_fusionredux_validate_select( $field, $value, $existing_value ) {
+
+		return ( isset( $field['multi'] ) && $field['multi'] && 'fusion-theme-options-fake-value' === $value ) ? array(
+			'value' => array(),
+		) : array(
+			'value' => $value,
+		);
+	}
+}

@@ -387,7 +387,7 @@
                 style = String( style );
             }
 
-            if ( typeof (script) !== undefined ) {
+            if ( 'undefined' !== typeof script ) {
                 script = String( script );
             }
         }

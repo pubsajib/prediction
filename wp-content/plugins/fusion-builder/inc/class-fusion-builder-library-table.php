@@ -142,9 +142,9 @@ class Fusion_Builder_Library_Table extends WP_List_Table {
 	 * @return array
 	 */
 	private function table_data( $per_page = -1, $current_page = 0 ) {
-		$data            = array();
-		$library_query   = array();
-		$status          = array( 'publish' );
+		$data          = array();
+		$library_query = array();
+		$status        = array( 'publish' );
 
 		// Make sure current-page and per-page are integers.
 		$per_page     = (int) $per_page;
@@ -274,8 +274,8 @@ class Fusion_Builder_Library_Table extends WP_List_Table {
 			$actions['restore'] = sprintf( '<a href="?_wpnonce=%s&action=%s&post=%s">' . esc_html__( 'Restore', 'fusion-builder' ) . '</a>', esc_attr( $wpnonce ), 'fusion_restore_element', esc_attr( $item['id'] ) );
 			$actions['delete']  = sprintf( '<a href="?_wpnonce=%s&action=%s&post=%s">' . esc_html__( 'Delete Permanently', 'fusion-builder' ) . '</a>', esc_attr( $wpnonce ), 'fusion_delete_element', esc_attr( $item['id'] ) );
 		} else {
-			$actions['edit']   = sprintf( '<a href="post.php?post=%s&action=%s">' . esc_html__( 'Edit', 'fusion-builder' ) . '</a>', esc_attr( $item['id'] ), 'edit' );
-			$actions['trash']  = sprintf( '<a href="?_wpnonce=%s&action=%s&post=%s">' . esc_html__( 'Trash', 'fusion-builder' ) . '</a>', esc_attr( $wpnonce ), 'fusion_trash_element', esc_attr( $item['id'] ) );
+			$actions['edit']  = sprintf( '<a href="post.php?post=%s&action=%s">' . esc_html__( 'Edit', 'fusion-builder' ) . '</a>', esc_attr( $item['id'] ), 'edit' );
+			$actions['trash'] = sprintf( '<a href="?_wpnonce=%s&action=%s&post=%s">' . esc_html__( 'Trash', 'fusion-builder' ) . '</a>', esc_attr( $wpnonce ), 'fusion_trash_element', esc_attr( $item['id'] ) );
 		}
 
 		$status = '';
@@ -369,7 +369,7 @@ class Fusion_Builder_Library_Table extends WP_List_Table {
 		$element_types   = array( 'sections', 'columns', 'elements' );
 
 		$count_posts['publish'] = $count_elements['publish'] + $count_templates['publish'];
-		$count_posts['trash'] = $count_elements['trash'] + $count_templates['trash'];
+		$count_posts['trash']   = $count_elements['trash'] + $count_templates['trash'];
 
 		if ( isset( $count_posts['publish'] ) && $count_posts['publish'] ) {
 			$post_status['all'] = $count_posts['publish'];
@@ -427,7 +427,7 @@ class Fusion_Builder_Library_Table extends WP_List_Table {
 			$status_title = $status;
 			if ( 'publish' === $status ) {
 				$status_title = esc_html__( 'Published', 'fusion-builder' );
-			} else if ( 'sections' === $status ) {
+			} elseif ( 'sections' === $status ) {
 				$status_title = esc_html__( 'Containers', 'fusion-builder' );
 			}
 

@@ -1,4 +1,5 @@
 /* global FusionPageBuilderApp, FusionPageBuilderEvents, fusionAllElements, FusionPageBuilderViewManager, fusionMultiElements */
+/* jshint -W024 */
 var FusionPageBuilder = FusionPageBuilder || {};
 
 ( function( $ ) {
@@ -19,6 +20,12 @@ var FusionPageBuilder = FusionPageBuilder || {};
 				this.element_type = this.$el.data( 'element_type' );
 
 				this.child_views = [];
+
+				this.fetchIds = [];
+
+				this.childIds = [];
+
+				this.updateGallery = false;
 
 				this.$el.attr( 'data-cid', this.attributes.cid );
 
@@ -107,6 +114,39 @@ var FusionPageBuilder = FusionPageBuilder || {};
 
 			},
 
+			updateGalleryContent: function() {
+				var content = '',
+					self = this,
+					parentModel = FusionPageBuilderApp.collection.find( function( model ) {
+						return model.get( 'cid' ) === self.attributes.parentCid;
+					} );
+
+
+				this.$sortable_options.find( 'li' ).each( function() {
+					var $thisEl = $( this );
+					content += FusionPageBuilderApp.generateElementShortcode( $thisEl, false );
+				} );
+
+				parentModel.attributes.params.element_content = content;
+
+				this.$el.parents().find( '#fusion_builder_content_main' ).html( content );
+
+				if ( ! this.$sortable_options.find( 'li' ).length ) {
+					this.$add_sortable_item.addClass( 'fusion-builder-add-sortable-initial' );
+				} else {
+					this.$add_sortable_item.removeClass( 'fusion-builder-add-sortable-initial' );
+				}
+
+				// Update child previews
+				FusionPageBuilderEvents.trigger( 'fusion-multi-child-update-preview' );
+
+				// Update shortcodes
+				FusionPageBuilderEvents.trigger( 'fusion-element-added' );
+
+				this.fetchIds = [];
+				this.childIds = [];
+			},
+
 			removeView: function( event ) {
 				if ( event ) {
 					event.preventDefault();
@@ -123,6 +163,8 @@ var FusionPageBuilder = FusionPageBuilder || {};
 					regExp      = window.wp.shortcode.regexp( shortcodeTags ),
 					innerRegExp = FusionPageBuilderApp.regExpShortcode( shortcodeTags ),
 					matches     = content.match( regExp );
+
+					this.updateGallery = false;
 
 				if ( '' !== content ) {
 					this.$add_sortable_item.removeClass( 'fusion-builder-add-sortable-initial' );
@@ -153,7 +195,9 @@ var FusionPageBuilder = FusionPageBuilder || {};
 						elementName = shortcodeAttributes.named.title;
 					} else if ( 'undefined' !== typeof shortcodeAttributes.named && 'undefined' !== typeof shortcodeAttributes.named.title_front && shortcodeAttributes.named.title_front.length ) {
 						elementName = shortcodeAttributes.named.title_front;
-					} else if ( 'undefined' !== typeof shortcodeAttributes.named && 'undefined' !== typeof shortcodeAttributes.named.image && shortcodeAttributes.named.image.length ) {
+					} else if ( 'undefined' !== typeof shortcodeAttributes.named && 'undefined' !== typeof shortcodeAttributes.named.name && shortcodeAttributes.named.name.length ) {
+						elementName = shortcodeAttributes.named.name;
+					} else if ( 'undefined' !== typeof shortcodeAttributes.named && 'undefined' !== typeof shortcodeAttributes.named.image && shortcodeAttributes.named.image.length && 'fusion_testimonial' !== shortcodeName ) {
 						elementName = shortcodeAttributes.named.image;
 
 						// If contains backslash, retrieve only last part.
@@ -250,8 +294,64 @@ var FusionPageBuilder = FusionPageBuilder || {};
 						}
 					}
 
+					if ( 'fusion_gallery' === thisEl.model.attributes['data-element_type'] ) {
+
+						if ( 'undefined' === typeof moduleSettings.params.image || '' === moduleSettings.params.image ) {
+
+							if ( '' !== moduleSettings.params.image_id && 'NaN' !== moduleSettings.params.image_id && 'undefined' !== typeof moduleSettings.params.image_id ) {
+
+								if ( 'undefined' === typeof wp.media.attachment( moduleSettings.params.image_id ).get( 'url' ) ) {
+									thisEl.fetchIds.push( moduleSettings.params.image_id );
+									thisEl.childIds.push( moduleSettings.cid );
+									thisEl.updateGallery = true;
+
+								} else {
+									moduleSettings.params.image = wp.media.attachment( moduleSettings.params.image_id ).get( 'url' );
+									thisEl.updateGallery = true;
+								}
+							}
+						}
+					}
+
 					thisEl.model.collection.add( [ moduleSettings ] );
+
 				} );
+
+				if ( 'fusion_gallery' === thisEl.model.attributes['data-element_type'] ) {
+
+					// Fetch attachments if neccessary.
+					if ( thisEl.updateGallery ) {
+
+						if ( 'undefined' !== typeof thisEl.fetchIds && 0 < thisEl.fetchIds.length ) {
+
+							wp.media.query( { post__in: thisEl.fetchIds, posts_per_page: thisEl.fetchIds.length } ).more().then( function( response ) {
+
+								_.each( thisEl.childIds, function( cid ) {
+									var model = FusionPageBuilderApp.collection.find( function( model ) {
+										return model.get( 'cid' ) === cid;
+									} );
+
+									if ( 'undefined' !== typeof wp.media.attachment( model.attributes.params.image_id ).get( 'url' ) ) {
+										model.attributes.params.image = wp.media.attachment( model.attributes.params.image_id ).get( 'url' );
+									}
+
+								} );
+
+								setTimeout( function() {
+
+									thisEl.updateGalleryContent();
+								}, 200 );
+
+							} );
+
+						} else {
+							setTimeout( function() {
+
+								thisEl.updateGalleryContent();
+							}, 200 );
+						}
+					}
+				}
 			}
 		} );
 	} );

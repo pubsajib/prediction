@@ -260,9 +260,9 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 			 */
 			public function syntax_highlighter_copy_code_title_attr() {
 				$attr = array(
-					'class'            => 'syntax-highlighter-copy-code-title',
-					'data-id'          => 'fusion_syntax_highlighter_' . $this->counter,
-					'style'            => '',
+					'class'   => 'syntax-highlighter-copy-code-title',
+					'data-id' => 'fusion_syntax_highlighter_' . $this->counter,
+					'style'   => '',
 				);
 
 				if ( $this->args['font_size'] ) {
@@ -318,7 +318,7 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 						'default'     => '',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'syntax_highlighter_theme' => array(
+							'syntax_highlighter_theme'     => array(
 								'type'        => 'radio-buttonset',
 								'label'       => esc_attr__( 'Highlighter Theme', 'fusion-builder' ),
 								'description' => esc_attr__( 'Select which theme you want to use for code highlighting.', 'fusion-builder' ),
@@ -335,7 +335,7 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 									'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 									'no'  => esc_attr__( 'No', 'fusion-builder' ),
 								),
-								'default' => 'yes',
+								'default'     => 'yes',
 							),
 							'syntax_highlighter_line_number_background_color' => array(
 								'type'        => 'color-alpha',
@@ -376,7 +376,7 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 									'scroll' => esc_attr__( 'Scroll', 'fusion-builder' ),
 									'break'  => esc_attr__( 'Break', 'fusion-builder' ),
 								),
-								'default' => 'scroll',
+								'default'     => 'scroll',
 							),
 							'syntax_highlighter_copy_to_clipboard' => array(
 								'type'        => 'radio-buttonset',
@@ -410,9 +410,9 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 								'id'          => 'syntax_highlighter_font_size',
 								'default'     => '14',
 								'choices'     => array(
-									'min'         => '10',
-									'max'         => '100',
-									'step'        => '1',
+									'min'  => '10',
+									'max'  => '100',
+									'step' => '1',
 								),
 							),
 							'syntax_highlighter_background_color' => array(
@@ -430,9 +430,9 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 								'id'          => 'syntax_highlighter_border_size',
 								'default'     => '1',
 								'choices'     => array(
-									'min'         => '0',
-									'max'         => '50',
-									'step'        => '1',
+									'min'  => '0',
+									'max'  => '50',
+									'step' => '1',
 								),
 							),
 							'syntax_highlighter_border_color' => array(
@@ -468,7 +468,7 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 									'dotted' => esc_attr__( 'Dotted', 'fusion-builder' ),
 								),
 							),
-							'syntax_highlighter_margin' => array(
+							'syntax_highlighter_margin'    => array(
 								'label'       => esc_html__( 'Margins', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the margin around syntax highlighter element.', 'fusion-builder' ),
 								'id'          => 'syntax_highlighter_margin',
@@ -478,13 +478,13 @@ if ( fusion_is_element_enabled( 'fusion_syntax_highlighter' ) ) {
 									'left'   => true,
 									'bottom' => true,
 									'right'  => true,
-									'units'   => array( 'px', '%' ),
+									'units'  => array( 'px', '%' ),
 								),
 								'default'     => array(
-									'top'     => '0px',
-									'left'    => '0px',
-									'bottom'  => '0px',
-									'right'   => '0px',
+									'top'    => '0px',
+									'left'   => '0px',
+									'bottom' => '0px',
+									'right'  => '0px',
 								),
 							),
 						),
@@ -629,9 +629,9 @@ function fusion_element_syntax_highlighter() {
 					'default'     => intval( $fusion_settings->get( 'syntax_highlighter_font_size' ) ),
 					'value'       => '',
 					'choices'     => array(
-						'min'         => '10',
-						'max'         => '100',
-						'step'        => '1',
+						'min'  => '10',
+						'max'  => '100',
+						'step' => '1',
 					),
 					'group'       => esc_attr__( 'Design', 'fusion-builder' ),
 				),
@@ -643,9 +643,9 @@ function fusion_element_syntax_highlighter() {
 					'default'     => intval( $fusion_settings->get( 'syntax_highlighter_border_size' ) ),
 					'value'       => '',
 					'choices'     => array(
-						'min'         => '0',
-						'max'         => '50',
-						'step'        => '1',
+						'min'  => '0',
+						'max'  => '50',
+						'step' => '1',
 					),
 					'group'       => esc_attr__( 'Design', 'fusion-builder' ),
 				),

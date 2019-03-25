@@ -233,7 +233,7 @@ if ( fusion_is_element_enabled( 'fusion_separator' ) ) {
 
 				$styles = explode( '|', $this->args['style_type'] );
 				if ( in_array( 'single', $styles ) ) {
-					$margin_top = (int) str_replace( 'px', '', $this->args['border_size'] );
+					$margin_top     = (int) str_replace( 'px', '', $this->args['border_size'] );
 					$attr['style'] .= 'margin-top:-' . ( $margin_top / 2 ) . 'px';
 				}
 
@@ -279,30 +279,30 @@ if ( fusion_is_element_enabled( 'fusion_separator' ) ) {
 				// Content separator for blog.
 				$elements = apply_filters( 'fusion_builder_element_classes', array( '.fusion-body .fusion-content-sep:not([class*="sep-"])' ), '.fusion-body .fusion-content-sep' );
 
-				$separator_style_type = $fusion_settings->get( 'separator_style_type' );
+				$separator_style_type  = $fusion_settings->get( 'separator_style_type' );
 				$separator_border_size = $fusion_settings->get( 'separator_border_size' ) . 'px';
 				if ( false !== strpos( $separator_style_type, 'none' ) ) {
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'none';
-				} else if ( false !== strpos( $separator_style_type, 'single' ) ) {
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = 'auto';
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-bottom'] = 'none';
+				} elseif ( false !== strpos( $separator_style_type, 'single' ) ) {
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']           = 'auto';
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-bottom']    = 'none';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-top-width'] = $separator_border_size;
-				} else if ( false !== strpos( $separator_style_type, 'double' ) ) {
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-top-width'] = $separator_border_size;
+				} elseif ( false !== strpos( $separator_style_type, 'double' ) ) {
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-top-width']    = $separator_border_size;
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-bottom-width'] = $separator_border_size;
-				} else if ( false !== strpos( $separator_style_type, 'shadow' ) ) {
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = '1px';
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-top'] = 'none';
+				} elseif ( false !== strpos( $separator_style_type, 'shadow' ) ) {
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']        = '1px';
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-top']    = 'none';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-bottom'] = 'none';
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = sprintf( '-webkit-radial-gradient(ellipse at 50%% -50%% , %s 0px, rgba(255, 255, 255, 0) 80%%) repeat scroll 0 0 rgba(0, 0, 0, 0)', $fusion_settings->get( 'sep_color' ) );
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = sprintf( 'radial-gradient(ellipse at 50%% -50%% , %s 0px, rgba(255, 255, 255, 0) 80%%) repeat scroll 0 0 rgba(0, 0, 0, 0)', $fusion_settings->get( 'sep_color' ) );
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background']    = sprintf( '-webkit-radial-gradient(ellipse at 50%% -50%% , %s 0px, rgba(255, 255, 255, 0) 80%%) repeat scroll 0 0 rgba(0, 0, 0, 0)', $fusion_settings->get( 'sep_color' ) );
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background']    = sprintf( 'radial-gradient(ellipse at 50%% -50%% , %s 0px, rgba(255, 255, 255, 0) 80%%) repeat scroll 0 0 rgba(0, 0, 0, 0)', $fusion_settings->get( 'sep_color' ) );
 
 					$elements = $dynamic_css_helpers->map_selector( $elements, ':after' );
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'block';
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['content'] = '""';
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['display']    = 'block';
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['content']    = '""';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['margin-top'] = '10px';
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = '6px';
-					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['width'] = '100%';
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']     = '6px';
+					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['width']      = '100%';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = '-webkit-radial-gradient(ellipse at 50% -50% , rgba(0, 0, 0, 0.5) 0px, rgba(255, 255, 255, 0) 65%);';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = 'radial-gradient(ellipse at 50% -50% , rgba(0, 0, 0, 0.5) 0px, rgba(255, 255, 255, 0) 65%);';
 				}
@@ -327,13 +327,13 @@ if ( fusion_is_element_enabled( 'fusion_separator' ) ) {
 						'id'          => 'separator_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'style_type' => array(
+							'style_type'                => array(
 								'label'       => esc_html__( 'Separator Style', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the line style of all separators, divider lines on portfolio archives, blog archives, product archives and more.', 'fusion-builder' ),
 								'id'          => 'separator_style_type',
 								'default'     => 'double',
 								'type'        => 'select',
-								'choices'       => array(
+								'choices'     => array(
 									'none'          => esc_attr__( 'No Style', 'fusion-builder' ),
 									'single'        => esc_attr__( 'Single Border Solid', 'fusion-builder' ),
 									'double'        => esc_attr__( 'Double Border Solid', 'fusion-builder' ),
@@ -344,14 +344,14 @@ if ( fusion_is_element_enabled( 'fusion_separator' ) ) {
 									'shadow'        => esc_attr__( 'Shadow', 'fusion-builder' ),
 								),
 							),
-							'sep_color' => array(
+							'sep_color'                 => array(
 								'label'       => esc_html__( 'Separator Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of all separators, divider lines and borders for meta, previous & next, filters, archive pages, boxes around number pagination, sidebar widgets, accordion divider lines, counter boxes and more.', 'fusion-builder' ),
 								'id'          => 'sep_color',
 								'default'     => '#e0dede',
 								'type'        => 'color-alpha',
 							),
-							'separator_border_size' => array(
+							'separator_border_size'     => array(
 								'label'       => esc_html__( 'Border Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border size of the separator.', 'fusion-builder' ),
 								'id'          => 'separator_border_size',
@@ -363,7 +363,7 @@ if ( fusion_is_element_enabled( 'fusion_separator' ) ) {
 									'step' => '1',
 								),
 							),
-							'separator_circle' => array(
+							'separator_circle'          => array(
 								'label'       => esc_html__( 'Separator Circle', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on if you want to display a circle around the separator icon.', 'fusion-builder' ),
 								'id'          => 'separator_circle',
@@ -452,8 +452,8 @@ function fusion_element_separator() {
 						'bottom_margin' => '',
 
 					),
-					'description' => esc_attr__( 'Spacing above and below the separator. In px, em or %, e.g. 10px.', 'fusion-builder' ),
-					'group'       => esc_attr__( 'Design', 'fusion-builder' ),
+					'description'      => esc_attr__( 'Spacing above and below the separator. In px, em or %, e.g. 10px.', 'fusion-builder' ),
+					'group'            => esc_attr__( 'Design', 'fusion-builder' ),
 				),
 				array(
 					'type'        => 'range',

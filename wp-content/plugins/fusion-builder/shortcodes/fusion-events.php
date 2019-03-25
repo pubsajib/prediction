@@ -60,32 +60,32 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 				$html     = '';
 				$defaults = FusionBuilder::set_shortcode_defaults(
 					array(
-						'column_spacing'  => ( isset( $args['column_spacing'] ) && '' === $args['column_spacing'] ) ? $fusion_settings->get( 'events_column_spacing' ) : '-1',
-						'content_length'  => ( '' !== $fusion_settings->get( 'events_content_length' ) ) ? $fusion_settings->get( 'events_content_length' ) : 'no_text',
-						'excerpt_length'  => ( '' !== $fusion_settings->get( 'excerpt_length_events' ) ) ? $fusion_settings->get( 'excerpt_length_events' ) : 55,
-						'hide_on_mobile'  => fusion_builder_default_visibility( 'string' ),
-						'class'           => '',
-						'id'              => '',
-						'cat_slug'        => '',
-						'columns'         => '4',
-						'number_posts'    => ( '' !== $fusion_settings->get( 'events_per_page' ) ) ? $fusion_settings->get( 'events_per_page' ) : '4',
-						'pagination'      => 'no',
-						'past_events'     => 'no',
-						'picture_size'    => 'cover',
-						'strip_html'      => ( '' !== $fusion_settings->get( 'events_strip_html_excerpt' ) ) ? $fusion_settings->get( 'events_strip_html_excerpt' ) : 'yes',
+						'column_spacing' => ( isset( $args['column_spacing'] ) && '' === $args['column_spacing'] ) ? $fusion_settings->get( 'events_column_spacing' ) : '-1',
+						'content_length' => ( '' !== $fusion_settings->get( 'events_content_length' ) ) ? $fusion_settings->get( 'events_content_length' ) : 'no_text',
+						'excerpt_length' => ( '' !== $fusion_settings->get( 'excerpt_length_events' ) ) ? $fusion_settings->get( 'excerpt_length_events' ) : 55,
+						'hide_on_mobile' => fusion_builder_default_visibility( 'string' ),
+						'class'          => '',
+						'id'             => '',
+						'cat_slug'       => '',
+						'columns'        => '4',
+						'number_posts'   => ( '' !== $fusion_settings->get( 'events_per_page' ) ) ? $fusion_settings->get( 'events_per_page' ) : '4',
+						'pagination'     => 'no',
+						'past_events'    => 'no',
+						'picture_size'   => 'cover',
+						'strip_html'     => ( '' !== $fusion_settings->get( 'events_strip_html_excerpt' ) ) ? $fusion_settings->get( 'events_strip_html_excerpt' ) : 'yes',
 					),
 					$args,
 					'fusion_events'
 				);
 
 				$theme_option_content_padding = $fusion_settings->get( 'events_content_padding' );
-				$padding_values = array();
+				$padding_values               = array();
 
-				$padding_values['top']     = ( isset( $args['padding_top'] ) && '' !== $args['padding_top'] ) ? $args['padding_top'] : Fusion_Sanitize::size( $theme_option_content_padding['top'] );
-				$padding_values['right']   = ( isset( $args['padding_right'] ) && '' !== $args['padding_right'] ) ? $args['padding_right'] : Fusion_Sanitize::size( $theme_option_content_padding['right'] );
-				$padding_values['bottom']  = ( isset( $args['padding_bottom'] ) && '' !== $args['padding_bottom'] ) ? $args['padding_bottom'] : Fusion_Sanitize::size( $theme_option_content_padding['bottom'] );
-				$padding_values['left']    = ( isset( $args['padding_left'] ) && '' !== $args['padding_left'] ) ? $args['padding_left'] : Fusion_Sanitize::size( $theme_option_content_padding['left'] );
-				$content_padding = implode( ' ', $padding_values );
+				$padding_values['top']    = ( isset( $args['padding_top'] ) && '' !== $args['padding_top'] ) ? $args['padding_top'] : Fusion_Sanitize::size( $theme_option_content_padding['top'] );
+				$padding_values['right']  = ( isset( $args['padding_right'] ) && '' !== $args['padding_right'] ) ? $args['padding_right'] : Fusion_Sanitize::size( $theme_option_content_padding['right'] );
+				$padding_values['bottom'] = ( isset( $args['padding_bottom'] ) && '' !== $args['padding_bottom'] ) ? $args['padding_bottom'] : Fusion_Sanitize::size( $theme_option_content_padding['bottom'] );
+				$padding_values['left']   = ( isset( $args['padding_left'] ) && '' !== $args['padding_left'] ) ? $args['padding_left'] : Fusion_Sanitize::size( $theme_option_content_padding['left'] );
+				$content_padding          = implode( ' ', $padding_values );
 
 				$this->args = $defaults;
 
@@ -114,12 +114,12 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 					}
 
 					if ( $cat_slug ) {
-						$terms = explode( ',', $cat_slug );
+						$terms             = explode( ',', $cat_slug );
 						$args['tax_query'] = array(
 							array(
-								'taxonomy'  => 'tribe_events_cat',
-								'field'     => 'slug',
-								'terms'     => array_map( 'trim', $terms ),
+								'taxonomy' => 'tribe_events_cat',
+								'field'    => 'slug',
+								'terms'    => array_map( 'trim', $terms ),
 							),
 						);
 					}
@@ -133,8 +133,8 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 					}
 
 					if ( $events->have_posts() ) {
-						$html .= '<div ' . FusionBuilder::attributes( 'events-shortcode' ) . '>';
-						$html .= '<div class="fusion-events-wrapper" data-pages="' . $events->max_num_pages . '">';
+						$html   .= '<div ' . FusionBuilder::attributes( 'events-shortcode' ) . '>';
+						$html   .= '<div class="fusion-events-wrapper" data-pages="' . $events->max_num_pages . '">';
 						$i       = 1;
 						$last    = false;
 						$columns = (int) $columns;
@@ -155,39 +155,49 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 								$last = true;
 							}
 
-							$html .= '<div ' . FusionBuilder::attributes( 'events-shortcode-columns', $last ) . '>';
-							$html .= '<div class="fusion-column-wrapper">';
-							$thumb_id = get_post_thumbnail_id();
-							$thumb_link = wp_get_attachment_image_src( $thumb_id, 'full', true );
-							$thumb_url = '';
+							$thumbnail = '';
+							$post_id   = get_the_ID();
 
-							if ( has_post_thumbnail( get_the_ID() ) ) {
-								$thumb_url = $thumb_link[0];
+							$html      .= '<div ' . FusionBuilder::attributes( 'events-shortcode-columns', $last ) . '>';
+							$html      .= '<div class="fusion-column-wrapper">';
+
+							if ( has_post_thumbnail( $post_id ) ) {
+								if ( 'auto' === $picture_size ) {
+									fusion_library()->images->set_grid_image_meta(
+										array(
+											'layout'       => 'grid',
+											'columns'      => $columns,
+											'gutter_width' => $column_spacing,
+										)
+									);
+
+									$thumbnail = get_the_post_thumbnail( $post_id, 'full' );
+
+									fusion_library()->images->set_grid_image_meta( array() );
+								} else {
+									$thumbnail = '<span class="tribe-events-event-image" style="background-image: url(' . get_the_post_thumbnail_url( $post_id ) . '); -webkit-background-size: cover; background-size: cover; background-position: center center;"></span>';
+								}
 							} elseif ( class_exists( 'Tribe__Events__Pro__Main' ) ) {
 								$thumb_url = esc_url( trailingslashit( Tribe__Events__Pro__Main::instance()->pluginUrl ) . 'src/resources/images/tribe-related-events-placeholder.png' );
-							}
 
-							$img_class = ( has_post_thumbnail( get_the_ID() ) ) ? '' : 'fusion-events-placeholder';
-
-							if ( $thumb_url ) {
-								$title = the_title_attribute(
-									array(
-										'echo' => false,
-										'post' => get_the_ID(),
-									)
-								);
-
-								$thumb_img = '<img class="' . $img_class . '" src="' . $thumb_url . '" alt="' . $title . '" />';
-								if ( has_post_thumbnail( get_the_ID() ) && 'auto' == $picture_size ) {
-									$thumb_img = get_the_post_thumbnail( get_the_ID(), 'full' );
+								if ( 'auto' === $picture_size ) {
+									$title = the_title_attribute(
+										array(
+											'echo' => false,
+											'post' => $post_id,
+										)
+									);
+									$thumbnail = '<img class="fusion-events-placeholder" src="' . $thumb_url . '" alt="' . $title . '" />';
+								} else {
+									$thumbnail = '<span class="tribe-events-event-image" style="background-image: url(' . $thumb_url . '); -webkit-background-size: cover; background-size: cover; background-position: center center;"></span>';
 								}
-								$thumb_bg = '<span class="tribe-events-event-image" style="background-image: url(' . $thumb_url . '); -webkit-background-size: cover; background-size: cover; background-position: center center;"></span>';
 							}
+
 							$html .= '<div class="fusion-events-thumbnail hover-type-' . $fusion_settings->get( 'ec_hover_type' ) . '">';
 							$html .= '<a href="' . get_the_permalink() . '" class="url" rel="bookmark" aria-label="' . the_title_attribute( array( 'echo' => false ) ) . '">';
 
-							if ( $thumb_url ) {
-								$html .= ( 'auto' == $picture_size ) ? $thumb_img : $thumb_bg;
+							if ( $thumbnail ) {
+								$html .= $thumbnail;
 							} else {
 								ob_start();
 								/**
@@ -198,7 +208,7 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 								do_action( 'fusion_render_placeholder_image', 'fixed' );
 
 								$placeholder = ob_get_clean();
-								$html .= str_replace( 'fusion-placeholder-image', ' fusion-placeholder-image tribe-events-event-image', $placeholder );
+								$html       .= str_replace( 'fusion-placeholder-image', ' fusion-placeholder-image tribe-events-event-image', $placeholder );
 							}
 
 							$html .= '</a>';
@@ -244,12 +254,12 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 							if ( 'load_more_button' === $pagination_type && -1 !== intval( $number_posts ) ) {
 								$button_margin = '';
 								if ( '-1' !== $this->args['column_spacing'] ) {
-									$button_margin  = 'margin-left: ' . ( $this->args['column_spacing'] / 2 ) . 'px;';
-									$button_margin .= 'margin-right: ' . ( $this->args['column_spacing'] / 2 ) . 'px;';
-									$style  = '<style type="text/css">';
-									$style .= '.fusion-events-shortcode.fusion-events-shortcode-' . $this->fusion_events_counter . ' .fusion-load-more-button {' . $button_margin . '}';
-									$style .= '.fusion-events-shortcode.fusion-events-shortcode-' . $this->fusion_events_counter . ' .fusion-loading-container {' . $button_margin . '}';
-									$style .= '</style>';
+									$button_margin    = 'margin-left: ' . ( $this->args['column_spacing'] / 2 ) . 'px;';
+									$button_margin   .= 'margin-right: ' . ( $this->args['column_spacing'] / 2 ) . 'px;';
+									$style            = '<style type="text/css">';
+									$style           .= '.fusion-events-shortcode.fusion-events-shortcode-' . $this->fusion_events_counter . ' .fusion-load-more-button {' . $button_margin . '}';
+									$style           .= '.fusion-events-shortcode.fusion-events-shortcode-' . $this->fusion_events_counter . ' .fusion-loading-container {' . $button_margin . '}';
+									$style           .= '</style>';
 									$pagination_html .= $style;
 								}
 								$pagination_html .= '<div class="fusion-load-more-button fusion-events-button fusion-clearfix">' . apply_filters( 'avada_load_more_events_name', esc_attr__( 'Load More Events', 'fusion-builder' ) ) . '</div>';
@@ -353,7 +363,7 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 				$attr['class'] .= ( $last ) ? ' fusion-column-last' : '';
 
 				if ( '-1' !== $this->args['column_spacing'] ) {
-					$attr['style']  = 'padding:' . ( $this->args['column_spacing'] / 2 ) . 'px';
+					$attr['style'] = 'padding:' . ( $this->args['column_spacing'] / 2 ) . 'px';
 				}
 
 				return $attr;
@@ -396,7 +406,7 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 						'default'     => '',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'events_per_page' => array(
+							'events_per_page'           => array(
 								'label'       => esc_attr__( 'Number of Events Per Page', 'fusion-core' ),
 								'description' => esc_attr__( 'Controls the number of events displayed per page for events element. Set to -1 to display all. Set to 0 to use the number of posts from Settings > Reading.', 'fusion-core' ),
 								'id'          => 'events_per_page',
@@ -408,7 +418,7 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 									'step' => '1',
 								),
 							),
-							'events_column_spacing' => array(
+							'events_column_spacing'     => array(
 								'label'       => esc_attr__( 'Column Spacing', 'fusion-core' ),
 								'description' => esc_attr__( 'Controls the column spacing for events items.', 'fusion-core' ),
 								'id'          => 'events_column_spacing',
@@ -420,26 +430,26 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 									'step' => '1',
 								),
 							),
-							'events_content_padding' => array(
+							'events_content_padding'    => array(
 								'label'       => esc_attr__( 'Events Content Padding', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the top/right/bottom/left padding of the events contents.', 'fusion-builder' ),
 								'id'          => 'events_content_padding',
 								'choices'     => array(
-									'top'     => true,
-									'bottom'  => true,
-									'left'    => true,
-									'right'   => true,
-									'units'   => array( 'px', '%' ),
+									'top'    => true,
+									'bottom' => true,
+									'left'   => true,
+									'right'  => true,
+									'units'  => array( 'px', '%' ),
 								),
 								'default'     => array(
-									'top'     => '20px',
-									'bottom'  => '20px',
-									'left'    => '20px',
-									'right'   => '20px',
+									'top'    => '20px',
+									'bottom' => '20px',
+									'left'   => '20px',
+									'right'  => '20px',
 								),
 								'type'        => 'spacing',
 							),
-							'events_content_length' => array(
+							'events_content_length'     => array(
 								'label'       => esc_attr__( 'Events Text Display', 'fusion-core' ),
 								'description' => esc_attr__( 'Choose how to display the post excerpt for events elements.', 'fusion-core' ),
 								'id'          => 'events_content_length',
@@ -451,7 +461,7 @@ if ( fusion_is_element_enabled( 'fusion_events' ) ) {
 									'full_content' => esc_attr__( 'Full Content', 'fusion-core' ),
 								),
 							),
-							'excerpt_length_events' => array(
+							'excerpt_length_events'     => array(
 								'label'       => esc_attr__( 'Excerpt Length', 'fusion-core' ),
 								'description' => esc_attr__( 'Controls the number of words in the excerpts for events elements.', 'fusion-core' ),
 								'id'          => 'excerpt_length_events',
@@ -572,7 +582,7 @@ function fusion_element_events() {
 							'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
 							'no'  => esc_attr__( 'No', 'fusion-builder' ),
 						),
-						'default' => 'no',
+						'default'     => 'no',
 					),
 					array(
 						'type'        => 'range',
@@ -615,7 +625,7 @@ function fusion_element_events() {
 							'cover' => esc_attr__( 'Cover', 'fusion-builder' ),
 							'auto'  => esc_attr__( 'Auto', 'fusion-builder' ),
 						),
-						'default' => 'cover',
+						'default'     => 'cover',
 					),
 					array(
 						'type'             => 'dimension',

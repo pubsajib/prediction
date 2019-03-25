@@ -52,7 +52,7 @@ class Fusion {
 	public $multilingual;
 
 	/**
-	 * And instance of the Fusion_Scripts class.
+	 * An instance of the Fusion_Scripts class.
 	 *
 	 * @access public
 	 * @since 1.0.0
@@ -61,13 +61,22 @@ class Fusion {
 	public $scripts;
 
 	/**
-	 * And instance of the Fusion_Dynamic_JS class.
+	 * An instance of the Fusion_Dynamic_JS class.
 	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @var object Fusion_Dynamic_JS
 	 */
 	public $dynamic_js;
+
+	/**
+	 * An instance of the Fusion_Font_Awesome class.
+	 *
+	 * @access public
+	 * @since 1.0.0
+	 * @var object Fusion_Font_Awesome
+	 */
+	public $fa;
 
 	/**
 	 * The class constructor
@@ -82,6 +91,7 @@ class Fusion {
 		$this->multilingual = new Fusion_Multilingual();
 		$this->scripts      = new Fusion_Scripts();
 		$this->dynamic_js   = new Fusion_Dynamic_JS();
+		$this->fa           = new Fusion_Font_Awesome();
 
 		if ( $this->supported_plugins_changed() && class_exists( 'Fusion_Cache' ) ) {
 			$fusion_cache = new Fusion_Cache();

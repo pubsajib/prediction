@@ -150,6 +150,7 @@ var FusionPageBuilder = FusionPageBuilder || {};
 					} );
 
 				} else {
+					FusionPageBuilderApp.layoutIsSaving = false;
 					alert( fusionBuilderText.please_enter_element_name );
 				}
 			},

@@ -106,7 +106,7 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 
 				extract( $defaults );
 
-				$this->args = $defaults;
+				$this->args     = $defaults;
 				$desktop_button = $title_tag = $additional_content = '';
 
 				$styles = apply_filters( 'fusion_builder_tagline_box_style', "<style type='text/css'>.reading-box-container-{$this->tagline_box_counter} .element-bottomshadow:before,.reading-box-container-{$this->tagline_box_counter} .element-bottomshadow:after{opacity:{$shadowopacity};}</style>", $defaults, $this->tagline_box_counter );
@@ -122,7 +122,7 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 						$addition_content_class = ' fusion-reading-box-additional';
 					}
 
-					$additional_content .= '<div class="reading-box-description' . $addition_content_class . '">' . $description . '</div>';
+					$additional_content    .= '<div class="reading-box-description' . $addition_content_class . '">' . $description . '</div>';
 					$addition_content_class = '';
 				} else {
 					if ( isset( $title ) && $title ) {
@@ -142,14 +142,14 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 					}
 
 					$this->args['button_class'] = ' fusion-desktop-button fusion-tagline-button continue' . $button_margin_class;
-					$desktop_button = '<a ' . FusionBuilder::attributes( 'tagline-shortcode-button' ) . '><span>' . $button . '</span></a>';
+					$desktop_button             = '<a ' . FusionBuilder::attributes( 'tagline-shortcode-button' ) . '><span>' . $button . '</span></a>';
 				}
 
 				if ( $additional_content ) {
 					$additional_content .= '<div class="fusion-clearfix"></div>';
 
 					$additional_content = $desktop_button . $title_tag . $additional_content;
-				} else if ( 'center' === $this->args['content_alignment'] ) {
+				} elseif ( 'center' === $this->args['content_alignment'] ) {
 					$additional_content = $title_tag;
 				} else {
 					$additional_content = '<div class="fusion-reading-box-flex">';
@@ -163,7 +163,7 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 
 				if ( ( isset( $link ) && $link ) && ( isset( $button ) && $button ) ) {
 					$this->args['button_class'] = ' fusion-mobile-button';
-					$additional_content .= '<a ' . FusionBuilder::attributes( 'tagline-shortcode-button' ) . '><span>' . $button . '</span></a>';
+					$additional_content        .= '<a ' . FusionBuilder::attributes( 'tagline-shortcode-button' ) . '><span>' . $button . '</span></a>';
 				}
 
 				$html = $styles . '<div ' . FusionBuilder::attributes( 'tagline-shortcode' ) . '><div ' . FusionBuilder::attributes( 'tagline-shortcode-reading-box' ) . '>' . $additional_content . '</div></div>';
@@ -279,7 +279,7 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 			 */
 			public function button_attr() {
 
-				$attr = array(
+				$attr          = array(
 					'class' => 'button fusion-button button-' . $this->args['buttoncolor'] . ' button-' . $this->args['button_shape'] . ' fusion-button-' . $this->args['button_size'] . ' button-' . $this->args['button_size'] . ' button-' . $this->args['button_type'] . $this->args['button_class'],
 				);
 				$attr['class'] = strtolower( $attr['class'] );
@@ -296,7 +296,7 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 					$attr['style'] = '-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;';
 				}
 
-				$attr['href'] = $this->args['link'];
+				$attr['href']   = $this->args['link'];
 				$attr['target'] = $this->args['linktarget'];
 
 				if ( '_blank' == $attr['target'] ) {
@@ -332,17 +332,17 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .reading-box' );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'tagline_bg' ) );
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'primary_color' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-color']     = $fusion_library->sanitize->color( $fusion_settings->get( 'primary_color' ) );
 
 				$css[ $content_media_query ]['.fusion-reading-box-container .fusion-reading-box-flex']['display'] = 'block';
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .fusion-desktop-button' );
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'none';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display']     = 'none';
 				$css[ $content_min_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'block';
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .fusion-mobile-button' );
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'block';
-				$css[ $content_min_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'none';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display']       = 'block';
+				$css[ $content_min_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display']   = 'none';
 				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'none';
 				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['float']   = 'none';
 
@@ -381,7 +381,7 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 						'id'          => 'tagline_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'tagline_bg' => array(
+							'tagline_bg'           => array(
 								'label'       => esc_html__( 'Tagline Box Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the tagline box background.', 'fusion-builder' ),
 								'id'          => 'tagline_bg',
@@ -395,18 +395,18 @@ if ( fusion_is_element_enabled( 'fusion_tagline_box' ) ) {
 								'default'     => '#f6f6f6',
 								'type'        => 'color-alpha',
 							),
-							'tagline_margin' => array(
+							'tagline_margin'       => array(
 								'label'       => esc_html__( 'Tagline Box Top/Bottom Margins', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the top/bottom margin of the tagline box.', 'fusion-builder' ),
 								'id'          => 'tagline_margin',
 								'default'     => array(
-									'top'     => '0px',
-									'bottom'  => '84px',
+									'top'    => '0px',
+									'bottom' => '84px',
 								),
 								'type'        => 'spacing',
 								'choices'     => array(
-									'top'     => true,
-									'bottom'  => true,
+									'top'    => true,
+									'bottom' => true,
 								),
 							),
 						),

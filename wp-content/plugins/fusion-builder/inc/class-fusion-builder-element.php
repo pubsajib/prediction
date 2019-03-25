@@ -87,7 +87,7 @@ abstract class Fusion_Element {
 			}
 			if ( self::$first_addon ) {
 				self::$first_addon = false;
-				$element_options = array(
+				$element_options   = array(
 					'fusion_builder_addons' => array(
 						'label'    => esc_html__( 'Add-on Elements', 'fusion-builder' ),
 						'id'       => 'fusion_builder_addons',

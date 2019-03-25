@@ -34,6 +34,7 @@ class Fusion_Cache {
 				'compiled_assets'  => true,
 				'fb_pages'         => true,
 				'gfonts'           => true,
+				'fa_font'          => true,
 				'demo_data'        => true,
 				'po_export'        => true,
 				'transients'       => true,
@@ -95,12 +96,12 @@ class Fusion_Cache {
 			$delete_fb_pages = $wp_filesystem->delete( $upload_dir['basedir'] . '/fusion-page-options-export', true, 'd' );
 		}
 
-		if ( ! class_exists( 'Fusion_Settings' ) ) {
-			include_once 'class-fusion-settings.php';
+		if ( true === $delete_cache['gfonts'] ) {
+			$delete_gfonts = $wp_filesystem->delete( Fusion_Downloader::get_root_path( 'fusion-gfonts' ), true, 'd' );
 		}
-		$settings = Fusion_Settings::get_instance();
-		if ( true === $delete_cache['gfonts'] && 'cdn' === $settings->get( 'gfonts_load_method' ) ) {
-			$delete_gfonts = $wp_filesystem->delete( $upload_dir['basedir'] . '/fusion-gfonts', true, 'd' );
+
+		if ( true === $delete_cache['fa_font'] ) {
+			$delete_gfonts = $wp_filesystem->delete( Fusion_Downloader::get_root_path( 'fusion-fa-font' ), true, 'd' );
 		}
 
 		if ( true === $delete_cache['transients'] ) {
@@ -112,6 +113,7 @@ class Fusion_Cache {
 				'_site_transient_timeout_fusion_dynamic_css_%',
 				'_site_transient_timeout_avada_%',
 				'_site_transient_timeout_fusion_wordpress_org_plugins',
+				'_transient_fusion_fontawesome%',
 			);
 			global $wpdb;
 			foreach ( $dynamic_transients as $transient ) {
@@ -226,6 +228,9 @@ class Fusion_Cache {
 
 		$varnish_x_purgemethod = ( isset( $p['query'] ) && ( 'vhp=regex' === $p['query'] ) ) ? 'regex' : 'default';
 
+		if ( ! class_exists( 'Fusion_Settings' ) ) {
+			include_once 'class-fusion-settings.php';
+		}
 		// Build a varniship.
 		$varniship = get_option( 'vhp_varnish_ip' );
 		$settings  = Fusion_Settings::get_instance();

@@ -4780,6 +4780,10 @@ ul.fusion-checklist .circle-yes {
 .fusion-content-boxes .link-area-box {
   cursor: pointer;
 }
+.fusion-content-boxes .link-area-box .fusion-read-more-button,
+.fusion-content-boxes .link-area-box .fusion-read-more {
+  pointer-events: none;
+}
 .fusion-content-boxes .heading {
   overflow: hidden;
   margin-bottom: 15px;

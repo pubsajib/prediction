@@ -17,13 +17,13 @@ function fusion_builder_options_section_lightbox( $sections ) {
 	$settings    = get_option( $option_name, array() );
 
 	$sections['lightbox'] = array(
-		'label'    => esc_html__( 'Lightbox', 'fusion-builder' ),
-		'id'       => 'heading_lightbox',
-		'priority' => 21,
-		'icon'     => 'el-icon-info-circle',
+		'label'       => esc_html__( 'Lightbox', 'fusion-builder' ),
+		'id'          => 'heading_lightbox',
+		'priority'    => 21,
+		'icon'        => 'el-icon-info-circle',
 		'option_name' => $option_name,
-		'fields'   => array(
-			'status_lightbox' => array(
+		'fields'      => array(
+			'status_lightbox'           => array(
 				'label'       => esc_html__( 'Lightbox', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to enable the lightbox throughout the theme.', 'fusion-builder' ),
 				'id'          => 'status_lightbox',
@@ -31,7 +31,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 				'type'        => 'switch',
 				'option_name' => $option_name,
 			),
-			'status_lightbox_single' => array(
+			'status_lightbox_single'    => array(
 				'label'       => esc_html__( 'Lightbox On Single Post Pages', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to enable the lightbox on single blog and portfolio posts.', 'fusion-builder' ),
 				'id'          => 'status_lightbox_single',
@@ -46,7 +46,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_behavior' => array(
+			'lightbox_behavior'         => array(
 				'label'       => esc_html__( 'Lightbox Behavior', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls what the lightbox displays for single blog and portfolio posts.', 'fusion-builder' ),
 				'id'          => 'lightbox_behavior',
@@ -65,7 +65,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_skin' => array(
+			'lightbox_skin'             => array(
 				'label'       => esc_html__( 'Lightbox Skin', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the lightbox skin design.', 'fusion-builder' ),
 				'id'          => 'lightbox_skin',
@@ -89,7 +89,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_path' => array(
+			'lightbox_path'             => array(
 				'label'       => esc_html__( 'Thumbnails Position', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the position of the lightbox thumbnails.', 'fusion-builder' ),
 				'id'          => 'lightbox_path',
@@ -108,7 +108,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_animation_speed' => array(
+			'lightbox_animation_speed'  => array(
 				'label'       => esc_html__( 'Animation Speed', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the animation speed of the lightbox.', 'fusion-builder' ),
 				'id'          => 'lightbox_animation_speed',
@@ -128,7 +128,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_arrows' => array(
+			'lightbox_arrows'           => array(
 				'label'       => esc_html__( 'Arrows', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display arrows in the lightbox', 'fusion-builder' ),
 				'id'          => 'lightbox_arrows',
@@ -143,7 +143,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_gallery' => array(
+			'lightbox_gallery'          => array(
 				'label'       => esc_html__( 'Gallery Start/Stop Button', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the gallery start and stop button.', 'fusion-builder' ),
 				'id'          => 'lightbox_gallery',
@@ -158,7 +158,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_autoplay' => array(
+			'lightbox_autoplay'         => array(
 				'label'       => esc_html__( 'Autoplay the Lightbox Gallery', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to autoplay the lightbox gallery.', 'fusion-builder' ),
 				'id'          => 'lightbox_autoplay',
@@ -173,7 +173,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_slideshow_speed' => array(
+			'lightbox_slideshow_speed'  => array(
 				'label'       => esc_html__( 'Slideshow Speed', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the slideshow speed if autoplay is turned on. ex: 1000 = 1 second.', 'fusion-builder' ),
 				'id'          => 'lightbox_slideshow_speed',
@@ -193,7 +193,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_opacity' => array(
+			'lightbox_opacity'          => array(
 				'label'       => esc_html__( 'Background Opacity', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the opacity level for the background behind the lightbox.', 'fusion-builder' ),
 				'id'          => 'lightbox_opacity',
@@ -213,7 +213,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_title' => array(
+			'lightbox_title'            => array(
 				'label'       => esc_html__( 'Title', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the image title in the lightbox.', 'fusion-builder' ),
 				'id'          => 'lightbox_title',
@@ -228,7 +228,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_desc' => array(
+			'lightbox_desc'             => array(
 				'label'       => esc_html__( 'Caption', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the image caption in the lightbox.', 'fusion-builder' ),
 				'id'          => 'lightbox_desc',
@@ -243,7 +243,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_social' => array(
+			'lightbox_social'           => array(
 				'label'       => esc_html__( 'Social Sharing', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display social sharing buttons on lightbox.', 'fusion-builder' ),
 				'id'          => 'lightbox_social',
@@ -258,7 +258,7 @@ function fusion_builder_options_section_lightbox( $sections ) {
 					),
 				),
 			),
-			'lightbox_deeplinking' => array(
+			'lightbox_deeplinking'      => array(
 				'label'       => esc_html__( 'Deeplinking', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to deeplink images in the lightbox.', 'fusion-builder' ),
 				'id'          => 'lightbox_deeplinking',
@@ -279,8 +279,8 @@ function fusion_builder_options_section_lightbox( $sections ) {
 				'id'          => 'lightbox_video_dimensions',
 				'units'       => false,
 				'default'     => array(
-					'width'   => '1280px',
-					'height'  => '720px',
+					'width'  => '1280px',
+					'height' => '720px',
 				),
 				'type'        => 'dimensions',
 				'option_name' => $option_name,

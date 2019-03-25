@@ -118,7 +118,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 							$styles .= '.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-handle-diamond .fusion-image-before-after-left-arrow::before {';
 							$styles .= 'border-color:' . $color . ' !important;';
 							$styles .= '}';
-						} else if ( isset( $this->args['handle_type'] ) && 'circle' === $this->args['handle_type'] ) {
+						} elseif ( isset( $this->args['handle_type'] ) && 'circle' === $this->args['handle_type'] ) {
 							$color_obj = Fusion_Color::new_color( $color );
 
 							$styles .= '.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-handle-circle {';
@@ -134,7 +134,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 							$styles .= 'border-left-color:' . Fusion_Helper::fusion_auto_calculate_accent_color( $color ) . ' !important;';
 							$styles .= '}';
 						}
-					} else if ( 'vertical' === $this->args['orientation'] ) {
+					} elseif ( 'vertical' === $this->args['orientation'] ) {
 						$styles .= '.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-up-arrow {';
 						$styles .= 'border-bottom-color:' . $color . ';';
 						$styles .= '}';
@@ -145,7 +145,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 							$styles .= '.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-handle-diamond .fusion-image-before-after-down-arrow::before {';
 							$styles .= 'border-color:' . $color . ' !important;';
 							$styles .= '}';
-						} else if ( isset( $this->args['handle_type'] ) && 'circle' === $this->args['handle_type'] ) {
+						} elseif ( isset( $this->args['handle_type'] ) && 'circle' === $this->args['handle_type'] ) {
 							$color_obj = Fusion_Color::new_color( $color );
 
 							$styles .= '.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-handle-circle {';
@@ -209,8 +209,8 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 
 					$color     = Fusion_Sanitize::color( $this->args['accent_color'] );
 					$color_obj = Fusion_Color::new_color( $color );
-					$styles .= '.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-before-label:before';
-					$styles .= ',.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-after-label:before';
+					$styles   .= '.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-before-label:before';
+					$styles   .= ',.fusion-image-before-after-' . $this->before_after_counter . ' .fusion-image-before-after-after-label:before';
 					if ( 'out-image-up-down' === $this->args['label_placement'] ) {
 						$styles .= ',.fusion-image-before-after-wrapper-' . $this->before_after_counter . ' .fusion-image-before-after-before-label:before';
 						$styles .= ',.fusion-image-before-after-wrapper-' . $this->before_after_counter . ' .fusion-image-before-after-after-label:before';
@@ -280,10 +280,10 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 				if ( 'before_after' === $this->args['type'] ) {
 					$before_direction = ( 'vertical' === $this->args['orientation'] ? 'down' : 'left' );
 					$after_direction  = ( 'vertical' === $this->args['orientation'] ? 'up' : 'right' );
-					$html .= '<div ' . FusionBuilder::attributes( 'before-after-handle-type' ) . '>';
-					$html .= '<span class="fusion-image-before-after-' . $before_direction . '-arrow"></span>';
-					$html .= '<span class="fusion-image-before-after-' . $after_direction . '-arrow"></span>';
-					$html .= '</div>';
+					$html            .= '<div ' . FusionBuilder::attributes( 'before-after-handle-type' ) . '>';
+					$html            .= '<span class="fusion-image-before-after-' . $before_direction . '-arrow"></span>';
+					$html            .= '<span class="fusion-image-before-after-' . $after_direction . '-arrow"></span>';
+					$html            .= '</div>';
 				}
 
 				$html .= '</div>';
@@ -332,6 +332,8 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 					'src'   => $this->args['before_image'],
 				);
 
+				$attr = $fusion_library->images->lazy_load_attributes( $attr, $this->args['before_image_id'] );
+
 				return $attr;
 			}
 
@@ -358,6 +360,8 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 					'class' => ( 'before_after' === $this->args['type'] ? 'fusion-image-before-after-after' : 'fusion-image-switch-after' ),
 					'src'   => $this->args['after_image'],
 				);
+
+				$attr = $fusion_library->images->lazy_load_attributes( $attr, $this->args['after_image_id'] );
 
 				return $attr;
 			}
@@ -457,7 +461,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 
 				if ( 'switch' === $this->args['type'] ) {
 					$attr['class'] .= ' fusion-image-switch';
-				} else if ( 'before_after' === $this->args['type'] ) {
+				} elseif ( 'before_after' === $this->args['type'] ) {
 					$attr['class'] .= ' fusion-image-before-after fusion-image-before-after-container';
 
 					if ( $this->args['offset'] || 0 === $this->args['offset'] ) {
@@ -471,9 +475,9 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 						if ( 'drag_click' === $this->args['handle_movement'] ) {
 							$attr['data-move-with-handle-only'] = 'true';
 							$attr['data-click-to-move']         = 'true';
-						} else if ( 'drag' === $this->args['handle_movement'] ) {
+						} elseif ( 'drag' === $this->args['handle_movement'] ) {
 							$attr['data-move-with-handle-only'] = 'true';
-						} else if ( 'hover' === $this->args['handle_movement'] ) {
+						} elseif ( 'hover' === $this->args['handle_movement'] ) {
 							$attr['data-move-slider-on-hover'] = 'true';
 						}
 					}
@@ -509,7 +513,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 						'id'          => 'image_before_after_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'before_after_type' => array(
+							'before_after_type'            => array(
 								'label'       => esc_html__( 'Effect Type', 'fusion-builder' ),
 								'description' => esc_html__( 'Select which type of effect your before and after image uses. "Slide" provides a handle to move back and forth while "Fade" changes the image on mouse hover.', 'fusion-builder' ),
 								'id'          => 'before_after_type',
@@ -520,16 +524,16 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 									'switch'       => esc_attr__( 'Fade', 'fusion-builder' ),
 								),
 							),
-							'before_after_font_size' => array(
+							'before_after_font_size'       => array(
 								'type'        => 'slider',
 								'label'       => esc_attr__( 'Label Font Size', 'fusion-builder' ),
 								'description' => esc_attr__( 'Controls the font size of the label text. Note: font family is controlled by body font in theme options.', 'fusion-builder' ),
 								'id'          => 'before_after_font_size',
 								'default'     => '13',
 								'choices'     => array(
-									'min'         => '10',
-									'max'         => '100',
-									'step'        => '1',
+									'min'  => '10',
+									'max'  => '100',
+									'step' => '1',
 								),
 								'required'    => array(
 									array(
@@ -539,7 +543,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 									),
 								),
 							),
-							'before_after_accent_color' => array(
+							'before_after_accent_color'    => array(
 								'label'       => esc_html__( 'Label Accent Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the label background and text. Text takes 100% of this color, background takes a % of it.', 'fusion-builder' ),
 								'id'          => 'before_after_accent_color',
@@ -572,19 +576,19 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 									),
 								),
 							),
-							'before_after_handle_type' => array(
+							'before_after_handle_type'     => array(
 								'label'       => esc_html__( 'Handle Design Style', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the design of the handle used to change the before and after image.', 'fusion-builder' ),
 								'id'          => 'before_after_handle_type',
 								'default'     => 'default',
 								'type'        => 'select',
 								'choices'     => array(
-									'default'    => esc_html__( 'Circle With Arrows', 'fusion-builder' ),
-									'square'     => esc_html__( 'Square With Arrows', 'fusion-builder' ),
-									'rectangle'  => esc_html__( 'Rectangle With Arrows', 'fusion-builder' ),
-									'arrows'     => esc_html__( 'Arrows', 'fusion-builder' ),
-									'diamond'    => esc_html__( 'Diamond', 'fusion-builder' ),
-									'circle'     => esc_html__( 'Single Circle', 'fusion-builder' ),
+									'default'   => esc_html__( 'Circle With Arrows', 'fusion-builder' ),
+									'square'    => esc_html__( 'Square With Arrows', 'fusion-builder' ),
+									'rectangle' => esc_html__( 'Rectangle With Arrows', 'fusion-builder' ),
+									'arrows'    => esc_html__( 'Arrows', 'fusion-builder' ),
+									'diamond'   => esc_html__( 'Diamond', 'fusion-builder' ),
+									'circle'    => esc_html__( 'Single Circle', 'fusion-builder' ),
 								),
 								'required'    => array(
 									array(
@@ -594,7 +598,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 									),
 								),
 							),
-							'before_after_handle_color' => array(
+							'before_after_handle_color'    => array(
 								'label'       => esc_html__( 'Handle Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the before and after image handle line and arrows. ex: #ffffff.', 'fusion-builder' ),
 								'id'          => 'before_after_handle_color',
@@ -608,7 +612,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 									),
 								),
 							),
-							'before_after_handle_bg' => array(
+							'before_after_handle_bg'       => array(
 								'label'       => esc_html__( 'Handle Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background color of the before and after image handle switch. ex: #000000.', 'fusion-builder' ),
 								'id'          => 'before_after_handle_bg',
@@ -632,7 +636,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 									),
 								),
 							),
-							'before_after_offset' => array(
+							'before_after_offset'          => array(
 								'label'       => esc_html__( 'Handle Offset', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls where the handle will be positioned on page load allowing you to control how much of each image displays by default. In percentage.', 'fusion-builder' ),
 								'id'          => 'before_after_offset',
@@ -651,7 +655,7 @@ if ( fusion_is_element_enabled( 'fusion_image_before_after' ) ) {
 									),
 								),
 							),
-							'before_after_orientation' => array(
+							'before_after_orientation'     => array(
 								'label'       => esc_html__( 'Handle Orientation', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the position of the before and after image handle.', 'fusion-builder' ),
 								'id'          => 'before_after_orientation',
@@ -759,12 +763,12 @@ function fusion_element_image_before_after() {
 
 	fusion_builder_map(
 		array(
-			'name'          => __( 'Image Before & After', 'fusion-builder' ),
-			'shortcode'     => 'fusion_image_before_after',
-			'icon'          => 'fusiona-object-ungroup',
-			'preview'       => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-image-before-after-preview.php',
-			'preview_id'    => 'fusion-builder-block-module-image-before-after-preview-template',
-			'params'        => array(
+			'name'       => __( 'Image Before & After', 'fusion-builder' ),
+			'shortcode'  => 'fusion_image_before_after',
+			'icon'       => 'fusiona-object-ungroup',
+			'preview'    => FUSION_BUILDER_PLUGIN_DIR . 'inc/templates/previews/fusion-image-before-after-preview.php',
+			'preview_id' => 'fusion-builder-block-module-image-before-after-preview-template',
+			'params'     => array(
 				array(
 					'type'        => 'radio_button_set',
 					'heading'     => esc_attr__( 'Effect Type', 'fusion-builder' ),
@@ -853,9 +857,9 @@ function fusion_element_image_before_after() {
 					'default'     => intval( $fusion_settings->get( 'before_after_font_size' ) ),
 					'value'       => '',
 					'choices'     => array(
-						'min'         => '10',
-						'max'         => '100',
-						'step'        => '1',
+						'min'  => '10',
+						'max'  => '100',
+						'step' => '1',
 					),
 					'dependency'  => array(
 						array(
@@ -926,10 +930,10 @@ function fusion_element_image_before_after() {
 					'description' => esc_attr__( 'Choose if labels are on top of the image and centered, on top of the image up & down or outside of the image up & down.', 'fusion-builder' ),
 					'param_name'  => 'label_placement',
 					'value'       => array(
-						''                   => __( 'Default', 'fusion-builder' ),
-						'image-centered'     => __( 'Image Centered', 'fusion-builder' ),
-						'image-up-down'      => __( 'Image Up & Down', 'fusion-builder' ),
-						'out-image-up-down'  => __( 'Outside Image Up & Down', 'fusion-builder' ),
+						''                  => __( 'Default', 'fusion-builder' ),
+						'image-centered'    => __( 'Image Centered', 'fusion-builder' ),
+						'image-up-down'     => __( 'Image Up & Down', 'fusion-builder' ),
+						'out-image-up-down' => __( 'Outside Image Up & Down', 'fusion-builder' ),
 					),
 					'dependency'  => array(
 						array(

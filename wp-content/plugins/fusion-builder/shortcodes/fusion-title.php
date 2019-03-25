@@ -253,7 +253,7 @@ if ( fusion_is_element_enabled( 'fusion_title' ) ) {
 				}
 
 				if ( $this->args['line_height'] ) {
-					$attr['style'] .= 'line-height:' . $fusion_library->sanitize->get_value_with_unit( $this->args['line_height'] ) . ';';
+					$attr['style'] .= 'line-height:' . $fusion_library->sanitize->size( $this->args['line_height'] ) . ';';
 				}
 
 				if ( $this->args['letter_spacing'] ) {

@@ -79,10 +79,10 @@ if ( fusion_is_element_enabled( 'fusion_modal' ) ) {
 
 				extract( $defaults );
 
-				$this->args  = $defaults;
+				$this->args = $defaults;
 
-				$color_obj   = Fusion_Color::new_color( $background );
-				$style       = '<style type="text/css">';
+				$color_obj = Fusion_Color::new_color( $background );
+				$style     = '<style type="text/css">';
 
 				if ( $border_color ) {
 					$style .= '.modal-' . $this->modal_counter . ' .modal-header, .modal-' . $this->modal_counter . ' .modal-footer{border-color:' . $border_color . ';}';
@@ -266,7 +266,7 @@ if ( fusion_is_element_enabled( 'fusion_modal' ) ) {
 						'id'          => 'modal_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'modal_bg_color' => array(
+							'modal_bg_color'     => array(
 								'label'       => esc_html__( 'Modal Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background color of the modal popup box.', 'fusion-builder' ),
 								'id'          => 'modal_bg_color',
@@ -512,10 +512,10 @@ add_action( 'fusion_builder_before_init', 'fusion_element_modal' );
 function fusion_element_modal_link() {
 	fusion_builder_map(
 		array(
-			'name'              => esc_attr__( 'Modal Text / HTML Link', 'fusion-builder' ),
-			'shortcode'         => 'fusion_modal_text_link',
-			'icon'              => 'fusiona-external-link',
-			'params'            => array(
+			'name'      => esc_attr__( 'Modal Text / HTML Link', 'fusion-builder' ),
+			'shortcode' => 'fusion_modal_text_link',
+			'icon'      => 'fusiona-external-link',
+			'params'    => array(
 				array(
 					'type'        => 'textfield',
 					'heading'     => esc_attr__( 'Name Of Modal', 'fusion-builder' ),

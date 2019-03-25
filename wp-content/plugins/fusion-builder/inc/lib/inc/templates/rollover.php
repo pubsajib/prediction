@@ -176,7 +176,7 @@ $link_target = ( 'yes' === $link_icon_target || 'yes' === $post_links_target || 
 			<?php if ( $display_post_title ) : ?>
 				<h4 class="fusion-rollover-title">
 					<a href="<?php echo esc_url_raw( $icon_permalink ); ?>"<?php echo $link_target; // WPCS: XSS ok. ?>>
-						<?php echo get_the_title( $post_id ); ?>
+						<?php echo get_the_title( $post_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</a>
 				</h4>
 			<?php endif; ?>

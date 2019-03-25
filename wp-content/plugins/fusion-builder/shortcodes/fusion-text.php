@@ -57,7 +57,7 @@ if ( fusion_is_element_enabled( 'fusion_text' ) ) {
 						'columns'          => $fusion_settings->get( 'text_columns' ),
 						'column_min_width' => $fusion_settings->get( 'text_column_min_width' ),
 						'column_spacing'   => $fusion_settings->get( 'text_column_spacing' ),
-						'hide_on_mobile'      => fusion_builder_default_visibility( 'string' ),
+						'hide_on_mobile'   => fusion_builder_default_visibility( 'string' ),
 						'id'               => '',
 						'rule_color'       => $fusion_settings->get( 'text_rule_color' ),
 						'rule_size'        => $fusion_settings->get( 'text_rule_size' ),
@@ -148,7 +148,7 @@ if ( fusion_is_element_enabled( 'fusion_text' ) ) {
 						'id'          => 'text_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'text_columns' => array(
+							'text_columns'          => array(
 								'label'       => esc_html__( 'Number Of Inline Columns', 'fusion-builder' ),
 								'description' => __( 'Set the number of columns the text should be broken into.<br />IMPORTANT: This feature is designed to be used for running text, images, dropcaps and other inline content. While some block elements will work, their usage is not recommended and others can easily break the layout.', 'fusion-builder' ),
 								'id'          => 'text_columns',
@@ -174,7 +174,7 @@ if ( fusion_is_element_enabled( 'fusion_text' ) ) {
 									),
 								),
 							),
-							'text_column_spacing' => array(
+							'text_column_spacing'   => array(
 								'label'       => esc_html__( 'Column Spacing', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the column spacing between one column to the next.', 'fusion-builder' ),
 								'id'          => 'text_column_spacing',
@@ -188,20 +188,20 @@ if ( fusion_is_element_enabled( 'fusion_text' ) ) {
 									),
 								),
 							),
-							'text_rule_style' => array(
+							'text_rule_style'       => array(
 								'label'       => esc_html__( 'Rule Style', 'fusion-builder' ),
 								'description' => esc_html__( 'Select the style of the vertical line between columns. Some of the styles depend on the rule size and color.', 'fusion-builder' ),
 								'id'          => 'text_rule_style',
 								'default'     => 'none',
 								'type'        => 'select',
 								'choices'     => array(
-									'none'      => esc_html__( 'None', 'fusion-builder' ),
-									'solid'     => esc_html__( 'Solid', 'fusion-builder' ),
-									'dashed'    => esc_html__( 'Dashed', 'fusion-builder' ),
-									'dotted'    => esc_html__( 'Dotted', 'fusion-builder' ),
-									'double'    => esc_html__( 'Double', 'fusion-builder' ),
-									'groove'    => esc_html__( 'Groove', 'fusion-builder' ),
-									'ridge'     => esc_html__( 'Ridge', 'fusion-builder' ),
+									'none'   => esc_html__( 'None', 'fusion-builder' ),
+									'solid'  => esc_html__( 'Solid', 'fusion-builder' ),
+									'dashed' => esc_html__( 'Dashed', 'fusion-builder' ),
+									'dotted' => esc_html__( 'Dotted', 'fusion-builder' ),
+									'double' => esc_html__( 'Double', 'fusion-builder' ),
+									'groove' => esc_html__( 'Groove', 'fusion-builder' ),
+									'ridge'  => esc_html__( 'Ridge', 'fusion-builder' ),
 								),
 								'required'    => array(
 									array(
@@ -211,7 +211,7 @@ if ( fusion_is_element_enabled( 'fusion_text' ) ) {
 									),
 								),
 							),
-							'text_rule_size' => array(
+							'text_rule_size'        => array(
 								'label'       => esc_html__( 'Rule Size', 'fusion-builder' ),
 								'description' => esc_attr__( 'Sets the size of the vertical line between columns. The rule is rendered as "below" spacing and columns, so it can span over the gap between columns if it is larger than the column spacing amount.', 'fusion-builder' ),
 								'id'          => 'text_rule_size',
@@ -235,7 +235,7 @@ if ( fusion_is_element_enabled( 'fusion_text' ) ) {
 									),
 								),
 							),
-							'text_rule_color' => array(
+							'text_rule_color'       => array(
 								'label'       => esc_html__( 'Rule Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the vertical line between columns.', 'fusion-builder' ),
 								'id'          => 'text_rule_color',
@@ -326,14 +326,14 @@ function fusion_element_text() {
 					'description' => esc_attr__( 'Select the style of the vertical line between columns. Some of the styles depend on the rule size and color.', 'fusion-builder' ),
 					'param_name'  => 'rule_style',
 					'value'       => array(
-						'default'   => esc_html__( 'Default', 'fusion-builder' ),
-						'none'     => esc_attr__( 'None', 'fusion-builder' ),
-						'solid'    => esc_attr__( 'Solid', 'fusion-builder' ),
-						'dashed'   => esc_attr__( 'Dashed', 'fusion-builder' ),
-						'dotted'   => esc_attr__( 'Dotted', 'fusion-builder' ),
-						'double'   => esc_attr__( 'Double', 'fusion-builder' ),
-						'groove'   => esc_attr__( 'Groove', 'fusion-builder' ),
-						'ridge'    => esc_attr__( 'Ridge', 'fusion-builder' ),
+						'default' => esc_html__( 'Default', 'fusion-builder' ),
+						'none'    => esc_attr__( 'None', 'fusion-builder' ),
+						'solid'   => esc_attr__( 'Solid', 'fusion-builder' ),
+						'dashed'  => esc_attr__( 'Dashed', 'fusion-builder' ),
+						'dotted'  => esc_attr__( 'Dotted', 'fusion-builder' ),
+						'double'  => esc_attr__( 'Double', 'fusion-builder' ),
+						'groove'  => esc_attr__( 'Groove', 'fusion-builder' ),
+						'ridge'   => esc_attr__( 'Ridge', 'fusion-builder' ),
 					),
 					'default'     => 'default',
 					'dependency'  => array(

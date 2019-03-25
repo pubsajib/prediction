@@ -17,20 +17,20 @@ function fusion_builder_options_section_rollover( $sections ) {
 	$settings    = get_option( $option_name, array() );
 
 	$sections['rollover'] = array(
-		'label'       => esc_html__( 'Featured Image Rollover', 'fusion-builder' ),
-		'id'          => 'rollover',
-		'is_panel'    => true,
-		'priority'    => 26,
-		'icon'        => 'el-icon-photo',
-		'fields'      => array(
-			'image_rollover' => array(
+		'label'    => esc_html__( 'Featured Image Rollover', 'fusion-builder' ),
+		'id'       => 'rollover',
+		'is_panel' => true,
+		'priority' => 26,
+		'icon'     => 'el-icon-photo',
+		'fields'   => array(
+			'image_rollover'              => array(
 				'label'       => esc_html__( 'Image Rollover', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the rollover graphic on blog and portfolio featured images.', 'fusion-builder' ),
 				'id'          => 'image_rollover',
 				'default'     => '1',
 				'type'        => 'switch',
 			),
-			'image_rollover_direction' => array(
+			'image_rollover_direction'    => array(
 				'label'       => esc_html__( 'Image Rollover Direction', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the direction the rollover starts from.', 'fusion-builder' ),
 				'id'          => 'image_rollover_direction',
@@ -53,7 +53,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'image_rollover_icon_size' => array(
+			'image_rollover_icon_size'    => array(
 				'label'       => esc_html__( 'Image Rollover Icon Font Size', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the size of the rollover icons.', 'fusion-builder' ),
 				'id'          => 'image_rollover_icon_size',
@@ -67,7 +67,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'link_image_rollover' => array(
+			'link_image_rollover'         => array(
 				'label'       => esc_html__( 'Image Rollover Link Icon', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the link icon in the image rollover.', 'fusion-builder' ),
 				'id'          => 'link_image_rollover',
@@ -81,7 +81,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'zoom_image_rollover' => array(
+			'zoom_image_rollover'         => array(
 				'label'       => esc_html__( 'Image Rollover Zoom Icon', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the zoom icon in the image rollover.', 'fusion-builder' ),
 				'id'          => 'zoom_image_rollover',
@@ -95,7 +95,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'title_image_rollover' => array(
+			'title_image_rollover'        => array(
 				'label'       => esc_html__( 'Image Rollover Title', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the post title in the image rollover.', 'fusion-builder' ),
 				'id'          => 'title_image_rollover',
@@ -109,7 +109,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'cats_image_rollover' => array(
+			'cats_image_rollover'         => array(
 				'label'       => esc_html__( 'Image Rollover Categories', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the post categories in the image rollover.', 'fusion-builder' ),
 				'id'          => 'cats_image_rollover',
@@ -123,7 +123,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'icon_circle_image_rollover' => array(
+			'icon_circle_image_rollover'  => array(
 				'label'       => esc_html__( 'Image Rollover Icon Circle', 'fusion-builder' ),
 				'description' => esc_html__( 'Turn on to display the icon background circle in the image rollover.', 'fusion-builder' ),
 				'id'          => 'icon_circle_image_rollover',
@@ -137,7 +137,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'image_gradient_top_color' => array(
+			'image_gradient_top_color'    => array(
 				'label'       => esc_html__( 'Image Rollover Gradient Top Color', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the top color of the image rollover background.', 'fusion-builder' ),
 				'id'          => 'image_gradient_top_color',
@@ -165,7 +165,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'image_rollover_text_color' => array(
+			'image_rollover_text_color'   => array(
 				'label'       => esc_html__( 'Image Rollover Element Color', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the color of image rollover text and icon circular backgrounds.', 'fusion-builder' ),
 				'id'          => 'image_rollover_text_color',
@@ -179,7 +179,7 @@ function fusion_builder_options_section_rollover( $sections ) {
 					),
 				),
 			),
-			'image_rollover_icon_color' => array(
+			'image_rollover_icon_color'   => array(
 				'label'       => esc_html__( 'Image Rollover Icon Color', 'fusion-builder' ),
 				'description' => esc_html__( 'Controls the color of the icons in the image rollover.', 'fusion-builder' ),
 				'id'          => 'image_rollover_icon_color',

@@ -269,45 +269,44 @@ class Fusion_Settings {
 
 					// The subset is set so we can just return it.
 					return apply_filters( "avada_setting_get_{$setting}[{$subset}]", $value[ $subset ] );
-				} else {
-					if ( null !== $default ) {
-						return $default;
-					}
-
-					// If we've reached this point then the setting has not been set in the db.
-					// We'll need to get the default value.
-					return apply_filters( "avada_setting_get_{$setting}[{$subset}]", $this->get_default( $setting, $subset ) );
-				}
-			} else {
-
-				// Hack for color & color-alpha fields.
-				if ( isset( self::$options_with_id[ $setting ]['type'] ) && in_array( self::$options_with_id[ $setting ]['type'], array( 'color', 'color-alpha' ), true ) ) {
-					if ( empty( $value ) ) {
-						if ( null !== $default ) {
-							return $default;
-						}
-						return apply_filters( "avada_setting_get_{$setting}[{$subset}]", $this->get_default( $setting, $subset ) );
-					}
 				}
 
-				// We don't want a subset so just return the value.
-				return $value;
-			}
-		} else {
-
-			// If we've reached this point then the setting has not been set in the db.
-			// We'll need to get the default value.
-			if ( $subset ) {
 				if ( null !== $default ) {
 					return $default;
 				}
+
+				// If we've reached this point then the setting has not been set in the db.
+				// We'll need to get the default value.
 				return apply_filters( "avada_setting_get_{$setting}[{$subset}]", $this->get_default( $setting, $subset ) );
+
 			}
+
+			// Hack for color & color-alpha fields.
+			if ( isset( self::$options_with_id[ $setting ]['type'] ) && in_array( self::$options_with_id[ $setting ]['type'], array( 'color', 'color-alpha' ), true ) ) {
+				if ( empty( $value ) ) {
+					if ( null !== $default ) {
+						return $default;
+					}
+					return apply_filters( "avada_setting_get_{$setting}[{$subset}]", $this->get_default( $setting, $subset ) );
+				}
+			}
+
+			// We don't want a subset so just return the value.
+			return $value;
+		}
+
+		// If we've reached this point then the setting has not been set in the db.
+		// We'll need to get the default value.
+		if ( $subset ) {
 			if ( null !== $default ) {
 				return $default;
 			}
-			return apply_filters( "avada_setting_get_{$setting}", $this->get_default( $setting ) );
+			return apply_filters( "avada_setting_get_{$setting}[{$subset}]", $this->get_default( $setting, $subset ) );
 		}
+		if ( null !== $default ) {
+			return $default;
+		}
+		return apply_filters( "avada_setting_get_{$setting}", $this->get_default( $setting ) );
 	}
 
 	/**

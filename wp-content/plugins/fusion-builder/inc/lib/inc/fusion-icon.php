@@ -119,7 +119,8 @@ if ( ! function_exists( 'fusion_get_icons_array' ) ) {
 	 * @return array
 	 */
 	function fusion_get_icons_array() {
+		$path = Fusion_Font_Awesome::is_fa_pro_enabled() ? '/assets/fonts/fontawesome/icons_pro.php' : '/assets/fonts/fontawesome/icons_free.php';
 
-		return include wp_normalize_path( FUSION_LIBRARY_PATH . '/assets/fonts/fontawesome/icons.php' );
+		return include wp_normalize_path( FUSION_LIBRARY_PATH . $path );
 	}
 }

@@ -65,6 +65,15 @@ class Fusion_Images {
 	public static $masonry_width_double;
 
 	/**
+	 * Whether lazy load is active or not.
+	 *
+	 * @static
+	 * @access public
+	 * @var int
+	 */
+	public static $lazy_load;
+
+	/**
 	 * Constructor.
 	 *
 	 * @access  public
@@ -81,12 +90,13 @@ class Fusion_Images {
 		self::$supported_grid_layouts = array( 'masonry', 'grid', 'timeline', 'large', 'portfolio_full', 'related-posts' );
 		self::$masonry_grid_ratio     = $fusion_settings->get( 'masonry_grid_ratio' );
 		self::$masonry_width_double   = $fusion_settings->get( 'masonry_width_double' );
+		self::$lazy_load              = $fusion_settings->get( 'lazy_load' );
 
 		add_filter( 'max_srcset_image_width', array( $this, 'set_max_srcset_image_width' ) );
-		add_filter( 'wp_calculate_image_srcset', array( $this, 'set_largest_image_size' ), '10', '5' );
-		add_filter( 'wp_calculate_image_srcset', array( $this, 'edit_grid_image_srcset' ), '15', '5' );
-		add_filter( 'wp_calculate_image_sizes', array( $this, 'edit_grid_image_sizes' ), '10', '5' );
-		add_filter( 'post_thumbnail_html', array( $this, 'edit_grid_image_src' ), '10', '5' );
+		add_filter( 'wp_calculate_image_srcset', array( $this, 'set_largest_image_size' ), 10, 5 );
+		add_filter( 'wp_calculate_image_srcset', array( $this, 'edit_grid_image_srcset' ), 15, 5 );
+		add_filter( 'wp_calculate_image_sizes', array( $this, 'edit_grid_image_sizes' ), 10, 5 );
+		add_filter( 'post_thumbnail_html', array( $this, 'edit_grid_image_src' ), 10, 5 );
 		add_action( 'delete_attachment', array( $this, 'delete_resized_images' ) );
 		add_filter( 'wpseo_sitemap_urlimages', array( $this, 'extract_img_src_for_yoast' ), '10', '2' );
 		add_filter( 'fusion_library_image_base_size_width', array( $this, 'fb_adjust_grid_image_base_size' ), 20, 4 );
@@ -95,6 +105,12 @@ class Fusion_Images {
 		add_filter( 'attachment_fields_to_save', array( $this, 'save_image_meta_fields' ), 10, 2 );
 		add_action( 'admin_head', array( $this, 'style_image_meta_fields' ) );
 		add_filter( 'wp_update_attachment_metadata', array( $this, 'remove_dynamically_generated_images' ), 10, 2 );
+		add_action( 'wp', array( $this, 'enqueue_image_scripts' ) );
+		add_filter( 'post_thumbnail_html', array( $this, 'apply_lazy_loading' ), 99, 5 );
+		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'lazy_load_attributes' ), 10, 2 );
+		add_action( 'the_content', array( $this, 'apply_bulk_lazy_loading' ), 999 );
+		add_filter( 'revslider_layer_content', array( $this, 'prevent_rev_lazy_loading' ), 10, 5 );
+		add_filter( 'layerslider_slider_markup', array( $this, 'prevent_ls_lazy_loading' ), 10, 3 );
 	}
 
 	/**
@@ -325,7 +341,7 @@ class Fusion_Images {
 	 * @return string The html markup of the image.
 	 */
 	public function edit_grid_image_src( $html, $post_id = null, $post_thumbnail_id = null, $size = null, $attr = null ) {
-		if ( isset( self::$grid_image_meta['layout'] ) && in_array( self::$grid_image_meta['layout'], self::$supported_grid_layouts ) && 'full' === $size ) {
+		if ( ! $this->is_lazy_load_enabled() && isset( self::$grid_image_meta['layout'] ) && in_array( self::$grid_image_meta['layout'], self::$supported_grid_layouts ) && 'full' === $size ) {
 			$image_size = $this->get_grid_image_base_size( $post_thumbnail_id, self::$grid_image_meta['layout'], self::$grid_image_meta['columns'] );
 
 			$full_image_src = wp_get_attachment_image_src( $post_thumbnail_id, $image_size );
@@ -333,7 +349,6 @@ class Fusion_Images {
 			$html = preg_replace( '@src="([^"]+)"@', 'src="' . $full_image_src[0] . '"', $html );
 
 		}
-
 		return $html;
 	}
 
@@ -424,8 +439,56 @@ class Fusion_Images {
 		global $fusion_col_type;
 
 		if ( ! empty( $fusion_col_type['type'] ) ) {
+
+			// Do some advanced column size calcs respecting margins for better column width estimation.
+			if ( ! empty( $fusion_col_type['spacings'] ) ) {
+				$width = $this->calc_width_respecting_spacing( $width, $fusion_col_type['spacings'] );
+			}
+
+			// Calc the column width.
 			$coeff = explode( '_', $fusion_col_type['type'] );
 			$width = absint( $width * $coeff[0] / $coeff[1] );
+
+			// Do some advanced column size calcs respecting in column paddings for better column width estimation.
+			if ( isset( $fusion_col_type['padding'] ) ) {
+				$padding = explode( ' ', $fusion_col_type['padding'] );
+
+				if ( isset( $padding[1] ) && isset( $padding[3] ) ) {
+					$padding = array( $padding[1], $padding[3] );
+
+					$width = $this->calc_width_respecting_spacing( $width, $padding );
+				}
+			}
+		}
+
+		return $width;
+	}
+
+	/**
+	 * Reduces a given width by the amount of spacing set.
+	 *
+	 * @since 1.8.0
+	 * @param int   $width         The width to be reduced.
+	 * @param array $spacing_array The array of spacings that need subtracted.
+	 * @return int The reduced width.
+	 */
+	public function calc_width_respecting_spacing( $width, $spacing_array ) {
+		global $fusion_settings;
+
+		if ( ! $fusion_settings ) {
+			$fusion_settings = Fusion_Settings::get_instance();
+		}
+
+		$base_font_size = $fusion_settings->get( 'body_typography', 'font-size' );
+
+		foreach ( $spacing_array as $spacing ) {
+			if ( false !== strpos( $spacing, 'px' ) ) {
+				$width -= (int) $spacing;
+			} elseif ( false !== strpos( $base_font_size, 'px' ) && false !== strpos( $spacing, 'em' ) ) {
+				$width -= (int) $base_font_size * (int) $spacing;
+			} elseif ( false !== strpos( $spacing, '%' ) ) {
+				$width -= $width * (int) $spacing / 100;
+			}
 		}
 
 		return $width;
@@ -435,9 +498,7 @@ class Fusion_Images {
 	 * Setter function for the $grid_image_meta variable.
 	 *
 	 * @since 1.0.0
-	 *
 	 * @param array $grid_image_meta    Array containing layout and number of columns.
-	 *
 	 * @return void
 	 */
 	public function set_grid_image_meta( $grid_image_meta ) {
@@ -950,6 +1011,296 @@ class Fusion_Images {
 		return $data;
 	}
 
+	/**
+	 * Return placeholder image for given dimensions
+	 *
+	 * @static
+	 * @access public
+	 * @since 1.8.0
+	 * @param int $width  Width of real image.
+	 * @param int $height Height of real image.
+	 *
+	 * @return string     Placeholder html string.
+	 */
+	public static function get_lazy_placeholder( $width = 0, $height = 0 ) {
+		$placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+		if ( isset( $width ) && isset( $height ) && $width && $height ) {
+			$width  = (int) $width;
+			$height = (int) $height;
+
+			return 'data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27' . $width . '%27%20height%3D%27' . $height . '%27%20viewBox%3D%270%200%20' . $width . '%20' . $height . '%27%3E%3Crect%20width%3D%27' . $width . '%27%20height%3D%273' . $height . '%27%20fill-opacity%3D%220%22%2F%3E%3C%2Fsvg%3E';
+		}
+		return apply_filters( 'fusion_library_lazy_placeholder', $placeholder, $width, $height );
+	}
+
+	/**
+	 * Filter attributes for the current gallery image tag to add a 'data-full'
+	 * data attribute.
+	 *
+	 * @access public
+	 * @param array $atts       Gallery image tag attributes.
+	 * @param mixed $attachment WP_Post object for the attachment or attachment ID.
+	 * @return array (maybe) filtered gallery image tag attributes.
+	 * @since 1.8.0
+	 */
+	public function lazy_load_attributes( $atts, $attachment ) {
+		if ( $this->is_lazy_load_enabled() && ! is_admin() ) {
+
+			$replaced_atts = $atts;
+
+			if ( ! isset( $atts['class'] ) ) {
+				$replaced_atts['class'] = 'lazyload';
+			} else if ( false !== strpos( $atts['class'], 'lazyload' ) || false !== strpos( $atts['class'], 'rev-slidebg' ) || false !== strpos( $atts['class'], 'ls-' ) ) {
+				return $atts;
+			} else {
+				$replaced_atts['class'] .= ' lazyload';
+			}
+
+			if ( isset( $atts['data-ls'] ) ) {
+				return $atts;
+			}
+
+			// Get image dimensions.
+			$image_id  = is_object( $attachment ) ? $attachment->ID : $attachment;
+			$meta_data = wp_get_attachment_metadata( $image_id );
+			$width     = isset( $meta_data['width'] ) ? $meta_data['width'] : 0;
+			$height    = isset( $meta_data['height'] ) ? $meta_data['height'] : 0;
+
+			$replaced_atts['data-src'] = $atts['src'];
+
+			if ( isset( $atts['srcset'] ) ) {
+				$replaced_atts['srcset']      = self::get_lazy_placeholder( $width, $height );
+				$replaced_atts['data-srcset'] = $atts['srcset'];
+				$replaced_atts['data-sizes']  = 'auto';
+			} else {
+				$replaced_atts['src'] = self::get_lazy_placeholder( $width, $height );
+			}
+
+			unset( $replaced_atts['sizes'] );
+			return $replaced_atts;
+		}
+
+		return $atts;
+	}
+
+	/**
+	 * Filter markup for lazy loading.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @param string       $html              The post thumbnail HTML.
+	 * @param int          $post_id           The post ID.
+	 * @param string       $post_thumbnail_id The post thumbnail ID.
+	 * @param string|array $size              The post thumbnail size. Image size or array of width and height
+	 *                                        values (in that order). Default 'post-thumbnail'.
+	 * @param string       $attr              Query string of attributes.
+	 * @return string The html markup of the image.
+	 */
+	public function apply_lazy_loading( $html, $post_id = null, $post_thumbnail_id = null, $size = null, $attr = null ) {
+		if ( $this->is_lazy_load_enabled() && false === strpos( $html, 'lazyload' ) && false === strpos( $html, 'rev-slidebg' ) ) {
+
+			$src    = '';
+			$width  = 0;
+			$height = 0;
+
+			// Get the image data from src.
+			if ( $post_thumbnail_id ) {
+				$full_image_src = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
+
+				// If image found, use the dimensions and src of image.
+				if ( is_array( $full_image_src ) ) {
+					$src    = isset( $full_image_src[0] ) ? $full_image_src[0] : $src;
+					$width  = isset( $full_image_src[1] ) ? $full_image_src[1] : $width;
+					$height = isset( $full_image_src[2] ) ? $full_image_src[2] : $height;
+				}
+			} else {
+
+				// Get src from markup.
+				preg_match( '@src="([^"]+)"@', $html, $src );
+				if ( array_key_exists( 1, $src ) ) {
+					$src = $src[1];
+				} else {
+					$src = '';
+				}
+
+				// Get dimensions from markup.
+				preg_match( '/width="(.*?)"/', $html, $width );
+				if ( array_key_exists( 1, $width ) ) {
+					preg_match( '/height="(.*?)"/', $html, $height );
+					if ( array_key_exists( 1, $height ) ) {
+						$width  = $width[1];
+						$height = $height[1];
+					}
+				} else if ( $src && '' !== $src ) {
+
+					// No dimensions on tag, try to get from image url.
+					$full_image_src = $this->get_attachment_data_from_url( $src );
+					if ( is_array( $full_image_src ) ) {
+						$width  = isset( $full_image_src['width'] ) ? $full_image_src['width'] : $width;
+						$height = isset( $full_image_src['height'] ) ? $full_image_src['height'] : $height;
+					}
+				}
+			}
+
+			// If src is a data image, just skip.
+			if ( false !== strpos( $src, 'data:image' ) ) {
+				return $html;
+			}
+
+			// Srcset replacement.
+			if ( strpos( $html, 'srcset' ) ) {
+				$html = str_replace(
+					array(
+						' src=',
+						' srcset=',
+						' sizes=',
+					),
+					array(
+						' src="' . $src . '" data-src=',
+						' srcset="' . self::get_lazy_placeholder( $width, $height ) . '" data-srcset=',
+						' data-sizes="auto" data-orig-sizes=',
+					),
+					$html
+				);
+			} else {
+
+				// Simplified non srcset replacement.
+				$html = str_replace( ' src=', ' src="' . self::get_lazy_placeholder( $width, $height ) . '" data-src=', $html );
+			}
+
+			if ( strpos( $html, ' class=' ) ) {
+				$html = str_replace( ' class="', ' class="lazyload ', $html );
+			} else {
+				$html = str_replace( '<img ', '<img class="lazyload" ', $html );
+			}
+		}
+		return $html;
+	}
+
+	/**
+	 * Filter markup for lazy loading.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @param string $content Full html string.
+	 * @return string The html markup of the image.
+	 */
+	public function apply_bulk_lazy_loading( $content ) {
+		if ( $this->is_lazy_load_enabled() ) {
+			preg_match_all( '/<img\s+[^>]*src="([^"]*)"[^>]*>/isU', $content, $images );
+			if ( array_key_exists( 1, $images ) ) {
+				foreach ( $images[0] as $key => $image ) {
+
+					$orig  = $image;
+					$image = $this->apply_lazy_loading( $image );
+
+					// Replace image.
+					$content = str_replace( $orig, $image, $content );
+				}
+			}
+		}
+		return $content;
+	}
+
+	/**
+	 * Disable lazy loading for slider revolution images.
+	 *
+	 * @since 1.8.1
+	 *
+	 * @param string $html Full html string.
+	 * @param string $content Non stripped original content.
+	 * @param object $slider Slider.
+	 * @param object $slide Individual slide.
+	 * @param string $layer Individual layer.
+	 * @return string Altered html markup.
+	 */
+	public function prevent_rev_lazy_loading( $html, $content, $slider, $slide, $layer ) {
+		if ( $this->is_lazy_load_enabled() ) {
+			preg_match_all( '/<img\s+[^>]*src="([^"]*)"[^>]*>/isU', $html, $images );
+			if ( array_key_exists( 1, $images ) ) {
+				foreach ( $images[0] as $key => $image ) {
+
+					$orig  = $image;
+					$image = $this->prevent_lazy_loading( $image );
+
+					// Replace image.
+					$html = str_replace( $orig, $image, $html );
+				}
+			}
+		}
+		return $html;
+	}
+
+	/**
+	 * Prevent layerslider lazy loading.
+	 *
+	 * @since 1.8.1
+	 *
+	 * @param string $html The HTML code that contains the slider markup.
+	 * @param array  $slider The slider database record as an associative array.
+	 * @param string $id  The ID attribute of the slider element.
+	 * @return string Altered html markup.
+	 */
+	public function prevent_ls_lazy_loading( $html, $slider = false, $id = false ) {
+		if ( $this->is_lazy_load_enabled() ) {
+			preg_match_all( '/<img\s+[^>]*src="([^"]*)"[^>]*>/isU', $html, $images );
+			if ( array_key_exists( 1, $images ) ) {
+				foreach ( $images[0] as $key => $image ) {
+
+					$orig  = $image;
+					$image = $this->prevent_lazy_loading( $image );
+
+					// Replace image.
+					$html = str_replace( $orig, $image, $html );
+				}
+			}
+		}
+		return $html;
+	}
+
+	/**
+	 * Filter markup to prevent lazyloading.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @param string $html The post thumbnail HTML.
+	 * @return string The html markup of the image.
+	 */
+	public function prevent_lazy_loading( $html ) {
+		if ( $this->is_lazy_load_enabled() && ! strpos( $html, 'disable-lazyload' ) ) {
+
+			if ( strpos( $html, ' class=' ) ) {
+				$html = str_replace( ' class="', ' class="disable-lazyload ', $html );
+			} else {
+				$html = str_replace( '<img ', '<img class="disable-lazyload" ', $html );
+			}
+		}
+		return $html;
+	}
+
+	/**
+	 * Enqueues image scripts.
+	 *
+	 * @access public
+	 * @since 1.8.0
+	 * @return void
+	 */
+	public function enqueue_image_scripts() {
+		if ( $this->is_lazy_load_enabled() && ! is_admin() ) {
+			Fusion_Dynamic_JS::enqueue_script( 'lazysizes' );
+		}
+	}
+
+	/**
+	 * Determine if we want to lazy-load images or not.
+	 *
+	 * @access public
+	 * @since 1.8.1
+	 * @return bool
+	 */
+	public function is_lazy_load_enabled() {
+		return ( self::$lazy_load && ! Fusion_AMP::is_amp_endpoint() && ! is_admin() );
+	}
 }
 
 /* Omit closing PHP tag to avoid "Headers already sent" issues. */

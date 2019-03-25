@@ -60,50 +60,50 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 
 				$defaults = FusionBuilder::set_shortcode_defaults(
 					array(
-						'hide_on_mobile'        => fusion_builder_default_visibility( 'string' ),
-						'class'                 => '',
-						'id'                    => '',
-						'accent_color'          => ( '' !== $fusion_settings->get( 'button_accent_color' ) ) ? strtolower( $fusion_settings->get( 'button_accent_color' ) ) : '#ffffff',
-						'accent_hover_color'    => ( '' !== $fusion_settings->get( 'button_accent_hover_color' ) ) ? strtolower( $fusion_settings->get( 'button_accent_hover_color' ) ) : '#ffffff',
-						'bevel_color'           => ( '' !== $fusion_settings->get( 'button_bevel_color' ) ) ? strtolower( $fusion_settings->get( 'button_bevel_color' ) ) : '#54770F',
-						'border_width'          => intval( $fusion_settings->get( 'button_border_width' ) ) . 'px',
-						'color'                 => 'default',
-						'gradient_colors'       => '',
-						'icon'                  => '',
-						'icon_divider'          => 'no',
-						'icon_position'         => 'left',
-						'link'                  => '',
-						'link_attributes'       => '',
-						'modal'                 => '',
-						'shape'                 => ( '' !== $fusion_settings->get( 'button_shape' ) ) ? strtolower( $fusion_settings->get( 'button_shape' ) ) : 'round',
-						'size'                  => ( '' !== $fusion_settings->get( 'button_size' ) ) ? strtolower( $fusion_settings->get( 'button_size' ) ) : 'large',
-						'stretch'               => ( '' !== $fusion_settings->get( 'button_span' ) ) ? $fusion_settings->get( 'button_span' ) : 'no',
-						'target'                => '_self',
-						'text_transform'        => '',
-						'title'                 => '',
-						'type'                  => ( '' !== $fusion_settings->get( 'button_type' ) ) ? strtolower( $fusion_settings->get( 'button_type' ) ) : 'flat',
-						'alignment'             => '',
-						'animation_type'        => '',
-						'animation_direction'   => 'down',
-						'animation_speed'       => '',
-						'animation_offset'      => $fusion_settings->get( 'animation_offset' ),
+						'hide_on_mobile'                  => fusion_builder_default_visibility( 'string' ),
+						'class'                           => '',
+						'id'                              => '',
+						'accent_color'                    => ( '' !== $fusion_settings->get( 'button_accent_color' ) ) ? strtolower( $fusion_settings->get( 'button_accent_color' ) ) : '#ffffff',
+						'accent_hover_color'              => ( '' !== $fusion_settings->get( 'button_accent_hover_color' ) ) ? strtolower( $fusion_settings->get( 'button_accent_hover_color' ) ) : '#ffffff',
+						'bevel_color'                     => ( '' !== $fusion_settings->get( 'button_bevel_color' ) ) ? strtolower( $fusion_settings->get( 'button_bevel_color' ) ) : '#54770F',
+						'border_width'                    => intval( $fusion_settings->get( 'button_border_width' ) ) . 'px',
+						'color'                           => 'default',
+						'gradient_colors'                 => '',
+						'icon'                            => '',
+						'icon_divider'                    => 'no',
+						'icon_position'                   => 'left',
+						'link'                            => '',
+						'link_attributes'                 => '',
+						'modal'                           => '',
+						'shape'                           => ( '' !== $fusion_settings->get( 'button_shape' ) ) ? strtolower( $fusion_settings->get( 'button_shape' ) ) : 'round',
+						'size'                            => ( '' !== $fusion_settings->get( 'button_size' ) ) ? strtolower( $fusion_settings->get( 'button_size' ) ) : 'large',
+						'stretch'                         => ( '' !== $fusion_settings->get( 'button_span' ) ) ? $fusion_settings->get( 'button_span' ) : 'no',
+						'target'                          => '_self',
+						'text_transform'                  => '',
+						'title'                           => '',
+						'type'                            => ( '' !== $fusion_settings->get( 'button_type' ) ) ? strtolower( $fusion_settings->get( 'button_type' ) ) : 'flat',
+						'alignment'                       => '',
+						'animation_type'                  => '',
+						'animation_direction'             => 'down',
+						'animation_speed'                 => '',
+						'animation_offset'                => $fusion_settings->get( 'animation_offset' ),
 
 						// Combined in accent_color.
-						'border_color'          => '',
-						'icon_color'            => '',
-						'text_color'            => '',
+						'border_color'                    => '',
+						'icon_color'                      => '',
+						'text_color'                      => '',
 
 						// Combined in accent_hover_color.
-						'border_hover_color'    => '',
-						'icon_hover_color'      => '',
-						'text_hover_color'      => '',
+						'border_hover_color'              => '',
+						'icon_hover_color'                => '',
+						'text_hover_color'                => '',
 
 						// Combined with gradient_colors.
-						'gradient_hover_colors' => '',
+						'gradient_hover_colors'           => '',
 
-						'button_gradient_top_color'          => ( '' !== $fusion_settings->get( 'button_gradient_top_color' ) ) ? $fusion_settings->get( 'button_gradient_top_color' ) : '#a0ce4e',
-						'button_gradient_bottom_color'       => ( '' !== $fusion_settings->get( 'button_gradient_bottom_color' ) ) ? $fusion_settings->get( 'button_gradient_bottom_color' ) : '#a0ce4e',
-						'button_gradient_top_color_hover'    => ( '' !== $fusion_settings->get( 'button_gradient_top_color_hover' ) ) ? $fusion_settings->get( 'button_gradient_top_color_hover' ) : '#96c346',
+						'button_gradient_top_color'       => ( '' !== $fusion_settings->get( 'button_gradient_top_color' ) ) ? $fusion_settings->get( 'button_gradient_top_color' ) : '#a0ce4e',
+						'button_gradient_bottom_color'    => ( '' !== $fusion_settings->get( 'button_gradient_bottom_color' ) ) ? $fusion_settings->get( 'button_gradient_bottom_color' ) : '#a0ce4e',
+						'button_gradient_top_color_hover' => ( '' !== $fusion_settings->get( 'button_gradient_top_color_hover' ) ) ? $fusion_settings->get( 'button_gradient_top_color_hover' ) : '#96c346',
 						'button_gradient_bottom_color_hover' => ( '' !== $fusion_settings->get( 'button_gradient_bottom_color_hover' ) ) ? $fusion_settings->get( 'button_gradient_bottom_color_hover' ) : '#96c346',
 
 					),
@@ -139,9 +139,9 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 
 				// Combined variable settings.
 				$old_border_color = $defaults['border_color'];
-				$old_text_color = $defaults['text_color'];
+				$old_text_color   = $defaults['text_color'];
 
-				$defaults['border_color'] = $defaults['icon_color'] = $defaults['text_color'] = $defaults['accent_color'];
+				$defaults['border_color']       = $defaults['icon_color'] = $defaults['text_color'] = $defaults['accent_color'];
 				$defaults['border_hover_color'] = $defaults['icon_hover_color'] = $defaults['text_hover_color'] = $defaults['accent_hover_color'];
 
 				/*
@@ -205,7 +205,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 
 					if ( $border_width ) {
 						$general_styles .= 'border-width:' . $border_width . ';';
-						$hover_styles .= 'border-width:' . $border_width . ';';
+						$hover_styles   .= 'border-width:' . $border_width . ';';
 					}
 
 					if ( $old_border_color ) {
@@ -387,12 +387,12 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 					$attr['rel'] = 'noopener noreferrer';
 				}
 
-				$this->args['link_attributes']  = ( isset( $this->args['link_attributes'] ) ) ? $this->args['link_attributes'] : '';
+				$this->args['link_attributes'] = ( isset( $this->args['link_attributes'] ) ) ? $this->args['link_attributes'] : '';
 
 				// Add additional, custom link attributes correctly formatted to the anchor.
 				if ( $this->args['link_attributes'] ) {
-					$link_attributs = explode( ' ', $this->args['link_attributes'] );
-					$brackets_search = array( '{', '}' );
+					$link_attributs   = explode( ' ', $this->args['link_attributes'] );
+					$brackets_search  = array( '{', '}' );
 					$brackets_replace = array( '[', ']' );
 
 					foreach ( $link_attributs as $link_attribute ) {
@@ -513,11 +513,11 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 
 				// Button default styling.
 				$main_elements = $elements = apply_filters( 'fusion_builder_element_classes', array( '.fusion-button-default' ), '.fusion-button-default' );
-				$all_elements = array_merge( array( '.fusion-button' ), $main_elements );
+				$all_elements  = array_merge( array( '.fusion-button' ), $main_elements );
 
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background']     = $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color' ) );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['text-transform'] = $fusion_settings->get( 'button_text_transform' );
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_color' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']          = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_color' ) );
 				if ( $fusion_settings->get( 'button_gradient_top_color' ) != $fusion_settings->get( 'button_gradient_bottom_color' ) ) {
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-image'][] = '-webkit-gradient( linear, left bottom, left top, from( ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_bottom_color' ) ) . ' ), to( ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color' ) ) . ' ) )';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-image'][] = 'linear-gradient( to top, ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_bottom_color' ) ) . ', ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color' ) ) . ' )';
@@ -525,7 +525,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 				if ( 'Pill' != $fusion_settings->get( 'button_shape' ) ) {
 					$css['global'][ $dynamic_css_helpers->implode( $main_elements ) ]['filter'] = 'progid:DXImageTransform.Microsoft.gradient(startColorstr=' . Fusion_Color::new_color( $fusion_settings->get( 'button_gradient_top_color' ) )->to_css( 'hex' ) . ', endColorstr=' . Fusion_Color::new_color( $fusion_settings->get( 'button_gradient_bottom_color' ) )->to_css( 'hex' ) . ')';
 				}
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['transition'] = 'all .2s';
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['transition']   = 'all .2s';
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-width'] = intval( $fusion_settings->get( 'button_border_width' ) ) . 'px';
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-style'] = 'solid';
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['border-color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_color' ) );
@@ -542,7 +542,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 				$button_size = strtolower( esc_attr( $fusion_settings->get( 'button_size' ) ) );
 
 				$default_size_selector = apply_filters( 'fusion_builder_element_classes', array( '.fusion-button-default-size' ), '.fusion-button-default-size' );
-				$quantity_elements = apply_filters( 'fusion_builder_element_classes', array( '.fusion-button-quantity' ), '.fusion-button-quantity' );
+				$quantity_elements     = apply_filters( 'fusion_builder_element_classes', array( '.fusion-button-quantity' ), '.fusion-button-quantity' );
 
 				switch ( $button_size ) {
 
@@ -641,7 +641,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 				}
 
 				$elements = $dynamic_css_helpers->map_selector( $elements, ':visited' );
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']      = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_color' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_color' ) );
 
 				// Small 3D Button Styling.
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, '.button-3d.button-small' );
@@ -686,7 +686,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 				// Button hover styling.
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ':hover' );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color_hover' ) );
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $button_accent_hover_color;
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']      = $button_accent_hover_color;
 				if ( $fusion_settings->get( 'button_gradient_top_color_hover' ) != $fusion_settings->get( 'button_gradient_bottom_color_hover' ) ) {
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-image'][] = '-webkit-gradient( linear, left bottom, left top, from( ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_bottom_color_hover' ) ) . ' ), to( ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color_hover' ) ) . ' ) )';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-image'][] = 'linear-gradient( to top, ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_bottom_color_hover' ) ) . ', ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color_hover' ) ) . ' )';
@@ -719,11 +719,11 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 
 				return array(
 					'button_shortcode_section' => array(
-						'label'       => esc_html__( 'Button Element', 'fusion-builder' ),
-						'id'          => 'button_shortcode_section',
-						'type'        => 'accordion',
-						'fields'      => array(
-							'button_size' => array(
+						'label'  => esc_html__( 'Button Element', 'fusion-builder' ),
+						'id'     => 'button_shortcode_section',
+						'type'   => 'accordion',
+						'fields' => array(
+							'button_size'                  => array(
 								'label'       => esc_html__( 'Button Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the default button size.', 'fusion-builder' ),
 								'id'          => 'button_size',
@@ -736,7 +736,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 									'XLarge' => esc_html__( 'X-Large', 'fusion-builder' ),
 								),
 							),
-							'button_span' => array(
+							'button_span'                  => array(
 								'label'       => esc_html__( 'Button Span', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls if the button spans the full width of its container.', 'fusion-builder' ),
 								'id'          => 'button_span',
@@ -747,7 +747,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 									'no'  => esc_html__( 'No', 'fusion-builder' ),
 								),
 							),
-							'button_shape' => array(
+							'button_shape'                 => array(
 								'label'       => esc_html__( 'Button Shape', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the default button shape.', 'fusion-builder' ),
 								'id'          => 'button_shape',
@@ -759,7 +759,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 									'Pill'   => esc_html__( 'Pill', 'fusion-builder' ),
 								),
 							),
-							'button_type' => array(
+							'button_type'                  => array(
 								'label'       => esc_html__( 'Button Type', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the default button type.', 'fusion-builder' ),
 								'id'          => 'button_type',
@@ -770,7 +770,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 									'3d'   => esc_html__( '3D', 'fusion-builder' ),
 								),
 							),
-							'button_typography' => array(
+							'button_typography'            => array(
 								'id'          => 'button_typography',
 								'label'       => esc_html__( 'Button Typography', 'fusion-builder' ),
 								'description' => esc_html__( 'These settings control the typography for all button text.', 'fusion-builder' ),
@@ -786,7 +786,7 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 									'letter-spacing' => '0',
 								),
 							),
-							'button_text_transform' => array(
+							'button_text_transform'        => array(
 								'label'       => esc_attr__( 'Text Transform', 'fusion-builder' ),
 								'description' => esc_attr__( 'Choose how the text is displayed.', 'fusion-builder' ),
 								'id'          => 'button_text_transform',
@@ -794,10 +794,10 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
 									'none'      => esc_attr__( 'Normal', 'fusion-builder' ),
-									'uppercase'  => esc_attr__( 'Uppercase', 'fusion-builder' ),
+									'uppercase' => esc_attr__( 'Uppercase', 'fusion-builder' ),
 								),
 							),
-							'button_gradient_top_color' => array(
+							'button_gradient_top_color'    => array(
 								'label'       => esc_html__( 'Button Gradient Top Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the top color of the button background.', 'fusion-builder' ),
 								'id'          => 'button_gradient_top_color',
@@ -825,28 +825,28 @@ if ( fusion_is_element_enabled( 'fusion_button' ) ) {
 								'default'     => '#96c346',
 								'type'        => 'color-alpha',
 							),
-							'button_accent_color' => array(
+							'button_accent_color'          => array(
 								'label'       => esc_html__( 'Button Accent Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the button border, divider, text and icon.', 'fusion-builder' ),
 								'id'          => 'button_accent_color',
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'button_accent_hover_color' => array(
+							'button_accent_hover_color'    => array(
 								'label'       => esc_html__( 'Button Accent Hover Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the hover color of the button border, divider, text and icon.', 'fusion-builder' ),
 								'id'          => 'button_accent_hover_color',
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'button_bevel_color' => array(
+							'button_bevel_color'           => array(
 								'label'       => esc_html__( 'Button Bevel Color For 3D Mode', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the bevel color of the buttons when using 3D button type.', 'fusion-builder' ),
 								'id'          => 'button_bevel_color',
 								'default'     => '#54770F',
 								'type'        => 'color-alpha',
 							),
-							'button_border_width' => array(
+							'button_border_width'          => array(
 								'label'       => esc_html__( 'Button Border Width', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border width for buttons.', 'fusion-builder' ),
 								'id'          => 'button_border_width',
@@ -987,16 +987,16 @@ function fusion_element_button() {
 					'description' => esc_attr__( "Select the button's color. Select default or color name for theme options, or select custom to use advanced color options below.", 'fusion-builder' ),
 					'param_name'  => 'color',
 					'value'       => array(
-						'default'    => esc_attr__( 'Default', 'fusion-builder' ),
-						'custom'     => esc_attr__( 'Custom', 'fusion-builder' ),
-						'green'      => esc_attr__( 'Green', 'fusion-builder' ),
-						'darkgreen'  => esc_attr__( 'Dark Green', 'fusion-builder' ),
-						'orange'     => esc_attr__( 'Orange', 'fusion-builder' ),
-						'blue'       => esc_attr__( 'Blue', 'fusion-builder' ),
-						'red'        => esc_attr__( 'Red', 'fusion-builder' ),
-						'pink'       => esc_attr__( 'Pink', 'fusion-builder' ),
-						'darkgray'   => esc_attr__( 'Dark Gray', 'fusion-builder' ),
-						'lightgray'  => esc_attr__( 'Light Gray', 'fusion-builder' ),
+						'default'   => esc_attr__( 'Default', 'fusion-builder' ),
+						'custom'    => esc_attr__( 'Custom', 'fusion-builder' ),
+						'green'     => esc_attr__( 'Green', 'fusion-builder' ),
+						'darkgreen' => esc_attr__( 'Dark Green', 'fusion-builder' ),
+						'orange'    => esc_attr__( 'Orange', 'fusion-builder' ),
+						'blue'      => esc_attr__( 'Blue', 'fusion-builder' ),
+						'red'       => esc_attr__( 'Red', 'fusion-builder' ),
+						'pink'      => esc_attr__( 'Pink', 'fusion-builder' ),
+						'darkgray'  => esc_attr__( 'Dark Gray', 'fusion-builder' ),
+						'lightgray' => esc_attr__( 'Light Gray', 'fusion-builder' ),
 					),
 					'default'     => 'default',
 					'group'       => esc_attr__( 'Design', 'fusion-builder' ),
@@ -1302,7 +1302,7 @@ function fusion_element_button() {
 							'operator' => '!=',
 						),
 					),
-					'value'        => array(
+					'value'       => array(
 						''                => esc_attr__( 'Default', 'fusion-builder' ),
 						'top-into-view'   => esc_attr__( 'Top of element hits bottom of viewport', 'fusion-builder' ),
 						'top-mid-of-view' => esc_attr__( 'Top of element hits middle of viewport', 'fusion-builder' ),

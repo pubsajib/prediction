@@ -192,7 +192,7 @@ if ( fusion_is_element_enabled( 'fusion_progress' ) ) {
 					$attr['style'] .= 'border: ' . $this->args['filledbordersize'] . ' solid ' . $this->args['filledbordercolor'] . ';';
 				}
 
-				$attr['role'] = 'progressbar';
+				$attr['role']          = 'progressbar';
 				$attr['aria-valuemin'] = '0';
 				$attr['aria-valuemax'] = '100';
 
@@ -236,10 +236,10 @@ if ( fusion_is_element_enabled( 'fusion_progress' ) ) {
 				$css['global'][ $dynamic_css_helpers->implode( $main_elements ) ]['background-color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'counter_unfilled_color' ) );
 				$css['global'][ $dynamic_css_helpers->implode( $main_elements ) ]['border-color']     = $fusion_library->sanitize->color( $fusion_settings->get( 'counter_unfilled_color' ) );
 
-				$css[ $content_media_query ]['.fusion-progressbar']['margin-bottom'] = '10px !important';
-				$css[ $six_fourty_media_query ]['.fusion-progressbar']['margin-bottom'] = '10px !important';
+				$css[ $content_media_query ]['.fusion-progressbar']['margin-bottom']                 = '10px !important';
+				$css[ $six_fourty_media_query ]['.fusion-progressbar']['margin-bottom']              = '10px !important';
 				$css[ $three_twenty_six_fourty_media_query ]['.fusion-progressbar']['margin-bottom'] = '10px !important';
-				$css[ $ipad_portrait_media_query ]['.fusion-progressbar']['margin-bottom'] = '10px !important';
+				$css[ $ipad_portrait_media_query ]['.fusion-progressbar']['margin-bottom']           = '10px !important';
 
 				return $css;
 
@@ -261,14 +261,14 @@ if ( fusion_is_element_enabled( 'fusion_progress' ) ) {
 						'id'          => 'progressbar_shortcode_section',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'progressbar_height' => array(
+							'progressbar_height'         => array(
 								'label'       => esc_html__( 'Progress Bar Height', 'fusion-builder' ),
 								'description' => esc_html__( 'Insert a height for the progress bar.', 'fusion-builder' ),
 								'id'          => 'progressbar_height',
 								'default'     => '37px',
 								'type'        => 'dimension',
 							),
-							'progressbar_text_position' => array(
+							'progressbar_text_position'  => array(
 								'label'       => esc_html__( 'Progress Bar Text Position', 'fusion-builder' ),
 								'description' => esc_html__( 'Select the position of the progress bar text. Choose "Default" for theme option selection.', 'fusion-builder' ),
 								'id'          => 'progressbar_text_position',
@@ -280,7 +280,7 @@ if ( fusion_is_element_enabled( 'fusion_progress' ) ) {
 									'below_bar' => esc_html__( 'Below Bar', 'fusion-builder' ),
 								),
 							),
-							'progressbar_filled_color' => array(
+							'progressbar_filled_color'   => array(
 								'label'       => esc_html__( 'Progress Bar Filled Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the progress bar filled area.', 'fusion-builder' ),
 								'id'          => 'progressbar_filled_color',
@@ -313,7 +313,7 @@ if ( fusion_is_element_enabled( 'fusion_progress' ) ) {
 								'default'     => '#f6f6f6',
 								'type'        => 'color-alpha',
 							),
-							'progressbar_text_color' => array(
+							'progressbar_text_color'     => array(
 								'label'       => esc_html__( 'Progress Bar Text Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the progress bar text.', 'fusion-builder' ),
 								'id'          => 'progressbar_text_color',

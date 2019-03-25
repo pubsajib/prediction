@@ -66,7 +66,7 @@ function radioItems(array $weights) {
     return $options;
 }
 function prediction_answers() {
-    $id = @$_GET['post'];
+    $id = isset($_GET['post']) && !empty($_GET['post']) ? (int) $_GET['post'] : 0;
     $html = '';
     $data = [];
     $meta = get_post_meta($id, 'event_ops', true);

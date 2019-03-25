@@ -16,7 +16,7 @@
 			</div>
 			<div class="fusion-builder-admin-toggle-content">
 				<?php esc_html_e( 'Fusion Builder is a plugin that allows you to visually build pages through an intuitive drag and drop interface. It is a WYSIWYG editor ( what you see is what you get ), allowing you to visually see what your page will look like while creating it.', 'fusion-builder' ); ?><br/><br/>
-				<?php esc_html_e( 'When editing a page or post, simply click the "Use Fusion Builder" button to activate it, you will see a page that explains all the basic controls and action icons that are included. The user interface has been created in a way that makes page building instinctive and will change your outlook on what a page builder can do. The codebase is clean and optimized providing you with a fast, efficient page builder that will save you time and is a joy to use.' ); ?>
+				<?php esc_html_e( 'When editing a page or post, simply click the "Use Fusion Builder" button to activate it, you will see a page that explains all the basic controls and action icons that are included. The user interface has been created in a way that makes page building instinctive and will change your outlook on what a page builder can do. The codebase is clean and optimized providing you with a fast, efficient page builder that will save you time and is a joy to use.', 'fusion-builder' ); ?>
 			</div>
 		</div>
 

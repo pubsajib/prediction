@@ -80,7 +80,7 @@ if ( null == FusionBuilder()->registration ) {
 				<div class="fusion-builder-option-field">
 					<ul>
 						<?php
-						$i = 0;
+						$i               = 0;
 						$plugin_elements = array(
 							'fusion_featured_products_slider' => array(
 								'name'      => esc_attr__( 'Woo Featured', 'fusion-builder' ),
@@ -92,31 +92,31 @@ if ( null == FusionBuilder()->registration ) {
 								'shortcode' => 'fusion_products_slider',
 								'class'     => ( class_exists( 'WooCommerce' ) ) ? '' : 'hidden',
 							),
-							'fusion_woo_shortcodes' => array(
+							'fusion_woo_shortcodes'  => array(
 								'name'      => esc_attr__( 'Woo Shortcodes', 'fusion-builder' ),
 								'shortcode' => 'fusion_woo_shortcodes',
 								'class'     => ( class_exists( 'WooCommerce' ) ) ? '' : 'hidden',
 							),
-							'layerslider' => array(
-								'name'       => esc_attr__( 'Layer Slider', 'fusion-builder' ),
-								'shortcode'  => 'layerslider',
-								'class'      => ( defined( 'LS_PLUGIN_BASE' ) ) ? '' : 'hidden',
+							'layerslider'            => array(
+								'name'      => esc_attr__( 'Layer Slider', 'fusion-builder' ),
+								'shortcode' => 'layerslider',
+								'class'     => ( defined( 'LS_PLUGIN_BASE' ) ) ? '' : 'hidden',
 							),
-							'rev_slider' => array(
-								'name'      => esc_attr__( 'Revolution Slider', 'fusion-builder' ),
+							'rev_slider'             => array(
+								'name'      => esc_attr__( 'Slider Revolution', 'fusion-builder' ),
 								'shortcode' => 'rev_slider',
 								'class'     => ( defined( 'RS_PLUGIN_PATH' ) ) ? '' : 'hidden',
 							),
-							'fusion_events' => array(
+							'fusion_events'          => array(
 								'name'      => esc_attr__( 'Events', 'fusion-builder' ),
 								'shortcode' => 'fusion_events',
 								'class'     => ( class_exists( 'Tribe__Events__Main' ) ) ? '' : 'hidden',
 							),
-							'fusion_fontawesome' => array(
+							'fusion_fontawesome'     => array(
 								'name'      => esc_attr__( 'Font Awesome Icon', 'fusion-builder' ),
 								'shortcode' => 'fusion_fontawesome',
 							),
-							'fusion_fusionslider' => array(
+							'fusion_fusionslider'    => array(
 								'name'      => esc_attr__( 'Fusion Slider', 'fusion-builder' ),
 								'shortcode' => 'fusion_fusionslider',
 							),
@@ -129,7 +129,7 @@ if ( null == FusionBuilder()->registration ) {
 							if ( empty( $module['hide_from_builder'] ) ) {
 								$i++;
 								$checked = '';
-								$class = ( isset( $module['class'] ) && '' !== $module['class'] ) ? $module['class'] : '';
+								$class   = ( isset( $module['class'] ) && '' !== $module['class'] ) ? $module['class'] : '';
 
 								if ( ( isset( $existing_settings['fusion_elements'] ) && is_array( $existing_settings['fusion_elements'] ) && in_array( $module['shortcode'], $existing_settings['fusion_elements'] ) ) || ( ! isset( $existing_settings['fusion_elements'] ) || ! is_array( $existing_settings['fusion_elements'] ) ) ) {
 									$checked = 'checked';
@@ -158,7 +158,7 @@ if ( null == FusionBuilder()->registration ) {
 					<ul>
 						<input type="hidden" name="post_types[]" value=" " />
 						<?php
-						$args = array(
+						$args       = array(
 							'public' => true,
 						);
 						$post_types = get_post_types( $args, 'names', 'and' );
@@ -168,7 +168,7 @@ if ( null == FusionBuilder()->registration ) {
 							unset( $post_types[ $disabled ] );
 						}
 						$defaults = FusionBuilder::default_post_types();
-						$i = 0;
+						$i        = 0;
 						foreach ( $post_types as $post_type ) :
 							$i++;
 							$post_type_obj = get_post_type_object( $post_type );

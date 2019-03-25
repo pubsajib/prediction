@@ -4715,7 +4715,7 @@ table {
 .fusion-title-preview .underline_solid {
   width: 80%;
   margin: 6px auto 0;
-  height: 11px;
+  height: 16px;
   border-bottom: 1px solid #e4e4e4;
 }
 .fusion-title-preview .underline_solid sub {
@@ -4799,12 +4799,13 @@ table {
   max-width: 70%;
 }
 .fusion-title-preview .align-center {
-  position: absolute;
+  display: block;
+  position: relative;
+  left: 50%;
   background: #fff;
   padding: 0 10px !important;
-  margin: -14px 0 0;
+  margin: 0;
   line-height: 27px;
-  max-width: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);

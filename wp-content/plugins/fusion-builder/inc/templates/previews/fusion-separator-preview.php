@@ -4,9 +4,9 @@ if ( ! $fusion_settings ) {
 	$fusion_settings = Fusion_Settings::get_instance();
 }
 
-$sep_style_type = $fusion_settings->get( 'separator_style_type' );
+$sep_style_type   = $fusion_settings->get( 'separator_style_type' );
 $sep_border_color = fusion_color_needs_adjustment( $fusion_settings->get( 'sep_color' ) ) ? '#dddddd' : $fusion_settings->get( 'sep_color' );
-$sep_border_size = $fusion_settings->get( 'separator_border_size' );
+$sep_border_size  = $fusion_settings->get( 'separator_border_size' );
 
 ?>
 <script type="text/template" id="fusion-builder-block-module-separator-preview-template">

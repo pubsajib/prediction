@@ -15,14 +15,14 @@
 			<?php
 			$addons_json = ( isset( $_GET['reset_transient'] ) ) ? false : get_site_transient( 'fusion_builder_addons_json' );
 			if ( ! $addons_json ) {
-				$response = wp_remote_get(
+				$response    = wp_remote_get(
 					'https://updates.theme-fusion.com/fusion_builder_addon/',
 					array(
 						'timeout'    => 30,
 						'user-agent' => 'fusion-builder',
 					)
 				);
-				$addons_json  = wp_remote_retrieve_body( $response );
+				$addons_json = wp_remote_retrieve_body( $response );
 				set_site_transient( 'fusion_builder_addons_json', $addons_json, 300 );
 			}
 			$addons = json_decode( $addons_json, true );
@@ -32,12 +32,12 @@
 				unset( $addons['415041'] );
 				$addons['coming-soon'] = $coming_soon;
 			}
-			$n = 0;
+			$n                 = 0;
 			$installed_plugins = get_plugins();
 			?>
 			<?php foreach ( $addons as $id => $addon ) : ?>
 				<?php
-				$addon_info = fusion_get_plugin_info( $addon['plugin_name'], $installed_plugins );
+				$addon_info   = fusion_get_plugin_info( $addon['plugin_name'], $installed_plugins );
 				$active_class = '';
 				if ( is_array( $addon_info ) ) {
 					$active_class = ( $addon_info['is_active'] ) ? ' active' : ' installed';
@@ -53,7 +53,7 @@
 								</noscript>
 							</div>
 							<h3 class="theme-name" id="<?php esc_attr( $addon['post_title'] ); ?>">
-								<?php echo ( is_array( $addon_info ) && $addon_info['is_active'] ) ? esc_html__( 'Active:', 'fusion-builder' ) : '';  ?>
+								<?php echo ( is_array( $addon_info ) && $addon_info['is_active'] ) ? esc_html__( 'Active:', 'fusion-builder' ) : ''; ?>
 								<?php echo esc_html( ucwords( $addon['post_title'] ) ); ?>
 								<?php if ( is_array( $addon_info ) ) : ?>
 								<div class="plugin-info">
@@ -85,7 +85,7 @@
 							<?php if ( isset( $addon['new'] ) && true === $addon['new'] ) : ?>
 								<?php
 								// Show the new badge for first 30 days after release.
-								$now = time();
+								$now             = time();
 								$date_difference = (int) floor( ( $now - $addon['date'] ) / ( 60 * 60 * 24 ) );
 
 								if ( 30 >= $date_difference ) :

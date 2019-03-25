@@ -169,9 +169,9 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 
 				$this->args['styles'] = '';
 
-				$stylecolor   = ( '#' === $this->args['pic_style_color'][0] ) ? Fusion_Color::new_color( $this->args['pic_style_color'] )->get_new( 'alpha', '0.3' )->to_css( 'rgba' ) : Fusion_Color::new_color( $this->args['pic_style_color'] )->to_css( 'rgba' );
-				$blur         = $this->args['pic_style_blur'];
-				$blur_radius  = ( (int) $blur + 4 ) . 'px';
+				$stylecolor  = ( '#' === $this->args['pic_style_color'][0] ) ? Fusion_Color::new_color( $this->args['pic_style_color'] )->get_new( 'alpha', '0.3' )->to_css( 'rgba' ) : Fusion_Color::new_color( $this->args['pic_style_color'] )->to_css( 'rgba' );
+				$blur        = $this->args['pic_style_blur'];
+				$blur_radius = ( (int) $blur + 4 ) . 'px';
 
 				if ( 'glow' === $pic_style ) {
 					$this->args['styles'] .= "-webkit-box-shadow: 0 0 {$blur} {$stylecolor};box-shadow: 0 0 {$blur} {$stylecolor};";
@@ -185,12 +185,12 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 
 				$styles = '';
 				if ( 'bottomshadow' === $pic_style ) {
-					$styles  .= '.fusion-person-' . $this->person_counter . ' .element-bottomshadow:before, .fusion-person-' . $this->person_counter . ' .element-bottomshadow:after{';
-					$styles  .= '-webkit-box-shadow: 0 17px 10px ' . $stylecolor . ';box-shadow: 0 17px 10px ' . $stylecolor . ';}';
+					$styles .= '.fusion-person-' . $this->person_counter . ' .element-bottomshadow:before, .fusion-person-' . $this->person_counter . ' .element-bottomshadow:after{';
+					$styles .= '-webkit-box-shadow: 0 17px 10px ' . $stylecolor . ';box-shadow: 0 17px 10px ' . $stylecolor . ';}';
 				}
 				if ( 'liftup' === $this->args['hover_type'] && $pic_borderradius ) {
-					$styles  .= '.fusion-person-' . $this->person_counter . ' .imageframe-liftup:before{';
-					$styles  .= '-webkit-border-radius:' . $this->args['pic_borderradius'] . ';-moz-border-radius:' . $this->args['pic_borderradius'] . ';border-radius:' . $this->args['pic_borderradius'] . ';';
+					$styles .= '.fusion-person-' . $this->person_counter . ' .imageframe-liftup:before{';
+					$styles .= '-webkit-border-radius:' . $this->args['pic_borderradius'] . ';-moz-border-radius:' . $this->args['pic_borderradius'] . ';border-radius:' . $this->args['pic_borderradius'] . ';';
 				}
 
 				if ( '' !== $styles ) {
@@ -206,7 +206,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 
 					$fusion_library->images->set_grid_image_meta(
 						array(
-							'layout' => 'large',
+							'layout'  => 'large',
 							'columns' => '1',
 						)
 					);
@@ -214,6 +214,8 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 					if ( function_exists( 'wp_make_content_images_responsive' ) ) {
 						$picture = wp_make_content_images_responsive( $picture );
 					}
+
+					$picture = $fusion_library->images->apply_lazy_loading( $picture, null, $this->args['picture_id'], 'full' );
 
 					$fusion_library->images->set_grid_image_meta( array() );
 
@@ -228,7 +230,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 
 					$social_networks = fusion_builder_get_social_networks( $defaults );
 					$social_networks = fusion_builder_sort_social_networks( $social_networks );
-					$icons = fusion_builder_build_social_links( $social_networks, 'person-shortcode-icon', $defaults );
+					$icons           = fusion_builder_build_social_links( $social_networks, 'person-shortcode-icon', $defaults );
 					if ( 0 < count( $social_networks ) ) {
 						$social_icons_content_top  = '<div ' . FusionBuilder::attributes( 'person-shortcode-social-networks' ) . '>';
 						$social_icons_content_top .= '<div ' . FusionBuilder::attributes( 'fusion-social-networks-wrapper' ) . '>' . $icons . '</div>';
@@ -452,7 +454,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 				);
 
 				if ( $this->args['background_color'] && 'transparent' != $this->args['background_color'] && Fusion_Color::new_color( $this->args['background_color'] )->alpha ) {
-					$attr['style']  = 'background-color:' . $this->args['background_color'] . ';padding:40px;margin-top:0;';
+					$attr['style'] = 'background-color:' . $this->args['background_color'] . ';padding:40px;margin-top:0;';
 				}
 
 				return $attr;
@@ -542,10 +544,10 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 				}
 
 				$attr['data-placement'] = $this->args['social_icon_tooltip'];
-				$tooltip = $args['social_network'];
-				$tooltip = ( 'googleplus' === strtolower( $tooltip ) ) ? 'Google+' : $tooltip;
-				$tooltip = ( 'youtube' === strtolower( $tooltip ) ) ? 'YouTube' : $tooltip;
-				$tooltip = ( 'linkedin' === strtolower( $tooltip ) ) ? 'LinkedIn' : $tooltip;
+				$tooltip                = $args['social_network'];
+				$tooltip                = ( 'googleplus' === strtolower( $tooltip ) ) ? 'Google+' : $tooltip;
+				$tooltip                = ( 'youtube' === strtolower( $tooltip ) ) ? 'YouTube' : $tooltip;
+				$tooltip                = ( 'linkedin' === strtolower( $tooltip ) ) ? 'LinkedIn' : $tooltip;
 
 				$attr['data-title'] = ucfirst( $tooltip );
 				$attr['title']      = ucfirst( $tooltip );
@@ -587,7 +589,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 								'default'     => 'rgba(0,0,0,0)',
 								'type'        => 'color-alpha',
 							),
-							'person_pic_style' => array(
+							'person_pic_style'        => array(
 								'label'       => esc_html__( 'Person Picture Style Type', 'fusion-builder' ),
 								'description' => esc_html__( 'Select the style type.', 'fusion-builder' ),
 								'id'          => 'person_pic_style',
@@ -600,7 +602,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 									'bottomshadow' => esc_attr__( 'Bottom Shadow', 'fusion-builder' ),
 								),
 							),
-							'person_pic_style_blur' => array(
+							'person_pic_style_blur'   => array(
 								'label'       => esc_html__( 'Person Picture Glow / Drop Shadow Blur', 'fusion-builder' ),
 								'description' => esc_html__( 'Choose the amount of blur added to glow or drop shadow effect.', 'fusion-builder' ),
 								'id'          => 'person_pic_style_blur',
@@ -624,21 +626,21 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 									),
 								),
 							),
-							'person_style_color' => array(
+							'person_style_color'      => array(
 								'label'       => esc_html__( 'Person Style Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the style color for all style types except border.', 'fusion-builder' ),
 								'id'          => 'person_style_color',
 								'default'     => '#000000',
 								'type'        => 'color-alpha',
 							),
-							'person_border_color' => array(
+							'person_border_color'     => array(
 								'label'       => esc_html__( 'Person Border Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border color of the person image.', 'fusion-builder' ),
 								'id'          => 'person_border_color',
 								'default'     => '#f6f6f6',
 								'type'        => 'color-alpha',
 							),
-							'person_border_size' => array(
+							'person_border_size'      => array(
 								'label'       => esc_html__( 'Person Border Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border size of the person image.', 'fusion-builder' ),
 								'id'          => 'person_border_size',
@@ -650,7 +652,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 									'step' => '1',
 								),
 							),
-							'person_border_radius' => array(
+							'person_border_radius'    => array(
 								'label'       => esc_html__( 'Person Border Radius', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border radius of the person image.', 'fusion-builder' ),
 								'id'          => 'person_border_radius',
@@ -658,7 +660,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 								'type'        => 'dimension',
 								'choices'     => array( 'px', '%' ),
 							),
-							'person_alignment' => array(
+							'person_alignment'        => array(
 								'label'       => esc_html__( 'Person Content Alignment', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the alignment of the person content.', 'fusion-builder' ),
 								'id'          => 'person_alignment',
@@ -670,7 +672,7 @@ if ( fusion_is_element_enabled( 'fusion_person' ) ) {
 									'Right'  => esc_html__( 'Right', 'fusion-builder' ),
 								),
 							),
-							'person_icon_position' => array(
+							'person_icon_position'    => array(
 								'label'       => esc_html__( 'Person Social Icon Position', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the position of the social icons.', 'fusion-builder' ),
 								'id'          => 'person_icon_position',
@@ -712,7 +714,7 @@ function fusion_element_person() {
 
 	global $fusion_settings;
 
-	$person_options = array(
+	$person_options         = array(
 		'name'       => esc_attr__( 'Person', 'fusion-builder' ),
 		'shortcode'  => 'fusion_person',
 		'icon'       => 'fusiona-user',
@@ -821,7 +823,7 @@ function fusion_element_person() {
 				'max'         => '50',
 				'step'        => '1',
 				'default'     => $fusion_settings->get( 'person_pic_style_blur' ),
-				'dependency'    => array(
+				'dependency'  => array(
 					array(
 						'element'  => 'picture',
 						'operator' => '!=',

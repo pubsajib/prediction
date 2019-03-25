@@ -157,14 +157,14 @@ function fusion_element_table() {
 						'1' => esc_attr__( 'Style 1', 'fusion-builder' ),
 						'2' => esc_attr__( 'Style 2', 'fusion-builder' ),
 					),
-					'default'          => '1',
+					'default'     => '1',
 				),
 				array(
-					'type'        => 'select',
-					'heading'     => esc_attr__( 'Number of Columns', 'fusion-builder' ),
-					'description' => esc_attr__( 'Select how many columns to display.', 'fusion-builder' ),
-					'param_name'  => 'fusion_table_columns',
-					'value'       => array(
+					'type'             => 'select',
+					'heading'          => esc_attr__( 'Number of Columns', 'fusion-builder' ),
+					'description'      => esc_attr__( 'Select how many columns to display.', 'fusion-builder' ),
+					'param_name'       => 'fusion_table_columns',
+					'value'            => array(
 						''  => esc_attr__( 'Select Columns', 'fusion-builder' ),
 						'1' => esc_attr__( '1 Column', 'fusion-builder' ),
 						'2' => esc_attr__( '2 Columns', 'fusion-builder' ),

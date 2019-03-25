@@ -183,10 +183,8 @@ function profileInfo($user, $echo=true, $ratingIcon='') {
     if ($user) {
         $data .= '<div class="author-photo"> '. get_avatar( $user->user_email , '120 ') .' '. $ratingIcon .'</div>';
         $data .= '<h3><a href="'. site_url('predictor/?p='. $user->user_login) .'">'. get_the_author_meta('nickname',$user->ID) .'</a></h3>';
-        $data .= '<p>';
             if ($user->user_url) $data .= '<strong>Website:</strong> <a href="'. $user->user_url .'">'. $user->user_url .'</a><br />';
             if ($user->user_description) $data .= $user->user_description;
-        $data .= '</p>';
     }
     if ($echo) echo $data;
     return $data;

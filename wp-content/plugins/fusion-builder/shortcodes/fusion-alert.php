@@ -70,7 +70,7 @@ if ( fusion_is_element_enabled( 'fusion_alert' ) ) {
 					$fusion_settings = Fusion_Settings::get_instance();
 				}
 
-				$defaults = FusionBuilder::set_shortcode_defaults(
+				$defaults                = FusionBuilder::set_shortcode_defaults(
 					array(
 						'accent_color'        => '',
 						'animation_direction' => 'left',
@@ -132,7 +132,7 @@ if ( fusion_is_element_enabled( 'fusion_alert' ) ) {
 						break;
 				}
 
-				$html = '<div ' . FusionBuilder::attributes( 'alert-shortcode' ) . '>';
+				$html  = '<div ' . FusionBuilder::attributes( 'alert-shortcode' ) . '>';
 				$html .= ( 'yes' === $dismissable ) ? '<button ' . FusionBuilder::attributes( 'alert-shortcode-button' ) . '>&times;</button>' : '';
 				$html .= '<div class="fusion-alert-content-wrapper">';
 				if ( $icon && 'none' !== $icon ) {
@@ -182,19 +182,23 @@ if ( fusion_is_element_enabled( 'fusion_alert' ) ) {
 				}
 
 				if ( 'custom' === $this->alert_class ) {
-					$args['background_color']  = $this->args['background_color'];
-					$args['accent_color']      = $this->args['accent_color'];
-					$args['border_size']       = $this->args['border_size'];
+					$args['background_color'] = $this->args['background_color'];
+					$args['accent_color']     = $this->args['accent_color'];
+					$args['border_size']      = $this->args['border_size'];
 				} else {
-					$args['background_color']  = ( '' !== $fusion_settings->get( $this->alert_class . '_bg_color' ) ) ? strtolower( $fusion_settings->get( $this->alert_class . '_bg_color' ) ) : '#ffffff';
-					$args['accent_color']      = $fusion_settings->get( $this->alert_class . '_accent_color' );
-					$args['border_size']       = FusionBuilder::validate_shortcode_attr_value( $fusion_settings->get( 'alert_border_size' ), 'px' );
+					$args['background_color'] = ( '' !== $fusion_settings->get( $this->alert_class . '_bg_color' ) ) ? strtolower( $fusion_settings->get( $this->alert_class . '_bg_color' ) ) : '#ffffff';
+					$args['accent_color']     = $fusion_settings->get( $this->alert_class . '_accent_color' );
+					$args['border_size']      = FusionBuilder::validate_shortcode_attr_value( $fusion_settings->get( 'alert_border_size' ), 'px' );
 				}
 
-				$attr['style']  = 'background-color:' . $args['background_color'] . ';';
-				$attr['style'] .= 'color:' . $args['accent_color'] . ';';
-				$attr['style'] .= 'border-color:' . $args['accent_color'] . ';';
-				$attr['style'] .= 'border-width:' . $args['border_size'] . ';';
+				$styles  = '';
+				$styles .= ( $args['background_color'] ) ? 'background-color:' . $args['background_color'] . ';' : '';
+				$styles .= ( $args['accent_color'] ) ? 'color:' . $args['accent_color'] . ';border-color:' . $args['accent_color'] . ';' : '';
+				$styles .= ( $args['border_size'] ) ? 'border-width:' . $args['border_size'] . ';' : '';
+
+				if ( $styles ) {
+					$attr['style'] = $styles;
+				}
 
 				if ( $this->args['animation_type'] ) {
 					$animations = FusionBuilder::animations(
@@ -277,63 +281,63 @@ if ( fusion_is_element_enabled( 'fusion_alert' ) ) {
 						'default'     => '',
 						'type'        => 'accordion',
 						'fields'      => array(
-							'info_bg_color' => array(
+							'info_bg_color'            => array(
 								'label'       => esc_attr__( 'General Background Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the background color for general alert boxes.', 'fusion-builder' ),
 								'id'          => 'info_bg_color',
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'info_accent_color' => array(
+							'info_accent_color'        => array(
 								'label'       => esc_attr__( 'General Accent Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the accent color for general alert boxes.', 'fusion-builder' ),
 								'id'          => 'info_accent_color',
 								'default'     => '#808080',
 								'type'        => 'color-alpha',
 							),
-							'danger_bg_color' => array(
+							'danger_bg_color'          => array(
 								'label'       => esc_attr__( 'Error Background Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the background color for error alert boxes.', 'fusion-builder' ),
 								'id'          => 'danger_bg_color',
 								'default'     => '#f2dede',
 								'type'        => 'color-alpha',
 							),
-							'danger_accent_color' => array(
+							'danger_accent_color'      => array(
 								'label'       => esc_attr__( 'Error Accent Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the accent color for error alert boxes.', 'fusion-builder' ),
 								'id'          => 'danger_accent_color',
 								'default'     => '#a64242',
 								'type'        => 'color-alpha',
 							),
-							'success_bg_color' => array(
+							'success_bg_color'         => array(
 								'label'       => esc_attr__( 'Success Background Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the background color for success alert boxes.', 'fusion-builder' ),
 								'id'          => 'success_bg_color',
 								'default'     => '#dff0d8',
 								'type'        => 'color-alpha',
 							),
-							'success_accent_color' => array(
+							'success_accent_color'     => array(
 								'label'       => esc_attr__( 'Success Accent Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the accent color for success alert boxes.', 'fusion-builder' ),
 								'id'          => 'success_accent_color',
 								'default'     => '#5ca340',
 								'type'        => 'color-alpha',
 							),
-							'warning_bg_color' => array(
+							'warning_bg_color'         => array(
 								'label'       => esc_attr__( 'Notice Background Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the background color for notice alert boxes.', 'fusion-builder' ),
 								'id'          => 'warning_bg_color',
 								'default'     => '#fcf8e3',
 								'type'        => 'color-alpha',
 							),
-							'warning_accent_color' => array(
+							'warning_accent_color'     => array(
 								'label'       => esc_attr__( 'Notice Accent Color', 'fusion-builder' ),
 								'description' => esc_attr__( 'Set the accent color for notice alert boxes.', 'fusion-builder' ),
 								'id'          => 'warning_accent_color',
 								'default'     => '#d9b917',
 								'type'        => 'color-alpha',
 							),
-							'alert_box_text_align' => array(
+							'alert_box_text_align'     => array(
 								'label'       => esc_attr__( 'Content Alignment', 'fusion-builder' ),
 								'description' => esc_attr__( 'Choose how the content should be displayed.', 'fusion-builder' ),
 								'id'          => 'alert_box_text_align',
@@ -352,11 +356,11 @@ if ( fusion_is_element_enabled( 'fusion_alert' ) ) {
 								'default'     => 'capitalize',
 								'type'        => 'radio-buttonset',
 								'choices'     => array(
-									'normal'      => esc_attr__( 'Normal', 'fusion-builder' ),
-									'capitalize'  => esc_attr__( 'Uppercase', 'fusion-builder' ),
+									'normal'     => esc_attr__( 'Normal', 'fusion-builder' ),
+									'capitalize' => esc_attr__( 'Uppercase', 'fusion-builder' ),
 								),
 							),
-							'alert_box_dismissable' => array(
+							'alert_box_dismissable'    => array(
 								'label'       => esc_attr__( 'Dismissable Box', 'fusion-builder' ),
 								'description' => esc_attr__( 'Select if the alert box should be dismissable.', 'fusion-builder' ),
 								'id'          => 'alert_box_dismissable',
@@ -367,7 +371,7 @@ if ( fusion_is_element_enabled( 'fusion_alert' ) ) {
 									'no'  => esc_attr__( 'No', 'fusion-builder' ),
 								),
 							),
-							'alert_box_shadow' => array(
+							'alert_box_shadow'         => array(
 								'label'       => esc_attr__( 'Box Shadow', 'fusion-builder' ),
 								'description' => esc_attr__( 'Display a box shadow below the alert box.', 'fusion-builder' ),
 								'id'          => 'alert_box_shadow',
@@ -378,7 +382,7 @@ if ( fusion_is_element_enabled( 'fusion_alert' ) ) {
 									'no'  => esc_attr__( 'No', 'fusion-builder' ),
 								),
 							),
-							'alert_border_size' => array(
+							'alert_border_size'        => array(
 								'label'       => esc_html__( 'Border Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the border size of the alert boxes.', 'fusion-builder' ),
 								'id'          => 'alert_border_size',
@@ -527,9 +531,9 @@ function fusion_element_alert() {
 					'param_name'  => 'text_transform',
 					'default'     => '',
 					'value'       => array(
-						''            => esc_attr__( 'Default', 'fusion-builder' ),
-						'normal'      => esc_attr__( 'Normal', 'fusion-builder' ),
-						'capitalize'  => esc_attr__( 'Uppercase', 'fusion-builder' ),
+						''           => esc_attr__( 'Default', 'fusion-builder' ),
+						'normal'     => esc_attr__( 'Normal', 'fusion-builder' ),
+						'capitalize' => esc_attr__( 'Uppercase', 'fusion-builder' ),
 					),
 				),
 				array(

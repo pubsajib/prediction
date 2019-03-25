@@ -106,9 +106,9 @@ class Fusion_Builder_Options_Panel {
 	 */
 	public function fusion_options_integration( $sections ) {
 
-		$fb_options = Fusion_Builder_Options::get_instance();
-		$element_options = $fb_options->sections;
-		$fields_array = fusion_get_fields_array( $sections );
+		$fb_options       = Fusion_Builder_Options::get_instance();
+		$element_options  = $fb_options->sections;
+		$fields_array     = fusion_get_fields_array( $sections );
 		$has_addons_class = '';
 
 		// Options tweaks.
@@ -142,7 +142,7 @@ class Fusion_Builder_Options_Panel {
 				}
 			}
 		}
-		$new_options['shortcode_styling'] = array(
+		$new_options['shortcode_styling']                                      = array(
 			'label'    => esc_html__( 'Fusion Builder Elements', 'fusion-builder' ),
 			'id'       => 'shortcode_styling',
 			'is_panel' => 'true',

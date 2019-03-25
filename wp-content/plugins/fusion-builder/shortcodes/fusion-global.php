@@ -55,7 +55,7 @@ if ( ! class_exists( 'FusionSC_Global' ) ) {
 
 			$defaults = FusionBuilder::set_shortcode_defaults(
 				array(
-					'id'    => '',
+					'id' => '',
 				),
 				$args,
 				'fusion_global'
@@ -127,7 +127,7 @@ if ( ! class_exists( 'FusionSC_Global' ) ) {
 								} else {
 									$base_content = str_replace( $matches[0][ $key ], $post->post_content, $content );
 								}
-								$base_content   = $this->recursively_add_global_elements( $post->post_content, $base_content );
+								$base_content = $this->recursively_add_global_elements( $post->post_content, $base_content );
 							} else {
 								if ( ! empty( $base_content ) ) {
 									$base_content = str_replace( $matches[0][ $key ], '', $base_content );
@@ -195,7 +195,7 @@ if ( ! class_exists( 'FusionSC_Global' ) ) {
 				}
 				// Remove fusion_global from short-code attributes.
 				$post_content = str_replace( addslashes( 'fusion_global="' . $this->global_elements[ $x ]['id'] . '"' ), '', $this->global_elements[ $x ]['content'] );
-				$post = array(
+				$post         = array(
 					'ID'           => $this->global_elements[ $x ]['id'],
 					'post_content' => $post_content,
 				);
@@ -268,11 +268,11 @@ if ( ! class_exists( 'FusionSC_Global' ) ) {
 			$matches = $this->get_shortcode_matches( $content );
 			if ( ! empty( $matches ) ) {
 				list( $shortcodes, $d, $parents, $atts, $d, $contents ) = $matches;
-				$child_arr_shortcodes                          = array();
+				$child_arr_shortcodes                                   = array();
 
 				foreach ( $parents as $k => $parent ) {
-					$shortcode_name                                         = $k;
-					$sub_matches                                            = $this->get_shortcode_matches( $contents[ $k ] );
+					$shortcode_name = $k;
+					$sub_matches    = $this->get_shortcode_matches( $contents[ $k ] );
 					// Check for child elements.
 					$child_shortcodes                                       = $this->recurvisely_extract_shortcodes_from_content( $child_arr_shortcodes, $contents[ $k ], true );
 					$arr_shortcodes[ $shortcode_name ]['name']              = $parents[ $k ];

@@ -203,7 +203,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 
 				extract( $defaults );
 
-				$this->parent_args       = $defaults;
+				$this->parent_args = $defaults;
 
 				$this->column_counter    = 1;
 				$this->row_counter       = 1;
@@ -350,13 +350,13 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 
 				if ( $this->parent_args['animation_delay'] ) {
 					$attr['data-animation-delay'] = $this->parent_args['animation_delay'];
-					$attr['class'] .= ' fusion-delayed-animation';
+					$attr['class']               .= ' fusion-delayed-animation';
 				}
 
 				if ( $this->parent_args['animation_offset'] ) {
 					$animations = FusionBuilder::animations(
 						array(
-							'offset'     => $this->parent_args['animation_offset'],
+							'offset' => $this->parent_args['animation_offset'],
 						)
 					);
 
@@ -422,7 +422,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 					$defaults['image'] = '';
 				}
 
-				$defaults['image_width'] = FusionBuilder::validate_shortcode_attr_value( $defaults['image_width'], '' );
+				$defaults['image_width']  = FusionBuilder::validate_shortcode_attr_value( $defaults['image_width'], '' );
 				$defaults['image_height'] = FusionBuilder::validate_shortcode_attr_value( $defaults['image_height'], '' );
 
 				if ( $defaults['linktarget'] ) {
@@ -475,8 +475,11 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 						$image = $image_data['url'];
 					}
 
+					$image = '<img src="' . $image . '" width="' . $image_width . '" height="' . $image_height . '" alt="' . $alt . '" />';
+					$image = $fusion_library->images->apply_lazy_loading( $image, null, $this->child_args['image_id'], 'full' );
+
 					$icon_output  = '<div ' . FusionBuilder::attributes( 'content-box-shortcode-icon' ) . '>';
-					$icon_output .= '<img src="' . $image . '" width="' . $image_width . '" height="' . $image_height . '" alt="' . $alt . '" />';
+					$icon_output .= $image;
 					$icon_output .= '</div>';
 				} elseif ( $icon ) {
 					$icon_output  = '<div ' . FusionBuilder::attributes( 'content-box-shortcode-icon-parent' ) . '>';
@@ -521,12 +524,12 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 				}
 
 				if ( $content ) {
-					$content_output  .= '<div class="fusion-clearfix"></div>';
+					$content_output .= '<div class="fusion-clearfix"></div>';
 					$content_output .= '<div ' . FusionBuilder::attributes( 'content-box-shortcode-content-container' ) . '>' . do_shortcode( $content ) . '</div>';
 				}
 
-				$output          = $heading . $content_output . $link_output;
-				$timeline        = '';
+				$output   = $heading . $content_output . $link_output;
+				$timeline = '';
 
 				if ( $icon && 'yes' === $this->parent_args['icon_circle'] && 'timeline-horizontal' === $this->parent_args['layout'] && '1' != $this->parent_args['columns'] ) {
 					$timeline = '<div ' . FusionBuilder::attributes( 'content-box-shortcode-timeline' ) . '></div>';
@@ -555,7 +558,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 						$circle_hover_accent_color = 'transparent';
 					}
 
-					$styles .= "
+					$styles     .= "
 						.fusion-content-boxes-{$this->content_box_counter} .fusion-content-box-hover .heading-link:hover .icon i.circle-yes,
 						.fusion-content-boxes-{$this->content_box_counter} .fusion-content-box-hover .link-area-box:hover .heading-link .icon i.circle-yes,
 						.fusion-content-boxes-{$this->content_box_counter} .fusion-content-box-hover .link-area-link-icon-hover .heading .icon i.circle-yes,
@@ -568,10 +571,10 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 						$html .= $styles;
 
 				} elseif ( ( 1 + $this->total_num_of_columns ) === $this->column_counter && false === $this->transparent_child ) {
-					$hover_accent_color        = $this->parent_args['hover_accent_color'];
-					$styles                    = '<style type="text/css" scoped="scoped">';
+					$hover_accent_color = $this->parent_args['hover_accent_color'];
+					$styles             = '<style type="text/css" scoped="scoped">';
 
-					$styles .= "
+					$styles     .= "
 						.fusion-content-boxes-{$this->content_box_counter} .fusion-content-box-hover .heading-link:hover .icon i.circle-yes,
 						.fusion-content-boxes-{$this->content_box_counter} .fusion-content-box-hover .link-area-box:hover .heading-link .icon i.circle-yes,
 						.fusion-content-boxes-{$this->content_box_counter} .fusion-content-box-hover .link-area-link-icon-hover .heading .icon i.circle-yes,
@@ -604,7 +607,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 					$this->row_counter = 1;
 				}
 
-				$attr = array(
+				$attr           = array(
 					'style' => '',
 					'class' => 'fusion-column content-box-column',
 				);
@@ -948,8 +951,8 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 
 				if ( $this->parent_args['animation_delay'] ) {
 					$animation_delay = $this->parent_args['animation_delay'];
-					$attr['style'] .= '-webkit-animation-duration: ' . $animation_delay . 'ms;';
-					$attr['style'] .= 'animation-duration: ' . $animation_delay . 'ms;';
+					$attr['style']  .= '-webkit-animation-duration: ' . $animation_delay . 'ms;';
+					$attr['style']  .= 'animation-duration: ' . $animation_delay . 'ms;';
 				}
 
 				return $attr;
@@ -1291,8 +1294,8 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 
 				if ( $this->parent_args['animation_delay'] ) {
 					$animation_delay = $this->parent_args['animation_delay'];
-					$attr['style'] .= '-webkit-transition-duration: ' . $animation_delay . 'ms;';
-					$attr['style'] .= 'animation-duration: ' . $animation_delay . 'ms;';
+					$attr['style']  .= '-webkit-transition-duration: ' . $animation_delay . 'ms;';
+					$attr['style']  .= 'animation-duration: ' . $animation_delay . 'ms;';
 				}
 
 				return $attr;
@@ -1355,9 +1358,9 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 				global $wp_version, $content_media_query, $six_fourty_media_query, $three_twenty_six_fourty_media_query, $ipad_portrait_media_query, $fusion_library, $fusion_settings, $dynamic_css_helpers;
 
 				$main_elements = apply_filters( 'fusion_builder_element_classes', array( '.fusion-content-boxes' ), '.fusion-content-boxes' );
-				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .content-box-heading' );
+				$elements      = $dynamic_css_helpers->map_selector( $main_elements, ' .content-box-heading' );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['font-size'] = $fusion_library->sanitize->size( $fusion_settings->get( 'content_box_title_size' ) );
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'content_box_title_color' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']     = $fusion_library->sanitize->color( $fusion_settings->get( 'content_box_title_color' ) );
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, ' .content-container' );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'content_box_body_color' ) );
@@ -1375,33 +1378,33 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['display'] = 'none';
 
 				$elements = $dynamic_css_helpers->map_selector( $main_elements, '.content-boxes-icon-boxed .content-wrapper-boxed' );
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-bottom'] = '20px';
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-left']   = '3%';
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-right']  = '3%';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['min-height']     = 'inherit !important';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-bottom'] = '20px';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-left']   = '3% !important';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-right']  = '3% !important';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-bottom']                 = '20px';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-left']                   = '3%';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-right']                  = '3%';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['min-height']                  = 'inherit !important';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-bottom']              = '20px';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-left']                = '3% !important';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-right']               = '3% !important';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['min-height']     = 'inherit !important';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-bottom'] = '20px';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-left']   = '3% !important';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-right']  = '3% !important';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-bottom'] = '20px';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-left']   = '3%';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-right']  = '3%';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-bottom']           = '20px';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-left']             = '3%';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['padding-right']            = '3%';
 
 				// Single column changes for 1268.
-				$css[ $content_media_query ]['.fusion-content-boxes .fusion-column']['margin-bottom'] = '55px';
+				$css[ $content_media_query ]['.fusion-content-boxes .fusion-column']['margin-bottom']        = '55px';
 				$css[ $content_media_query ]['.fusion-content-boxes .fusion-read-more-button']['margin-top'] = '8px';
 
 				$elements = array_merge(
 					$dynamic_css_helpers->map_selector( $main_elements, '.content-boxes-icon-on-top .content-box-column' ),
 					$dynamic_css_helpers->map_selector( $main_elements, '.content-boxes-icon-boxed .content-box-column' )
 				);
-				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '55px';
-				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '55px';
+				$css[ $content_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom']                 = '55px';
+				$css[ $six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom']              = '55px';
 				$css[ $three_twenty_six_fourty_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '55px';
-				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom'] = '55px';
+				$css[ $ipad_portrait_media_query ][ $dynamic_css_helpers->implode( $elements ) ]['margin-bottom']           = '55px';
 
 				for ( $i = 1; $i <= 6; $i++ ) {
 					$elements = $dynamic_css_helpers->map_selector( $main_elements, '.content-boxes-icon-boxed .content-box-column .heading h' . $i );
@@ -1429,14 +1432,14 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 					$dynamic_css_helpers->map_selector( $main_elements, ' .link-type-button-bar .fusion-read-more:after' ),
 					$dynamic_css_helpers->map_selector( $main_elements, ' .link-type-button-bar .fusion-read-more:before' )
 				);
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']      = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_color' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_color' ) );
 
 				$elements = array_merge(
 					$dynamic_css_helpers->map_selector( $main_elements, ' .link-type-button-bar .fusion-read-more:hover' ),
 					$dynamic_css_helpers->map_selector( $main_elements, ' .link-type-button-bar.link-area-box:hover .fusion-read-more' )
 				);
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color_hover' ) );
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color'] = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_hover_color' ) ) . '!important';
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['color']      = $fusion_library->sanitize->color( $fusion_settings->get( 'button_accent_hover_color' ) ) . '!important';
 				if ( $fusion_settings->get( 'button_gradient_top_color_hover' ) != $fusion_settings->get( 'button_gradient_bottom_color_hover' ) ) {
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-image'][] = '-webkit-gradient( linear, left bottom, left top, from( ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_bottom_color_hover' ) ) . ' ), to( ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color_hover' ) ) . ' ) )';
 					$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['background-image'][] = 'linear-gradient( to top, ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_bottom_color_hover' ) ) . ', ' . $fusion_library->sanitize->color( $fusion_settings->get( 'button_gradient_top_color_hover' ) ) . ' )';
@@ -1483,39 +1486,39 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 
 				return array(
 					'content_boxes_shortcode_section' => array(
-						'label'       => esc_html__( 'Content Box Element', 'fusion-builder' ),
-						'id'          => 'content_box_shortcode_section',
-						'type'        => 'accordion',
-						'fields'      => array(
-							'content_box_bg_color' => array(
+						'label'  => esc_html__( 'Content Boxes Element', 'fusion-builder' ),
+						'id'     => 'content_box_shortcode_section',
+						'type'   => 'accordion',
+						'fields' => array(
+							'content_box_bg_color'        => array(
 								'label'       => esc_html__( 'Content Box Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background color for content boxes.', 'fusion-builder' ),
 								'id'          => 'content_box_bg_color',
 								'default'     => 'rgba(255,255,255,0)',
 								'type'        => 'color-alpha',
 							),
-							'content_box_title_size' => array(
+							'content_box_title_size'      => array(
 								'label'       => esc_html__( 'Content Box Title Font Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the size of the title text.', 'fusion-builder' ),
 								'id'          => 'content_box_title_size',
 								'default'     => '18px',
 								'type'        => 'dimension',
 							),
-							'content_box_title_color' => array(
+							'content_box_title_color'     => array(
 								'label'       => esc_html__( 'Content Box Title Font Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the title font.', 'fusion-builder' ),
 								'id'          => 'content_box_title_color',
 								'default'     => '#333333',
 								'type'        => 'color-alpha',
 							),
-							'content_box_body_color' => array(
+							'content_box_body_color'      => array(
 								'label'       => esc_html__( 'Content Box Body Font Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the body font.', 'fusion-builder' ),
 								'id'          => 'content_box_body_color',
 								'default'     => '#747474',
 								'type'        => 'color-alpha',
 							),
-							'content_box_icon_size' => array(
+							'content_box_icon_size'       => array(
 								'label'       => esc_html__( 'Content Box Icon Font Size', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the size of the icon.', 'fusion-builder' ),
 								'id'          => 'content_box_icon_size',
@@ -1527,14 +1530,14 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 									'step' => '1',
 								),
 							),
-							'content_box_icon_color' => array(
+							'content_box_icon_color'      => array(
 								'label'       => esc_html__( 'Content Box Icon Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the content box icon.', 'fusion-builder' ),
 								'id'          => 'content_box_icon_color',
 								'default'     => '#ffffff',
 								'type'        => 'color-alpha',
 							),
-							'content_box_icon_circle' => array(
+							'content_box_icon_circle'     => array(
 								'label'       => esc_html__( 'Content Box Icon Background', 'fusion-builder' ),
 								'description' => esc_html__( 'Turn on to display a background behind the icon.', 'fusion-builder' ),
 								'id'          => 'content_box_icon_circle',
@@ -1559,7 +1562,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 									),
 								),
 							),
-							'content_box_icon_bg_color' => array(
+							'content_box_icon_bg_color'   => array(
 								'label'       => esc_html__( 'Content Box Icon Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the color of the icon background.', 'fusion-builder' ),
 								'id'          => 'content_box_icon_bg_color',
@@ -1659,7 +1662,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 								'default'     => '#a0ce4e',
 								'type'        => 'color-alpha',
 							),
-							'content_box_link_type' => array(
+							'content_box_link_type'       => array(
 								'label'       => esc_html__( 'Content Box Link Type', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the type of link that displays in the content box.', 'fusion-builder' ),
 								'id'          => 'content_box_link_type',
@@ -1671,7 +1674,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 									'button'     => esc_html__( 'Button', 'fusion-builder' ),
 								),
 							),
-							'content_box_button_span' => array(
+							'content_box_button_span'     => array(
 								'label'       => esc_html__( 'Button Span', 'fusion-builder' ),
 								'description' => esc_html__( 'Choose to have the button span the full width.', 'fusion-builder' ),
 								'id'          => 'content_box_button_span',
@@ -1689,7 +1692,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 									),
 								),
 							),
-							'content_box_link_area' => array(
+							'content_box_link_area'       => array(
 								'label'       => esc_html__( 'Content Box Link Area', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls which area the link will be assigned to.', 'fusion-builder' ),
 								'id'          => 'content_box_link_area',
@@ -1700,7 +1703,7 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 									'box'       => esc_html__( 'Entire Content Box', 'fusion-builder' ),
 								),
 							),
-							'content_box_link_target' => array(
+							'content_box_link_target'     => array(
 								'label'       => esc_html__( 'Content Box Link Target', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls how the link will open.', 'fusion-builder' ),
 								'id'          => 'content_box_link_target',
@@ -1711,19 +1714,19 @@ if ( fusion_is_element_enabled( 'fusion_content_boxes' ) ) {
 									'_blank' => esc_html__( 'New Window/Tab', 'fusion-builder' ),
 								),
 							),
-							'content_box_margin' => array(
+							'content_box_margin'          => array(
 								'label'       => esc_html__( 'Content Box Top/Bottom Margins', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the top/bottom margin for content boxes.', 'fusion-builder' ),
 								'id'          => 'content_box_margin',
 								'type'        => 'spacing',
 								'choices'     => array(
-									'top'     => true,
-									'bottom'  => true,
-									'units'   => array( 'px', '%' ),
+									'top'    => true,
+									'bottom' => true,
+									'units'  => array( 'px', '%' ),
 								),
 								'default'     => array(
-									'top'     => '0px',
-									'bottom'  => '60px',
+									'top'    => '0px',
+									'bottom' => '60px',
 								),
 							),
 						),
@@ -1813,7 +1816,7 @@ function fusion_element_content_boxes() {
 						'5' => 'H5',
 						'6' => 'H6',
 					),
-					'default' => '2',
+					'default'     => '2',
 				),
 				array(
 					'type'        => 'colorpickeralpha',
@@ -1864,10 +1867,10 @@ function fusion_element_content_boxes() {
 					'description' => esc_attr__( 'Choose to rotate the icon.', 'fusion-builder' ),
 					'param_name'  => 'iconrotate',
 					'value'       => array(
-						''     => esc_attr__( 'None', 'fusion-builder' ),
-						'90'   => '90',
-						'180'  => '180',
-						'270'  => '270',
+						''    => esc_attr__( 'None', 'fusion-builder' ),
+						'90'  => '90',
+						'180' => '180',
+						'270' => '270',
 					),
 					'default'     => '',
 				),
@@ -2101,9 +2104,9 @@ function fusion_element_content_boxes() {
 					'description' => esc_attr__( 'Choose to have the button span the full width.', 'fusion-builder' ),
 					'param_name'  => 'button_span',
 					'value'       => array(
-						''          => esc_attr__( 'Default', 'fusion-builder' ),
-						'yes'       => esc_attr__( 'Yes', 'fusion-builder' ),
-						'no'        => esc_attr__( 'No', 'fusion-builder' ),
+						''    => esc_attr__( 'Default', 'fusion-builder' ),
+						'yes' => esc_attr__( 'Yes', 'fusion-builder' ),
+						'no'  => esc_attr__( 'No', 'fusion-builder' ),
 					),
 					'default'     => '',
 					'dependency'  => array(

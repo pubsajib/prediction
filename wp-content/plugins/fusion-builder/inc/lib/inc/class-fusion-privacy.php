@@ -156,24 +156,28 @@ class Fusion_Privacy {
 	private function get_server_data() {
 		global $wp_version;
 		$data = array(
-			'server' => array(
-				'name'  => __( 'PHP Version', 'fusion-builder' ),
+			'server'    => array(
+				'name'  => esc_html__( 'PHP Version', 'fusion-builder' ),
 				'value' => phpversion(),
 			),
-			'php'    => array(
-				'name'  => __( 'Server Software', 'fusion-builder' ),
+			'php'       => array(
+				'name'  => esc_html__( 'Server Software', 'fusion-builder' ),
 				'value' => isset( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '',
 			),
-			'wp'     => array(
-				'name'  => __( 'WordPress Version', 'fusion-builder' ),
+			'wp'        => array(
+				'name'  => esc_html__( 'WordPress Version', 'fusion-builder' ),
 				'value' => $wp_version,
 			),
-			'url'    => array(
-				'name'  => __( 'Encrypted Site URL', 'fusion-builder' ),
+			'avada_ver' => array(
+				'name'  => esc_html__( 'Avada Version', 'fusion-builder' ),
+				'value' => ( defined( 'AVADA_VERSION' ) ) ? AVADA_VERSION : '',
+			),
+			'url'       => array(
+				'name'  => esc_html__( 'Encrypted Site URL', 'fusion-builder' ),
 				'value' => md5( site_url() ),
 			),
-			'token'  => array(
-				'name'  => __( 'Token', 'fusion-builder' ),
+			'token'     => array(
+				'name'  => esc_html__( 'Token', 'fusion-builder' ),
 				'value' => class_exists( 'Avada' ) ? Avada()->registration->get_token() : '',
 			),
 		);

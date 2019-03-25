@@ -88,28 +88,28 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 				if ( 'brand' === $color_type || ( '' === $color_type && 'brand' === $fusion_settings->get( 'sharing_social_links_color_type' ) ) ) {
 					$use_brand_colors = true;
 					// Get a list of all the available social networks.
-					$social_icon_boxed_colors = Fusion_Data::fusion_social_icons( false, true );
+					$social_icon_boxed_colors               = Fusion_Data::fusion_social_icons( false, true );
 					$social_icon_boxed_colors['googleplus'] = array(
 						'label' => 'Google+',
 						'color' => '#dc4e41',
 					);
-					$social_icon_boxed_colors['mail'] = array(
+					$social_icon_boxed_colors['mail']       = array(
 						'label' => esc_attr__( 'Email Address', 'fusion-builder' ),
 						'color' => '#000000',
 					);
-				} else if ( '' === $color_type && 'custom' === $fusion_settings->get( 'social_links_color_type' ) ) {
+				} elseif ( '' === $color_type && 'custom' === $fusion_settings->get( 'social_links_color_type' ) ) {
 					// Custom social icon colors from theme options.
 					$icon_colors = strtolower( $fusion_settings->get( 'sharing_social_links_icon_color' ) );
 					$box_colors  = strtolower( $fusion_settings->get( 'sharing_social_links_box_color' ) );
 				}
 
-				$icons = '';
-				$icon_colors = explode( '|', $icon_colors );
-				$box_colors = explode( '|', $box_colors );
+				$icons           = '';
+				$icon_colors     = explode( '|', $icon_colors );
+				$box_colors      = explode( '|', $box_colors );
 				$social_networks = explode( '|', $social_networks );
 
-				$num_of_icon_colors = count( $icon_colors );
-				$num_of_box_colors = count( $box_colors );
+				$num_of_icon_colors    = count( $icon_colors );
+				$num_of_box_colors     = count( $box_colors );
 				$social_networks_count = count( $social_networks );
 
 				for ( $i = 0; $i < $social_networks_count; $i++ ) {
@@ -141,7 +141,7 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 					$icons .= '<a ' . FusionBuilder::attributes( 'sharingbox-shortcode-icon', $icon_options ) . '></a>';
 				}
 
-				$html = '<div ' . FusionBuilder::attributes( 'sharingbox-shortcode' ) . '>';
+				$html  = '<div ' . FusionBuilder::attributes( 'sharingbox-shortcode' ) . '>';
 				$html .= '<h4 ' . FusionBuilder::attributes( 'sharingbox-shortcode-tagline' ) . '>' . $tagline . '</h4>';
 				$html .= '<div ' . FusionBuilder::attributes( 'sharingbox-shortcode-social-networks' ) . '>';
 				$html .= $icons;
@@ -339,7 +339,7 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 				}
 
 				$attr['data-placement'] = $this->args['tooltip_placement'];
-				$tooltip = $args['social_network'];
+				$tooltip                = $args['social_network'];
 				if ( 'googleplus' == $tooltip ) {
 					$tooltip = 'Google+';
 				} elseif ( 'youtube' === $tooltip ) {
@@ -453,7 +453,7 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 
 				global $wp_version, $content_media_query, $six_fourty_media_query, $three_twenty_six_fourty_media_query, $ipad_portrait_media_query, $fusion_library, $fusion_settings;
 
-				$css['global']['.fusion-sharing-box .fusion-social-networks a']['font-size'] = $fusion_library->sanitize->size( $fusion_settings->get( 'sharing_social_links_font_size' ) );
+				$css['global']['.fusion-sharing-box .fusion-social-networks a']['font-size']           = $fusion_library->sanitize->size( $fusion_settings->get( 'sharing_social_links_font_size' ) );
 				$css['global']['.fusion-sharing-box .fusion-social-networks.boxed-icons a']['padding'] = $fusion_library->sanitize->size( $fusion_settings->get( 'sharing_social_links_boxed_padding' ) );
 
 				return $css;
@@ -475,7 +475,7 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 						'description' => '',
 						'type'        => 'sub-section',
 						'fields'      => array(
-							'sharing_social_tagline' => array(
+							'sharing_social_tagline'       => array(
 								'label'       => esc_html__( 'Sharing Box Tagline', 'fusion-builder' ),
 								'description' => esc_html__( 'Insert a tagline for the social sharing boxes.', 'fusion-builder' ),
 								'id'          => 'sharing_social_tagline',
@@ -489,14 +489,14 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 								'default'     => '#333333',
 								'type'        => 'color-alpha',
 							),
-							'social_bg_color' => array(
+							'social_bg_color'              => array(
 								'label'       => esc_html__( 'Sharing Box Background Color', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls the background color of the social sharing boxes.', 'fusion-builder' ),
 								'id'          => 'social_bg_color',
 								'default'     => '#f6f6f6',
 								'type'        => 'color-alpha',
 							),
-							'social_share_box_icon_info' => array(
+							'social_share_box_icon_info'   => array(
 								'label'       => esc_html__( 'Social Sharing Box Icons', 'fusion-builder' ),
 								'description' => '',
 								'id'          => 'social_share_box_icon_info',
@@ -549,7 +549,7 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 									),
 								),
 							),
-							'sharing_social_links_boxed' => array(
+							'sharing_social_links_boxed'   => array(
 								'label'       => esc_html__( 'Sharing Box Icons Boxed', 'fusion-builder' ),
 								'description' => esc_html__( 'Controls if each social icon is displayed in a small box.', 'fusion-builder' ),
 								'id'          => 'sharing_social_links_boxed',
@@ -610,63 +610,63 @@ if ( fusion_is_element_enabled( 'fusion_sharing' ) ) {
 								'icon'        => true,
 								'type'        => 'info',
 							),
-							'sharing_facebook' => array(
+							'sharing_facebook'             => array(
 								'label'       => esc_html__( 'Facebook', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'Facebook', 'fusion-builder' ) ),
 								'id'          => 'sharing_facebook',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_twitter' => array(
+							'sharing_twitter'              => array(
 								'label'       => esc_html__( 'Twitter', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'Twitter', 'fusion-builder' ) ),
 								'id'          => 'sharing_twitter',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_reddit' => array(
+							'sharing_reddit'               => array(
 								'label'       => esc_html__( 'Reddit', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'Reddit', 'fusion-builder' ) ),
 								'id'          => 'sharing_reddit',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_linkedin' => array(
+							'sharing_linkedin'             => array(
 								'label'       => esc_html__( 'LinkedIn', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'LinkedIn', 'fusion-builder' ) ),
 								'id'          => 'sharing_linkedin',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_google' => array(
+							'sharing_google'               => array(
 								'label'       => esc_html__( 'Google+', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'Google+', 'fusion-builder' ) ),
 								'id'          => 'sharing_google',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_tumblr' => array(
+							'sharing_tumblr'               => array(
 								'label'       => esc_html__( 'Tumblr', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'Tumblr', 'fusion-builder' ) ),
 								'id'          => 'sharing_tumblr',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_pinterest' => array(
+							'sharing_pinterest'            => array(
 								'label'       => esc_html__( 'Pinterest', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'Pinterest', 'fusion-builder' ) ),
 								'id'          => 'sharing_pinterest',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_vk' => array(
+							'sharing_vk'                   => array(
 								'label'       => esc_html__( 'VK', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'VK', 'fusion-builder' ) ),
 								'id'          => 'sharing_vk',
 								'default'     => '1',
 								'type'        => 'toggle',
 							),
-							'sharing_email' => array(
+							'sharing_email'                => array(
 								'label'       => esc_html__( 'Email', 'fusion-builder' ),
 								'description' => sprintf( esc_html__( 'Turn on to display %s in the social share box.', 'fusion-builder' ), esc_html__( 'Email', 'fusion-builder' ) ),
 								'id'          => 'sharing_email',
@@ -850,10 +850,10 @@ function fusion_element_sharing_box() {
 					'default'     => '',
 				),
 				array(
-					'type'        => 'upload',
-					'heading'     => esc_attr__( 'Choose Image to Share on Pinterest', 'fusion-builder' ),
-					'param_name'  => 'pinterest_image',
-					'value'       => '',
+					'type'       => 'upload',
+					'heading'    => esc_attr__( 'Choose Image to Share on Pinterest', 'fusion-builder' ),
+					'param_name' => 'pinterest_image',
+					'value'      => '',
 				),
 				array(
 					'type'        => 'textfield',

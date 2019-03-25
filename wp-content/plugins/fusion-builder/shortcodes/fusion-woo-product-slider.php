@@ -73,9 +73,9 @@ if ( fusion_is_element_enabled( 'fusion_products_slider' ) ) {
 
 				$defaults['column_spacing'] = FusionBuilder::validate_shortcode_attr_value( $defaults['column_spacing'], '' );
 
-				( 'yes' == $defaults['show_cats'] ) ? ( $defaults['show_cats'] = 'enable' ) : ( $defaults['show_cats'] = 'disable' );
+				( 'yes' == $defaults['show_cats'] ) ? ( $defaults['show_cats']   = 'enable' ) : ( $defaults['show_cats'] = 'disable' );
 				( 'yes' == $defaults['show_price'] ) ? ( $defaults['show_price'] = true ) : ( $defaults['show_price'] = false );
-				( 'yes' == $defaults['show_buttons'] ) ? ( $defaults['show_buttons'] = true ) : ( $defaults['show_buttons'] = false );
+				( 'yes' == $defaults['show_buttons'] ) ? ( $defaults['show_buttons']                                  = true ) : ( $defaults['show_buttons'] = false );
 
 				extract( $defaults );
 
@@ -127,7 +127,7 @@ if ( fusion_is_element_enabled( 'fusion_products_slider' ) ) {
 					}
 
 					$args['tax_query']['relation'] = 'AND';
-					$args['tax_query'][] = array(
+					$args['tax_query'][]           = array(
 						'taxonomy' => 'product_visibility',
 						'field'    => 'slug',
 						'terms'    => array( 'exclude-from-catalog', 'exclude-from-search' ),
@@ -159,8 +159,8 @@ if ( fusion_is_element_enabled( 'fusion_products_slider' ) ) {
 							if ( 'auto' === $picture_size ) {
 								$fusion_library->images->set_grid_image_meta(
 									array(
-										'layout' => 'grid',
-										'columns' => $columns,
+										'layout'       => 'grid',
+										'columns'      => $columns,
 										'gutter_width' => $column_spacing,
 									)
 								);
@@ -209,7 +209,7 @@ if ( fusion_is_element_enabled( 'fusion_products_slider' ) ) {
 					// @codingStandardsIgnoreLine
 					wp_reset_query();
 
-					$html = '<div ' . FusionBuilder::attributes( 'woo-product-slider-shortcode' ) . '>';
+					$html  = '<div ' . FusionBuilder::attributes( 'woo-product-slider-shortcode' ) . '>';
 					$html .= '<div ' . FusionBuilder::attributes( 'woo-product-slider-shortcode-carousel' ) . '>';
 					$html .= '<div ' . FusionBuilder::attributes( 'fusion-carousel-positioner' ) . '>';
 					$html .= '<ul ' . FusionBuilder::attributes( 'fusion-carousel-holder' ) . '>';
@@ -275,7 +275,7 @@ if ( fusion_is_element_enabled( 'fusion_products_slider' ) ) {
 				);
 
 				if ( 'title_below_image' === $this->args['carousel_layout'] ) {
-					$attr['class'] .= ' fusion-carousel-title-below-image';
+					$attr['class']           .= ' fusion-carousel-title-below-image';
 					$attr['data-metacontent'] = 'yes';
 				} else {
 					$attr['class'] .= ' fusion-carousel-title-on-rollover';
@@ -314,7 +314,7 @@ if ( fusion_is_element_enabled( 'fusion_products_slider' ) ) {
 				preg_match_all( '!\d+!', $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ), $matches );
 				$half_slider_nav_box_height = '' !== $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ? $matches[0][0] / 2 . $fusion_library->sanitize->get_unit( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) ) : '';
 
-				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height'] = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
+				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['height']     = $fusion_library->sanitize->size( $fusion_settings->get( 'slider_nav_box_dimensions', 'height' ) );
 				$css['global'][ $dynamic_css_helpers->implode( $elements ) ]['margin-top'] = '-' . $half_slider_nav_box_height;
 
 				$elements = array(
@@ -377,11 +377,14 @@ function fusion_element_products_slider() {
 						'default'     => '',
 					),
 					array(
-						'type'        => 'textfield',
+						'type'        => 'range',
 						'heading'     => esc_attr__( 'Number of Products', 'fusion-builder' ),
 						'description' => esc_attr__( 'Select the number of products to display.', 'fusion-builder' ),
 						'param_name'  => 'number_posts',
 						'value'       => '5',
+						'min'         => '0',
+						'max'         => '25',
+						'step'        => '1',
 					),
 					array(
 						'type'        => 'radio_button_set',
