@@ -51,7 +51,7 @@ table {
  .answer h4, .teamName {
  	font-family: 'Roboto', sans-serif !important;
  	font-weight: 400;
-    margin: 10px 0 2px;
+    margin: 0 0 2px;
     font-size: 15px !important;
     color: #16936c !important;
 }
@@ -405,12 +405,6 @@ table {
 #headerNotification .horizontal li.active a {
 	color: #6f5d5d;
 }
-#headerNotification .owl-theme .owl-nav {
-	display: block;
-    top: -35px;
-    left: auto;
-    right: 0;
-}
 
 #headerNotification .owl-theme .owl-nav [class*=owl-] {
 	margin: 3px 1px;
@@ -476,9 +470,6 @@ table {
     top: 45%;
     left: 0;
     right: 0;
-    display: none;
-}
- .owl-theme .owl-dots {
     display: none;
 }
  .owl-stage {
@@ -597,7 +588,7 @@ table {
     position: relative;
 }
  .answersWrapper h3{
-    font-weight: 400;
+    font-weight: 600;
 }
 .answerContainer h4,
 .predictorContainer.author-profile-card .profile-info h3{
@@ -614,9 +605,9 @@ table {
     color: #3c495a;
 }
 .answerContainer .answer{
-    margin-bottom: 7px;
     font-size: 16px;
     color: #7f92a9;
+	line-height: 20px;
 }
  .answerContainer .answer span {
  	font-weight: 400;
@@ -1170,10 +1161,6 @@ table {
 .avatarToss .owl-item .item .profile-info.rank_3 .author-photo p {
     background: #9c27b0;
 }
-.avatarMatch .owl-dots,
-.avatarToss .owl-dots{
-	display: block;
-}
 
 .avatarMatch .table.top-accuracy td,
 .avatarToss .table.top-accuracy td,
@@ -1263,6 +1250,7 @@ table {
 }
 
 .jflatTimeline .event .eventWrapper .item {
+    position: relative;
 	padding: 10px;
 	width: 50%;
 	display: inline-block;
@@ -1322,7 +1310,6 @@ table {
 .jflatTimeline .event .eventWrapper .item .status {
 	color: #ff0000;
 }
-
 .tabs .horizontal .proli {
     margin-bottom: 10px;
 }
@@ -1702,89 +1689,7 @@ table {
          opacity: 1;
     }
 }
- @media only screen and (max-width: 800px) {
-     .iziModal {
-        left: 20px;
-         right: 20px;
-    }
-	.login-profile .item {
-		width: 49%;
-		margin-right: 2%;
-		min-height: auto;
-		margin-bottom: 10px;
-		padding: 15px 9px;
-		min-height: 130px;
-	}
-	 .jflatTimeline .event .eventWrapper .item:nth-child(even) {
-		 border-right: 0;
-	 }
-	 .jflatTimeline .event .eventWrapper .item  {
-		 width: 100%;
-	 }
-	
-	.login-profile .item:nth-child(1) {
-	    padding-bottom: 20px;
-	}
-	
-	.login-profile .item:nth-child(even) {
-	    margin-right: 0;
-	}
-	 .session-list .predictorContainer.author-profile-card.ranked .profile-info p {
-		 font-size: 13px;
-		 right: 0;
-		 width: 20px;
-		 line-height: 20px;
-	 }
-	 .owl-carousel .owl-item .item.ranked .user-avater p {
-		 right: 40px;
-	 }
-	 .prediction-full-result li {
-		width: 50% !important;
-	}
-     .half,.prediction-full-result li.block {
-        width: 100% !important;
-    }
-	 .prediction-full-result li strong {
-		 margin-bottom: 0;
-	 }
-	 .prediction-full-result li .common {
-		height: auto;
-		width: auto;
-		display: inline-block;
-		line-height: 1.3;
-	}
-     .half.left {
-        margin-right: 0;
-        float: none;
-    }
-     .endTime.text-right{
-        text-align: left;
-    }
-     .predictionContainer .title {
-        margin-top: 20px !important;
-    }
-     .titleContainer p {
-        text-align: left;
-    }
-     .owl-carousel .owl-item {
-        border-right: 0;
-    }
-	 .predictorListWrapper .predictorContainer.author-profile-card {
-		 width: 100%;
-		 margin: 0 0 20px 0;
-	 }
-	 .login-profile .item .circle {
-	    height: auto; 
-        width: auto; 
-        line-height: 0; 
-        border-radius: 0; 
-        border: 0; 
-	 }
-	 .login-profile .item .circle.red,
-	 .login-profile .item .circle.green {
-	     border: 0; 
-	 }
-}
+
 .modalWrapper2.confirm-modal .iziModal-content { padding: 10px 30px !important; }
 .modalWrapper2 .predictionContainer {  margin-bottom: 10px; }
 .modalWrapper2 .teamQuestionWrapper{ margin: 0; }
@@ -1869,6 +1774,7 @@ table {
 	clear: both;
     display: inline-block;
     width: 100%;
+	margin-bottom: 10px;
 }
 .progressContainer {
 	padding-bottom: 10px;
@@ -2049,10 +1955,6 @@ table {
 	margin: 0 0 20px;
 }
 
-.favouriteTeam .owl-dots {
-	display: block;
-}
-
 .favouriteTeambg .proli {
 	width: 100px;
 }
@@ -2083,3 +1985,183 @@ table {
 .datepickerWrapper input {position: absolute; opacity: 0;}
 .datepickerWrapper input::-webkit-calendar-picker-indicator {position: absolute; width: 100%; height: 100%; opacity: 0; }
 .datepickerWrapper input:hover, .datepickerWrapper>span {cursor: pointer;font-size: 20px;}
+
+.eventSupperters .item .supportedMatchTossPopup img {
+	border-radius: 50%;
+}
+.supporterItem {
+	color: #454545;
+}
+
+.supporterItem .strong {
+	font-weight: 600;
+}
+
+.iziModal {
+	border-radius: 15px !important;
+	border-bottom: 0 !important;
+}
+
+.iziModal .iziModal-header {
+	background: #16936c !important;
+}
+.eventSupperters .item {
+	background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+}
+.eventSupperters .owl-stage {
+	padding-bottom: 0;
+}
+
+.eventSupperters .owl-dots {
+	margin-top: -8px;
+}
+.votting-list li {
+    margin: 5px 5px 5px 0;
+	border-radius: 20px;
+	box-shadow: 0 0 5px #e4e2e2;
+}
+
+.votting-list li a {
+	display: block;
+	padding: 3px 10px;
+	font-size: 12px;
+}
+
+#favouriteTeamTab,
+#favouriteTeamTab .horizontal {
+	margin-top: 0;
+}
+.supportedMatchTossPopup .iziModal-content,
+.supportersPopUpModal .iziModal-content {
+	padding: 10px 20px !important;
+	text-align: center;
+}
+
+.supportedMatchTossPopup .title {
+	margin: 0;
+	margin-bottom: 10px;
+}
+.supportedMatchTossPopup .inline {
+	width: 30%;
+	margin: 0 1.6%;
+	float: left;
+}
+.supportedMatchTossPopup .inline span {
+	display: block;
+	font-weight: 600;
+}
+.supportedMatchTossPopup .supporterItem {
+	clear: both;
+	display: inline-block;
+	width: 100%;
+}
+
+.supportedMatchTossPopup .divider {
+	margin: 15px 0;
+    border-bottom: 1px solid #efefef;
+}
+.pcp-btn-one {
+	background: #578840 !important;
+}
+.iziModal-content h4 {
+	margin-top: 0;
+}
+.notFound {
+	text-align: center;
+}
+.notFound strong {
+	margin-bottom: 10px;
+    clear: both;
+    display: block;
+	color: #ea6c6c;
+	line-height: 5;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+     .iziModal {
+        left: 20px;
+         right: 20px;
+    }
+	.login-profile .item {
+		width: 49%;
+		margin-right: 2%;
+		min-height: auto;
+		margin-bottom: 10px;
+		padding: 15px 9px;
+		min-height: 130px;
+	}
+	 .jflatTimeline .event .eventWrapper .item:nth-child(even) {
+		 border-right: 0;
+	 }
+	 .jflatTimeline .event .eventWrapper .item  {
+		 width: 100%;
+	 }
+	
+	.login-profile .item:nth-child(1) {
+	    padding-bottom: 20px;
+	}
+	
+	.login-profile .item:nth-child(even) {
+	    margin-right: 0;
+	}
+	 .session-list .predictorContainer.author-profile-card.ranked .profile-info p {
+		 font-size: 13px;
+		 right: 0;
+		 width: 20px;
+		 line-height: 20px;
+	 }
+	 .owl-carousel .owl-item .item.ranked .user-avater p {
+		 right: 40px;
+	 }
+	 .prediction-full-result li {
+		width: 50% !important;
+	}
+     .half,.prediction-full-result li.block {
+        width: 100% !important;
+    }
+	 .prediction-full-result li strong {
+		 margin-bottom: 0;
+	 }
+	 .prediction-full-result li .common {
+		height: auto;
+		width: auto;
+		display: inline-block;
+		line-height: 1.3;
+	}
+     .half.left {
+        margin-right: 0;
+        float: none;
+    }
+     .endTime.text-right{
+        text-align: left;
+    }
+     .predictionContainer .title {
+        margin-top: 20px !important;
+    }
+     .titleContainer p {
+        text-align: left;
+    }
+     .owl-carousel .owl-item {
+        border-right: 0;
+    }
+	 .predictorListWrapper .predictorContainer.author-profile-card {
+		 width: 100%;
+		 margin: 0 0 20px 0;
+	 }
+	 .login-profile .item .circle {
+	    height: auto; 
+        width: auto; 
+        line-height: 0; 
+        border-radius: 0; 
+        border: 0; 
+	 }
+	 .login-profile .item .circle.red,
+	 .login-profile .item .circle.green {
+	     border: 0; 
+	 }
+}

@@ -21,6 +21,8 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 				$PMatch = $prediction['avg']['match']['rate'];
 				$PToss = $prediction['avg']['toss']['rate'];
 				$score = $prediction['avg'][$ratingType]['rate'];
+				$correct = $prediction['avg'][$ratingType]['correct'];
+				$incorrect = $prediction['avg'][$ratingType]['incorrect'];
 				$criterias = [
 					'UID'=>$predictor->ID, 
 					'participated' => $participated,
@@ -43,9 +45,12 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 				$ranking[$predictor->ID]['matchAccuracy'] = $PMatch;
 				$ranking[$predictor->ID]['tossAccuricy'] = $PToss;
 				$ranking[$predictor->ID]['participated'] = $participated;
+				$ranking[$predictor->ID]['correct'] = $correct;
+				$ranking[$predictor->ID]['incorrect'] = $incorrect;
 				$ranking[$predictor->ID]['lifeTimePublishedEvents'] = $criterias['lifeTimePublishedEvents'];
 				$ranking[$predictor->ID]['lifeTimePublishedEventRate'] = $criterias['lifeTimePublishedEventRate'];
 				$ranking[$predictor->ID]['minLifetimeParticipationRate'] = $criterias['minLifetimeParticipationRate'];
+				$ranking[$predictor->ID]['minLifetimeParticipation'] = $minParticipationWithGrace;
 
 				$eligible_sort[] = $isRankAble;
 				$accuracy_sort[] = $score;
@@ -63,9 +68,12 @@ function getRakingFor($ratingType='all', $tournamentID=false, $predictors='', $m
 				$ranking[$predictor->ID]['matchAccuracy'] = $PMatch;
 				$ranking[$predictor->ID]['tossAccuricy'] = $PToss;
 				$ranking[$predictor->ID]['participated'] = $participated;
+				$ranking[$predictor->ID]['correct'] = 0;
+				$ranking[$predictor->ID]['incorrect'] = 0;
 				$ranking[$predictor->ID]['lifeTimePublishedEvents'] = 0;
 				$ranking[$predictor->ID]['lifeTimePublishedEventRate'] = 0;
 				$ranking[$predictor->ID]['minLifetimeParticipationRate'] = 0;
+				$ranking[$predictor->ID]['minLifetimeParticipation'] = 0;
 
 				$eligible_sort[] = -9999;
 				$accuracy_sort[] = $score;
@@ -194,7 +202,7 @@ function lifeTimePublished($userID, $type=false) {
             			foreach ($meta[$teamID] as $option) {
             				$optionID = predictor_id_from_string($option['title']);
 		                    $defaultID = 'default_'. $ID .'_'. $optionID;
-		                    if (!@$meta[$defaultID.'_published']) continue;
+		                    if (empty($meta[$defaultID.'_published'])) continue;
 		                    if (!$type) {
 		                    	$published[] = ['event' => $eventID, 'team' => $team['name'], 'item' => $option['title'], 'type' => $option['id']];
 		                    } else if($type == $option['id']){

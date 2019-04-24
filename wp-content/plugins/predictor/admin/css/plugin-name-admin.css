@@ -32,3 +32,4 @@
     box-sizing: border-box;
 }
 .removeAns{position: absolute;right: 8px;}
+#dateOption table td, #control table td {padding: 0;}

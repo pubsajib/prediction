@@ -25,7 +25,7 @@ function getUserNameByID($userID) {
     return false;
 }
 
-function getValidUserID($type='viewer') {
+function getValidUserID($type='viewer', $user='') {
     if (!is_user_logged_in()) return false;
     else {
         $user_id = get_current_user_id();
@@ -48,4 +48,56 @@ function isValidOption($answer, $time) {
     if ($answer) return false;
     else if(new DateTime() >= new DateTime($time)) return false;
     else return true;
+}
+function getClientIP() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+function likesByEvent($eventID) {
+    global $wpdb;
+    $likesArr = [];
+    $table = $wpdb->prefix.'predictor_likes';
+    $likes = $wpdb->get_results("SELECT * FROM ".$table." WHERE event = ".$eventID, ARRAY_A );
+    if ($likes) {
+        foreach ($likes as $like) {
+            if(!isset($likesArr[$like['user']])) $likesArr[$like['user']] = 0;
+            $likesArr[$like['user']]++;
+        }
+    }
+    return $likesArr;
+}
+function likeDislikeBtnFor($userID, $postID) {
+    if (!empty($_COOKIE['cdpue'.$postID.'_'.$userID])) { $btnClass = ''; $likeTxt = 'LIKED'; }
+    else { $btnClass = ' likeBtn'; $likeTxt = 'LIKE'; }
+    return '<a href="javascript:;" event='. $postID .' user='.$userID.' class="fusion-button button-default button-small'. $btnClass.'">'.$likeTxt.'</a>';
+}
+function likesByPredictor($id, $count=false) {
+    global $wpdb;
+    if ($id) {
+        $table = $wpdb->prefix.'predictor_likes';
+        if ($count) return $wpdb->get_results("SELECT COUNT(*) as likes FROM ".$table." WHERE user = $id", OBJECT)[0]->likes;
+        else return $wpdb->get_results( "SELECT * FROM ".$table." WHERE user = $id", OBJECT );
+    }
+    return false;
+}
+function increasePredictorLikes($userID) {
+    $key = 'likes';
+    $likes = (int) get_user_meta($userID, $key, true);
+    if (!$likes) return add_user_meta( $userID, $key, $likes+1);
+    else return update_user_meta( $userID, $key, $likes+1);
+    return false;
 }

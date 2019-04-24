@@ -49,8 +49,23 @@
                 1000: {items: 5 }
             }
         })
-    };
-    //  Counter
+		$('.eventSupperters').owlCarousel({
+            loop:false,
+            margin: 10,
+            nav: true,
+            autoplay:false,
+			dots: true,
+            autoplayTimeout:15000,
+            URLhashListener:true,
+            autoplayHoverPause:true,
+            startPosition: 'URLHash',
+            responsive: {
+                0: {items: 5 }, 
+                600: {items: 5 }, 
+                1000: {items: 10 }
+            }
+        })
+    }
     var timeCounter = function(ID, end, isToss=false) {
        var time = new Date(end);
        $(ID).timeTo({
@@ -60,7 +75,7 @@
             // $(ID).parent('.predictionContainer').find('.saveQAns').attr('disabled', true);
             removeCurrentItem(ID);
        });
-    };
+    }
     var removeCurrentItem = function(ID) {
         var teamContainer = null; 
         var parentItem = null; 
@@ -71,7 +86,7 @@
         parentItem = $(ID).parents(container);
         parentItem.remove();
         removeEmptyParent(teamContainer);
-    };
+    }
     var removeEmptyParent = function(parentItem) {
         var items = parentItem.find('.predictionContainer').length;
         if (!items) { parentItem.remove(); }
@@ -91,7 +106,7 @@
                 $(ID).parents(container).remove();
             }
         });
-    };
+    }
     var progress = function(progress=0) {
         return '<progress max="100" value="'+ progress +'"></progress>';
     }
@@ -136,13 +151,13 @@
     var loadAnswers = function(ID, ditems, html, avatarslider) {
         var answersWrapper = $('#answersWrapper_'+ ID);
         // PREPARE AJAX POST DATA
-        var ajaxData = {};
-        ajaxData['security'] = object.ajax_nonce;
-        ajaxData['action'] = 'load_answers';
-        ajaxData['ID'] = ID;
-        ajaxData['ditems'] = ditems;
-        ajaxData['html'] = html;
-        ajaxData['avatarslider'] = avatarslider;
+        var ajaxData            = {};
+        ajaxData['security']    = object.ajax_nonce;
+        ajaxData['action']      = 'load_answers';
+        ajaxData['ID']          = ID;
+        ajaxData['ditems']      = ditems;
+        ajaxData['html']        = html;
+        ajaxData['avatarslider']= avatarslider;
         $.ajax({
             type: 'POST',
             url: object.ajaxurl,
@@ -265,7 +280,7 @@
         footer += "</footer>";
         modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
         modal.iziModal({
-            title: "Prediction message",
+            title: "Tips",
             // subtitle: 'SUB',
             autoOpen: 1,
             onOpening: function(modal) {
@@ -355,13 +370,14 @@
             },5000);
         });
     }
-    var getEventQuestionsHTML = function(eventID) {
+    var getEventQuestionsHTML = function(eventID, team) {
         jQuery.ajax({
             type: 'POST',
             url: object.ajaxurl + '?action=getpredictionform',
             cache: false,
             data: {
                 event: eventID,
+                team: team,
                 security: object.ajax_nonce
             },
             success: function(response, status, xhr) {
@@ -421,8 +437,221 @@
 
         return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
+    var supportedMatchTossPopup = function(button) {
+        let overall     = button.attr('overall');
+        let ipl         = button.attr('ipl');
+        let link        = button.attr('event');
+        let nickname    = button.attr('nickname');
+        if (overall || ipl) {
+            overall = JSON.parse(overall);
+            ipl = JSON.parse(ipl);
+            let footer = '';
+            let content = '';
+            content += '<section>';
+                content += '<div class="supporterItem overAll">'
+                content += '<h4 class="text-center title">Over All Accuracy</h4>'
+                    content += '<div class="inline all"><span>Total</span>'+ overall.all +'%</div>';    
+                    content += '<div class="inline match"><span>Match</span>'+ overall.match +'%</div>';
+                    content += '<div class="inline toss"><span>Toss</span>'+ overall.toss +'%</div>';
+                content += '</div>'
+                content += '<div class="divider"></div>';
+                content += '<div class="supporterItem ipl">'
+                content += '<h4 class="text-center title">IPL Accuracy</h4>'
+                    content += '<div class="inline all"><span>Total</span>'+ ipl.all +'%</div>';
+                    content += '<div class="inline match"><span>Match</span>'+ ipl.match +'%</div>';
+                    content += '<div class="inline toss"><span>Toss</span>'+ ipl.toss +'%</div>';
+                content += '</div>'
+                content += '<footer>';
+                    // content += '<a class="btn btn-green button-small" target="_blank" href="'+ link +'">VIEW PREDICTION OF THIS EVENT</a>';
+                    // content += '<button data-iziModal-close>Cancel</button>';
+                content += '</footer>';
+            content += '</section>';
+
+            let modal = $("<div>").attr("class", "iziLoginModal confirm-modal supportedMatchTossPopup");
+            modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
+            modal.iziModal({
+                title: nickname,
+                autoOpen: 1,
+                onOpening: function(modal) {
+                    modal.startLoading();
+                    $(".iziLoginModal .iziModal-content").html(content);
+                    modal.stopLoading();
+                }
+            });
+        }
+    }
+    var supportersPopUp = function(button) {
+        var message     = ''
+        var match       = button.attr('match')
+        var toss        = button.attr('toss')
+        var tname       = button.attr('tname')
+
+        if (match || toss) {
+            message += '<div id="favouriteTeamTab" class="tabs tabs_default">';
+                message += '<ul class="horizontal">';
+                    message += '<li class="proli active"><a href="javascript:;" tab=".match">Match</a></li>';
+                    message += '<li class="proli"><a href="javascript:;" tab=".toss">Toss</a></li>';
+                message += '</ul>';
+                // match
+                message += '<div class="tabContent match">';
+                    if (!match) message += 'nothing found'
+                    else {
+                        match = match.split(',')
+                        message += '<ul class="list-unstyled votting-list">'
+                            match.forEach(function(predictor) {
+                                predictor = predictor.split('###')
+                                if (predictor) {
+                                    message += '<li>'
+                                        message += '<a href="'+ object.home_url +'/predictor/?p='+ predictor[1] +'" target="_blank">'
+                                            message += predictor[2]
+                                        message += '</a>'
+                                    message += '</li>'
+                                }
+                            })
+                        message += '</ul>'
+                    }
+                message += '</div>';
+                message += '<div class="tabContent toss" style="display:none;">';
+                    if (!toss) message += 'nothing found'
+                    else {
+                        toss = toss.split(',')
+                        message += '<ul class="list-unstyled votting-list">'
+                            toss.forEach(function(predictor) {
+                                predictor = predictor.split('###')
+                                if (predictor) {
+                                    message += '<li>'
+                                        message += '<a href="'+ object.home_url +'/predictor/?p='+ predictor[1] +'" target="_blank">'
+                                            message += predictor[2]
+                                        message += '</a>'
+                                    message += '</li>'
+                                }
+                            })
+                        message += '</ul>'
+                    }
+                message += '</div>';
+            message += '</div>';
+        } else {
+            message += '<p style="text-align:center;color:red;"> No one supported this team. </p>';
+        }
+        showPopUp('supportersPopUpModal', tname, message)
+        $('#favouriteTeamTab').tabslet();
+    }
+    var iziLoginModalSubmit = function() {
+        var email = jQuery('#p_user').val()
+        var pass = jQuery('#P_pass').val()
+        var remember = jQuery('#remember').is(':checked')
+
+        if (email != '' && pass != '') {
+            jQuery.ajax({
+                type: 'POST',
+                url: object.ajaxurl + '?action=user_login',
+                cache: false,
+                data: {
+                    email: email,
+                    pass: pass,
+                    remember: remember,
+                    security: object.ajax_nonce
+                },
+                success: function(response, status, xhr) {
+                    console.log(response);
+                    if (response == true) {
+                        window.location.reload()
+                    } else {
+                        $('.pLoginMessage').html('<p> Invalid credentials </p>');
+                        var fx = "wobble", //wobble shake
+                            $modal = $(this).closest('.iziModal');
+
+                        if (!$modal.hasClass(fx)) {
+                            $modal.addClass(fx);
+                            setTimeout(function() {
+                                $modal.removeClass(fx);
+                            }, 1500);
+                        }
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        } else {
+            var fx = "wobble", //wobble shake
+                $modal = $(this).closest('.iziModal');
+
+            if (!$modal.hasClass(fx)) {
+                $modal.addClass(fx);
+                setTimeout(function() {
+                    $modal.removeClass(fx);
+                }, 1500);
+            }
+        }
+    }
+    var customLogin = function() {
+        var footer = '';
+        var content = '';
+        content += '<section>';
+            content += '<div class="pLoginMessage"></div>';
+            content += '<input id="p_user" type="text" placeholder="Username">';
+            content += '<input id="P_pass" type="password" placeholder="Password">';
+            content += '<footer>';
+                content += '<button data-iziModal-close>Cancel</button>';
+                content += '<button type="submit" class="iziLoginModalSubmit">Log in</button>';
+            content += '</footer>';
+        content += '</section>';
+
+        var modal = $("<div>").attr("class", "iziLoginModal confirm-modal");
+        modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
+        modal.iziModal({
+            title: "Login form",
+            // subtitle: 'SUB',
+            autoOpen: 1,
+            onOpening: function(modal) {
+                modal.startLoading();
+                $(".iziLoginModal .iziModal-content").html(content);
+                modal.stopLoading();
+            }
+        });
+    }
+    var addLikeForEvent = function(button) {
+        var event = button.attr('event');
+        var user = button.attr('user');
+        var btnTxt = button.text();
+        // alert(btnTxt); return false; 
+        if (event && user) {
+            var ajaxData = {};
+            ajaxData['security'] = object.ajax_nonce;
+            ajaxData['action'] = 'like_event_user';
+            ajaxData['event'] = event;
+            ajaxData['user'] = user;
+            $.ajax({
+                type: 'POST',
+                url: object.ajaxurl,
+                cache: false,
+                data: ajaxData,
+                beforeSend: function() { button.html('Saving ..').attr('disabled', true); },
+                success: function(response, status, xhr) {
+                    console.log(response);
+                    if (response == 200) button.removeClass('likeBtn').html('LIKED').attr('disabled', true);
+                    else button.html(btnTxt).attr('disabled', false);
+                },
+                error: function(error) {
+                    button.html(btnTxt).attr('disabled', true);
+                    console.log(error);
+                }
+            });
+        }
+    }
+    var test = function(button) {}
+    // *************************** //
+    // ***** READY FUNCTION ****** //
+    // *************************** //
     $(document).ready(function() {
         owlCarousel();
+        //Tab 		
+        $('#protab').tabslet();
+        $('#TopPredictor').tabslet();
+        $('#Roadtotop').tabslet();
+        $('#headerNotification').tabslet();
+		$('#TopMatchPredictor').tabslet();
         // Ranking Slider 		
         $('.owl-rank').owlCarousel({
             loop:true,
@@ -458,45 +687,20 @@
 		});
 		
 		/* Alert */
-		$(".closebtn").click(function () {
+		$(document).on('click', 'closebtn', function(event) {
 			$(".notice").fadeOut("slow", function() {
 				hide();
 			})
 		})
-
         $(document).on('click', '.custom-login', function(event) {
             event.preventDefault();
-            var footer = '';
-            var content = '';
-            content += '<section>';
-                content += '<div class="pLoginMessage"></div>';
-                content += '<input id="p_user" type="text" placeholder="Username">';
-                content += '<input id="P_pass" type="password" placeholder="Password">';
-                content += '<footer>';
-                    content += '<button data-iziModal-close>Cancel</button>';
-                    content += '<button type="submit" class="iziLoginModalSubmit">Log in</button>';
-                content += '</footer>';
-            content += '</section>';
-
-            var modal = $("<div>").attr("class", "iziLoginModal confirm-modal");
-            modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
-            modal.iziModal({
-                title: "Login form",
-                // subtitle: 'SUB',
-                autoOpen: 1,
-                onOpening: function(modal) {
-                    modal.startLoading();
-                    $(".iziLoginModal .iziModal-content").html(content);
-                    modal.stopLoading();
-                }
-            });
-        });
+            customLogin();
+        })
 		
        // Menu Modal
 		$('.md-trigger').on('click', function() {
 			$('.md-modal').addClass('md-show');
 		});
-
 		$('.md-close').on('click', function() {
 			$('.md-modal').removeClass('md-show');
 		});
@@ -515,60 +719,8 @@
         // USER LOGIN
         $(document).on('click', '.iziLoginModalSubmit', function(event) {
             event.preventDefault();
-            var email = jQuery('#p_user').val()
-            var pass = jQuery('#P_pass').val()
-            var remember = jQuery('#remember').is(':checked')
-
-            if (email != '' && pass != '') {
-                jQuery.ajax({
-                    type: 'POST',
-                    url: object.ajaxurl + '?action=user_login',
-                    cache: false,
-                    data: {
-                        email: email,
-                        pass: pass,
-                        remember: remember,
-                        security: object.ajax_nonce
-                    },
-                    success: function(response, status, xhr) {
-                        console.log(response);
-                        if (response == true) {
-                            window.location.reload()
-                        } else {
-                            $('.pLoginMessage').html('<p> Invalid credentials </p>');
-                            var fx = "wobble", //wobble shake
-                                $modal = $(this).closest('.iziModal');
-
-                            if (!$modal.hasClass(fx)) {
-                                $modal.addClass(fx);
-                                setTimeout(function() {
-                                    $modal.removeClass(fx);
-                                }, 1500);
-                            }
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            } else {
-                var fx = "wobble", //wobble shake
-                    $modal = $(this).closest('.iziModal');
-
-                if (!$modal.hasClass(fx)) {
-                    $modal.addClass(fx);
-                    setTimeout(function() {
-                        $modal.removeClass(fx);
-                    }, 1500);
-                }
-            }
+            iziLoginModalSubmit();
         });
-        //Tab 		
-        $('#protab').tabslet();
-        $('#TopPredictor').tabslet();
-        $('#Roadtotop').tabslet();
-        $('#headerNotification').tabslet();
-		$('#TopMatchPredictor').tabslet();
         //ProgressBar
         $(".progress-bar").loading(); 
         // SAVE PREDICTIONS
@@ -605,17 +757,17 @@
             saveQAns(questionID);
         });
         // ANSWERS
-        $('.answersWrapper').each(function(index) {
-            var eventID = $(this).attr('event');
-            var ditems = $(this).attr('ditems');
-            var html = $(this).attr('html');
-            var avatarslider = $(this).attr('avatarslider');
-            loadAnswers(eventID, ditems, html, avatarslider);
-        })
+        // $('.answersWrapper').each(function(index) {
+        //     var eventID     = $(this).attr('event');
+        //     var ditems      = $(this).attr('ditems');
+        //     var html        = $(this).attr('html');
+        //     var avatarslider = $(this).attr('avatarslider');
+        //     loadAnswers(eventID, ditems, html, avatarslider);
+        // })
         $(document).on('click', '.refreshButton', function(event) {
-            var eventID = $(this).parents('.answersWrapper').attr('event');
-            var ditems = $(this).parents('.answersWrapper').attr('ditems');
-            var html = $(this).parents('.answersWrapper').attr('html');
+            var eventID     = $(this).parents('.answersWrapper').attr('event');
+            var ditems      = $(this).parents('.answersWrapper').attr('ditems');
+            var html        = $(this).parents('.answersWrapper').attr('html');
             var avatarslider = $(this).parents('.answersWrapper').attr('avatarslider');
             if (!eventID) alert('Not a valid event');
             else loadAnswers(eventID, ditems, html, avatarslider);
@@ -634,7 +786,8 @@
         $(document).on('click', '.predictionFormBtn', function(event) {
             event.preventDefault();
             var eventID = $(this).attr('event');
-            getEventQuestionsHTML(eventID);
+            var team = $(this).attr('team');
+            getEventQuestionsHTML(eventID, team);
         });
         $(document).on('click', '.saveModalQAns', function(event) {
             event.preventDefault();
@@ -669,61 +822,8 @@
         })
         $(document).on('click', '.supportersPopUp', function(event) {
             event.preventDefault();
-            var message     = ''
-            var button      = $(this)
-            var match       = button.attr('match')
-            var toss        = button.attr('toss')
-            var tname       = button.attr('tname')
-
-            if (match || toss) {
-                message += '<div id="favouriteTeamTab" class="tabs tabs_default">';
-                    message += '<ul class="horizontal">';
-                        message += '<li class="proli active"><a href="javascript:;" tab=".match">Match</a></li>';
-                        message += '<li class="proli"><a href="javascript:;" tab=".toss">Toss</a></li>';
-                    message += '</ul>';
-                    // match
-                    message += '<div class="tabContent match">';
-                        if (!match) message += 'nothing found'
-                        else {
-                            match = match.split(',')
-                            message += '<ul class="list-unstyled votting-list">'
-                                match.forEach(function(predictor) {
-                                    predictor = predictor.split('###')
-                                    if (predictor) {
-                                        message += '<li>'
-                                            message += '<a href="'+ object.home_url +'/predictor/?p='+ predictor[1] +'" target="_blank">'
-                                                message += predictor[2]
-                                            message += '</a>'
-                                        message += '</li>'
-                                    }
-                                })
-                            message += '</ul>'
-                        }
-                    message += '</div>';
-                    message += '<div class="tabContent toss" style="display:none;">';
-                        if (!toss) message += 'nothing found'
-                        else {
-                            toss = toss.split(',')
-                            message += '<ul class="list-unstyled votting-list">'
-                                toss.forEach(function(predictor) {
-                                    predictor = predictor.split('###')
-                                    if (predictor) {
-                                        message += '<li>'
-                                            message += '<a href="'+ object.home_url +'/predictor/?p='+ predictor[1] +'" target="_blank">'
-                                                message += predictor[2]
-                                            message += '</a>'
-                                        message += '</li>'
-                                    }
-                                })
-                            message += '</ul>'
-                        }
-                    message += '</div>';
-                message += '</div>';
-            } else {
-                message += '<p style="text-align:center;color:red;"> No one supported this team. </p>';
-            }
-            showPopUp('supportersPopUpModal', tname, message)
-            $('#favouriteTeamTab').tabslet();
+            var button      = $(this);
+            supportersPopUp(button);
         })
         $(document).on('click', '#favouriteTeamTab .proli a', function(event) {
             event.preventDefault();
@@ -754,35 +854,13 @@
         })
         $(document).on('click', '.supportedMatchTossPopup', function(event) {
             event.preventDefault();
-            let items     = $(this).attr('items');
-            let profile   = $(this).attr('profile');
-            let nickname  = $(this).attr('nickname');
-            if (items) {
-                items = JSON.parse(items);
-                console.log(items);
-                let footer = '';
-                let content = '';
-                content += '<section>';
-                    if (items.match.length > 0) content += '<div class="supporterItem match"> Match : '+ items.match +'</div>';
-                    if (items.toss.length > 0) content += '<div class="supporterItem toss"> Toss : '+ items.toss +'</div>';
-                    content += '<footer>';
-                        content += '<a class="btn btn-green button-small" target="_blank" href="'+ profile +'">VIEW PROFILE</a>';
-                        content += '<button data-iziModal-close>Cancel</button>';
-                    content += '</footer>';
-                content += '</section>';
-
-                let modal = $("<div>").attr("class", "iziLoginModal confirm-modal supportedMatchTossPopup");
-                modal.html("<div class=\"iziModal-header\" style=\"background: rgb(136, 160, 185); padding-right: 78px;\"><i class=\"iziModal-header-icon icon-home\"></i><h2 class=\"iziModal-header-title\">Welcome to the iziModal</h2><p class=\"iziModal-header-subtitle\">Elegant, responsive, flexible and lightweight modal plugin with jQuery.</p><div class=\"iziModal-header-buttons\"><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-close\" data-izimodal-close=\"\"></a><a href=\"javascript:void(0)\" class=\"iziModal-button iziModal-button-fullscreen\" data-izimodal-fullscreen=\"\"></a></div></div>");
-                modal.iziModal({
-                    title: nickname,
-                    autoOpen: 1,
-                    onOpening: function(modal) {
-                        modal.startLoading();
-                        $(".iziLoginModal .iziModal-content").html(content);
-                        modal.stopLoading();
-                    }
-                });
-            }
+            var button = $(this);
+            supportedMatchTossPopup(button);
+        })
+        $(document).on('click', '.likeBtn', function(event) {
+            event.preventDefault();
+            var button = $(this);
+            addLikeForEvent(button);
         })
     });
 })(jQuery);

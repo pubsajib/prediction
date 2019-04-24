@@ -114,7 +114,7 @@ function getFavoriteTeamForThisEvent($meta, $answers, $eventID, $showTab=false, 
                         $matchData .= '<div class="progressContainer">';
                             if ($firstValue) {
                                 $matchData .= '<div class="skillbar w50p first" style="width:'. $firstValue .'%;" data-percent="100%">';
-                                    $matchData .= '<div class="skillbar-bar" style="background: '. $$firstTeamColor .';"></div>';
+                                    $matchData .= '<div class="skillbar-bar" style="background: '. $firstTeamColor .';"></div>';
                                     $matchData .= '<div class="skill-bar-percent">'. number_format($firstValue , 2).'%</div>';
                                 $matchData .= '</div>';
                             }
@@ -133,7 +133,7 @@ function getFavoriteTeamForThisEvent($meta, $answers, $eventID, $showTab=false, 
                         $tossData .= '<div class="progressContainer">';
                             if ($firstValue) {
                                 $tossData .= '<div class="skillbar w50p first" style="width:'. $firstValue .'%;" data-percent="100%">';
-                                    $tossData .= '<div class="skillbar-bar" style="background: '. $$firstTeamColor .';"></div>';
+                                    $tossData .= '<div class="skillbar-bar" style="background: '. $firstTeamColor .';"></div>';
                                     $tossData .= '<div class="skill-bar-percent">'. number_format($firstValue , 2).'%</div>';
                                 $tossData .= '</div>';
                             }
@@ -195,7 +195,7 @@ function getFavoriteTeamForThisEvent($meta, $answers, $eventID, $showTab=false, 
                     }
                     // $data .= help($team["predictors"], false);
                     $ansUsersData = '';
-                    if ($logoSlider && !empty($team['predictors']) && $data) $data .= getFavoriteEventAllSupportersSlider($team["predictors"]);
+                    if ($logoSlider && !empty($team['predictors']) && $data) $data .= getFavoriteEventAllSupportersSlider($team["predictors"], $eventLink);
                     $teamSI++;
                 }
             }
@@ -222,19 +222,31 @@ function getFavoriteTeamForThisEventSliderFor($supporters) {
     }
     return $data;
 }
-function getFavoriteEventAllSupportersSlider($supporters, $info=true, $class='') {
+function getFavoriteEventAllSupportersSlider($supporters, $eventLink=0, $class='') {
     $data = '';
     if (!$supporters) $data .= '<div class="item">No supporter</div>';
     else {
         $data .= '<div class="owl-carousel owl-theme eventSupperters">';
             foreach ($supporters as $supporter) {
-                $match = !empty($supporter['match']) ? $supporter['match'] : '';
-                $toss  = !empty($supporter['toss']) ? $supporter['toss'] : '';
-                if ($match || $toss) {
+                $overAll = ['all'=>0, 'match'=>0, 'toss'=>0]; 
+                $ipl = ['all'=>0, 'match'=>0, 'toss'=>0];
+                $UP = predictionsOf($supporter['uID']);
+                if (!empty($UP['avg'])) {
+					$overAll['all'] = $UP['avg']['all']['rate'];
+                    $overAll['match'] = $UP['avg']['match']['rate'];
+                    $overAll['toss'] = $UP['avg']['toss']['rate'];
+                }
+                $tournament = tournamentData($supporter['uID'], 313);
+                if (!empty($tournament['avg'])) {
+					$ipl['all'] = $tournament['avg']['all']['rate'];
+                    $ipl['match'] = $tournament['avg']['match']['rate'];
+                    $ipl['toss'] = $tournament['avg']['toss']['rate'];
+                }
+                if ($eventLink) {
                     $matchToss = ['match' => $match, 'toss' => $toss];
-                    $profileLink = esc_url(site_url('predictor')) .'/?p=sandeep';
+                    $profileLink = $eventLink .'/#'. $supporter['uID'];
                     $nickname = !empty($supporter['nickname']) ? $supporter['nickname'] : '';
-                    $data .= '<div class="item"><div class="profile-info supportedMatchTossPopup" items=\''. json_encode($matchToss) .'\' profile=\''. $profileLink .'\' nickname=\''. $nickname .'\'>';
+                    $data .= '<div class="item"><div class="profile-info supportedMatchTossPopup" overall=\''. json_encode($overAll) .'\' ipl=\''. json_encode($ipl) .'\' event=\''. $profileLink .'\' nickname=\''. $nickname .'\'>';
                         $data .= '<p><img src="'. $supporter['img'] .'"></p>';
                     $data .= '</div></div>';
                 }

@@ -1,5 +1,6 @@
 <?php
 namespace PLUGIN_NAME;
+use Like;
 class Frontend {
     private $plugin_slug;
     private $version;
@@ -22,6 +23,9 @@ class Frontend {
         add_action('wp_ajax_load_tournament', [$this, 'load_tournament']);
         add_action('wp_ajax_nopriv_load_tournament', [$this, 'load_tournament']);
         add_action('wp_ajax_getpredictionform', [$this, 'getpredictionform']);
+        // LIKE
+        add_action('wp_ajax_like_event_user', [$this, 'like_event_user']);
+        add_action('wp_ajax_nopriv_like_event_user', [$this, 'like_event_user']);
     }
     public function assets() {
         // CSS
@@ -154,8 +158,9 @@ class Frontend {
         }
         return $answers;
     }
+    
     function load_answers() {
-        check_ajax_referer('predictor_nonce', 'security');
+        // check_ajax_referer('predictor_nonce', 'security');
         $data           = '';
         $ID             = (int) $_POST['ID'];
         $ditems         = (int) $_POST['ditems'];
@@ -242,6 +247,7 @@ class Frontend {
         $html = '';
         $data = '';
         $ID = $_POST['event'];
+        $cTeam = $_POST['team'];
         $event = get_post($ID);
         $meta  = get_post_meta($ID, 'event_ops', true);
         $ans   = get_post_meta($ID, 'event_ans', true);
@@ -251,6 +257,7 @@ class Frontend {
                 if ($meta['teams']) {
                     foreach ($meta['teams'] as $team) {
                         $teamID = predictor_id_from_string($team['name']);
+                        // if ($teamID != $cTeam) continue;
                         $options = 'team_'. $teamID;
                         if (@isValidOption($ans[$userID][$options], $team['end'])) {
                             $questions = '';
@@ -300,6 +307,26 @@ class Frontend {
             $html .= '</div>'; // predictionWrapper end
         }
         echo $html;
+        wp_die();
+    }
+    function like_event_user() {
+        check_ajax_referer('predictor_nonce', 'security');
+        global $wpdb;
+        $event = $_POST['event'];
+        $user = $_POST['user'];        if ($event && $user) {
+            $table = $wpdb->prefix.'predictor_likes';
+            if (!empty($_COOKIE['cdpue'.$event.'_'.$user])) {echo 202;}
+            else {
+                try {
+                    $wpdb->insert($table, ['user'=>$user,'event'=>$event], ['%d', '%d']);
+                    increasePredictorLikes($user);
+                    setcookie('cdpue'.$event.'_'.$user, 1, time() + (86400 * 365), "/");
+                    echo 200;
+                } catch (Exception $e) {
+                   echo 201; 
+                } 
+            }
+        } else echo 203;
         wp_die();
     }
 }

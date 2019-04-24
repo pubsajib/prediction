@@ -12,7 +12,7 @@ $events = calendarEvents();
 if ($events) {
 	$data = '';
 	$data .= '<div class ="jflatTimeline">';
-	    $data .= '<div class="datepickerWrapper"><input type="date" id="matchesDatepicker"><span id="calendar_text"><span> '. date('M d Y') .'</span> 📅</span></div>';
+	    $data .= '<div class="datepickerWrapper"><input type="date" id="matchesDatepicker"><span id="calendar_text"><span> '. date('d M Y') .'</span> <img src="https://cricdiction.com/wp-content/plugins/predictor/frontend/img/calendar.png"></span></div>';
 		$data .= '<div class ="timeline-wrap">';
 			foreach ($events as $eventDate => $cats) {
 				if ($cats) {
@@ -26,13 +26,13 @@ if ($events) {
 							if ($cat) {
 								foreach ($cat as $eventSI => $event) {
 									if ($event['match']) {
-										foreach ($event['match'] as $item) { // THE TEAM
+										foreach ($event['match'] as $item) {
 											if (isset($item['opt']['match']) && !empty($item['opt']['match'])) {
 											    $discussion = $item['dis'] ?? false;
 									            $subTitle   = !empty($item['sub']) ? $item['sub'] .', ' : '';
 												$singleItem = isset($item['opt']['match']) && !empty($item['opt']['match']) ? $item['opt']['match'] : [];
 												$tossItem = isset($item['opt']['toss']) && !empty($item['opt']['toss']) ? $item['opt']['toss'] : [];
-												$default = $tossItem['default'] ? '<div class="result"><strong>'. $tossItem['default'] .'</strong> won the toss</div>' : '';
+												$default = !empty($tossItem['default']) ? '<div class="result"><strong>'. $tossItem['default'] .'</strong> won the toss</div>' : '';
 												$data .= '<div class="item">';
 													$data .= $default ? '<div class="status">Result</div>' : '';
 													$data .= '<div class="time">'. $subTitle. $item['time'] .'</div>';
@@ -44,18 +44,17 @@ if ($events) {
 													$data .= '</div>';
 												$data .= '</div>';
 											}
-											// LOAD ADD
-											$data .= !empty($item['opt']['add']) ? $item['opt']['add'] : '';
+											$data .= !empty($item['opt']['add']) ? '<div class="item">'. $item['opt']['add'] .'</div>': ''; // LOAD ADD
 										}
 									}
 								}
 							}
 						$data .= '</div>';
 					}
-					$data .= '<div class="event notFound">Not found</div>';
 				}
 				$data .= '</div>';
 			}
+			$data .= '<div class="event notFound"><div class="eventWrapper">Not found</div></div>';
 		$data .= '</div>';
 	$data .= '</div>';
 	echo $data;

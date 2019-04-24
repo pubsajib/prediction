@@ -24,7 +24,7 @@ function predictionFor($eventID, $userID) {
     $winLose = [];
     $eventAvg = defaultCriteriaValues();
     $tgain = $tparticipated = $tcorrect = $tincorrect = $twin = $tlose = 0;
-    if (@!$ans[$userID]) return [];
+    if (empty($ans[$userID])) return [];
     if (@$meta['teams']) {
         foreach ($meta['teams'] as $team) {
             $gain   = $participated = $correct = $incorrect = $win = $lose = 0;
@@ -37,12 +37,12 @@ function predictionFor($eventID, $userID) {
                 foreach ($meta[$teamID] as $option) {
                     $optionID = predictor_id_from_string($option['title']);
                     $defaultID = 'default_'. $ID .'_'. $optionID;
-                    if (!@$meta[$defaultID.'_published']) continue;
+                    if (empty($meta[$defaultID.'_published'])) continue;
                     $isCorrect = null;
                     $defaultAns = @$meta[$defaultID];
 
                     $answerID = $teamID .'_'. $optionID;
-                    $givenAns = @$ans[$userID][$answerID];
+                    $givenAns = !empty($ans[$userID][$answerID]) ? $ans[$userID][$answerID] : [];
                     $dWeight = getDefaultWeight($option['weight'], $defaultAns);
                     $dWeight = $dWeight ? $dWeight : 0;
                     

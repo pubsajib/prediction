@@ -1,9 +1,8 @@
 <?php 
 $prefix='pre-';
-
 $meta_boxes = [
     [
-        'id'        => 'date',
+        'id'        => 'dateOption',
         'title'     => 'Date Options',
         'pages'     => ['event'],
         'context'   => 'side', // normal, side
@@ -26,7 +25,7 @@ $meta_boxes = [
         'priority'  => 'high',
         'fields'    => [
             ['id'   => $prefix .'featured', 'name' => 'Featured', 'type' => 'checkbox', 'desc' => '', 'std' => ''],
-            ['id'   => $prefix .'published', 'name' => 'Published', 'type' => 'checkbox', 'desc' => '', 'std' => '']
+            ['id'   => $prefix .'published', 'name' => 'Published', 'type' => 'checkbox', 'desc' => '', 'std' => ''],
         ]
     ]
 ];

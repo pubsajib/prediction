@@ -71,8 +71,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 		<a class="fusion-one-page-text-link fusion-page-load-link"></a>
 
-		<?php wp_footer(); ?>
-
+		<?php wp_footer(); 
+		if (is_singular('event')) { 
+		$sliderID = ".owlCarousel_".$post->ID;
+		?>
+			<script> (function($) { 
+				jQuery("<?php echo $sliderID; ?>").owlCarousel({loop:true, margin: 10, nav: true, autoplay:true, autoplayTimeout:15000, URLhashListener:true, autoplayHoverPause:true, startPosition: "URLHash", responsive: {0: {items: 1 }, 600: {items: 1 }, 1000: {items: 2 } } }) 
+				jQuery('.skillbar').each(function(){jQuery(this).find('.skillbar-bar').animate({width:jQuery(this).attr('data-percent') },5000);
+	        });
+			})(jQuery); </script>
+		<?php } ?>
 <!-- 		<div class="md-modal md-effect-12">
 			<div class="md-content custom-mobile-menu">
 				<div class="header">
