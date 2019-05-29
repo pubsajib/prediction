@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <!DOCTYPE html>
-<html class="<?php avada_the_html_class(); ?>" <?php language_attributes(); ?>>
+<html class="nameabc <?php avada_the_html_class(); ?>" <?php language_attributes(); ?>>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -87,5 +87,10 @@ if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
 			$main_class = 'width-100';
 		}
 		?>
+		<div class="mobileLoginUser">
+			<ul>
+				<li><a href="https://www.cricdiction.com/pcp/">DASHBOARD</a></li>
+			</ul>
+		</div>
 		<main id="main" role="main" class="clearfix <?php echo esc_attr( $main_class ); ?>" style="<?php echo esc_attr( $main_css ); ?>">
 			<div class="fusion-row" style="<?php echo esc_attr( $row_css ); ?>">

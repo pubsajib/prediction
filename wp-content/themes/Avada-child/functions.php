@@ -28,4 +28,7 @@ if ( !function_exists( 'child_theme_configurator_css' ) ):
 endif;
 add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css', 20 );
 
+// User description html
+remove_filter('pre_user_description', 'wp_filter_kses');
+
 // END ENQUEUE PARENT ACTION

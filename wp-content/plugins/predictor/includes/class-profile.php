@@ -29,12 +29,14 @@ class Profile {
 					</select>
 				</td>
 			</tr>
-			<tr>
-				<th><label for="country"><?php esc_html_e( 'Highlighted', 'prediction' ); ?></label></th>
-				<td>
-					<label for="highlight"><input type="checkbox" name="highlight" id="highlight" <?php echo esc_attr( $highlight ) ? ' checked' : '' ?>> Special Predictor </label>
-				</td>
-			</tr>
+			<?php if (is_admin()): ?>
+				<tr>
+					<th><label for="country"><?php esc_html_e( 'Highlighted', 'prediction' ); ?></label></th>
+					<td>
+						<label for="highlight"><input type="checkbox" name="highlight" id="highlight" <?php echo esc_attr( $highlight ) ? ' checked' : '' ?>> Special Predictor </label>
+					</td>
+				</tr>
+			<?php endif ?>
 		</table>
 		<?php
 	}
@@ -53,7 +55,7 @@ class Profile {
 		if ( ! current_user_can( 'edit_user', $user_id ) ) return false;
 
 		update_user_meta( $user_id, 'country', $_POST['country'] );
-		update_user_meta( $user_id, 'highlight', $_POST['highlight'] );
+		if (is_admin()) update_user_meta( $user_id, 'highlight', $_POST['highlight'] );
 	}
 }
 new Profile;

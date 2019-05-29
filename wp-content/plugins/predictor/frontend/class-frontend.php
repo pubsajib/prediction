@@ -1,6 +1,8 @@
 <?php
 namespace PLUGIN_NAME;
 use Like;
+use Enhancement;
+use Range;
 class Frontend {
     private $plugin_slug;
     private $version;
@@ -24,8 +26,14 @@ class Frontend {
         add_action('wp_ajax_nopriv_load_tournament', [$this, 'load_tournament']);
         add_action('wp_ajax_getpredictionform', [$this, 'getpredictionform']);
         // LIKE
-        add_action('wp_ajax_like_event_user', [$this, 'like_event_user']);
-        add_action('wp_ajax_nopriv_like_event_user', [$this, 'like_event_user']);
+        add_action('wp_ajax_add_predictor_like', [$this, 'add_predictor_like']);
+        add_action('wp_ajax_nopriv_add_predictor_like', [$this, 'add_predictor_like']);
+        // RANGE
+        add_action('wp_ajax_load_range', [$this, 'load_range']);
+        add_action('wp_ajax_nopriv_load_range', [$this, 'load_range']);
+        // CALENDAR EVENTS
+        add_action('wp_ajax_calendar_events', [$this, 'calendar_events']);
+        add_action('wp_ajax_nopriv_calendar_events', [$this, 'calendar_events']);
     }
     public function assets() {
         // CSS
@@ -33,8 +41,8 @@ class Frontend {
         wp_enqueue_style('owl-css',plugin_dir_url(__FILE__).'css/owl.carousel.min.css', [], $this->version);
         wp_enqueue_style('owltheme-css',plugin_dir_url(__FILE__).'css/owl.theme.default.min.css', [], $this->version);
         wp_enqueue_style('iziModal-css',plugin_dir_url(__FILE__).'css/iziModal.min.css', [], $this->version);
-        wp_enqueue_style('fullpage-modal',plugin_dir_url(__FILE__).'css/jquery.plugin.full-modal.min.css', [], $this->version);
-        wp_enqueue_style('fullpage-tab',plugin_dir_url(__FILE__).'css/component.css', [], $this->version);
+        // wp_enqueue_style('fullpage-modal',plugin_dir_url(__FILE__).'css/jquery.plugin.full-modal.min.css', [], $this->version);
+        // wp_enqueue_style('fullpage-tab',plugin_dir_url(__FILE__).'css/component.css', [], $this->version);
         // wp_enqueue_style('calendar',plugin_dir_url(__FILE__).'css/res-timeline.css', [], $this->version);
         wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__).'css/plugin-name-frontend.css', [], $this->version);
         // JS
@@ -44,8 +52,8 @@ class Frontend {
         wp_enqueue_script('owl-js',plugin_dir_url(__FILE__).'js/owl.carousel.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('iziModal-js',plugin_dir_url(__FILE__).'js/iziModal.min.js', ['jquery'], $this->version, true);
         wp_enqueue_script('timeto-js',plugin_dir_url(__FILE__).'js/jquery.time-to.min.js', ['jquery'], $this->version, true);
-        wp_enqueue_script('fullpage-js',plugin_dir_url(__FILE__).'js/jquery.plugin.full-modal.min.js', ['jquery'], $this->version, true);
-        wp_enqueue_script('fullpagetab-js',plugin_dir_url(__FILE__).'js/cbpFWTabs.js', ['jquery'], $this->version, true);
+        // wp_enqueue_script('fullpage-js',plugin_dir_url(__FILE__).'js/jquery.plugin.full-modal.min.js', ['jquery'], $this->version, true);
+        // wp_enqueue_script('fullpagetab-js',plugin_dir_url(__FILE__).'js/cbpFWTabs.js', ['jquery'], $this->version, true);
         // wp_enqueue_script('calendar-js',plugin_dir_url(__FILE__).'js/calendar-jquery.min.js', [], $this->version);
         wp_enqueue_script('calendar',plugin_dir_url(__FILE__).'js/res-timeline.js', ['jquery'], $this->version, true);
         wp_enqueue_script($this->plugin_slug, plugin_dir_url(__FILE__).'js/plugin-name-frontend.js', ['jquery'], $this->version, true);
@@ -146,7 +154,7 @@ class Frontend {
             $event          = get_post($eventID);
             $meta           = get_post_meta($eventID, 'event_ops', true);
             $ans            = get_post_meta($eventID, 'event_ans', true);
-            $answerGiven    = @$meta['answers'];
+            $answerGiven    = !empty($meta['answers']) ? $meta['answers'] : false;
             if (isset($ans[0])) unset($ans[0]);
             // GIVEN PREDICTIONS
             if (!$meta['restricted']) $answers = getFavoriteTeamForThisEvent($meta, $ans, $eventID);
@@ -158,8 +166,30 @@ class Frontend {
         }
         return $answers;
     }
-    
     function load_answers() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $data           = '';
+        $ID             = (int) $_POST['ID'];
+        $ditems         = (int) $_POST['ditems'];
+        $html           = $_POST['html'];
+        $avatarslider   = (int) $_POST['avatarslider'];
+        if (get_post_type($ID) == 'event') {
+            $answers        = '';
+            $meta           = get_post_meta($ID, 'event_ops', true);
+            $ans            = get_post_meta($ID, 'event_ans', true);
+            $answerGiven    = !empty($meta['answers']) ? $meta['answers'] : false;
+            if (isset($ans[0])) unset($ans[0]);
+            $answers = Enhancement::answersHTML($meta, $ans, $ID);
+            
+            $data .= '<span class="refreshButton fusion-button button-default button-small" event="'. $ID .'">Reload</span>';
+            if ($answers) $data .= $answers;
+            else $data .= 'No one predicted this event yet. If you are an expert you may <a href="'. site_url('log-in') .'">Login</a> here.';
+        }
+        echo $data;
+        wp_die();
+    }
+    
+    function load_answers2() {
         // check_ajax_referer('predictor_nonce', 'security');
         $data           = '';
         $ID             = (int) $_POST['ID'];
@@ -253,19 +283,20 @@ class Frontend {
         $ans   = get_post_meta($ID, 'event_ans', true);
         if ($userID = getValidUserID(['predictor', 'administrator'])) {
             // PREDICTIN FORM
-            if (@!$meta['published']) {
-                if ($meta['teams']) {
+            if (empty($meta['published'])) {
+                if (!empty($meta['teams'])) {
                     foreach ($meta['teams'] as $team) {
                         $teamID = predictor_id_from_string($team['name']);
-                        // if ($teamID != $cTeam) continue;
+                        if ($teamID != $cTeam) continue;
                         $options = 'team_'. $teamID;
-                        if (@isValidOption($ans[$userID][$options], $team['end'])) {
+                        $userOptions = !empty($ans[$userID][$options]) ? $ans[$userID][$options] : [];
+                        if (@isValidOption($userOptions, $team['end'])) {
                             $questions = '';
-                            if ($meta[$options]) {
+                            if (!empty($meta[$options])) {
                                 foreach ($meta[$options] as $option) {
                                     $question = $tossTime = '';
                                     $name = $options .'_'. predictor_id_from_string($option['title']);
-                                    if (@ !$ans[$userID][$name]) {
+                                    if (empty($ans[$userID][$name])) {
                                         if ($option['id'] == 'toss') {
                                             $tossTime =  $option['time'] ? $option['time'] : 30;
                                             $tossTime =  date('Y-m-d H:i:s',strtotime("-". $tossTime ." minutes",strtotime($team['end'])));
@@ -309,11 +340,12 @@ class Frontend {
         echo $html;
         wp_die();
     }
-    function like_event_user() {
+    function like_event_user_backup() {
         check_ajax_referer('predictor_nonce', 'security');
         global $wpdb;
         $event = $_POST['event'];
-        $user = $_POST['user'];        if ($event && $user) {
+        $user = $_POST['user'];        
+        if ($event && $user) {
             $table = $wpdb->prefix.'predictor_likes';
             if (!empty($_COOKIE['cdpue'.$event.'_'.$user])) {echo 202;}
             else {
@@ -327,6 +359,39 @@ class Frontend {
                 } 
             }
         } else echo 203;
+        wp_die();
+    }
+    function add_predictor_like() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $event = $_POST['event'];
+        $user = $_POST['user'];        
+        if ($event && $user) {
+            if (!empty($_COOKIE['cdpue_'.$event.'_'.$user])) { echo 202; }
+            else {
+                try {
+                    increasePredictorLikes($user);
+                    setcookie('cdpue_'.$event.'_'.$user, 1, time() + (86400 * 365), "/");
+                    echo 200;
+                } catch (Exception $e) {
+                   echo 201; 
+                } 
+            }
+        } else echo 203;
+        wp_die();
+    }
+    function load_range() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $html = '';
+        $event = $_POST['event'];  
+        if ($event) $html = Range::contentHTML($event);
+        echo $html;
+        wp_die();
+    }
+    function calendar_events() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $html = '';
+        if ($date = $_POST['date']) $html = calendarEvents('', $date);
+        echo $html;
         wp_die();
     }
 }

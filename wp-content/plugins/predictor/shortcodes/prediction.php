@@ -78,7 +78,7 @@ class Prediction {
                                         $data .= '<div class="notice">';
                                             $data .= '<div class="alert">';
                                                 $data .= '<span class="closebtn">&times;</span>';
-                                        //      $data .= '<h3 style="color: #fff;">Road to top 10</h3>';
+                                              $data .= '<h3 style="color: #fff;">Road to top 10</h3>';
                                                 $data .= '<ul style="margin-left: 15px;">';
                                                     $data .= '<li><a href="https://cricdiction.com/eligibility-process">Click here</a> to see the eligibility process</li>';
                                             $data .= '</div>';

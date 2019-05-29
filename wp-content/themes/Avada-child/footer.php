@@ -71,8 +71,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 		<a class="fusion-one-page-text-link fusion-page-load-link"></a>
 
-		<?php wp_footer(); 
-		if (is_singular('event')) { 
+		<?php wp_footer();
 		$sliderID = ".owlCarousel_".$post->ID;
 		?>
 			<script> (function($) { 
@@ -80,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				jQuery('.skillbar').each(function(){jQuery(this).find('.skillbar-bar').animate({width:jQuery(this).attr('data-percent') },5000);
 	        });
 			})(jQuery); </script>
-		<?php } ?>
+
 <!-- 		<div class="md-modal md-effect-12">
 			<div class="md-content custom-mobile-menu">
 				<div class="header">

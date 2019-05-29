@@ -1,13 +1,16 @@
 /*====================================
 =            Admin Styles            =
 ====================================*/
+/*GLOBAL*/
+.m-0{margin: 0;}
+.p-0{padding: 0;}
+.clearfix{clear: both;}
 /* ANSWERS */
 .answersWrapper{position: relative;}
 .answersWrapper h3{font-weight: bold;}
 .answerContainer {border-color: #bce8f1; background-color: #d9edf7;margin-bottom: 20px; padding: 10px 20px;}
 .answerContainer h4{margin: 0;font-weight: bold;}
 .answerContainer .answer{position: relative; border: 1px solid #d5d5d5; clear: both; padding: 10px 0 18px 9px; margin-bottom: 10px; }
-.answerContainer .answer span{}
 .answerContainer .answer img{height:15px;width: auto;}
 
 .adminButton{
@@ -33,3 +36,10 @@
 }
 .removeAns{position: absolute;right: 8px;}
 #dateOption table td, #control table td {padding: 0;}
+
+.wrap h1{margin-bottom: 15px;}
+.half{float: left;width: 49%;}
+.half.first{margin-right: 1%;}
+.half.last{margin-left: 1%;}
+.tournamentList{margin: 0;border: 1px solid #000;padding: 10px 20px;}
+.tournamentList .inputItem{}

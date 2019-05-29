@@ -203,7 +203,7 @@ class CalendarEvents {
 		}
 		return $data;
     }
-    static function eventsByDateHtmlForPredictor($events, $user) {
+    static function eventsByDateHtmlForPredictor($events) {
 		$data = '';
     	if ($events) {
         	$data = '';

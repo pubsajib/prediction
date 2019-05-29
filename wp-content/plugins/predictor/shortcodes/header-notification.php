@@ -1,10 +1,11 @@
 <?php 
-class headerNotification {
+// [header-notification tournaments="12:bpl,15:ipl"]
+class HeaderNotification {
 	public static function render($attr) {
 		$html = $tabNavigation =  $tabNavigationItems = $tabContent = '';
 		$allTournaments = '';
 		$defaults = ['tournaments'=>''];
-		$attr = shortcode_atts($defaults, $attr, 'headerNotification');
+		$attr = shortcode_atts($defaults, $attr, 'HeaderNotification');
 		$tournaments = self::tournaments($attr['tournaments']);
 		$owlSelector = 'owlCarousel_headerNotification';
 		if ($tournaments) {
@@ -110,7 +111,7 @@ class headerNotification {
 	            			'title'		=> 	$team['name'], 
 	            			'link'		=>	site_url('event/'). $event->post_name,
 	            			'time'		=> 	$team['end'] ? date('M d, Y h:i A', strtotime($team['end'])) : '',
-	            			'cats' 		=> 	getEventCategories($event),
+	            			'cats' 		=> 	self::getEventCategories($event),
 	            			'status'	=> 	strtotime($team['end']) >= time() ? 'Active' : 'Completed',
 	            			'subtitle'	=> '',
 	            			'discussion'	=> '',
@@ -128,7 +129,7 @@ class headerNotification {
 	            				$itemInfo[$itemSI] 	= [
 	            					// 'ID'		=> $answerID, 
 	            					'title'		=> $option['title'],
-	            					'options'	=> getOptions($option['weight']),
+	            					'options'	=> self::getOptions($option['weight']),
 	            					'default'	=> 'N/A',
 	            				];
 	            				if ($published) $itemInfo[$itemSI]['default'] = $meta[$defaultID] ?? '';
@@ -146,5 +147,54 @@ class headerNotification {
 		}
 		return $items;
 	}
- }
-add_shortcode('header-notification', ['headerNotification', 'render']);
+	static function getEventCategories($event, $html=0) {
+    	$tournaments = '';
+    	$cats = get_the_terms($event, 'tournament');
+    	if ($html) {
+    		if ($cats) {
+    			$tournaments .= '<ul class="tournaments">';
+    			foreach ($cats as $cat) {
+    				$tournaments .= '<li>'. $cat->name .'</li>';
+    			}
+    			$tournaments .= '</ul>';
+    		}
+    	} else {
+    		$catArray = [];
+    		if ($cats) {
+    			foreach ($cats as $cat) {
+    				$catArray[] = $cat->name;
+    			}
+    		}
+    		$tournaments = implode(', ', $catArray);
+    	}
+    	return $tournaments;
+    }
+    static function getOptions($weights, $array=1) {
+		if ($array) {
+			$options = [];
+			if ($weights) {
+				foreach ($weights as $SI => $weight) {
+					if ($weight['name']) {
+						$options[] = $weight['name'];
+					}
+				}
+			}
+			return implode(', ',$options);
+		} else {
+			$options = '';
+			if ($weights) {
+				$options .= '<ul class="options">';
+				foreach ($weights as $weight) {
+					if ($weight['name']) {
+						$options .= "<li>";
+						$options .= $weight['name'];
+						$options .= "</li>";
+					}
+				}
+				$options .= '</ul>';
+			}
+			return $options;
+		}
+	}
+}
+add_shortcode('header-notification', ['HeaderNotification', 'render']);

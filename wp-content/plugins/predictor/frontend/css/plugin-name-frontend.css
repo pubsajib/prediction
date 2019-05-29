@@ -73,7 +73,11 @@ table {
 .teamAnsContainer:last-child {
     border-bottom: 0;
 }
- .refreshButton.fusion-button {
+
+.fusion-button.orange {background: #ff9800;}
+
+ .refreshButton.fusion-button,
+.rangeRefreshBtn.fusion-button {
     background: #ff9800 !important;
     font-size: 10px !important;
     top: -40px !important;
@@ -81,11 +85,6 @@ table {
     padding: 6px 12px;
     position: absolute;
     right: 0;
-}
- .teamQuestionContainer {
-    margin-bottom: 20px;
-	background: #fff;
-	 padding: 15px;
 }
  .titleContainer p{
     margin-bottom: 0 !important;
@@ -100,10 +99,7 @@ table {
      display: inline-block;
      width: 100%;
 }
- .menuSlider {
-    background: transparent;
-    text-align: center;
-}
+ .menuSlider {background: transparent;text-align: center;padding: 0;}
 .menuSlider img {
     border-radius: 50%;
     margin: 2px;
@@ -328,10 +324,10 @@ table {
     margin: 10px 0;
     text-transform: uppercase;
 }
- .page-template-predictor .usertag li {
+/*  .page-template-predictor .usertag li {
     padding: 3px 12px;
     font-size: 14px;
-}
+} */
  .sliderFooter {
     background: rgb(236,236,236);
     background: linear-gradient(180deg, rgba(236,236,236,1) 0%, rgba(245,244,244,1) 50%, rgba(255,255,255,1) 100%);
@@ -372,6 +368,7 @@ table {
     font-weight: 600;
     font-size: 14px;
     border-radius: 50px;
+	box-shadow: 0 0 3px;
 }
 
 .tabs.tabs_default .proli a:hover, .tabs.tabs_default .proli.active a {
@@ -386,8 +383,10 @@ table {
 
 #TopPredictor .horizontal {
 	margin-top: 0;
-	margin-bottom: 20px;
+	margin-bottom: 20px !important;
 }
+#TopPredictor .owl-carousel .owl-item p {text-align: center;color: #fff;font-size: 11px;margin-bottom: 15px;}
+#TopPredictor .owl-carousel .owl-item .rank-float p{position: absolute;top: 0;right: 0;background: rgba(0, 0, 0, 0.50);font-size: 20px;width: 35px;border-radius: 50%;line-height: 35px;color: #fff;}
 #headerNotification {
 	margin-bottom: 5px;
 }
@@ -550,16 +549,17 @@ table {
 	 display: inline-block;
 	 width: 100%;
 }
- .predictionWrapper h3{
+.predictionWrapper {clear: both;display: inline-block;width: 100%;margin: 10px; background:#fff; padding: 5px 12px; border-radius: 10px; box-shadow: 0 0 10px #ddd;}
+.predictionWrapper h3{
     font-weight: bold!important;
 }
- .predictionWrapper label{
+.predictionWrapper label{
     font-weight: normal;
     display: block;
     padding-left: 15px;
     font-size: 14px;
 }
- .predictionWrapper label input {
+.predictionWrapper label input {
     margin-right: 10px;
 }
 .predictorListWrapper .predictorContainer.author-profile-card {
@@ -569,17 +569,14 @@ table {
     padding: 20px 20px 15px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
     margin: 0 1.33% 20px 0;
-	min-height: 598px;
+	min-height: 300px;
 	border-radius: 10px;
 }
 .predictorListWrapper.bpl-box .predictorContainer.author-profile-card {
     min-height: 356px;
 }
 
-.predictorListWrapper .predictorContainer.author-profile-card .author-photo img {
-	height: 90px;
-	width: auto;
-}
+.predictorListWrapper .predictorContainer.author-profile-card .author-photo img {height: 90px;width: auto;border-radius: 50%;}
 
 /* ANSWERS */
  .answersWrapper{
@@ -776,6 +773,8 @@ table {
 }
 
 /* Notice */
+.notice {display: none;}
+
 .notice .alert {
   padding: 20px;
   background-color: #1d100f;
@@ -1247,6 +1246,7 @@ table {
 	background: #fff;
 	margin-bottom: 10px;
 	padding-bottom: 0 !important;
+	border-radius: 7px;
 }
 
 .jflatTimeline .event .eventWrapper .item {
@@ -1266,8 +1266,9 @@ table {
     text-transform: uppercase;
     font-weight: 700;
     border-bottom: 1px solid #efeeee;
-    padding-bottom: 7px;
-	margin-bottom: 0 !important;
+    padding: 7px;
+    margin-bottom: 0 !important;
+    margin-left: 10px;
 }
 
 .jflatTimeline .event .eventWrapper .time {
@@ -1310,8 +1311,11 @@ table {
 .jflatTimeline .event .eventWrapper .item .status {
 	color: #ff0000;
 }
+
+.tabs .horizontal {margin-bottom: 10px !important;}
 .tabs .horizontal .proli {
     margin-bottom: 10px;
+	margin: 3px;
 }
 #Roadtotop .notice {
 	background: #fff;
@@ -1785,6 +1789,8 @@ table {
 	margin: 0;
 	color: #fff !important;
 }
+/* .progressContainer .progressWrapper .owl-carousel .owl-item {display: inline-flex;float: none;}
+.progressContainer .progressWrapper .owl-stage {padding-bottom: 0;text-align: center;width: 100% !important;display: block;} */
 
 .w50p {
 	width: 50%; 
@@ -1981,7 +1987,7 @@ table {
 }
 .singleEventDiscussionBtn {margin-top: 15px;}
 .single-event .viewEventBtn{display:none;}
-.datepickerWrapper{text-align: center; background: #fff; margin-bottom: 5px; padding: 10px;}
+.datepickerWrapper{text-align: center; background: #fff; margin-bottom: 5px; padding: 10px;border-radius: 7px;}
 .datepickerWrapper input {position: absolute; opacity: 0;}
 .datepickerWrapper input::-webkit-calendar-picker-indicator {position: absolute; width: 100%; height: 100%; opacity: 0; }
 .datepickerWrapper input:hover, .datepickerWrapper>span {cursor: pointer;font-size: 20px;}
@@ -2005,13 +2011,15 @@ table {
 .iziModal .iziModal-header {
 	background: #16936c !important;
 }
-.eventSupperters .item {
+.eventSupperters .item,
+.eventTopSupperters .item{
 	background: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
     border-radius: 10px !important;
     box-shadow: none !important;
 }
+#eventSupperters .horizontal {margin-bottom: 20px !important;}
 .eventSupperters .owl-stage {
 	padding-bottom: 0;
 }
@@ -2082,6 +2090,34 @@ table {
     font-size: 20px;
 }
 
+.parent-ranking .horizontal.rank {margin-bottom: 0 !important;clear: both;display: inline-block;width: 100%;}
+
+.parent-ranking .proli.rank {
+	float: left;
+	margin: 0 0 10px !important;
+	width: 33.33%;
+}
+
+.parent-ranking .proli.rank a {
+	border-radius: 0 !important;
+	padding: 15px !important;
+	background: #000 !important;
+}
+
+.parent-ranking .proli.rank.active a,
+.parent-ranking .proli.rank a:hover {
+	background: #fff !important;
+	color: #000 !important;
+}
+
+/* Profile Page */
+.profile-wrapper {width: 100%;}
+.profile-wrapper .card {background: #fff;padding: 20px;border-radius: 7px;text-align:center;margin-bottom: 20px;}
+.profile-wrapper .card .title {text-align: left;font-size: 22px;color: #16936c;}
+.profile-wrapper .card .circle {height: 120px;width: 120px;border: 5px solid;display: inline-block;border-radius: 50%}
+.profile-wrapper .card .circle h2 {line-height: 110px !important;}
+.profile-wrapper .card .circle .green {color: #009688;}
+.profile-wrapper .card .circle .red {color: #e05b51;}
 @media only screen and (max-width: 800px) {
      .iziModal {
         left: 20px;

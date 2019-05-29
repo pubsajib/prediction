@@ -1,5 +1,6 @@
 <?php
 namespace PLUGIN_NAME;
+use PredictionCron;
 /**
  * The code used in the admin.
  */
@@ -16,7 +17,6 @@ class Admin
         $this->option_name = $option_name;
         $this->settings = get_option($this->option_name);
         $this->settings_group = $this->option_name.'_group';
-        add_action('wp_ajax_delete_answers', [$this, 'delete_answers']);
         add_action('admin_init', [$this, 'ui_new_role']);
         add_action('init', [$this, 'createPostType']);
         add_action( 'init', [$this, 'pcreate_event_term'] );
@@ -25,6 +25,9 @@ class Admin
         // add_filter('request', [$this, 'customColumnSort']);
         add_action('pre_get_posts', [$this, 'customColumnSort']);
         add_filter('manage_event_sortable_columns', [$this,'my_sortable_cake_column']);
+        add_action('wp_ajax_delete_answers', [$this, 'delete_answers']);
+        add_action('wp_ajax_cron_options', [$this, 'cron_options']);
+        add_action('wp_ajax_run_cron', [$this, 'run_cron']);
     }
     function my_sortable_cake_column($columns ) {
         $columns['featured'] = 'Featured';
@@ -115,21 +118,21 @@ class Admin
             ]
         );
     }
-    private function custom_settings_fields($field_args, $settings) {
-        $output = '';
-        foreach ($field_args as $field) {
-            $slug = $field['slug'];
-            $setting = $this->option_name.'['.$slug.']';
-            $label = esc_attr__($field['label'], 'plugin-name');
-            $output .= '<h3><label for="'.$setting.'">'.$label.'</label></h3>';
-            if ($field['type'] === 'text') {
-                $output .= '<p><input type="text" id="'.$setting.'" name="'.$setting.'" value="'.$settings[$slug].'"></p>';
-            } elseif ($field['type'] === 'textarea') {
-                $output .= '<p><textarea id="'.$setting.'" name="'.$setting.'" rows="10">'.$settings[$slug].'</textarea></p>';
-            }
-        }
-        return $output;
-    }
+    // private function custom_settings_fields($field_args, $settings) {
+    //     $output = '';
+    //     foreach ($field_args as $field) {
+    //         $slug = $field['slug'];
+    //         $setting = $this->option_name.'['.$slug.']';
+    //         $label = esc_attr__($field['label'], 'plugin-name');
+    //         $output .= '<h3><label for="'.$setting.'">'.$label.'</label></h3>';
+    //         if ($field['type'] === 'text') {
+    //             $output .= '<p><input type="text" id="'.$setting.'" name="'.$setting.'" value="'.$settings[$slug].'"></p>';
+    //         } elseif ($field['type'] === 'textarea') {
+    //             $output .= '<p><textarea id="'.$setting.'" name="'.$setting.'" rows="10">'.$settings[$slug].'</textarea></p>';
+    //         }
+    //     }
+    //     return $output;
+    // }
     public function assets() {
         wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__).'css/plugin-name-admin.css', [], $this->version);
         wp_enqueue_script($this->plugin_slug, plugin_dir_url(__FILE__).'js/plugin-name-admin.js', ['jquery'], $this->version, true);
@@ -139,8 +142,10 @@ class Admin
         register_setting($this->settings_group, $this->option_name);
     }
     public function add_menus() {
-        // $plugin_name = Info::get_plugin_title();
-        // add_submenu_page('options-general.php', $plugin_name, $plugin_name, 'manage_options', $this->plugin_slug, [$this, 'render'] );
+        $plugin_name = Info::get_plugin_title();
+        // add_options_page( 'My Plugin Options', 'My Plugin', 'manage_options', $this->plugin_slug, $this->settings);
+        add_menu_page('Predictor', 'Predictor', 'manage_options', $this->plugin_slug, [$this, 'render']);
+        add_submenu_page('options-general.php', $plugin_name, $plugin_name, 'manage_options', $this->plugin_slug, [$this, 'render'] );
     }
     /**
      * Render the view using MVC pattern.
@@ -154,27 +159,12 @@ class Admin
         // Model
         $settings = $this->settings;
         // Controller
-        $fields = $this->custom_settings_fields($field_args, $settings);
+        // $fields = $this->custom_settings_fields($field_args, $settings);
         $settings_group = $this->settings_group;
         $heading = Info::get_plugin_title();
         $submit_text = esc_attr__('Submit', 'plugin-name');
         // View
         require_once plugin_dir_path(dirname(__FILE__)).'admin/partials/view.php';
-    }
-    function delete_answers() {
-        check_ajax_referer('predictor_nonce', 'security');
-        $event  = $_POST['event'];
-        $answerID  = $_POST['answerid'];
-        $user  = $_POST['user'];
-        if (get_post_type($event) == 'event') {
-            // DELETE PREDICTIONS
-            $answers = get_post_meta($event, 'event_ans', true);
-            if (isset($answers[$user][$answerID])) unset($answers[$user][$answerID]);
-            else wp_die('answer is not exists for index : '. $answers[$user][$answerID]);
-            $deleted = update_post_meta($event, 'event_ans', $answers);
-        } else wp_die('Not an event type post');
-        echo "deleted : $deleted";
-        wp_die();
     }
     function wpc_custom_table_head( $defaults ) {
         $defaults['event_date']  = 'Event Date';
@@ -197,5 +187,45 @@ class Admin
         if ($column_name == 'venue') {
             echo get_post_meta( $post_id, 'meta_event_venue', true );
         }
+    }
+    function delete_answers() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $event  = $_POST['event'];
+        $answerID  = $_POST['answerid'];
+        $user  = $_POST['user'];
+        if (get_post_type($event) == 'event') {
+            // DELETE PREDICTIONS
+            $answers = get_post_meta($event, 'event_ans', true);
+            if (isset($answers[$user][$answerID])) unset($answers[$user][$answerID]);
+            else wp_die('answer is not exists for index : '. $answers[$user][$answerID]);
+            $deleted = update_post_meta($event, 'event_ans', $answers);
+        } else wp_die('Not an event type post');
+        echo "deleted : $deleted";
+        wp_die();
+    }
+    function cron_options() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $tournaments = !empty($_POST['tournaments']) ? $_POST['tournaments'] : [];
+        $optionName = 'predictor_cron_options';
+        if (PredictionCron::createRatingSummeryTable($tournaments)) {
+            if ( get_option( $optionName ) !== false ) {
+                echo update_option( $optionName, $tournaments );
+            } else {
+                $deprecated = null;
+                $autoload = 'no';
+                echo add_option( $optionName, $tournaments, $deprecated, $autoload );
+            }
+        } else echo 0;
+        wp_die();
+    }
+    function run_cron() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $type = !empty($_POST['type']) ? $_POST['type'] : false;
+        if ($type != 'summery' && PredictionCron::rankingCronFor($type)) {
+            echo date('M d, Y', time());
+        } else if ($type == 'summery') {
+            echo PredictionCron::insertIntoRankinSummeryTable();
+        } else echo 0;
+        wp_die();
     }
 }

@@ -1,68 +1,20 @@
 (function($) {
     'use strict';
-    var owlCarousel = function() {
-        $('.owlCarousel_headerNotification').owlCarousel({
+    var owlSlider = function(element, items1000=5, items600=3, items0=3, autoplay=false, autoplayTimeout=1500) {
+        element.owlCarousel({
             loop:false,
             margin: 10,
             nav: true,
             autoplay:false,
-			dots: true,
-            autoplayTimeout:10000,
+            dots: true,
+            autoplayTimeout:autoplayTimeout,
             URLhashListener:true,
             autoplayHoverPause:true,
             startPosition: 'URLHash',
             responsive: {
-                0: {items: 2 }, 
-                600: {items: 2 }, 
-                1000: {items: 6 }
-            }
-        })
-		$('.avatarToss, .avatarMatch').owlCarousel({
-            loop:false,
-            margin: 10,
-            nav: true,
-            autoplay:false,
-			dots: true,
-            autoplayTimeout:15000,
-            URLhashListener:true,
-            autoplayHoverPause:true,
-            startPosition: 'URLHash',
-            responsive: {
-                0: {items: 3 }, 
-                600: {items: 3 }, 
-                1000: {items: 7 }
-            }
-        })
-		$('.favouriteTeam').owlCarousel({
-            loop:false,
-            margin: 10,
-            nav: true,
-            autoplay:false,
-			dots: true,
-            autoplayTimeout:15000,
-            URLhashListener:true,
-            autoplayHoverPause:true,
-            startPosition: 'URLHash',
-            responsive: {
-                0: {items: 3 }, 
-                600: {items: 3 }, 
-                1000: {items: 5 }
-            }
-        })
-		$('.eventSupperters').owlCarousel({
-            loop:false,
-            margin: 10,
-            nav: true,
-            autoplay:false,
-			dots: true,
-            autoplayTimeout:15000,
-            URLhashListener:true,
-            autoplayHoverPause:true,
-            startPosition: 'URLHash',
-            responsive: {
-                0: {items: 5 }, 
-                600: {items: 5 }, 
-                1000: {items: 10 }
+                0: {items: items0 }, 
+                600: {items: items600 }, 
+                1000: {items: items1000 }
             }
         })
     }
@@ -168,9 +120,7 @@
                 if (response != null) {
                     setTimeout(function() {
                         answersWrapper.html(response);
-                        favoriteTeamAnimation();
-                        nestedTab(ID);
-                        owlCarousel();
+                        owlSlider($('.owlCarousel_'+ID),2,2,2,true,10000);
                     }, 500);
                 }
             },
@@ -178,27 +128,6 @@
                 console.log(error);
             }
         });
-    }
-    var nestedTab = function(event, multiple=false){
-        let selectorIDS = '';
-        if (!multiple) {
-            selectorIDS += '#favouriteTeamName-'+ event +'1,#favouriteTeam'+ event +'11,#favouriteTeam'+ event +'12,';
-            selectorIDS += '#favouriteTeamName-'+ event +'2,#favouriteTeam'+ event +'21,#favouriteTeam'+ event +'22,';
-            selectorIDS += '#favouriteTeamName-'+ event +'3,#favouriteTeam'+ event +'31,#favouriteTeam'+ event +'32,';
-            selectorIDS += '#favouriteTeamName-'+ event +'4,#favouriteTeam'+ event +'41,#favouriteTeam'+ event +'42,';
-        } else {
-            let events = event.split('_');
-            let eLength = events.length;
-            if (eLength > 1) {
-                for (var i = eLength - 1; i >= 0; i--) {
-                    selectorIDS += '#favouriteTeamName-'+ events[i] +'1,#favouriteTeam'+ events[i] +'11,#favouriteTeam'+ events[i] +'12,';
-                    selectorIDS += '#favouriteTeamName-'+ events[i] +'2,#favouriteTeam'+ events[i] +'21,#favouriteTeam'+ events[i] +'22,';
-                    selectorIDS += '#favouriteTeamName-'+ events[i] +'3,#favouriteTeam'+ events[i] +'31,#favouriteTeam'+ events[i] +'32,';
-                    selectorIDS += '#favouriteTeamName-'+ events[i] +'4,#favouriteTeam'+ events[i] +'41,#favouriteTeam'+ events[i] +'42,';
-                }
-            }
-        }
-        $(selectorIDS.replace(/,+$/,'')).tabslet();
     }
     var cofirmBox = function(warnings, teamID) {
         var modal = $("<div>").attr("class", "modalWrapper confirm-modal");
@@ -611,17 +540,18 @@
             }
         });
     }
-    var addLikeForEvent = function(button) {
-        var event = button.attr('event');
+    var addLikeForPredictor = function(button) {
         var user = button.attr('user');
+        var event = button.attr('event');
         var btnTxt = button.text();
-        // alert(btnTxt); return false; 
+        var className = 'predictorLikeBtn';
+        // alert(btnTxt); return false;
         if (event && user) {
             var ajaxData = {};
             ajaxData['security'] = object.ajax_nonce;
-            ajaxData['action'] = 'like_event_user';
-            ajaxData['event'] = event;
+            ajaxData['action'] = 'add_predictor_like';
             ajaxData['user'] = user;
+            ajaxData['event'] = event;
             $.ajax({
                 type: 'POST',
                 url: object.ajaxurl,
@@ -629,12 +559,62 @@
                 data: ajaxData,
                 beforeSend: function() { button.html('Saving ..').attr('disabled', true); },
                 success: function(response, status, xhr) {
-                    console.log(response);
-                    if (response == 200) button.removeClass('likeBtn').html('LIKED').attr('disabled', true);
+                    // console.log(response);
+                    if (response == 200) button.removeClass(className).html('Liked').attr('disabled', true);
                     else button.html(btnTxt).attr('disabled', false);
                 },
                 error: function(error) {
-                    button.html(btnTxt).attr('disabled', true);
+                    button.html(btnTxt).attr('disabled', false);
+                    console.log(error);
+                }
+            });
+        }
+    }
+    var rangeRefresh = function(button, eventID, rangeWrapper) {
+        var ajaxData            = {};
+        ajaxData['security']    = object.ajax_nonce;
+        ajaxData['action']      = 'load_range';
+        ajaxData['event']       = eventID;
+        $.ajax({
+            type: 'POST',
+            url: object.ajaxurl,
+            cache: false,
+            data: ajaxData,
+            // beforeSend: function() { rangeWrapper.html(loader()); button.attr('disabled', true);},
+            success: function(response, status, xhr) {
+                if (response != null) {
+                    rangeWrapper.html(response);
+                    owlSlider($('.eventSupperters'),8,3,3);
+                }
+                button.attr('disabled', false);
+            },
+            error: function(error) {
+                button.attr('disabled', false);
+                console.log(error);
+            }
+        });
+    }
+    var getCalendarEvents = function(date) {
+        if (date.length>0) {
+            var wrapper = $('.timeline-wrap');
+            var ajaxData            = {};
+            ajaxData['security']    = object.ajax_nonce;
+            ajaxData['action']      = 'calendar_events';
+            ajaxData['date']        = date;
+            $.ajax({
+                type: 'POST',
+                url: object.ajaxurl,
+                cache: false,
+                data: ajaxData,
+                beforeSend: function() { wrapper.html(loader());},
+                success: function(response, status, xhr) {
+                    $('#calendar_text span').text(formatDate(new Date(date)));
+                    if (response != null) {
+                        $('.timeline-wrap').html(response);
+                    }
+                },
+                error: function(error) {
+                     wrapper.html('');
                     console.log(error);
                 }
             });
@@ -645,9 +625,13 @@
     // ***** READY FUNCTION ****** //
     // *************************** //
     $(document).ready(function() {
-        owlCarousel();
+        owlSlider($('.eventSupperters'),6,3,3);
+		owlSlider($('.eventTopSupperters'),8,3,3);
+        owlSlider($('.owlCarousel_headerNotification'),6,2,2);
         //Tab 		
         $('#protab').tabslet();
+		$('#RankAll').tabslet();
+		$('#RankingAllMatch').tabslet();
         $('#TopPredictor').tabslet();
         $('#Roadtotop').tabslet();
         $('#headerNotification').tabslet();
@@ -757,13 +741,6 @@
             saveQAns(questionID);
         });
         // ANSWERS
-        // $('.answersWrapper').each(function(index) {
-        //     var eventID     = $(this).attr('event');
-        //     var ditems      = $(this).attr('ditems');
-        //     var html        = $(this).attr('html');
-        //     var avatarslider = $(this).attr('avatarslider');
-        //     loadAnswers(eventID, ditems, html, avatarslider);
-        // })
         $(document).on('click', '.refreshButton', function(event) {
             var eventID     = $(this).parents('.answersWrapper').attr('event');
             var ditems      = $(this).parents('.answersWrapper').attr('ditems');
@@ -840,28 +817,23 @@
         $(document).on('change', '#matchesDatepicker', function(event) {
             event.preventDefault();
             let notFound = 1;
-            let selectedDate = $(this).val();
-            $('#calendar_text span').text(formatDate(new Date(selectedDate)));
-            $('.timeline-wrap .event').removeClass('selected');
-            $('.timeline-wrap .event').each(function() {
-                let event = $(this).attr('data-date');
-                if (event == selectedDate) {
-                    $(this).addClass('selected');
-                    notFound = 0;
-                }
-            });
-            if(notFound) $('.timeline-wrap .notFound').addClass('selected');
+            let date = $(this).val();
+            getCalendarEvents(date);
         })
-        $(document).on('click', '.supportedMatchTossPopup', function(event) {
+        $(document).on('click', '.rangeRefreshBtn', function(event) {
             event.preventDefault();
             var button = $(this);
-            supportedMatchTossPopup(button);
+            var eventID = button.attr('event');
+            var rangeWrapper = $('#progressWrapper_'+ eventID);
+            rangeWrapper.html(loader()); button.attr('disabled', true);
+            setTimeout(function() {
+                rangeRefresh(button, eventID, rangeWrapper);
+            }, 3000);
         })
-        $(document).on('click', '.likeBtn', function(event) {
+        $(document).on('click', '.predictorLikeBtn', function(event) {
             event.preventDefault();
             var button = $(this);
-            addLikeForEvent(button);
+            addLikeForPredictor(button);
         })
     });
 })(jQuery);
-// new CBPFWTabs( document.getElementById( 'tabs' ) );
