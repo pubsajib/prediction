@@ -6,32 +6,30 @@
  * PredictionCron::rankingCronFor('toss'); 
  */
 class PredictionCron {
-	static function config($type=false) {
-		$config = [];
-		// GENERAL
-		$config['all'] 	 = ['tournamentID'=>false, 'type'=>'all', 'minItemToPredict'=>100, 'itemGrace'=>10, 'minParticipationRate'=>50];
-		$config['match'] = ['tournamentID'=>false, 'type'=>'match', 'minItemToPredict'=>100, 'itemGrace'=>10, 'minParticipationRate'=>50];
-		$config['toss']  = ['tournamentID'=>false, 'type'=>'toss', 'minItemToPredict'=>100, 'itemGrace'=>10, 'minParticipationRate'=>30];
-
-		// TOURNAMENT
-		// $config['bpl'] 		= ['tournamentID'=>13, 'type'=>'all', 'minItemToPredict'=>10, 'itemGrace'=>0, 'minParticipationRate'=>80];
-		// $config['ipl'] 		= ['tournamentID'=>12, 'type'=>'all', 'minItemToPredict'=>10, 'itemGrace'=>0, 'minParticipationRate'=>80];
-		// $config['bpl'] 		 = ['tournamentID'=>266, 'type'=>'all', 'minItemToPredict'=>10, 'itemGrace'=>0, 'minParticipationRate'=>80];
-
-		$config['t_20'] = ['tournamentID'=>267, 'type'=>'match', 'minItemToPredict'=>100, 'itemGrace'=>0, 'minParticipationRate'=>80];
-		$config['odi']  = ['tournamentID'=>266, 'type'=>'match', 'minItemToPredict'=>50, 'itemGrace'=>0, 'minParticipationRate'=>80];
-		$config['test']       = ['tournamentID'=>265, 'type'=>'match', 'minItemToPredict'=>5, 'itemGrace'=>0, 'minParticipationRate'=>30];
-		$config['ipl']       = ['tournamentID'=>313, 'type'=>'match', 'minItemToPredict'=>10, 'itemGrace'=>0, 'minParticipationRate'=>80];
-		// TOSS
-		$config['t20_toss'] = ['tournamentID'=>267, 'type'=>'toss', 'minItemToPredict'=>100, 'itemGrace'=>0, 'minParticipationRate'=>80];
-		$config['odi_toss']  = ['tournamentID'=>266, 'type'=>'toss', 'minItemToPredict'=>50, 'itemGrace'=>0, 'minParticipationRate'=>80];
-		$config['test_toss']  = ['tournamentID'=>265, 'type'=>'toss', 'minItemToPredict'=>5, 'itemGrace'=>0, 'minParticipationRate'=>30];
-		$config['ipl_toss']       = ['tournamentID'=>313, 'type'=>'toss', 'minItemToPredict'=>10, 'itemGrace'=>0, 'minParticipationRate'=>50];
-
-		if ($type) {
-			if (!empty($config[$type])) return $config[$type];
-			else return [];
-		} else return $config;
+	static function predictorClasses($predictors) {
+		$classes = cs_get_option('classes');
+		foreach ($predictors as $uID => $predictor) {
+			$predictors[$uID]['class'] = '';
+			if ($classes) {
+				foreach ($classes as $class) {
+					if (
+						!empty($class['is_active']) &&
+						$predictor['overall']['participated_events'] >= $class['participated'] && 
+						$predictor['overall']['participation_rate'] >= $class['engagement'] && 
+						$predictor['overall']['accuracy'] >= $class['accuricy'] && 
+						$predictor['overall_match']['participated_events'] >= $class['m_participated'] && 
+						$predictor['overall_match']['participation_rate'] >= $class['m_engagement'] && 
+						$predictor['overall_match']['accuracy'] >= $class['m_accuricy'] && 
+						$predictor['overall_toss']['participated_events'] >= $class['t_participated'] && 
+						$predictor['overall_toss']['participation_rate'] >= $class['t_engagement'] && 
+						$predictor['overall_toss']['accuracy'] >= $class['t_accuricy']
+					) {
+						$predictors[$uID]['class'] = $class['id']; break;
+					}
+				}
+			}
+		}
+		return $predictors;
 	}
 	static function cronTypes() {
 		$rankingTypes = [];
@@ -43,6 +41,7 @@ class PredictionCron {
 		}
 		return $rankingTypes;
 	}
+	// SINGLE RANKING
 	static function rankingCronFor($rankingType) {
 		$rankingConfig = [];
 		$configs = cs_get_option('cron');
@@ -122,6 +121,7 @@ class PredictionCron {
 		}
 		return false;
 	}
+	// SUMMERY
 	static function insertIntoRankinSummeryTable() {
 		global $wpdb;
 		if ($summeries = self::prepareRankingSummery($wpdb)) {
@@ -162,7 +162,7 @@ class PredictionCron {
 				$sql .= "`". $option ."_toss_engagement`, ";
 				$sql .= "`". $option ."_toss_eligibility`, ";
 			}
-			$sql .= " `login`, `name`, `url`, `avatar`, `country`, `description`,  `likes`, `created_at`, `updated_at`";
+			$sql .= " `login`, `name`, `url`, `avatar`, `country`, `description`, `likes`, `class`, `created_at`, `updated_at`";
 			$sql .= ") VALUES ";
 			foreach ($summeries as $uID => $summery) {
 				// $sql .= "<br>";
@@ -202,6 +202,7 @@ class PredictionCron {
 				$sql .= "'". $summery['country'] ."', ";
 				$sql .= "'". $summery['description'] ."', ";
 				$sql .= "'". $summery['likes'] ."', ";
+				$sql .= "'". $summery['class'] ."', ";
 				$sql .= " CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), ";
 			}
 			$insert = rtrim($sql, ', '). ";";
@@ -227,15 +228,14 @@ class PredictionCron {
 			}
 		}
 		if ($rankingTypes) {
-			$pedictors = self::getAllPredictors();
-			$psummery = [];
-			$summery = [];
+			$predictors = self::getAllPredictors();
 			foreach ($rankingTypes as $rankingType) {
-				$pedictors = self::prepareRankingSubSummery($pedictors, $rankingType, $wpdb);
-				$pedictors = self::prepareRankingSubSummery($pedictors, $rankingType.'_match', $wpdb);
-				$pedictors = self::prepareRankingSubSummery($pedictors, $rankingType.'_toss', $wpdb);
+				$predictors = self::prepareRankingSubSummery($predictors, $rankingType, $wpdb);
+				$predictors = self::prepareRankingSubSummery($predictors, $rankingType.'_match', $wpdb);
+				$predictors = self::prepareRankingSubSummery($predictors, $rankingType.'_toss', $wpdb);
+				if ($rankingType == 'overall') $predictors = self::predictorClasses($predictors);
 			}
-			return $pedictors;
+			return $predictors;
 		}
 		return false;
 	}
@@ -756,6 +756,7 @@ class PredictionCron {
 		$sql .= "`country` varchar(10) DEFAULT NULL, ";
 		$sql .= "`description` tinytext, ";
 		$sql .= "`likes` int(11) DEFAULT '0', ";
+		$sql .= "`class` varchar(10) DEFAULT NULL, ";
 		$sql .= "`created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, ";
 		$sql .= "`updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
 		$sql .= "INDEX (". $rankColumns ."`user_id`) ";

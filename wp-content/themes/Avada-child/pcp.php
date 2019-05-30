@@ -37,7 +37,13 @@ if (!is_user_logged_in()) {
         //     echo '<div id="all">'; roadToTop($user); echo '</div>';
         // echo '</div>';
         echo calendarEvents($user);
-        
+        $args['overall'] = [
+            'user_id'=>$user->ID,'type'=>'overall','accuracy'=>50,'engagement'=>80,'participated'=>80,'item_s'=>'match or toss','item_p'=>'matches or tosses'];
+        $args['match'] = [
+            'user_id'=>$user->ID,'type'=>'overall_match','accuracy'=>50,'engagement'=>80,'participated'=>80,'item_s'=>'match','item_p'=>'matches'];
+        $args['toss'] = [
+            'user_id'=>$user->ID,'type'=>'overall_toss','accuracy'=>50,'engagement'=>80,'participated'=>80,'item_s'=>'toss','item_p'=>'tosses'];
+        RoadToTop::render($args);
     }
 }
 get_footer();

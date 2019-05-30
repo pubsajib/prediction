@@ -1,12 +1,5 @@
 <?php 
 // $names = PredictionCron::insertIntoRankinSummeryTable(); help($names);
-// $names = PredictionCron::createRatingSummeryTable(); help($names);
-// $ratingTypes = array_filter(array_map(function ($name) {return $name->rate_table != 'summery' ? $name->rate_table : false;}, $names));
-// help(PredictionCron::resetRankings($ratingTypes));
-// help(PredictionCron::getAllPredictors());
-// help(PredictionCron::insertIntoRankinSummeryTable($ratingTypes));
-// CREATING TABLES
-// $type = 'all'; PredictionCron::deleteRatingTableFor($type); PredictionCron::createRatingTableFor($type); help(PredictionCron::rankingCronFor($type));
 $names = cs_get_option('cron');
 echo '<div class="wrap">';
     echo '<h1>'.$heading.' CRON</h1>';

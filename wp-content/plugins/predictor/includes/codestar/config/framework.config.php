@@ -10,9 +10,37 @@ $settings  = array(
 );
 $options = [];
 $options[] = array(
+    'name' => 'classes',
+    'title' => 'Classes',
+    'icon' => 'fa fa-plus-circle',
+    'fields' => array(
+        [
+            'id' => 'classes',
+            'type' => 'group',
+            'title' => 'Classes',
+            'button_title' => 'Add New',
+            'accordion_title' => 'Add New Class',
+            'fields' => [
+                ['id' => 'name', 'type' => 'text', 'title' => 'Name'],
+                ['id' => 'id', 'type' => 'text', 'title' => 'ID'],
+                ['id' => 'participated', 'type' => 'number', 'title' => 'Participated'],
+                ['id' => 'engagement', 'type' => 'number', 'title' => 'Engagement'],
+                ['id' => 'accuricy', 'type' => 'number', 'title' => 'Accuricy'],
+                ['id' => 'm_participated', 'type' => 'number', 'title' => 'Match Participated'],
+                ['id' => 'm_engagement', 'type' => 'number', 'title' => 'Match Engagement'],
+                ['id' => 'm_accuricy', 'type' => 'number', 'title' => 'Match Accuricy'],
+                ['id' => 't_participated', 'type' => 'number', 'title' => 'Toss Participated'],
+                ['id' => 't_engagement', 'type' => 'number', 'title' => 'Toss Engagement'],
+                ['id' => 't_accuricy', 'type' => 'number', 'title' => 'Toss Accuricy'],
+                ['id' => 'is_active', 'type' => 'switcher', 'title' => 'Active'],
+            ]
+        ],
+    ),
+);
+$options[] = array(
     'name' => 'cron',
     'title' => 'CRON',
-    'icon' => 'fa fa-star',
+    'icon' => 'fa fa-toggle-on',
     'fields' => array(
         [
             'id' => 'cron',
@@ -23,16 +51,16 @@ $options[] = array(
             'fields' => [
                 ['id' => 'name', 'type' => 'text', 'title' => 'Name'],
                 ['id' => 'id', 'type' => 'text', 'title' => 'ID'],
-                ['id' => 'tournament', 'type' => 'text', 'title' => 'Tournament ID'],
-                ['id' => 'participation', 'type' => 'text', 'title' => 'Participation'],
-                ['id' => 'grace', 'type' => 'text', 'title' => 'Grace'],
-                ['id' => 'engagement', 'type' => 'text', 'title' => 'Engagement'],
-                ['id' => 'm_participation', 'type' => 'text', 'title' => 'Match Participation'],
-                ['id' => 'm_grace', 'type' => 'text', 'title' => 'Match Grace'],
-                ['id' => 'm_engagement', 'type' => 'text', 'title' => 'Match Engagement'],
-                ['id' => 't_participation', 'type' => 'text', 'title' => 'Toss Participation'],
-                ['id' => 't_grace', 'type' => 'text', 'title' => 'Toss Grace'],
-                ['id' => 't_engagement', 'type' => 'text', 'title' => 'Toss Engagement'],
+                ['id' => 'tournament', 'type' => 'number', 'title' => 'Tournament ID'],
+                ['id' => 'participation', 'type' => 'number', 'title' => 'Participation'],
+                ['id' => 'grace', 'type' => 'number', 'title' => 'Grace'],
+                ['id' => 'engagement', 'type' => 'number', 'title' => 'Engagement'],
+                ['id' => 'm_participation', 'type' => 'number', 'title' => 'Match Participation'],
+                ['id' => 'm_grace', 'type' => 'number', 'title' => 'Match Grace'],
+                ['id' => 'm_engagement', 'type' => 'number', 'title' => 'Match Engagement'],
+                ['id' => 't_participation', 'type' => 'number', 'title' => 'Toss Participation'],
+                ['id' => 't_grace', 'type' => 'number', 'title' => 'Toss Grace'],
+                ['id' => 't_engagement', 'type' => 'number', 'title' => 'Toss Engagement'],
                 ['id' => 'is_active', 'type' => 'switcher', 'title' => 'Active'],
             ]
         ],
@@ -57,27 +85,6 @@ $options[] = array(
                 ['name' => 'Toss'],
                 ['name' => 'Draw'],
                 ['name' => 'Others']
-            ]
-        ],
-    ),
-);
-$options[] = array(
-    'name' => 'classes',
-    'title' => 'Classes',
-    'icon' => 'fa fa-star',
-    'fields' => array(
-        [
-            'id' => 'classes',
-            'type' => 'group',
-            'title' => 'Classes',
-            'button_title' => 'Add New',
-            'accordion_title' => 'Add New Class',
-            'fields' => [
-                ['id' => 'name', 'type' => 'text', 'title' => 'Name'],
-                ['id' => 'participated', 'type' => 'text', 'title' => 'participated'],
-                ['id' => 'joined', 'type' => 'text', 'title' => 'joined'],
-                ['id' => 'engagement', 'type' => 'text', 'title' => 'engagement'],
-                ['id' => 'accuricy', 'type' => 'text', 'title' => 'accuricy'],
             ]
         ],
     ),

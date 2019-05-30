@@ -1,21 +1,20 @@
 <?php
 /* Template Name: Ranks All*/
 get_header();
-$rankType = 'all';
-$ranks = Ranks::rankByType($rankType);
+$ranks = Ranks::all();
 if ($ranks) {
     $all = $matches = $tosses = $tournaments = $t_20 = $odi = $ipl = $t20_toss = $odi_toss = $ipl_toss = [];
     foreach($ranks as $user) {
         $user = (array) $user;
         // Ovarall
-        $all[$user['all_rank']] = $user; ksort($all);
-        $matches[$user['match_rank']] = $user; ksort($matches);
-        $tosses[$user['toss_rank']] = $user; ksort($tosses);
+        $all[$user['overall_rank']] = $user; ksort($all);
+        $matches[$user['overall_match_rank']] = $user; ksort($matches);
+        $tosses[$user['overall_toss_rank']] = $user; ksort($tosses);
         // Matches
-        $t_20[$user['t_20_rank']] = $user; ksort($t_20);
-        $odi[$user['odi_rank']] = $user; ksort($odi);
-        $test[$user['test_rank']] = $user; ksort($test);
-        $ipl[$user['ipl_rank']] = $user; ksort($ipl);
+        $t_20[$user['t20_match_rank']] = $user; ksort($t_20);
+        $odi[$user['odi_match_rank']] = $user; ksort($odi);
+        $test[$user['test_match_rank']] = $user; ksort($test);
+        $ipl[$user['ipl_match_rank']] = $user; ksort($ipl);
         // Tosses
         $t20_toss[$user['t20_toss_rank']] = $user; ksort($t20_toss);
         $odi_toss[$user['odi_toss_rank']] = $user; ksort($odi_toss);
@@ -38,21 +37,17 @@ if ($ranks) {
                     $user = (array) $predictor;
                     $ratingIcon = $ratingClass = '';
                     $profileLink = site_url('predictor/?p='. $user['login']);
-                    $all = json_decode($user['all_desc'], true);
-                    $match = json_decode($user['match_desc'], true);
-                    $toss = json_decode($user['toss_desc'], true);
                     
-                    
-                    if ($userRank < 4 && $all['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                    else if ($userRank < 11 && $all['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                    if ($userRank < 4 && $predictor['overall_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                    else if ($userRank < 11 && $predictor['overall_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                     else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                     
                     echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                         echo '<table class="table top-accuracy">';
                             echo '<tr>';
-                                echo '<td><small>All (' . $all['participated'] . ') </small><br>' . $all['accuracy'] . '%<br><small class="last"><span class="green">'. $all['win'] . '</span>/<span class="red">'. $all['lose'] . '</span></small></td>';
-                                echo '<td><small>Match (' . $match['participated'] . ') </small><br>' . $match['accuracy'] . '%<br><small class="last"><span class="green">'. $match['win'] . '</span>/<span class="red">'. $match['lose'] . '</span></small></td>';
-                                echo '<td><small>Toss (' . $toss['participated'] . ') </small><br>' . $toss['accuracy'] . '%<br><small class="last"><span class="green">'. $toss['win'] . '</span>/<span class="red">'. $toss['lose'] . '</span></small></td>';
+                                echo '<td><small>All (' . $predictor['overall_participated'] . ') </small><br>' . $predictor['overall_accuracy'] . '%<br><small class="last"><span class="green">'. $predictor['overall_win'] . '</span>/<span class="red">'. $predictor['overall_lose'] . '</span></small></td>';
+                                echo '<td><small>Match (' . $predictor['overall_match_participated'] . ') </small><br>' . $predictor['overall_match_accuracy'] . '%<br><small class="last"><span class="green">'. $predictor['overall_match_win'] . '</span>/<span class="red">'. $predictor['overall_match_lose'] . '</span></small></td>';
+                                echo '<td><small>Toss (' . $predictor['overall_toss_participated'] . ') </small><br>' . $predictor['overall_toss_accuracy'] . '%<br><small class="last"><span class="green">'. $predictor['overall_toss_win'] . '</span>/<span class="red">'. $predictor['overall_toss_lose'] . '</span></small></td>';
                             echo '</tr>';
                         echo '</table>';
                         // PROFILE INFORMATION
@@ -80,20 +75,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $all = json_decode($user['all_desc'], true);
-                            $match = json_decode($user['match_desc'], true);
-                            $toss = json_decode($user['toss_desc'], true);
                             
-                            if ($userRank < 4 && $all['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $all['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['overall_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['overall_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $match['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $match['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $match['win'] . '</span>/<span class="red">'. $match['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['overall_match_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['overall_match_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['overall_match_win'] . '</span>/<span class="red">'. $predictor['overall_match_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -111,21 +103,20 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $t20 = json_decode($user['t_20_desc'], true);
                             
-                            if ($userRank < 4 && $t20['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $t20['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['t20_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['t20_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $t20['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $t20['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $t20['win'] . '</span>/<span class="red">'. $t20['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['t20_match_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['t20_match_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['t20_match_win'] . '</span>/<span class="red">'. $predictor['t20_match_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
-//                          echo $t20['eligibility'];
+                                //echo $t20['eligibility'];
                                 // PROFILE INFORMATION
                                 echo '<div class="profile-info">'. Ranks::profileInfoFromArr($user, false, $ratingIcon).'</div>';
                                 echo '<div class="profile-link"><a href="'. site_url('predictor/?p='. $user['login']) .'" target="_blank">VIEW PROFILE</a></div>';
@@ -141,18 +132,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $odi = json_decode($user['odi_desc'], true);
                             
-                            if ($userRank < 4 && $odi['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $odi['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['odi_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['odi_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $odi['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $odi['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $odi['win'] . '</span>/<span class="red">'. $odi['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['odi_match_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['odi_match_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['odi_match_win'] . '</span>/<span class="red">'. $predictor['odi_match_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -170,18 +160,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $test = json_decode($user['test_desc'], true);
                             
-                            if ($userRank < 4 && $test['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $test['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['test_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['test_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $test['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $test['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $test['win'] . '</span>/<span class="red">'. $test['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['test_match_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['test_match_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['test_match_win'] . '</span>/<span class="red">'. $predictor['test_match_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -199,18 +188,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $ipl = json_decode($user['ipl_desc'], true);
                             
-                            if ($userRank < 4 && $ipl['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $ipl['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['ipl_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['ipl_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $ipl['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $ipl['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $ipl['win'] . '</span>/<span class="red">'. $ipl['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['ipl_match_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['ipl_match_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['ipl_match_win'] . '</span>/<span class="red">'. $predictor['ipl_match_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -240,22 +228,18 @@ if ($ranks) {
                         foreach ($tosses as $userRank => $predictor) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
-                            $profileLink = site_url('predictor/?p='. $user['login']);
-                            $all = json_decode($user['all_desc'], true);
-                            $match = json_decode($user['match_desc'], true);
-                            $toss = json_decode($user['toss_desc'], true);
+                            $profileLink = site_url('predictor/?p='. $user['login']);                            
                             
-                            
-                            if ($userRank < 4 && $toss['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $toss['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['overall_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['overall_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $toss['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $toss['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $toss['win'] . '</span>/<span class="red">'. $toss['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['overall_toss_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['overall_toss_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['overall_toss_win'] . '</span>/<span class="red">'. $predictor['overall_toss_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -273,18 +257,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $t20 = json_decode($user['t20_toss_desc'], true);
                             
-                            if ($userRank < 4 && $t20['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $t20['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['t20_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['t20_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $t20['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $t20['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $t20['win'] . '</span>/<span class="red">'. $t20['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['t20_toss_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['t20_toss_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['t20_toss_win'] . '</span>/<span class="red">'. $predictor['t20_toss_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -302,18 +285,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $odi = json_decode($user['odi_toss_desc'], true);
                             
-                            if ($userRank < 4 && $odi['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $odi['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['odi_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['odi_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $odi['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $odi['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $odi['win'] . '</span>/<span class="red">'. $odi['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['odi_toss_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['odi_toss_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['odi_toss_win'] . '</span>/<span class="red">'. $predictor['odi_toss_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -331,18 +313,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $test = json_decode($user['test_desc'], true);
                             
-                            if ($userRank < 4 && $test['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $test['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['test_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['test_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $test['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $test['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $odi['win'] . '</span>/<span class="red">'. $odi['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['test_toss_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['test_toss_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['test_toss_win'] . '</span>/<span class="red">'. $predictor['test_toss_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -360,18 +341,17 @@ if ($ranks) {
                             $user = (array) $predictor;
                             $ratingIcon = $ratingClass = '';
                             $profileLink = site_url('predictor/?p='. $user['login']);
-                            $ipl = json_decode($user['ipl_toss_desc'], true);
                             
-                            if ($userRank < 4 && $ipl['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-                            else if ($userRank < 11 && $ipl['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            if ($userRank < 4 && $predictor['ipl_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['ipl_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
                             else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
                             
                             echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
                                 echo '<table class="table top-accuracy">';
                                     echo '<tr>';
-                                        echo '<td><small>Accuracy</small><br>' . $ipl['accuracy'] . '%</td>';
-                                        echo '<td><small>Participated</small><br>' . $ipl['participated'] . '</td>';
-                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $ipl['win'] . '</span>/<span class="red">'. $ipl['lose'] . '</span></small></td>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['ipl_toss_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['ipl_toss_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['ipl_toss_win'] . '</span>/<span class="red">'. $predictor['ipl_toss_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION
@@ -384,37 +364,6 @@ if ($ranks) {
                 
             echo '</div>';
         echo '</div>';
-        // TOSS
-//      echo '<div id="toss">';
-//          echo '<div class="predictorListWrapper"><div class="equalAll">';
-//              foreach ($tosses as $userRank => $predictor) {
-//                  $user = (array) $predictor;
-//                  $ratingIcon = $ratingClass = '';
-//                  $profileLink = site_url('predictor/?p='. $user['login']);
-//                     $all = json_decode($user['all_desc'], true);
-//                     $match = json_decode($user['match_desc'], true);
-//                     $toss = json_decode($user['toss_desc'], true);
-                    
-                    
-//                  if ($userRank < 4 && $toss['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
-//                  else if ($userRank < 11 && $toss['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
-//                  else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
-                    
-//                  echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
-//                      echo '<table class="table top-accuracy">';
-//                          echo '<tr>';
-//                              echo '<td><small>Toss (' . $toss['participated'] . ') </small><br>' . $toss['accuracy'] . '%<br><small class="last"><span class="green">'. $toss['win'] . '</span>/<span class="red">'. $toss['lose'] . '</span></small></td>';
-//                              echo '<td><small>All (' . $all['participated'] . ') </small><br>' . $all['accuracy'] . '%<br><small class="last"><span class="green">'. $all['win'] . '</span>/<span class="red">'. $all['lose'] . '</span></small></td>';
-//                              echo '<td><small>Match (' . $match['participated'] . ') </small><br>' . $match['accuracy'] . '%<br><small class="last"><span class="green">'. $match['win'] . '</span>/<span class="red">'. $match['lose'] . '</span></small></td>';
-//                          echo '</tr>';
-//                      echo '</table>';
-//                      // PROFILE INFORMATION
-//                      echo '<div class="profile-info">'. Ranks::profileInfoFromArr($user, false, $ratingIcon).'</div>';
-//                      echo '<div class="profile-link"><a href="'. site_url('predictor/?p='. $user['login']) .'" target="_blank">VIEW PROFILE</a></div>';
-//                  echo '</div>';
-//              }
-//          echo '</div></div>';
-//      echo '</div>';
     echo '</div>';
 }
 

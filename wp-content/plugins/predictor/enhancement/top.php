@@ -10,18 +10,12 @@ class top {
 		$ranks = Ranks::all();
 		if ($ranks) {
 		    $profilePage = esc_url( site_url('predictor/'));
-		    $all = $matches = $tosses = $tournaments = $t_20 = $odi = $ipl = $t20_toss = $odi_toss = $ipl_toss = [];
+
 		    foreach($ranks as $user) {
 		        $user = (array) $user;
 		        // Ovarall
-		        $all[$user['all_rank']] = $user; ksort($all);
-		        $matches[$user['match_rank']] = $user; ksort($matches);
-		        $tosses[$user['toss_rank']] = $user; ksort($tosses);
-		        // Matches
-		        $t_20[$user['t_20_rank']] = $user; ksort($t_20);
-		        $odi[$user['odi_rank']] = $user; ksort($odi);
-		        $test[$user['test_rank']] = $user; ksort($test);
-		        $ipl[$user['ipl_rank']] = $user; ksort($ipl);
+		        $matches[$user['overall_match_rank']] = $user; ksort($matches);
+		        $tosses[$user['overall_toss_rank']] = $user; ksort($tosses);
 		    }
 			$data .= '<div class="tabs tabs_default parent-ranking" id="TopPredictor">';
 				$data .= '<ul class="horizontal">';
@@ -30,15 +24,11 @@ class top {
 				// 	$data .= '<li class="proli"><a href="#ipl">IPL</a></li>';
 				$data .= '</ul>';
 				// ================================== MATCH ===================================== //
-				$data .= '<div id="match">';
-		            $data .= self::slider($matches, $profilePage, $attr, 'match');
-				$data .= '</div>';
+				$data .= '<div id="match">'. self::slider($matches, $profilePage, $attr, 'overall_match') .'</div>';
 				// ================================== TOSS ====================================== //
-				$data .= '<div id="toss">';
-					$data .= self::slider($tosses, $profilePage, $attr, 'toss');
-				$data .= '</div>';
+				$data .= '<div id="toss">'. self::slider($tosses, $profilePage, $attr, 'overall_toss') .'</div>';
 				// ================================== IPL ======================================= //
-				// $data .= '<div id="ipl">'; $data .= self::slider($ipl, $profilePage, $attr); $data .= '</div>';
+				// $data .= '<div id="ipl">'. self::slider($ipl, $profilePage, $attr) .'</div>';
 			$data .= '</div>';
 		}
 		return $data;
@@ -50,11 +40,8 @@ class top {
             $data .= '<div class="owl-carousel owl-theme '. $attr['class'] .'">';
                 foreach ($supporters as $userRank => $supporter) {
                     if ($counter >= $attr['number']) break;
-                    $desc['all'] = json_decode($supporter['all_desc'], true);
-                    $desc['match'] = json_decode($supporter['match_desc'], true);
-                    $desc['toss'] = json_decode($supporter['toss_desc'], true);
                     $ratingIcon = '';
-	                if ($desc[$type]['eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>';}
+	                if ($supporter[$type.'_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>';}
 	                
                     $profileLink = $profilePage.'?p='. $supporter['login'];
                     $data .='<div class="item">';

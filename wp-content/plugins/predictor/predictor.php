@@ -63,6 +63,7 @@ require_once plugin_dir_path(__FILE__) . 'enhancement/calendar.php';
 require_once plugin_dir_path(__FILE__) . 'enhancement/cron.php';
 require_once plugin_dir_path(__FILE__) . 'enhancement/rank.php';
 require_once plugin_dir_path(__FILE__) . 'enhancement/top.php';
+require_once plugin_dir_path(__FILE__) . 'enhancement/road_to_top.php';
 
 /**
  * Add Codestar Framework.

@@ -17,11 +17,21 @@ class Ranks {
         $ranks = $wpdb->get_results($sql);
         return !empty($ranks[0]) ? $ranks[0] : false;
     }
-	static function rankByType($rankingType='') {
+    static function rankByType($rankingType='') {
+        global $wpdb;
+        $tableName   = $wpdb->prefix.'predictor_rating_summery';
+        $sql  = "SELECT * FROM `". $tableName ."`";
+        if ($rankingType) $sql .= " ORDER BY ". $rankingType."_rank ASC";
+        $sql .= ";";
+        $ranks = $wpdb->get_results($sql);
+        return $ranks;
+    }
+	static function rankByClassName($className) {
 		global $wpdb;
 		$tableName   = $wpdb->prefix.'predictor_rating_summery';
         $sql  = "SELECT * FROM `". $tableName ."`";
-        if ($rankingType) $sql .= " ORDER BY ". $rankingType."_rank ASC";
+        $sql .= " WHERE `class` = '". $className ."'";
+        $sql .= " ORDER BY overall_rank ASC";
         $sql .= ";";
 		$ranks = $wpdb->get_results($sql);
 		return $ranks;
@@ -90,7 +100,7 @@ class Ranks {
 	    $data = '';
 	    if ($user) {
 	        $data .= '<div class="author-photo"> <img src="'. $user['avatar'] .'" alt="Avatar"> '. $ratingIcon .'</div>';
-	        $data .= '<h3><a href="'. site_url('predictor/?p='. $user['login']) .'">'. $user['name'] .'('. $user['ranks'] .')</a></h3>';
+	        $data .= '<h3><a href="'. site_url('predictor/?p='. $user['login']) .'">'. $user['name'] .'('. $user['likes'] .')</a></h3>';
 	            if (!empty($user['url'])) $data .= '<strong>Website:</strong> <a href="'. $user['url'] .'">'. $user['url'] .'</a><br />';
 	            // if (!empty($user['description'])) $data .= $user['description'];
 	    }
