@@ -2,10 +2,13 @@
 /* Template Name: Ranks All*/
 get_header();
 $ranks = Ranks::all();
+// help($ranks);
 if ($ranks) {
     $all = $matches = $tosses = $tournaments = $t_20 = $odi = $ipl = $t20_toss = $odi_toss = $ipl_toss = [];
     foreach($ranks as $user) {
         $user = (array) $user;
+        // REMOVE NEW USER
+        if ($user['overall_rank'] < 1) continue;
         // Ovarall
         $all[$user['overall_rank']] = $user; ksort($all);
         $matches[$user['overall_match_rank']] = $user; ksort($matches);
@@ -15,11 +18,13 @@ if ($ranks) {
         $odi[$user['odi_match_rank']] = $user; ksort($odi);
         $test[$user['test_match_rank']] = $user; ksort($test);
         $ipl[$user['ipl_match_rank']] = $user; ksort($ipl);
+		$cwc[$user['cwc2019_match_rank']] = $user; ksort($cwc);
         // Tosses
         $t20_toss[$user['t20_toss_rank']] = $user; ksort($t20_toss);
         $odi_toss[$user['odi_toss_rank']] = $user; ksort($odi_toss);
         $test_toss[$user['test_toss_rank']] = $user; ksort($test_toss);
         $ipl_toss[$user['ipl_toss_rank']] = $user; ksort($ipl_toss);
+		$cwc_toss[$user['cwc2019_toss_rank']] = $user; ksort($cwc_toss);
     }
     // help($all);
     // ranksContentHTML($all, 'all');
@@ -52,7 +57,10 @@ if ($ranks) {
                         echo '</table>';
                         // PROFILE INFORMATION
                         echo '<div class="profile-info">'. Ranks::profileInfoFromArr($user, false, $ratingIcon).'</div>';
-                        echo '<div class="profile-link"><a href="'. site_url('predictor/?p='. $user['login']) .'" target="_blank">VIEW PROFILE</a></div>';
+                        echo '<div class="profile-link">
+							<div class="left"><a href="'. site_url('predictor/?p='. $user['login']) .'" target="_blank">VIEW PROFILE</a></div>
+							<div class="right"><span>Liked '. $user['likes'] .'</span></div>
+						</div>';
                     echo '</div>';
                 }
             echo '</div></div>';
@@ -66,6 +74,7 @@ if ($ranks) {
                     echo '<li class="proli"><a href="#odi">ODI</a></li>';
                     echo '<li class="proli"><a href="#test">TEST</a></li>';
                     echo '<li class="proli"><a href="#ipl">IPL</a></li>';
+					echo '<li class="proli"><a href="#cwc">CWC 2019</a></li>';
                 echo '</ul>';
                 
                 // echo '<div id="all">'.Ranks::ranksContentHTML($matches, 'match').'</div>';
@@ -208,6 +217,34 @@ if ($ranks) {
                         }
                     echo '</div></div>';
                 echo '</div>';
+				//World Cup 2019
+                echo '<div id="cwc">';
+                    echo '<div class="predictorListWrapper"><div class="equalAll">';
+                        foreach ($cwc as $userRank => $predictor) {
+                            if($userRank>10) break;
+                            $user = (array) $predictor;
+                            $ratingIcon = $ratingClass = '';
+                            $profileLink = site_url('predictor/?p='. $user['login']);
+                            
+                            if ($userRank < 4 && $predictor['cwc2019_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['cwc2019_match_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
+                            
+                            echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
+                                echo '<table class="table top-accuracy">';
+                                    echo '<tr>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['cwc2019_match_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['cwc2019_match_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['cwc2019_match_win'] . '</span>/<span class="red">'. $predictor['cwc2019_match_lose'] . '</span></small></td>';
+                                    echo '</tr>';
+                                echo '</table>';
+                                // PROFILE INFORMATION
+                                echo '<div class="profile-info">'. Ranks::profileInfoFromArr($user, false, $ratingIcon).'</div>';
+                                echo '<div class="profile-link"><a href="'. site_url('predictor/?p='. $user['login']) .'" target="_blank">VIEW PROFILE</a></div>';
+                            echo '</div>';
+                        }
+                    echo '</div></div>';
+                echo '</div>';
                 
             echo '</div>';
         echo '</div>';
@@ -220,6 +257,7 @@ if ($ranks) {
                     echo '<li class="proli"><a href="#odi_toss">ODI</a></li>';
                     echo '<li class="proli"><a href="#test_toss">TEST</a></li>';
                     echo '<li class="proli"><a href="#ipl_toss">IPL</a></li>';
+                    echo '<li class="proli"><a href="#cwc_toss">CWC 2019</a></li>';
                 echo '</ul>';
                 
                 // echo '<div id="all">'.Ranks::ranksContentHTML($matches, 'match').'</div>';
@@ -352,6 +390,34 @@ if ($ranks) {
                                         echo '<td><small>Accuracy</small><br>' . $predictor['ipl_toss_accuracy'] . '%</td>';
                                         echo '<td><small>Participated</small><br>' . $predictor['ipl_toss_participated'] . '</td>';
                                         echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['ipl_toss_win'] . '</span>/<span class="red">'. $predictor['ipl_toss_lose'] . '</span></small></td>';
+                                    echo '</tr>';
+                                echo '</table>';
+                                // PROFILE INFORMATION
+                                echo '<div class="profile-info">'. Ranks::profileInfoFromArr($user, false, $ratingIcon).'</div>';
+                                echo '<div class="profile-link"><a href="'. site_url('predictor/?p='. $user['login']) .'" target="_blank">VIEW PROFILE</a></div>';
+                            echo '</div>';
+                        }
+                    echo '</div></div>';
+                echo '</div>';
+                // CWC 2019
+                echo '<div id="cwc_toss">';
+                    echo '<div class="predictorListWrapper"><div class="equalAll">';
+                        foreach ($cwc_toss as $userRank => $predictor) {
+                            if($userRank>10) break;
+                            $user = (array) $predictor;
+                            $ratingIcon = $ratingClass = '';
+                            $profileLink = site_url('predictor/?p='. $user['login']);
+                            
+                            if ($userRank < 4 && $predictor['cwc2019_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top3 rank_'. $userRank; }
+                            else if ($userRank < 11 && $predictor['cwc2019_toss_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>'; $ratingClass = 'ranked top10 rank_'. $userRank; }
+                            else { $ratingIcon = ''; $ratingClass = 'rank_'. $userRank; }
+                            
+                            echo '<div id="predictor_'. $user['id'] .'" class="predictorContainer author-profile-card '. $ratingClass .'">';
+                                echo '<table class="table top-accuracy">';
+                                    echo '<tr>';
+                                        echo '<td><small>Accuracy</small><br>' . $predictor['cwc2019_toss_accuracy'] . '%</td>';
+                                        echo '<td><small>Participated</small><br>' . $predictor['cwc2019_toss_participated'] . '</td>';
+                                        echo '<td><small>Win/Loss</small><br><small class="last"><span class="green">'. $predictor['cwc2019_toss_win'] . '</span>/<span class="red">'. $predictor['cwc2019_toss_lose'] . '</span></small></td>';
                                     echo '</tr>';
                                 echo '</table>';
                                 // PROFILE INFORMATION

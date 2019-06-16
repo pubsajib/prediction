@@ -116,7 +116,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php endif; ?>
 			<div class="post-content">
 			    <?php 
-			    // help(PredictionCron::getAllPredictors());
 			    Enhancement::loadEventSingle($post->ID);
 			    the_content();
 			    fusion_link_pages(); 

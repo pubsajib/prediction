@@ -1,5 +1,6 @@
 <?php 
-// $names = PredictionCron::insertIntoRankinSummeryTable(); help($names);
+$ans     = (array) get_post_meta(13792, 'event_ans', true); 
+$names = Enhancement::getAnsweredUsers($ans); help($names);
 $names = cs_get_option('cron');
 echo '<div class="wrap">';
     echo '<h1>'.$heading.' CRON</h1>';

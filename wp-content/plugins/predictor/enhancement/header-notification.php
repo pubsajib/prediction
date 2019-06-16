@@ -35,7 +35,7 @@ class HeaderNotification {
 				$html .= $tabContent;
 			$html .= '</div>';
 		}
-		// $html .= help(self::recentMatches(), false);
+		//$html .= help(self::recentMatches(), false);
 		return $html;
 	}
 	public static function tournaments($tournaments) {
@@ -59,6 +59,7 @@ class HeaderNotification {
 					// $html .= '<div class="col-sm-4">';
 					$html .= '<div class="item">';
 						$html .= '<div class="matchContainer">';
+						    
 						    // $html .= '<div class="status">'. $match['featured'] .'</div>';
 							// $html .= '<div class="status">'. $match['status'] .'</div>';
 							$html .= '<h3>'. $match['title'] .'</h3>';
@@ -72,9 +73,8 @@ class HeaderNotification {
 							// }
 							$html .='<div class="notification-footer">';
 								$html .='<a href="'. $match['link'] .'">PREDICTION</a>&nbsp;&nbsp;&nbsp;';
-								if ($match['discussion']) {
-									$html .='<a class="dis-red" href="'. $match['discussion'] .'">DISCUSSION</a>';
-								}
+								if ($match['discussion']) $html .='<a class="dis-red" href="'. $match['discussion'] .'">DISCUSSION</a>';
+								if ($match['live']) $html .='<div style="margin-top: 10px;"><a class="dis-red live" href="'. $match['live'] .'" target="_blank">LIVE SCORE</a></div>';
 							$html .='</div>';
 						$html .= '</div>';
 					$html .= '</div>';
@@ -115,10 +115,12 @@ class HeaderNotification {
 	            			'status'	=> 	strtotime($team['end']) >= time() ? 'Active' : 'Completed',
 	            			'subtitle'	=> '',
 	            			'discussion'	=> '',
+	            			'live'	=> '',
 	            			'featured'	=> $featured,
 	            		];
 	    				if (isset($team['subtitle'])) $teamInfo['subtitle'] = $team['subtitle'] ?? '';
 	    				if (isset($team['discussion'])) $teamInfo['discussion'] = $team['discussion'] ?? '';
+	    				if (isset($team['live'])) $teamInfo['live'] = $team['live'] ?? '';
 	            		$itemInfo = [];
 	            		if (!empty($meta[$teamID])) {
 	            			foreach ($meta[$teamID] as $option) {

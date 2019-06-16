@@ -21,7 +21,7 @@ class HeaderNotification {
 			}
 			// NAVIGATION
 			$tabNavigation .= '<ul class="horizontal">';
-			$tabNavigation .= '<li class="proli"><a href="#tournament-all">All</a></li>';
+			$tabNavigation .= '<li class="proli"><a href="#tournament-all">All Matches</a></li>';
 			$tabNavigation .= $tabNavigationItems;
 			$tabNavigation .= '</ul>';
 			// TAB CONTENT

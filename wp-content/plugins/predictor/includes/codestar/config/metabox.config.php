@@ -49,6 +49,7 @@ $options[]    = array(
                         ['id' => 'end', 'type' => 'datetime', 'title' => 'End date'],
                         ['id' => 'subtitle', 'type' => 'text', 'title' => 'Sub title'],
                         ['id' => 'discussion', 'type' => 'text', 'title' => 'Discussion'],
+                        ['id' => 'live', 'type' => 'text', 'title' => 'Live'],
                     ],
                 ],
             ),

@@ -1,8 +1,9 @@
 <?php
 namespace PLUGIN_NAME;
-use Like;
 use Enhancement;
+use Follower;
 use Range;
+use Like;
 class Frontend {
     private $plugin_slug;
     private $version;
@@ -34,6 +35,11 @@ class Frontend {
         // CALENDAR EVENTS
         add_action('wp_ajax_calendar_events', [$this, 'calendar_events']);
         add_action('wp_ajax_nopriv_calendar_events', [$this, 'calendar_events']);
+        // FOLLOWER
+        add_action('wp_ajax_add_follower', [$this, 'add_follower']);
+        add_action('wp_ajax_unfollow', [$this, 'unfollow']);
+        // TRADING
+        add_action('wp_ajax_save_trading', [$this, 'save_trading']);
     }
     public function assets() {
         // CSS
@@ -184,48 +190,6 @@ class Frontend {
             $data .= '<span class="refreshButton fusion-button button-default button-small" event="'. $ID .'">Reload</span>';
             if ($answers) $data .= $answers;
             else $data .= 'No one predicted this event yet. If you are an expert you may <a href="'. site_url('log-in') .'">Login</a> here.';
-        }
-        echo $data;
-        wp_die();
-    }
-    
-    function load_answers2() {
-        // check_ajax_referer('predictor_nonce', 'security');
-        $data           = '';
-        $ID             = (int) $_POST['ID'];
-        $ditems         = (int) $_POST['ditems'];
-        $html           = $_POST['html'];
-        $avatarslider   = (int) $_POST['avatarslider'];
-        if (get_post_type($ID) == 'event') {
-            $answers        = '';
-            $event          = get_post($ID);
-            $meta           = get_post_meta($ID, 'event_ops', true);
-            $ans            = get_post_meta($ID, 'event_ans', true);
-            $answerGiven    = @$meta['answers'];
-            if (isset($ans[0])) unset($ans[0]);
-            if ($html == 'box') {
-                // GIVEN PREDICTIONS FOR SINGLE PAGE
-                if (!$meta['restricted']) $answers = answersHTML($meta, $ans, $ID, $ditems);
-                else {
-                    if (is_user_logged_in() && getValidUserID(['viewer', 'predictor', 'administrator']) && $meta['restricted']) {
-                        $answers = answersHTML($meta, $ans, $ID, $ditems);
-                    }
-                }
-                $data .= '<span class="refreshButton fusion-button button-default button-small" event="'. $ID .'">Reload</span>';
-                if ($answers) $data .= $answers;
-                else $data .= 'No one predicted this event yet. If you are an expert you may <a href="'. site_url('log-in') .'">Login</a> here.';
-            } else {
-                // GIVEN PREDICTIONS FOR OTHER PAGES
-                if (!$meta['restricted']) $answers = getFavoriteTeamForThisEvent($meta, $ans, $ID, false, $avatarslider);
-                else {
-                    if (is_user_logged_in() && getValidUserID(['viewer', 'predictor', 'administrator']) && $meta['restricted']) {
-                        $answers = getFavoriteTeamForThisEvent($meta, $ans, $ID, false, $avatarslider);
-                    }
-                }
-                $data .= '<span class="refreshButton fusion-button button-default button-small" event="'. $ID .'">Reload</span>';
-                if ($answers) $data .= $answers;
-                else $data .= 'No one predicted this event yet. If you are an expert you may <a href="'. site_url('log-in') .'">Login</a> here.'; 
-            }
         }
         echo $data;
         wp_die();
@@ -392,6 +356,32 @@ class Frontend {
         $html = '';
         if ($date = $_POST['date']) $html = calendarEvents('', $date);
         echo $html;
+        wp_die();
+    }
+    function add_follower() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $follower = $_POST['follower'];
+        $followee = $_POST['followee'];
+        echo Follower::add($follower, $followee);
+        wp_die();
+    }
+    function unfollow() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $follower = $_POST['follower'];
+        $followee = $_POST['followee'];
+        echo Follower::remove($follower, $followee);
+        wp_die();
+    }
+    function save_trading() {
+        check_ajax_referer('predictor_nonce', 'security');
+        $event      = $_POST['event'];
+        $user       = $_POST['user'];
+        $match       = $_POST['match'];
+        $trading    = $_POST['trading'];
+        $answers = (array) get_post_meta($event, 'trading', true);
+        $answers[$user][$match] = $trading;
+        if ($answers) echo update_post_meta($event, 'trading', $answers);
+        else echo add_post_meta($event, 'trading', $answers);
         wp_die();
     }
 }

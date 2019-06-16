@@ -18,14 +18,16 @@
             }
         })
     }
-    var timeCounter = function(ID, end, isToss=false) {
+    var timeCounter = function(ID, end, type=false) {
        var time = new Date(end);
        $(ID).timeTo({
            timeTo: new Date(time),
            displayDays: 2,
        }, function(){ 
-            // $(ID).parent('.predictionContainer').find('.saveQAns').attr('disabled', true);
-            removeCurrentItem(ID);
+            if (type == 'range') {
+                $(ID).parents('.progressContainer').find('.rangeRefreshBtn').click();
+            }
+            else removeCurrentItem(ID);
        });
     }
     var removeCurrentItem = function(ID) {
@@ -557,10 +559,10 @@
                 url: object.ajaxurl,
                 cache: false,
                 data: ajaxData,
-                beforeSend: function() { button.html('Saving ..').attr('disabled', true); },
+                beforeSend: function() { button.html('<img class="likeloading" src="https://www.cricdiction.com/wp-content/plugins/predictor/frontend/img/Loading_2.gif">').attr('disabled', true); },
                 success: function(response, status, xhr) {
                     // console.log(response);
-                    if (response == 200) button.removeClass(className).html('Liked').attr('disabled', true);
+                    if (response == 200) button.removeClass(className).html('<img src="https://www.cricdiction.com/wp-content/plugins/predictor/frontend/img/liked.png">').attr('disabled', true);
                     else button.html(btnTxt).attr('disabled', false);
                 },
                 error: function(error) {
@@ -584,7 +586,12 @@
             success: function(response, status, xhr) {
                 if (response != null) {
                     rangeWrapper.html(response);
-                    owlSlider($('.eventSupperters'),8,3,3);
+                    owlSlider($('.eventSupperters'),6,3,3);
+                    $('.summeryTime').each(function(event) {
+                        var ID = '#'+ $(this).prop('id');
+                        var end = $(this).text();
+                        timeCounter(ID, end, 'range');
+                    });
                 }
                 button.attr('disabled', false);
             },
@@ -620,23 +627,107 @@
             });
         }
     }
+    var addFollower = function(button) {
+        var followee = button.attr('followee');
+        var follower = button.attr('follower');
+        var btnTxt = button.text();
+        var className = 'addFollower';
+        if (followee && follower) {
+            var ajaxData = {};
+            ajaxData['security'] = object.ajax_nonce;
+            ajaxData['action'] = 'add_follower';
+            ajaxData['followee'] = followee;
+            ajaxData['follower'] = follower;
+            $.ajax({
+                type: 'POST',
+                url: object.ajaxurl,
+                cache: false,
+                data: ajaxData,
+                beforeSend: function() { button.html('saving...').attr('disabled', true); },
+                success: function(response, status, xhr) {
+                    console.log(response);
+                    if (response == 200) button.removeClass(className).addClass('unFollow').html('Unfollow').attr('disabled', false);
+                    else button.html(btnTxt).attr('disabled', false);
+                },
+                error: function(error) {
+                    button.html(btnTxt).attr('disabled', false);
+                    console.log(error);
+                }
+            });
+        }
+    }
+    var unFollow = function(button) {
+        var followee = button.attr('followee');
+        var follower = button.attr('follower');
+        var btnTxt = button.text();
+        var className = 'unFollow';
+        if (followee && follower) {
+            var ajaxData = {};
+            ajaxData['security'] = object.ajax_nonce;
+            ajaxData['action'] = 'unfollow';
+            ajaxData['followee'] = followee;
+            ajaxData['follower'] = follower;
+            $.ajax({
+                type: 'POST',
+                url: object.ajaxurl,
+                cache: false,
+                data: ajaxData,
+                beforeSend: function() { button.html('saving...').attr('disabled', true); },
+                success: function(response, status, xhr) {
+                    console.log(response);
+                    if (response == 200) button.removeClass(className).addClass('addFollower').html('Follow').attr('disabled', false);
+                    else button.html(btnTxt).attr('disabled', false);
+                },
+                error: function(error) {
+                    button.html(btnTxt).attr('disabled', false);
+                    console.log(error);
+                }
+            });
+        }
+    }
+    var saveTrading = function(button) {
+        var event = button.attr('event');
+        var user = button.attr('user');
+        var match = button.attr('match');
+        var trading = jQuery('input[name=trading]:checked').val();
+        // var btnTxt = button.text();
+        var btnTxt = 'Saved';
+        if (event && trading) {
+            var ajaxData = {};
+            ajaxData['security'] = object.ajax_nonce;
+            ajaxData['action'] = 'save_trading';
+            ajaxData['event'] = event;
+            ajaxData['user'] = user;
+            ajaxData['match'] = match;
+            ajaxData['trading'] = trading;
+            $.ajax({
+                type: 'POST',
+                url: object.ajaxurl,
+                cache: false,
+                data: ajaxData,
+                beforeSend: function() { button.html('saving...').attr('disabled', true); },
+                success: function(response, status, xhr) {
+                    console.log(response);
+                    button.html(btnTxt).attr('disabled', false);
+                },
+                error: function(error) {
+                    button.html(btnTxt).attr('disabled', false);
+                    console.log(error);
+                }
+            });
+        } else alert('No option selected');
+    }
     var test = function(button) {}
     // *************************** //
     // ***** READY FUNCTION ****** //
     // *************************** //
     $(document).ready(function() {
-        owlSlider($('.eventSupperters'),6,3,3);
+        owlSlider($('.eventSupperters, .reputedPredictors'),6,3,3);
 		owlSlider($('.eventTopSupperters'),8,3,3);
         owlSlider($('.owlCarousel_headerNotification'),6,2,2);
         //Tab 		
-        $('#protab').tabslet();
-		$('#RankAll').tabslet();
-		$('#RankingAllMatch').tabslet();
-        $('#TopPredictor').tabslet();
-        $('#Roadtotop').tabslet();
-        $('#headerNotification').tabslet();
-		$('#TopMatchPredictor').tabslet();
-        // Ranking Slider 		
+        $('#protab, #RankAll, #RankingAllMatch, #TopPredictor, #Roadtotop, #headerNotification, #TopMatchPredictor').tabslet();
+        // Ranking Slider
         $('.owl-rank').owlCarousel({
             loop:true,
             margin:10,
@@ -646,7 +737,6 @@
                 1000:{items:2 }
             }
         })
-        // $('#team_test_1_toss_winner___end').parents('.autoRemoveAble').first().css('border', '1px solid red');
         $(document).on('change', '#tournaments', function(event) {
             event.preventDefault();
             var tournamentID = $(this).val();
@@ -664,6 +754,12 @@
             var ID = '#'+ $(this).prop('id');
             var end = $(this).text();
             timeCounter(ID, end, true);
+        });
+        // TIME COUNTER (RANGE)
+        $('.summeryTime').each(function(event) {
+            var ID = '#'+ $(this).prop('id');
+            var end = $(this).text();
+            timeCounter(ID, end, 'range');
         });
 		/* Predictor Page Modal */
 		$("#winLosePop").iziModal({
@@ -834,6 +930,21 @@
             event.preventDefault();
             var button = $(this);
             addLikeForPredictor(button);
+        })
+        $(document).on('click', '.addFollower', function(event) {
+            event.preventDefault();
+            var button = $(this);
+            addFollower(button);
+        })
+        $(document).on('click', '.unFollow', function(event) {
+            event.preventDefault();
+            var button = $(this);
+            unFollow(button);
+        })
+        $(document).on('click', '.saveTrading', function(event) {
+            event.preventDefault();
+            var button = $(this);
+            saveTrading(button);
         })
     });
 })(jQuery);

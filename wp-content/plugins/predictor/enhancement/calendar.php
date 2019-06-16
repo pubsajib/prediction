@@ -293,7 +293,7 @@ class CalendarEvents {
                         $profileLink = $eventLink .'#'. $supporter['id'];
                         $data .= '<div class="item">';
                             $data .= '<a href="'. $profileLink .'" target="_blank">';
-                                $data .= '<p><img style="border-radius:50%" src="'. $supporter['avatar'] .'"></p>';
+                                $data .= '<p>'. $supporter['avatar'] .'</p>';
                                 $data .= '<p style="text-align:center;">'. $supporter['name'] .'</p>';
                             $data .= '</a>';
                         $data .= '</div>';
@@ -306,13 +306,12 @@ class CalendarEvents {
     static function getAnsweredUsers($ans) {
         global $wpdb;
         $predictors = [];
-        $meta = ['nickname'=>'','avatar'=>''];
         $userIDs = implode(',', array_keys($ans));
         $users = $wpdb->get_results( "SELECT id, user_login, user_email, display_name AS name FROM $wpdb->users WHERE ID IN ($userIDs)", ARRAY_A);
 
         if ($users) {
             foreach ($users as $user) {
-                $predictors[$user['id']] = array_merge((array)$user, ['avatar'=>get_avatar_url( $user['user_email'])]);
+                $predictors[$user['id']] = array_merge((array)$user, ['avatar'=>get_avatar($user['user_email'])]);
             }
         }
         return $predictors;

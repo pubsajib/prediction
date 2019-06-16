@@ -19,33 +19,28 @@ class Range {
     }
     static function contentHTML($eventID) {
         $html  = '';
-        $ans   = (array) get_post_meta($eventID, 'event_ans', true);
-        $meta    = get_post_meta($eventID, 'event_ops', true);
+        $ans   = (array) get_post_meta($eventID, 'event_ans', true); 
         if (isset($ans[0])) unset($ans[0]);
         // GIVEN PREDICTIONS
-        $html .= self::getFavoriteTeamForThisEvent($answers, $meta, $eventID, true);
+        $html .= self::getFavoriteTeamForThisEvent($ans, $eventID, true);
         // $html .= help(getAvatarURL('<img alt="" src="//www.cricdiction.com/wp-content/uploads/wpforo/avatars/sahilrobin_570.jpg" class="avatar avatar-96 photo" height="96" width="96">'), false);
         //$html .= '<p><img style="border-radius:50%" src="//www.cricdiction.com/wp-content/uploads/wpforo/avatars/sahilrobin_570.jpg"></p>';
         return $html;
     }
-    static function getFavoriteTeamForThisEvent($answers, $meta, $eventID, $showTab=false) : string {
+    static function getFavoriteTeamForThisEvent($answers, $eventID, $showTab=false) : string {
         $data       = '';
         $eventLink = get_permalink($eventID);
         $users = self::getAnsweredUsers($answers);
         // $data .= help($users, false);
-        $data .= self::teams($eventID, $meta);
-        $data .= self::getWinningSummeryForThisEvent($answers, $meta, $eventID, $users, $eventLink);
+        $data .= self::teams($eventID);
         $data .= self::getFavoriteEventAllSupportersSlider($users, $eventLink);
-        $data .= '<div class="text-center viewEventBtn">';
-        $data .= '<a href="'. $eventLink .'" target="_blank" class="fusion-button button-flat fusion-button-pill button-small button-default predict">view expert predictions</a>';
-        $data .= '</div>';
-        
+        $data .= '<div class="text-center viewEventBtn"><a href="'. $eventLink .'" target="_blank" class="fusion-button button-flat fusion-button-pill button-small button-default predict">view expert predictions</a></div>';
+        $data .= self::getWinningSummeryForThisEvent($answers, $eventID, $users);
         return $data;
     }
     static function getFavoriteEventAllSupportersSlider($supporters, $eventLink=false) {
         $data = '';
-        if (!$supporters) $data = '<p class="noItem">No one predicted this event yet. If you are an expert you may <a href="'. site_url('log-in') .'">Login</a> here.</p>'; 
-        else {
+        if ($supporters) {
             $data .= '<div class="owl-carousel owl-theme eventSupperters">';
                 foreach ($supporters as $supporter) {
                     if ($eventLink) {
@@ -77,18 +72,19 @@ class Range {
         }
         return $predictors;
     }
-    static function teams($eventID, $meta) {
+    static function teams($eventID) {
         $data  = '';
+        $meta  = (array) get_post_meta($eventID, 'event_ops', true);
         if (!empty($meta['teams'])) {
             foreach ($meta['teams'] as $team) $data .= !empty($team['name']) ? $team['name'] .', ' : '';
         }
-        // if ($data) return '<h2 class="eventTitles text-left">'. rtrim($data, ', ') .'</h2>';
-        if ($data) return '<h2 class="eventTitles">cricdiction\'s pick of '.$team['name'].'</h2>';
+        if ($data) return '<h2 class="eventTitles text-left">'. rtrim($data, ', ') .'</h2>';
         else return false;
     }
-    static function getWinningSummeryForThisEvent($answers, $meta, $eventID, $users, $eventLink) : string {
+    static function getWinningSummeryForThisEvent($answers, $eventID, $users) : string {
         $data       = '';
         $teams      = [];
+        $meta    = get_post_meta($eventID, 'event_ops', true);
         
         $ansCount = [];
         if ($answers) {
@@ -145,7 +141,6 @@ class Range {
         if ($teams) {
             foreach ($teams as $teamID => $team) {
                 if (isset($team['teams']) && strtotime($team['end']) < time()) {
-                    // $data .= help($team);
                     $matchData = '';
                     $firstTeamName = $team['teams'][0];
                     $secondTeamName = $team['teams'][1];
@@ -153,6 +148,7 @@ class Range {
                     $secondTeamID = predictor_id_from_string($team['teams'][1]);
                     $firstTeamMatchSupporters = !empty($team['items']['match'][$firstTeamID .'-supporters']) ? $team['items']['match'][$firstTeamID .'-supporters'] : [];
                     $secondTeamMatchSupporters = !empty($team['items']['match'][$secondTeamID .'-supporters']) ? $team['items']['match'][$secondTeamID .'-supporters'] : [];
+
                     if (isset($team['items']['match']) && (!empty($team['items']['match'][$firstTeamID]) || !empty($team['items']['match'][$secondTeamID]))) {
                         $firstValue = $team['items']['match'][$firstTeamID];
                         $secondValue = $team['items']['match'][$secondTeamID];
@@ -168,73 +164,19 @@ class Range {
                         }
 
                         $matchData .= '<div class="range-result">';
-                            // $matchData .= '<div class="title">cricdiction\'s pick of '.$team['name'].'</div>';
-                            $matchData .= '<div class="item one">';
-                                    $matchData .= '<div class="result"><span class="name">'.$winningTeam.'</span><br>Win The Match</div>';
-                                $matchData .= '</div>';
-                            
-                            $matchData .= '<div class="item two">';
-                                    $matchData .= '<div class="percentage"><span class="chances">'. number_format($winningScore, 2) .'%</span><br>Winning Chances</div>';
-                                $matchData .= '</div>';
-                            $tradings = self::tradings($eventID, $teamID);
-                            $matchData .= '
-                                <div class="item three">
-                                    <div class="result trading">Trading Chances<br><span class="name"><div class="halfs"><span class="'. $tradings['yes'] .'">'. $tradings['yesNumber'] .'%</span><span class="'. $tradings['yesTxt'] .'">YES!!<span></div><div class="halfs"><span class="'. $tradings['no'] .'">'. $tradings['noNumber'] .'%</span><span class="'. $tradings['noTxt'] .'">NO!!<span></div></div>
-                                </div>
-                            ';
+                            $matchData .= '<div class="title">cricdiction\'s pick</div>';
+                            $matchData .= '<div class="result"><span class="name">'.$winningTeam.'</span> to win the match</div>';
+                            $matchData .= '<div class="percentage">'. number_format($winningScore, 2) .'% winning chances</div>';
                         $matchData .= '</div>';
-                        $matchData .= '<h2 class="eventTitles">'.count($users).' EXPERTS</strong> PREDICTED '.$team['name'].'</h2>';
                     }
                     if ($matchData) $data .= $matchData;
                 } else {
-                    $data .= '<div class="range-results">';
+                    $data .= '<div class="range-result">';
                         $data .= '<div class="title">cricdiction\'s pick</div>';
                         $data .= '<div class="summeryTime" id="'. $teamID .'_end">'. date('Y-m-d H:i:s', strtotime($team['end'])) .'</div>';
-                        $data .= '<div style="margin-top: 15px;color:#fff;font-size: 15px;"><strong>'.count($users).' EXPERTS</strong> PREDICTED<strong><br>'.$team['name'].'</strong></div>';
-                            $data .= '<div class="text-center viewEventBtn">';
-                            $data .= '<a href="'. $eventLink .'" target="_blank" class="fusion-button button-flat fusion-button-pill button-small button-default predict">CLICK HERE TO VIEW THEIR PREDICTION</a>';
-                            if (!empty($team['live'])) $data .= '<a href="'. $team['live'] .'" target="_blank" class="fusion-button button-flat fusion-button-pill button-small button-default predict">CLICK HERE TO VIEW THEIR PREDICTION</a>';
-                            $data .= '</div>';
                     $data .= '</div>';
                 }
             }
-        }
-        return $data;
-    }
-    static function tradings($eventID, $teamID) {
-        $data = ['yes'=>'equal', 'no'=>'equal', 'yesTxt'=>'equalTxt', 'noTxt'=>'equalTxt', 'yesNumber'=>0, 'noNumber'=>0];
-        $tradings   = get_post_meta($eventID, 'trading', true);
-        if ($tradings) {
-            $yesCounter = $noCounter = 0;
-            if ($tradings) {
-                foreach ($tradings as $trading) {
-                    if ($trading) {
-                        foreach ($trading as $teamID => $team) {
-                            if ($team == 'yes') $yesCounter++;
-                            else if ($team == 'no') $noCounter++;
-                        }
-                    }
-                }
-            }
-            if ($yesCounter == $noCounter) {
-                $data['yes'] = 'equal';
-                $data['no'] = 'equal';
-                $data['yesTxt'] = 'equalTxt';
-                $data['noTxt'] = 'equalTxt';
-            } else if ($yesCounter > $noCounter) {
-                $data['yes'] = 'success';
-                $data['no'] = 'danger';
-                $data['yesTxt'] = 'successTxt';
-                $data['noTxt'] = 'dangerTxt';
-            } else {
-                $data['yes'] = 'danger';
-                $data['no'] = 'success';
-                $data['yesTxt'] = 'dangerTxt';
-                $data['noTxt'] = 'successTxt';
-            }
-            $total = $yesCounter + $noCounter;
-            $data['yesNumber']  = ($yesCounter / $total) * 100;
-            $data['noNumber']  = ($noCounter / $total) * 100;
         }
         return $data;
     }

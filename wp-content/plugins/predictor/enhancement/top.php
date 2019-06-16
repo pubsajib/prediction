@@ -16,42 +16,46 @@ class top {
 		        // Ovarall
 		        $matches[$user['overall_match_rank']] = $user; ksort($matches);
 		        $tosses[$user['overall_toss_rank']] = $user; ksort($tosses);
+				$cwc[$user['cwc2019_match_rank']] = $user; ksort($cwc);
+				$cwc_toss[$user['cwc2019_toss_rank']] = $user; ksort($cwc_toss);
 		    }
 			$data .= '<div class="tabs tabs_default parent-ranking" id="TopPredictor">';
 				$data .= '<ul class="horizontal">';
 					$data .= '<li class="proli"><a href="#match">Match Experts</a></li>';
 					$data .= '<li class="proli"><a href="#toss">Toss Experts</a></li>';
-				// 	$data .= '<li class="proli"><a href="#ipl">IPL</a></li>';
+					$data .= '<li class="proli"><a href="#cwcmatch">CWC Match</a></li>';
+					$data .= '<li class="proli"><a href="#cwctoss">CWC Toss</a></li>';
 				$data .= '</ul>';
 				// ================================== MATCH ===================================== //
 				$data .= '<div id="match">'. self::slider($matches, $profilePage, $attr, 'overall_match') .'</div>';
 				// ================================== TOSS ====================================== //
 				$data .= '<div id="toss">'. self::slider($tosses, $profilePage, $attr, 'overall_toss') .'</div>';
 				// ================================== IPL ======================================= //
-				// $data .= '<div id="ipl">'. self::slider($ipl, $profilePage, $attr) .'</div>';
+				$data .= '<div id="cwcmatch">'. self::slider($cwc, $profilePage, $attr, 'cwc2019_match') .'</div>';
+				$data .= '<div id="cwctoss">'. self::slider($cwc_toss, $profilePage, $attr, 'cwc2019_toss') .'</div>';
 			$data .= '</div>';
 		}
 		return $data;
 	}
 	static function slider($supporters, $profilePage='', $attr, $type) {
-        $data = '';
+        $data = $sliderItems = '';
         $counter = 0;
         if ($supporters) {
-            $data .= '<div class="owl-carousel owl-theme '. $attr['class'] .'">';
-                foreach ($supporters as $userRank => $supporter) {
-                    if ($counter >= $attr['number']) break;
-                    $ratingIcon = '';
-	                if ($supporter[$type.'_eligibility'] > 80) { $ratingIcon = '<p>'. $userRank .'</p>';}
-	                
+            foreach ($supporters as $userRank => $supporter) {
+                if ($counter >= $attr['number']) break;
+                if ($supporter[$type.'_eligibility'] > 80) { 
+                    $ratingIcon = '<p>'. $userRank .'</p>';
                     $profileLink = $profilePage.'?p='. $supporter['login'];
-                    $data .='<div class="item">';
-                        $data .= '<div class="rank-float">' . $ratingIcon . '</div>';
-                        $data .='<p><a href="'. $profileLink .'" target="_blank"><img style="border-radius:50%" src="'. $supporter['avatar'] .'"></a></p>';
-                        $data .='<p style="text-align:center;">'. $supporter['name'] .'</p>';
-                    $data .='</div>';
-                    $counter++;
+                    $sliderItems .='<div class="item">';
+                        $sliderItems .= '<div class="rank-float">' . $ratingIcon . '</div>';
+                        $sliderItems .='<p><a href="'. $profileLink .'" target="_blank"><img style="border-radius:50%" src="'. $supporter['avatar'] .'"></a></p>';
+                        $sliderItems .='<p style="text-align:center;">'. $supporter['name'] .'</p>';
+                    $sliderItems .='</div>';
+                    $counter++;   
                 }
-            $data .= '</div>';
+            }
+            if ($sliderItems) $data .= '<div class="owl-carousel owl-theme '. $attr['class'] .'">'. $sliderItems .'</div>';
+            else $data .= '<p class="text-center" style="color:#fff"> Nothing found </p>';
         }
         return $data;
     }

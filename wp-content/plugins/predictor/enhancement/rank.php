@@ -100,7 +100,7 @@ class Ranks {
 	    $data = '';
 	    if ($user) {
 	        $data .= '<div class="author-photo"> <img src="'. $user['avatar'] .'" alt="Avatar"> '. $ratingIcon .'</div>';
-	        $data .= '<h3><a href="'. site_url('predictor/?p='. $user['login']) .'">'. $user['name'] .'('. $user['likes'] .')</a></h3>';
+	        $data .= '<h3><a href="'. site_url('predictor/?p='. $user['login']) .'">'. $user['name'] .'</a></h3>';
 	            if (!empty($user['url'])) $data .= '<strong>Website:</strong> <a href="'. $user['url'] .'">'. $user['url'] .'</a><br />';
 	            // if (!empty($user['description'])) $data .= $user['description'];
 	    }

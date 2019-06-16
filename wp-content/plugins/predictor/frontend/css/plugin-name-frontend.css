@@ -1,23 +1,9 @@
 /*======================================= = Frontend Styles = ========================================*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 /*General*/
-table {
-	margin-bottom: 0 !important;
-}
- .btn-green {
-    background: #16936c !important;
-    padding: 7px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    border: 0;
-    border-radius: 30px;
-    color: #fff;
-    line-height: 17px;
-    cursor: pointer;
-}
- .btn-green:hover {
-    background: #454545;
-}
+table {margin-bottom: 0 !important;}
+.btn-green {background: #16936c !important;padding: 5px 15px !important;font-size: 13px !important;font-weight: 600 !important;border: 0 !important;border-radius: 30px !important;color: #fff;line-height: 17px !important;}
+.btn-green:hover {background: #454545 !important;color: #fff !important;}
  .btn-gray {
     background: #d5d5d5 !important;
     padding: 7px 20px;
@@ -80,12 +66,13 @@ table {
 .rangeRefreshBtn.fusion-button {
     background: #ff9800 !important;
     font-size: 10px !important;
-    top: -40px !important;
+    top: -10px !important;
     text-transform: uppercase;
     padding: 6px 12px;
     position: absolute;
     right: 0;
 }
+.rangeRefreshBtn.fusion-button{top: -10px !important;}
  .titleContainer p{
     margin-bottom: 0 !important;
 }
@@ -284,9 +271,7 @@ table {
     text-align: center;
 	padding-top: 15px;
 }
- .author-profile-card .profile-info .avatar {
-    border-radius: 50%;
-}
+.author-profile-card .profile-info .avatar {border-radius: 50%;height: 92px;width: auto;}
  .prediction-full-result {
     list-style: none;
     margin: 0;
@@ -319,11 +304,8 @@ table {
  .prediction-full-result li .common.red {
     border-color: #f44336a3;
 }
- .page-template-predictor .profile-info h3 {
-    font-size: 20px;
-    margin: 10px 0;
-    text-transform: uppercase;
-}
+.page-template-predictor .profile-info h3,
+.page-template-pcp .profile-info h3{font-size: 20px;margin: 10px 0;text-transform: uppercase;}
 /*  .page-template-predictor .usertag li {
     padding: 3px 12px;
     font-size: 14px;
@@ -365,10 +347,10 @@ table {
     color: #fff;
     padding: 5px 15px;
     display: block;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 12px;
     border-radius: 50px;
-	box-shadow: 0 0 3px;
+	box-shadow: 0 0 2px;
 }
 
 .tabs.tabs_default .proli a:hover, .tabs.tabs_default .proli.active a {
@@ -387,9 +369,7 @@ table {
 }
 #TopPredictor .owl-carousel .owl-item p {text-align: center;color: #fff;font-size: 11px;margin-bottom: 15px;}
 #TopPredictor .owl-carousel .owl-item .rank-float p{position: absolute;top: 0;right: 0;background: rgba(0, 0, 0, 0.50);font-size: 20px;width: 35px;border-radius: 50%;line-height: 35px;color: #fff;}
-#headerNotification {
-	margin-bottom: 5px;
-}
+#headerNotification {margin-bottom: 5px;height: 195px;}
 #headerNotification .horizontal {
 	border-bottom: 1px solid #d4d4d4;
     padding-bottom: 5px;
@@ -453,6 +433,7 @@ table {
     animation: Gradient 15s ease infinite;
     color: #fff;
 }
+.owl-carousel .owl-item .item p {margin-bottom:10px;}
  .owl-carousel .owl-item {
     display: flex;
 }
@@ -473,7 +454,7 @@ table {
 }
  .owl-stage {
     display: flex;
-    padding-bottom: 15px;
+    padding-bottom: 0;
 }
  .owl-carousel .owl-item .item .eventFooter {
     border-top: 1px solid #f1f1f1;
@@ -491,15 +472,19 @@ table {
     font-size: 12px;
     color: #fff;
     font-weight: 700;
-    margin-left: 3px;
+    margin-left: 6px;
 }
  .timeTo span {
     font-size: 20px;
     color: #454545;
     margin: 0 3px;
 }
- .timeTo.timeTo-white div {
-    background: linear-gradient(to bottom, #16936c 38%,#1d2724 100%);
+.timeTo.timeTo-white div {
+    background: rgb(201,21,21);
+	background: radial-gradient(circle, rgba(201,21,21,1) 0%, rgba(113,8,8,1) 100%, rgba(113,13,13,1) 100%);
+	border-radius: 50%;
+    height: 30px;
+    width: 30px;
 } 
 
 .endToss.timeTo.timeTo-white div {
@@ -549,7 +534,7 @@ table {
 	 display: inline-block;
 	 width: 100%;
 }
-.predictionWrapper {clear: both;display: inline-block;width: 100%;margin: 10px; background:#fff; padding: 5px 12px; border-radius: 10px; box-shadow: 0 0 10px #ddd;}
+.predictionWrapper {clear: both;display: inline-block;width: 100%;margin: 10px 0; background:#fff; padding: 5px 12px; border-radius: 10px; box-shadow: 0 0 10px #ddd;}
 .predictionWrapper h3{
     font-weight: bold!important;
 }
@@ -590,7 +575,7 @@ table {
 .answerContainer h4,
 .predictorContainer.author-profile-card .profile-info h3{
  	font-family: 'Roboto', sans-serif !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     margin-top: 10px;
     display: inline-block;
@@ -617,22 +602,14 @@ table {
     top: 3px;
 	height: 18px;
 }
- .answerContainer img {
+.answerContainer img {
     border-radius: 50%;
 }
- .hide {
-    display: none;
-}
+.answerContainer .user-avater img {height: 90px;width: auto;}
+.hide {display: none;}
 
-.profile-link {
-	margin-top: 15px;
-	text-align: center;
-}
-
-.profile-link a {
-	font-weight: 700;
-    color: #3c495a;
-}
+.profile-link {margin-top: 15px;text-align: center;clear: both;display: inline-block;width: 100%;}
+.profile-link a {font-weight: 500;color: #3c495a;font-size: 12px;}
 
 /* Predictor List */
 .predictorContainer.author-profile-card.ranked.top3 .top-accuracy th,
@@ -884,21 +861,11 @@ table {
 	width: 100%;
 	margin-top: 40px;
 }
-.login-profile .item {
-	background: #fff;
-	width: 22%;
-	padding: 15px;
-	float: left;
-	margin-right: 4%;
-	border-radius: 7px;
-	text-align: center;
-	min-height: 209px;
-}
-
+.login-profile .item {background: #fff;width: 24.222%;padding: 15px;float: left;margin-right: 1%;border-radius: 7px;text-align: center;min-height: 228px;}
 .login-profile .item .circle {
 	height: 100px;
     width: 100px;
-    line-height: 88px;
+    line-height: 50px;
     border-radius: 50%;
     display: inline-block;
 	border: 5px solid #d6d6d6;
@@ -1069,7 +1036,7 @@ table {
 .owlCarousel_headerNotification .notification-footer .dis-red {
 	color: #ff0000;
 }
-
+.owlCarousel_headerNotification .notification-footer .dis-red.live{text-align: center;background: #0e165f;color: #fff;border-radius: 10px;padding: 6px 10px;font-size: 10px;}
 .owlCarousel_headerNotification .notification-footer .button-default.green {
 	background: #16936c;
 	width: 100%;
@@ -1789,8 +1756,7 @@ table {
 	margin: 0;
 	color: #fff !important;
 }
-/* .progressContainer .progressWrapper .owl-carousel .owl-item {display: inline-flex;float: none;}
-.progressContainer .progressWrapper .owl-stage {padding-bottom: 0;text-align: center;width: 100% !important;display: block;} */
+.progressWrapper .eventTitles {font-size: 15px !important;margin-bottom: 20px !important;}
 
 .w50p {
 	width: 50%; 
@@ -2019,6 +1985,8 @@ table {
     border-radius: 10px !important;
     box-shadow: none !important;
 }
+.eventTopSupperters .item {width: 100% !important;text-align: center;}
+.eventTopSupperters .item img {max-height: 92px; width: auto;}
 #eventSupperters .horizontal {margin-bottom: 20px !important;}
 .eventSupperters .owl-stage {
 	padding-bottom: 0;
@@ -2112,17 +2080,59 @@ table {
 
 /* Profile Page */
 .profile-wrapper {width: 100%;}
-.profile-wrapper .card {background: #fff;padding: 20px;border-radius: 7px;text-align:center;margin-bottom: 20px;}
+.profile-wrapper .card {background: #fff;padding: 20px;border-radius: 7px;text-align:center;margin-bottom: 20px;clear: both;display: inline-block;width: 100%;}
 .profile-wrapper .card .title {text-align: left;font-size: 22px;color: #16936c;}
 .profile-wrapper .card .circle {height: 120px;width: 120px;border: 5px solid;display: inline-block;border-radius: 50%}
 .profile-wrapper .card .circle h2 {line-height: 110px !important;}
 .profile-wrapper .card .circle .green {color: #009688;}
 .profile-wrapper .card .circle .red {color: #e05b51;}
+.profile-wrapper .toprankingsection.pcp .card .circle {height: 75px;width: 75px;}
+.profile-wrapper .toprankingsection.pcp .card .circle h2 {line-height: 40px !important;}
+.toprankingsection .items {width: 30.555%;float: left;margin-right: 4%;}
+.toprankingsection .items.last,.profile-wrapper .card .items-full.last {margin-right:0;}
+.profile-wrapper .card .author-photo {padding-top: 0;}
+.profile-wrapper .card .profile-info h3 {margin-bottom: 0;}
+.profile-wrapper .card .items-full {width: 22%; float: left; margin-right: 4%;}
+/* Like */
+.like-section {position: absolute;bottom: 25px;left: 0;right: 20px;}
+.like-sectionprofile img, .like-section img {border-radius: 0;}
+.like-sectionprofile .userlikebtn, .like-section .userlikebtn {padding: 0;background-color: transparent !important;border: 0;}
+.like-section .like-right {text-align: right;}
+.owl-carousel .owl-item .answerContainer.item {padding-bottom: 90px;}
+.like-sectionprofile .countuserlike, .like-section .countuserlike,
+.profile-wrapper .toprankingsection.pcp .card h2 {color: #44a4ec;font-size: 30px;font-weight: 700;position: relative;top: 9px;padding-left: 3px;}
+.likeloading {position: relative;top: 5px;height: 25px;width: auto;}
+/* PCP */
+.RoadToTopsection {padding: 15px;background: #060d35;margin-bottom: 10px;border-radius: 7px;}
+/*  */
+.profile-link .left,
+.profile-link .right {width: 50%;float: left;}
+.profile-link .left {text-align: left;}
+.profile-link .right {text-align: right;color: #7f92a9;}
+.avatar {border-radius: 50% !important;max-height: 92px; width: auto;}
+/* Range result */
+.range-result {background: #04062f;margin-top: 10px;text-align:center;padding: 15px;border-radius:7px;}
+.range-result .title {text-transform: uppercase;color: #b8f4fc;letter-spacing: 3px;font-size: 12px;}
+.range-result .result {text-transform: uppercase;color: #fff;font-size: 18px;}
+.range-result .result .name {color: #f8db0f;font-weight:700;}
+.range-result .percentage {color: #fff;}
+.range-result .timeTo.timeTo-white div {background: #1b2d90;border-radius: 0;}
+.range-result .endTime li, .range-result .timeTo ul li {color: #ccc;}
+.range-result .timeTo div.first {border-left: 1px solid transparent;}
+.range-result .timeTo div {border-right: 2px solid #04062f;border-bottom: 0;}
+.range-result .summeryTime.timeTo.timeTo-white {margin-top: 15px;}
+.noItem {line-height: 90px;text-align: center;font-size: 18px;}
+/* Options For Expert */
+.OptionsForExpert .btn {margin-bottom: 10px;line-height: 30px;border-radius: 7px !important;font-weight: 600;}
+.OptionsForExpert .btn.btn-violet {background-color: #c52376;}
+.OptionsForExpert .btn.btn-purple {background-color: #a533c7;}
+.OptionsForExpert .btn.btn-blue {background-color: #7136be;}
 @media only screen and (max-width: 800px) {
-     .iziModal {
-        left: 20px;
-         right: 20px;
-    }
+	.profile-wrapper .card .items-full {width: 48%;}
+	.profile-wrapper .card .items-full.mobile-last {margin-right: 0;}
+	.toprankingsection .items .card .circle {height: 70px;width: 70px;}
+	.toprankingsection .items .card .circle h2 {line-height: 60px !important;}
+     .iziModal {left: 20px;right: 20px;}
 	.login-profile .item {
 		width: 49%;
 		margin-right: 2%;

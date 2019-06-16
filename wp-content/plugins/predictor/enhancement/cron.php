@@ -200,7 +200,7 @@ class PredictionCron {
 				$sql .= "'". $summery['url'] ."', ";
 				$sql .= "'". $summery['avatar'] ."', ";
 				$sql .= "'". $summery['country'] ."', ";
-				$sql .= "'". $summery['description'] ."', ";
+				$sql .= "'". addcslashes($summery['description'], "'") ."', ";
 				$sql .= "'". $summery['likes'] ."', ";
 				$sql .= "'". $summery['class'] ."', ";
 				$sql .= " CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), ";
@@ -623,7 +623,7 @@ class PredictionCron {
         		$meta = ['country'=>'','description'=>'','avatar'=>'','likes'=>0];
 	            $sql = "SELECT umeta_id, user_id, meta_key,`meta_value` FROM $wpdb->usermeta WHERE `user_id`= {$user->ID} AND `meta_key` IN ('country', 'description', 'likes')";
 	            $umetas = $wpdb->get_results( $sql );
-	            $meta['avatar'] = get_avatar_url( $user->user_email, null );
+	            $meta['avatar'] = self::getAvatarURL(get_avatar($user->user_email));
 	            if ($umetas) {
 	                foreach ($umetas as $umeta) {
 	                    $meta[$umeta->meta_key] = $umeta->meta_value;
@@ -634,6 +634,15 @@ class PredictionCron {
         }
         return $predictors;
 	}
+	static function getAvatarURL($get_avatar){
+        $doc = new DOMDocument();
+        $doc->loadHTML($get_avatar);
+        $imageTags = $doc->getElementsByTagName('img');
+        foreach($imageTags as $tag) {
+            return $tag->getAttribute('src');
+        }
+        return '';
+    }
 	// TOURNAMENT
 	static function eventsByTournament($tournamentID=4) {
 		$args = [
@@ -719,7 +728,7 @@ class PredictionCron {
 		$sql .= "`user_id` int(11) NOT NULL, ";
 		foreach ($options as $option) { 
 			// all
-			$rankColumns .= "`". $option ."_rank`, ";
+			// $rankColumns .= "`". $option ."_rank`, ";
 			$sql .= "`". $option ."_rank` int(11) NOT NULL, "; 
 			$sql .= "`". $option ."_accuracy` int(11) NOT NULL, ";
 			$sql .= "`". $option ."_win` int(11) NOT NULL, ";
@@ -729,7 +738,7 @@ class PredictionCron {
 			$sql .= "`". $option ."_engagement` int(11) NOT NULL, ";
 			$sql .= "`". $option ."_eligibility` int(11) NOT NULL, ";
 			// match
-			$rankColumns .= "`". $option ."_match_rank`, ";
+			// $rankColumns .= "`". $option ."_match_rank`, ";
 			$sql .= "`". $option ."_match_rank` int(11) NOT NULL, "; 
 			$sql .= "`". $option ."_match_accuracy` int(11) NOT NULL, ";
 			$sql .= "`". $option ."_match_win` int(11) NOT NULL, ";
@@ -739,7 +748,7 @@ class PredictionCron {
 			$sql .= "`". $option ."_match_engagement` int(11) NOT NULL, ";
 			$sql .= "`". $option ."_match_eligibility` int(11) NOT NULL, ";
 			// toss
-			$rankColumns .= "`". $option ."_toss_rank`, ";
+			// $rankColumns .= "`". $option ."_toss_rank`, ";
 			$sql .= "`". $option ."_toss_rank` int(11) NOT NULL, "; 
 			$sql .= "`". $option ."_toss_accuracy` int(11) NOT NULL, ";
 			$sql .= "`". $option ."_toss_win` int(11) NOT NULL, ";
@@ -761,6 +770,7 @@ class PredictionCron {
 		$sql .= "`updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
 		$sql .= "INDEX (". $rankColumns ."`user_id`) ";
 		$sql .= ") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+		// return $sql;
 		self::deleteRatingTableFor($ratingType);
 		if ($wpdb->query($sql)) {
 			$status = "INSERT INTO `". $wpdb->prefix."predictor_cron_status` (`rate_table`, `status`) VALUES ('".$ratingType."', '0');";

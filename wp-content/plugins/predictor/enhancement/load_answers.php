@@ -46,8 +46,8 @@ class Enhancement {
                                     $html .= '<h4>';
                                         $html .= '<a href="'. site_url('predictor/?p='. $user['user_login']) .'"  target="_blank">'. $user['name'] .'</a>';
                                         if ($user['country']) $html .= '<img class="countryFlag" src="'. PREDICTOR_URL .'frontend/img/'. $user['country'] .'.png" alt="country">';
-                                    $html .= '</h4><br>';
-                                        $html .= $user['description'];
+                                    $html .= '</h4>';
+                                        // $html .= '<br>'. $user['description'];
                                 $html .= '</div>';
                             $html .= '</div>';
                             if (!empty($meta['teams'])) {
@@ -132,90 +132,10 @@ class Enhancement {
         }
         return $predictors;
     }
-    static function answerForm2($meta, $ans, $eventID) {
-        $data = '';
-        $user = wp_get_current_user();
-        // $data = help($user, false);
-        if (!$user) {
-            // NOT LOGGED IN
-            $data .= '<div class="text-center"><a href="'. esc_url(site_url('pcp')) .'" class="fusion-button button-default button-small">login </a> to predict.</div>';
-        } else {
-            if ($userID = self::getValidUserID(['predictor', 'administrator'], $user)) {
-                // PREDICTIN FORM
-                if (!empty($meta['published'])) $data .= 'Event prediction time is over'; // Event is already published
-                    else {
-                    $data .= '<div class="predictionWrapper">';
-                        $data .= '<form action="" method="post">';
-                            $data .= '<input id="userID" type="hidden" name="user" value="'. $userID .'">';
-                            $data .= '<input id="eventID" type="hidden" name="event" value="'. $eventID .'">';
-                            $data .= '<input id="TID" type="hidden" name="team">';
-                            $data .= '<input id="QID" type="hidden" name="qid">';
-                            $data .= '<input id="QAns" type="hidden" name="qans">';
-                            if ($meta['teams']) {
-                                $data .= '<div class="teamQuestionWrapper">';
-                                foreach ($meta['teams'] as $team) {
-                                    $teamID = predictor_id_from_string($team['name']);
-                                    $options = 'team_'. $teamID;
-                                    $optionVals = !empty($ans[$userID][$options]) ? $ans[$userID][$options] : false;
-                                    if (isValidOption($optionVals, $team['end'])) {
-                                        $questions = '';
-                                        if ($meta[$options]) {
-                                            foreach ($meta[$options] as $option) {
-                                                $question = $tossTime = '';
-                                                $name = !empty($option['title']) ? $options .'_'. predictor_id_from_string($option['title']) : '';
-                                                if (empty($ans[$userID][$name])) {
-                                                    if ($option['id'] == 'toss') {
-                                                        $tossTime =  $option['time'] ? $option['time'] : 30;
-                                                        $tossTime =  date('Y-m-d H:i:s',strtotime("-". $tossTime ." minutes",strtotime($team['end'])));
-                                                        if (!isValidOption('', $tossTime)) continue;
-                                                    }
-                                                    $question .= '<div class="predictionContainer" id="'. $name .'">';
-                                                        if ($option['weight']) {
-                                                            $question .= '<h4 class="title">'. $option['title'] .'</h4>';
-                                                            if ($tossTime ) $question .= '<div class="endToss" id="'. $name .'_end">'. $tossTime .'</div>';
-                                                            foreach ($option['weight'] as $weight) {
-                                                                if (!$weight['name']) continue;
-                                                                $question .= '<label><input type="radio" name="'. $name .'" value="'. $weight['name'] .'">'. $weight['name'] .'</label>';
-                                                            }
-                                                        }
-                                                        $question .= '<button type="button" class="btn btn-green saveQAns">Submit</button>';
-                                                    $question .= '</div>';
-                                                }
-                                                $questions .= $question;
-                                            }
-                                        }
-                                        if ($question) {
-                                            $data .= '<div class="teamQuestionContainer" id="'. $options .'">';
-                                            $data .= '<div class="titleContainer">';
-                                            $data .= '<div class="teamName half left"><strong>'. $team['name'] .'</strong></div>';
-                                            $data .= '<div><div class="endTime helf right text-right" id="'. $teamID .'_end">'. $team['end'] .'</div><p class="text-right">Time remaining to predict </p></div>'; 
-                                            $data .= '</div>';
-                                            $data .= $questions;
-                                            $data .= '</div>';
-                                        }
-                                    }
-                                } // teamQuestionContainer
-                                $data .= '<div class="notice">';
-                                    $data .= '<div class="alert">';
-                                        $data .= '<span class="closebtn">&times;</span>';
-                                        $data .= '<ul style="margin-left: 15px;">';
-                                            $data .= '<li><a href="https://cricdiction.com/eligibility-process">Click here</a> to see the eligibility process</li>';
-                                    $data .= '</div>';
-                                $data .= '</div>';
-                                $data .= '</div>';
-                            }
-                        $data .= '</form>';
-                    
-                $data .= '</div>'; // predictionWrapper end
-                }
-            }
-        }
-        return $data;
-    }
+    
     static function answerForm($meta, $ans, $eventID) {
         $data = '';
         $user = wp_get_current_user();
-        // $data = help($user, false);
         if (!$user) {
             // NOT LOGGED IN
             $data .= '<div class="text-center"><a href="'. esc_url(site_url('pcp')) .'" class="fusion-button button-default button-small">login </a> to predict.</div>';
@@ -224,6 +144,7 @@ class Enhancement {
                 // PREDICTIN FORM
                 if (!empty($meta['published'])) $data .= 'Event prediction time is over'; // Event is already published
                 else {
+                    $tradings   = get_post_meta($eventID, 'trading', true);
                     if ($meta['teams']) {
                         $teamQuestions = '';
                         foreach ($meta['teams'] as $team) {
@@ -265,6 +186,13 @@ class Enhancement {
                                     $teamQuestions .= '</div>';
                                     $teamQuestions .= $questions;
                                     $teamQuestions .= '</div>';
+                                    
+                                    $yesTrading = $noTrading = '';
+                                    if (!empty($tradings[$userID][$teamID])) {
+                                        $yesTrading = $tradings[$userID][$teamID] == 'yes' ? ' checked="checked"' : '';
+                                        $noTrading  = $tradings[$userID][$teamID] == 'no' ? ' checked="checked"' : '';
+                                    }
+                                    $teamQuestions .= '<div class="teamQuestionWrapper tradingContainer" id="trading"><h4 class="title">Trading?</h4><label><input type="radio" name="trading" value="yes"'.$yesTrading.'>Yes</label><label><input type="radio" name="trading" value="no"'.$noTrading.'>No</label><button type="button" class="btn btn-green saveTrading" event='. $eventID .' user='. $userID .' match="'. $teamID .'">Submit</button></div>';
                                 }
                             }
                         } // teamQuestionContainer

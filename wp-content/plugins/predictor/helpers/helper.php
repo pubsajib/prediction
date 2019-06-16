@@ -1,6 +1,9 @@
 <?php 
 date_default_timezone_set("Asia/Dhaka");
-
+function getAvatarURL($get_avatar){
+    preg_match('/src="([^"]*)"/i', $get_avatar, $matches);
+    return $matches[1];
+}
 // GET ID FORM STRING
 function predictor_id_from_string($string): string{
     $string = str_replace(['#', '[', '(', ')', '-', '+', '/', ']', ' ', '?', '\''], '_', strtolower(trim($string)));
@@ -99,5 +102,13 @@ function increasePredictorLikes($userID) {
     $likes = (int) get_user_meta($userID, $key, true);
     if (!$likes) return add_user_meta( $userID, $key, $likes+1);
     else return update_user_meta( $userID, $key, $likes+1);
+    return false;
+}
+function currentUser() {
+    $user = wp_get_current_user();
+    if ($user->ID) {
+        $user->follows = Follower::getFollowerIds($user->id);
+        return $user;
+    }
     return false;
 }

@@ -6,15 +6,21 @@
 class RoadToTop {
 	static function render($args=[]) {
 		$ranksHTML = '';
-		$userID = wp_get_current_user()->ID;
-		$ranksHTML .= self::ovarall($args['overall']);
-		// $ranksHTML .= self::match($args['match']);
-		// $ranksHTML .= self::toss($args['toss']);
+		$ranksHTML .= '<div class="RoadToTopsection"><div class="tabs tabs_default" id="Roadtotop">';
+            $ranksHTML .= '<ul class="horizontal">';
+                $ranksHTML .= '<li class="proli"><a href="#match">Match</a></li>';
+                $ranksHTML .= '<li class="proli"><a href="#toss">Toss</a></li>';
+                $ranksHTML .= '<li class="proli"><a href="#all">All</a></li>';
+            $ranksHTML .= '</ul>';
+            $ranksHTML .= '<div id="match">'. self::ovarall($args['match']) .'</div>';
+            $ranksHTML .= '<div id="toss">'. self::ovarall($args['toss']) .'</div>';
+            $ranksHTML .= '<div id="all">'. self::ovarall($args['overall']) .'</div>';
+        $ranksHTML .= '</div></div>';
 		echo $ranksHTML;
 	}
 	static function ovarall($args=[]) {
 		if (empty($args)) {
-			$args['user_id'] = 512;
+			$args['user_id'] = wp_get_current_user()->ID;
 			$args['type'] = 'overall';
 			$args['accuracy'] = 50;
 			$args['engagement'] = 80;
@@ -27,7 +33,7 @@ class RoadToTop {
 	}
 	static function match($args=[]) {
 		if (empty($args)) {
-			$args['user_id'] = 512;
+			$args['user_id'] = wp_get_current_user()->ID;
 			$args['type'] = 'overall_match';
 			$args['accuracy'] = 50;
 			$args['engagement'] = 80;
@@ -40,7 +46,7 @@ class RoadToTop {
 	}
 	static function toss($args=[]) {
 		if (empty($args)) {
-			$args['user_id'] = 512;
+			$args['user_id'] = wp_get_current_user()->ID;
 			$args['type'] = 'overall_toss';
 			$args['accuracy'] = 50;
 			$args['engagement'] = 80;
